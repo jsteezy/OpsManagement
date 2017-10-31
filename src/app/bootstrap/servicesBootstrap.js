@@ -8,7 +8,7 @@ import cacheService from "../common/services/Cache";
 import navigationService from "../common/services/NavigationService";
 
 import userService from "../common/services/user/UserService";
-import profileDataAccessService from "../common/services/dataAccess/profile/ProfileDataAccessService";
+//import profileDataAccessService from "../common/services/dataAccess/profile/ProfileDataAccessService";
 import currencyDataAccessService from "../common/services/dataAccess/currency/CurrencyDataAccessService";
 import countryDataAccessService from "../common/services/dataAccess/country/CountryDataAccessService";
 import peoplePickerService from "../common/services/peoplePicker/PeoplePickerService";
@@ -33,7 +33,7 @@ export default class Bootstrap {
         app.service("navigationService", navigationService);
 
         app.service("userService", userService);
-        app.service("profileDataAccessService", profileDataAccessService);
+        //app.service("profileDataAccessService", profileDataAccessService);
         app.service("currencyDataAccessService", currencyDataAccessService);
         app.service("countryDataAccessService", countryDataAccessService);
         app.service("attachmentsDataAccessService", attachmentsDataAccessService);

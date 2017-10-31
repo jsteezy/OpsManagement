@@ -1,8 +1,8 @@
 {
   "everyone": "everyone",
-  "tarMembers" : "TAR Members",
-  "budgetApprovers": "Budget Approvers",
-  "superBudgetApprovers": "Super Budget Approvers",
-  "gssApprovers": "GSS Approvers",
+  //"tarMembers" : "TAR Members",
+  "editors": "Editors",
+  "approvers": "Approvers",
+  //"gssApprovers": "GSS Approvers",
   "admin": "_System Admin_"
 }
