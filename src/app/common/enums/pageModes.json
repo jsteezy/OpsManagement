@@ -1,0 +1,23 @@
+{
+  "add": {
+    "actionName": "SAVE",
+    "draftActionName": "DRAFT",
+    "serviceAction": "save",
+    "tarDraftServiceAction": "saveAsDraft",
+    "eifDraftServiceAction": "saveAsDraft"
+  },
+  "edit": {
+    "actionName": "SAVE",
+    "draftActionName": "DRAFT",
+    "serviceAction": "update",
+    "tarDraftServiceAction": "updateDraft",
+    "eifDraftServiceAction": "updateDraft"
+  },
+  "details": {
+
+  },
+  "approval":{
+    "approveAction" : "",
+    "rejectAction": ""
+  }
+}

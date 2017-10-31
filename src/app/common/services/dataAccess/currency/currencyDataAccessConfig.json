@@ -1,0 +1,4 @@
+{
+  "getItemCount": "/_api/Lists/getByTitle('Currencies')/ItemCount",
+  "getAll": "/_api/Lists/getByTitle('Currencies')/items?$top={ITEM_COUNT}&$orderby=Title asc&$select=Title,TAR_Description,TAR_CurrencyNumber"
+}

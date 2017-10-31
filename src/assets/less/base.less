@@ -1,0 +1,125 @@
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: sciFontFamily;
+  src:  url("../fonts/sciFonts/GillSansInfantStd.otf"),
+        url("../fonts/sciFonts/GillSansInfantStd-Bold.otf"),
+        url("../fonts/sciFonts/GillSansInfantStd-BoldIt.otf"),
+        url("../fonts/sciFonts/GillSansInfantStd-Italic.otf"),
+        url("../fonts/sciFonts/TradeGothicLTCom-BdCn20.ttf")
+}
+
+body, button, select, html, textarea, input {
+  font-family: sciFontFamily;
+}
+
+.app-container {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+md-input-container.md-pageTheme-theme .md-input[disabled] {
+  border-bottom-color: @color-disabledInput-border;
+}
+
+body {
+  min-height: 300px !important;
+}
+
+md-input-container {
+  .hint {
+    color: @label-color;
+  }
+}
+
+div.md-toast-content {
+  background-color: rgb(244, 67, 54);
+  color: white;
+  font-weight: 700;
+}
+
+.md-button {
+  .material-icons {
+    vertical-align: middle;
+  }
+
+  &.md-icon-button {
+    padding: 0px;
+    line-height: 28px;
+
+    md-icon {
+      display: inline-block;
+    }
+  }
+}
+
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-red {
+  color: rgb(244,67,54);
+}
+
+.md-icon-30 {
+  font-size: 30px;
+}
+
+.md-icon-35 {
+  font-size: 35px;
+}
+
+.md-icon-40 {
+  font-size: 40px;
+}
+
+.md-icon-48 {
+  font-size: 48px;
+}
+
+.form-label-color {
+  color: @label-color !important;
+}
+
+@media (min-width: 1280px) {
+  md-dialog {
+    min-width: 710px !important;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+
+  md-dialog {
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+  }
+}
+
+.server-error {
+  color: @theme-main-color;
+}
+
+.grid-messages {
+  font-size: 17px;
+  color: rgb(221,44,0);
+  margin: 7px 0 0 15px;
+}
+
+.validation-messages {
+  font-size: 12px;
+  color: rgb(221,44,0);
+  margin: 7px 0 0 25px;
+}
+
+.hint {
+  color: @label-color;
+  padding-top: 7px;
+}

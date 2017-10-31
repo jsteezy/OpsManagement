@@ -1,0 +1,96 @@
+<md-content ng-cloak>
+    <md-tabs class="md-primary"
+             md-dynamic-height="true"
+             md-border-bottom="true">
+        <md-tab id="tab1" has-permissions="[ctrl.appPermissions.budgetApprovers]">
+            <md-tab-label>{{ 'BUDGET_APPROVAL_TARS' | translate}}</md-tab-label>
+            <md-tab-body>
+                <md-content>
+                    <md-subheader>{{'TAR_APPROVAL_SEARCH_HINT' | translate}}</md-subheader>
+                    <div layout-gt-sm="row" layout-margin layout-padding>
+                        <md-input-container class="md-block" flex-gt-sm="50">
+                            <label>{{'TRAVELLER_LABEL' | translate}}</label>
+                            <input mask="{{ctrl.budgetFilters.traveller.mask.pattern}}"
+                                   repeat="{{ctrl.budgetFilters.traveller.mask.repeat}}"
+                                   ng-model="ctrl.budgetFilters.traveller.value"/>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm="50">
+                            <label>{{'REQUESTER_LABEL' | translate}}</label>
+                            <input mask="{{ctrl.budgetFilters.requester.mask.pattern}}"
+                                   repeat="{{ctrl.budgetFilters.requester.mask.repeat}}"
+                                   ng-model="ctrl.budgetFilters.requester.value"/>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row" layout="column" layout-margin layout-padding>
+                        <grid-date-filter ng-model="ctrl.budgetFilters.departureDate"
+                                          label="DEPARTUREDATE_LABEL"
+                                          flex-gt-sm="50"></grid-date-filter>
+
+                        <grid-date-filter ng-model="ctrl.budgetFilters.returnDate"
+                                          label="RETURNDATE_LABEL"
+                                          flex-gt-sm="50"></grid-date-filter>
+                    </div>
+
+                    <div layout-gt-sm="row" layout-margin layout-padding has-permissions="[ctrl.appPermissions.superBudgetApprovers]">
+                        <md-input-container class="md-block" flex-gt-sm="50">
+                            <label>{{'BUDGETAPPROVER_LABEL' | translate}}</label>
+                            <input mask="{{ctrl.budgetFilters.budgetApprover.mask.pattern}}"
+                                   repeat="{{ctrl.budgetFilters.budgetApprover.mask.repeat}}"
+                                   ng-model="ctrl.budgetFilters.budgetApprover.value"/>
+                        </md-input-container>
+                    </div>
+
+                </md-content>
+                <md-content>
+                    <grid options="ctrl.budgetOptions"
+                          search-action="ctrl.budgetSearch()"
+                          reset-action="ctrl.budgetReset()"></grid>
+                </md-content>
+            </md-tab-body>
+        </md-tab>
+        <md-tab id="tab2" has-permissions="[ctrl.appPermissions.gssApprovers]">
+            <md-tab-label>{{ 'SECURITY_APPROVAL_TARS' | translate}}</md-tab-label>
+            <md-tab-body>
+                <md-content>
+                    <md-subheader>{{'TAR_APPROVAL_SEARCH_HINT' | translate}}</md-subheader>
+                    <div layout-gt-sm="row" layout-margin layout-padding>
+                        <md-input-container class="md-block" flex-gt-sm="50">
+                            <label>{{'TRAVELLER_LABEL' | translate}}</label>
+                            <input mask="{{ctrl.securityFilters.traveller.mask.pattern}}"
+                                   repeat="{{ctrl.securityFilters.traveller.mask.repeat}}"
+                                   ng-model="ctrl.securityFilters.traveller.value"/>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm="50">
+                            <label>{{'REQUESTER_LABEL' | translate}}</label>
+                            <input mask="{{ctrl.securityFilters.requester.mask.pattern}}"
+                                   repeat="{{ctrl.securityFilters.requester.mask.repeat}}"
+                                   ng-model="ctrl.securityFilters.requester.value"/>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row" layout="column" layout-margin layout-padding>
+                        <grid-date-filter ng-model="ctrl.securityFilters.departureDate"
+                                          label="DEPARTUREDATE_LABEL"
+                                          flex-gt-sm="50"></grid-date-filter>
+
+                        <grid-date-filter ng-model="ctrl.securityFilters.returnDate"
+                                          label="RETURNDATE_LABEL"
+                                          flex-gt-sm="50"></grid-date-filter>
+                    </div>
+                    <div layout-gt-sm="row" layout-margin layout-padding>
+                        <md-input-container class="md-block" flex-gt-sm="50">
+                            <label>{{'BUDGETAPPROVER_LABEL' | translate}}</label>
+                            <input mask="{{ctrl.securityFilters.budgetApprover.mask.pattern}}"
+                                   repeat="{{ctrl.securityFilters.budgetApprover.mask.repeat}}"
+                                   ng-model="ctrl.securityFilters.budgetApprover.value"/>
+                        </md-input-container>
+                    </div>
+                </md-content>
+                <md-content>
+                    <grid options="ctrl.securityOptions"
+                          search-action="ctrl.securitySearch()"
+                          reset-action="ctrl.securityReset()"></grid>
+                </md-content>
+            </md-tab-body>
+        </md-tab>
+    </md-tabs>
+</md-content>

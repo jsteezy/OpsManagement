@@ -1,0 +1,41 @@
+<md-content ng-cloak>
+    <md-content>
+        <md-subheader>{{'ALL_EIFS_SUBMITTED__HINT' | translate}}</md-subheader>
+        <div layout-gt-sm="row" layout-margin layout-padding>
+            <md-input-container class="md-block" flex-gt-sm="50">
+                <label>{{'GUESTTRAVELLER_FIRSTNAME_LABEL' | translate}}</label>
+                <input mask="{{ctrl.eifFilters.guestTravellerFirstName.mask.pattern}}"
+                       repeat="{{ctrl.eifFilters.guestTravellerFirstName.mask.repeat}}"
+                       ng-model="ctrl.eifFilters.guestTravellerFirstName.value"/>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm="50">
+                <label>{{'GUESTTRAVELLER_LASTNAME_LABEL' | translate}}</label>
+                <input mask="{{ctrl.eifFilters.guestTravellerLastName.mask.pattern}}"
+                       repeat="{{ctrl.eifFilters.guestTravellerLastName.mask.repeat}}"
+                       ng-model="ctrl.eifFilters.guestTravellerLastName.value"/>
+            </md-input-container>
+        </div>
+        <div layout-gt-sm="row" layout="column" layout-margin layout-padding>
+            <grid-date-filter ng-model="ctrl.eifFilters.departureDate"
+                              label="DEPARTUREDATE_LABEL"
+                              flex-gt-sm="50"></grid-date-filter>
+
+            <grid-date-filter ng-model="ctrl.eifFilters.returnDate"
+                              label="RETURNDATE_LABEL"
+                              flex-gt-sm="50"></grid-date-filter>
+        </div>
+        <div layout-gt-sm="row" layout-margin layout-padding>
+            <md-input-container class="md-block" flex-gt-sm="50">
+                <label>{{'STAFF_RESPOSIBLE_LABEL' | translate}}</label>
+                <input mask="{{ctrl.eifFilters.staffResponsible.mask.pattern}}"
+                       repeat="{{ctrl.eifFilters.staffResponsible.mask.repeat}}"
+                       ng-model="ctrl.eifFilters.staffResponsible.value"/>
+            </md-input-container>
+        </div>
+    </md-content>
+    <md-content>
+        <grid options="ctrl.eifSearchAllOptions"
+              search-action="ctrl.search()"
+              reset-action="ctrl.reset()"></grid>
+    </md-content>
+</md-content>

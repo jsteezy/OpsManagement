@@ -1,0 +1,96 @@
+<%@Master language="C#"%>
+<%@Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>
+<%@Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>
+<%@Register TagPrefix="wssuc" TagName="Welcome" Src="~/_controltemplates/15/Welcome.ascx"%>
+<%@Register TagPrefix="SearchWC" Namespace="Microsoft.Office.Server.Search.WebControls" Assembly="Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>
+
+<!DOCTYPE HTML>
+<SharePoint:SPHtmlTag runat="server" id="SPHtmlTag" dir="<%$Resources:wss,multipages_direction_dir_value %>">
+    <head runat="server">
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Expires" content="0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=11" />
+        <SharePoint:RobotsMetaTag runat="server" />		
+        <SharePoint:PageTitle runat="server"><asp:ContentPlaceHolder id="PlaceHolderPageTitle" runat="server"><SharePoint:ProjectProperty Property="Title" runat="server" /></asp:ContentPlaceHolder></SharePoint:PageTitle>
+        <SharePoint:StartScript runat="server" />
+        <SharePoint:CssLink runat="server" Version="15" />
+        <SharePoint:CacheManifestLink runat="server" />
+        <SharePoint:PageRenderMode runat="server" RenderModeType="Standard" />
+        
+        <!-- OMT css -->
+        <SharePoint:CssRegistration name="<% $SPUrl:~sitecollection/_catalogs/masterpage/OMT/css/OMT-master.css %>" runat="server" />
+        <!-- End OMT css -->
+
+        <SharePoint:CustomJSUrl runat="server" />
+        <SharePoint:SoapDiscoveryLink runat="server" />
+        <asp:ContentPlaceHolder ID="PlaceHolderAdditionalPageHead" runat="server" />
+        <SharePoint:DelegateControl runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true" />
+    </head>
+	
+    <body>
+        <SharePoint:SPClientIDGenerator runat="server" ServerControlID="DeltaPlaceHolderMain;DeltaPlaceHolderPageTitleInTitleArea;DeltaPlaceHolderUtilityContent" />
+        <SharePoint:ImageLink runat="server" />
+        <SharePoint:SharePointForm class="tarAppContainer" runat="server">
+            
+            
+            <WebPartPages:SPWebPartManager runat="server" />		
+            <asp:ScriptManager id="ScriptManager" runat="server" EnablePageMethods="false" EnablePartialRendering="true" EnableScriptGlobalization="false" EnableScriptLocalization="true" />
+                        
+            <SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AnonymousUsersOnly"><wssuc:Welcome runat="server" EnableViewState="false" /></SharePoint:SPSecurityTrimmedControl>
+
+            <div id="s4-workspace" class="tarAppContainer">
+                <div id="s4-bodyContainer" class="tarAppContainer">
+
+                <!-- Start Title Area -->
+                <asp:ContentPlaceHolder id="PlaceHolderPageTitleInTitleArea" runat="server" />
+                <!-- End Title Area -->
+
+                <!-- Start Breadcrumbs -->
+                <asp:ContentPlaceHolder id="PlaceHolderTitleBreadcrumb" runat="server" />
+                <!-- End Breadcrumbs -->
+
+                <!-- Start Left Navigation -->
+                <asp:ContentPlaceHolder id="PlaceHolderLeftNavBar" runat="server"/>
+                <!-- End Left Navigation -->	
+                                    
+                <!-- Start Main Content -->
+                <asp:ContentPlaceHolder ID="PlaceHolderMain" runat="server" />
+                <!-- End Main Content -->
+
+                <!-- Start Right Navigation -->
+                <asp:ContentPlaceHolder id="PlaceHolderRightNavBar" runat="server"/>
+                <!-- End Right Navigation -->
+
+                </div>
+            </div>
+                        
+            <!-- Form Digest -->
+            <asp:ContentPlaceHolder id="PlaceHolderFormDigest" runat="server"><SharePoint:formdigest runat="server" /></asp:ContentPlaceHolder>
+                    
+            <!-- Hide Various Placeholders -->	
+            <asp:ContentPlaceHolder id="PlaceHolderBodyAreaClass" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderTitleAreaClass" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderGlobalNavigationSiteMap" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderGlobalNavigation" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderHorizontalNav" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderTopNavBar" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderSiteName" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderPageDescription" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderPageImage" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderTitleLeftBorder" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderMiniConsole" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderTitleRightMargin" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderTitleAreaSeparator" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderNavSpacer" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderLeftNavBarBorder" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderBodyLeftBorder" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="PlaceHolderBodyRightMargin" Visible="False" runat="server" />
+            <asp:ContentPlaceHolder id="WSSDesignConsole" Visible="False" runat="server" />
+                        
+        </SharePoint:SharePointForm>
+
+        <asp:ContentPlaceHolder id="PlaceHolderUtilityContent" runat="server"/>
+
+    </body>
+</SharePoint:SPHtmlTag>

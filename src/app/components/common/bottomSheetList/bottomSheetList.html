@@ -1,0 +1,15 @@
+<md-bottom-sheet class="md-list md-has-header" ng-cloak>
+    <md-list>
+        <md-list-item>
+            <span class="header-list-item" ng-repeat="displayField in ctrl.options.displayFields"
+                          flex="{{displayField.flex}}">
+            {{displayField.header | translate}}
+            </span>
+        </md-list-item>
+        <md-list-item ng-repeat="item in ctrl.listModel" ng-click="ctrl.listItemClick(item)">
+                <span ng-repeat="displayField in ctrl.options.displayFields" flex="{{displayField.flex}}">
+                    {{ctrl.displayProperty(item, displayField.fieldName)}}
+                </span>
+        </md-list-item>
+    </md-list>
+</md-bottom-sheet>

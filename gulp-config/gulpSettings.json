@@ -1,0 +1,5 @@
+{
+  "distFolder" : "./dist",
+  "production": false,
+  "isSPEnv": true
+}

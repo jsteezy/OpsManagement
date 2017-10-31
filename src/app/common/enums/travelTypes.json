@@ -1,0 +1,5 @@
+{
+  "values": ["DOMESTIC", "INTERNATIONAL"],
+  "domestic": "DOMESTIC",
+  "international": "INTERNATIONAL"
+}

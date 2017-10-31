@@ -1,0 +1,16 @@
+<md-progress-linear md-mode="indeterminate" ng-show="ctrl.showProgress"></md-progress-linear>
+<div id="container" layout-gt-sm="column" layout-align="start start" layout-padding>
+    <div layout-gt-xs="row" layout-align="start center">
+        <md-button class="md-fab md-primary" id="selectFiles">
+            <i class="material-icons">file_upload</i>
+        </md-button>
+        <div class="hint">{{'FILE_UPLOAD_LABEL' | translate}}</div>
+    </div>
+    <div id="previews" layout="row">
+    </div>
+
+</div>
+<div class="errors">
+    <div id="duplicateError" class="customError hide">{{'ATTACHMENT_DUPLICATE_ERROR' | translate}}</div>
+    <div id="isEmptyError" class="customError hide">{{'ATTACHMENT_EMPTY_FILE_ERROR' | translate}}</div>
+</div>

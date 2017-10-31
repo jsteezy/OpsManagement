@@ -1,0 +1,15 @@
+{
+  "basicName": {
+    "pattern": "#?s?",
+    "repeat": 15
+  },
+
+  "phone": {
+    "pattern": "+99 99 9999-9999-9999-9999",
+    "regexValue": "^\\D*(?:\\d\\D*){10,20}$"
+  },
+
+  "year": {
+    "pattern": "9999"
+  }
+}

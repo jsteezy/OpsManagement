@@ -1,0 +1,22 @@
+{
+  "None": {
+    "id": "1",
+    "class": "pending"
+  },
+  "Pending": {
+    "id": "2",
+    "class": "pending"
+  },
+  "Approved": {
+    "id": "3",
+    "class": "approved"
+  },
+  "Rejected": {
+    "id": "4",
+    "class": "rejected"
+  },
+  "Completed": {
+    "id": "5",
+    "class": "approved"
+  }
+}

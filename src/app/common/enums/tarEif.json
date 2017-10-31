@@ -1,0 +1,5 @@
+{
+    "TARId": "TAR-{TRAVELLER_ID}-{DATE}",
+    "TARDraftId": "TAR-{REQUESTER_ID}-{DATE}",
+    "EIFId": "EIF-{REQUESTER_ID}-{DATE}"
+}

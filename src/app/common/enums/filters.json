@@ -1,0 +1,39 @@
+{
+  "dateOperators": [
+    {
+      "value": "gt",
+      "displayText": ">"
+    },
+    {
+      "value": "lt",
+      "displayText": "<"
+    },
+    {
+      "value": "eq",
+      "displayText": "="
+    },
+    {
+      "value": "ge",
+      "displayText": ">="
+    },
+    {
+      "value": "le",
+      "displayText": "<="
+    }],
+
+  "eq": "eq",
+  "ge": "ge",
+  "gt": "gt",
+  "le": "le",
+  "lt": "lt",
+
+  "logicalOperators": ["and", "or"],
+  "and": "and",
+  "or": "or",
+
+  "getTarsFilter": "(TAR_Requester eq {USER_ID} or TAR_Traveller eq {USER_ID}) and ((TAR_BudgetApprovalStatus ne 'Approved' and TAR_BudgetApprovalStatus ne 'Rejected') and ((TAR_RequiresGssApproval eq 1 and (TAR_GSSApprovalStatus ne 'Approved' and TAR_GSSApprovalStatus ne 'Rejected')) or (TAR_RequiresGssApproval eq 0)))",
+  "getTarsForBudgetApprover": "(TAR_BudgetApprover eq {USER_ID}) and (TAR_BudgetApprovalStatus eq 'Pending')",
+  "getTarsForSecurity": "(TAR_RequiresGssApproval eq 1) and (TAR_GSSApprovalStatus eq 'Pending')",
+  "getAllForBudgetApprover": "(TAR_BudgetApprovalStatus eq 'Pending')",
+  "getHistoryTars": "(TAR_Requester eq {USER_ID} or TAR_Traveller eq {USER_ID} or TAR_LineManager eq {USER_ID} or TAR_TravelCoordinator eq {USER_ID} or TAR_BudgetApprover eq {USER_ID} or TAR_AdditionalStaffMember eq {USER_ID})"
+}

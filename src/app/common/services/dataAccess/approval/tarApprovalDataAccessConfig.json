@@ -1,0 +1,13 @@
+{
+  "getForBudgetApprover": "/_api/Lists/getByTitle('TAR Requests')/items",
+  "getForBudgetApproverFilters": "?$filter=((TAR_BudgetApprover eq {USER_ID}) and (TAR_BudgetApprovalStatus eq 'Pending'))",
+  "getAllForBudgetApproverFilters": "?$filter=(TAR_BudgetApprovalStatus eq 'Pending')",
+  "selectForBudgetApprover": "&$select=TAR_BudgetApproverId,TAR_BudgetApprovalStatus,Title,TAR_Destinations,TAR_DepartureDate,TAR_ReturnDate,",
+  "getForSecurity": "/_api/Lists/getByTitle('TAR Requests')/items",
+  "getForSecurityFilters": "?$filter=((TAR_RequiresGssApproval eq 1) and (TAR_GSSApprovalStatus eq 'Pending'))",
+  "selectForSecurity": "&$select=TAR_RequiresGssApproval,TAR_GSSApprovalStatus,Title,TAR_BudgetApprovalStatus,TAR_BudgetApprovalTimestamp,TAR_Destinations,TAR_DepartureDate,TAR_ReturnDate,",
+  "expandUsers": "TAR_Requester/Title,TAR_Requester/Id,TAR_Traveller/Title,TAR_Traveller/Id,TAR_LineManager/Title,TAR_LineManager/Id,TAR_TravelCoordinator/Title,TAR_TravelCoordinator/Id,TAR_BudgetApprover/Title,TAR_BudgetApprover/Id&$expand=TAR_Requester,TAR_Traveller,TAR_LineManager,TAR_TravelCoordinator,TAR_BudgetApprover",
+  "expandTravellerAndRequester": "TAR_Requester/Title,TAR_Requester/Id,TAR_Traveller/Title,TAR_Traveller/Id&$expand=TAR_Requester,TAR_Traveller",
+  "getTask": "/_api/Lists/getByTitle('TAR Workflow Tasks')/items?$filter=((Status eq 'Not Started') and (substringof('{TAR_ID}',Title)))",
+  "approveTask": "/_api/Lists/getByTitle('TAR Workflow Tasks')/items('{ITEM_ID}')",
+}

@@ -1,0 +1,45 @@
+<div layout="column">
+    <label class="form-label-color" ng-if="ctrl.pickerOptions.readonly">{{ctrl.pickerOptions.placeholder | translate}}</label>
+    <md-chips ng-model="ctrl.model"
+              readonly="ctrl.pickerOptions.readonly"
+              md-autocomplete-snap
+              md-transform-chip="ctrl.transformChip($chip)"
+              md-on-add="ctrl.addChip($chip)"
+              md-on-remove="ctrl.removeChip($chip)"
+              md-require-match="ctrl.pickerOptions.autocompleteRequireMatch"
+              md-max-chips="ctrl.pickerOptions.maxSize"
+              name="{{ctrl.options.name}}">
+        <md-autocomplete
+                md-no-cache="true"
+                md-delay="500"
+                md-selected-item="ctrl.selectedPerson" 
+                md-search-text="ctrl.searchText"
+                md-items="item in ctrl.querySearch()"
+                md-item-text="item.Title"
+                placeholder="{{ctrl.pickerOptions.placeholder | translate}}"
+                md-select-on-match="true"
+                md-match-case-insensitive="true"
+                md-min-length="2">
+            <md-item-template>
+                <span>{{ctrl.getDisplayTitle(item)}}</span>
+            </md-item-template>
+        </md-autocomplete>
+        <md-chip-template>
+            <div>
+                <strong>{{ctrl.getDisplayTitle($chip)}}</strong>
+            </div>
+        </md-chip-template>
+    </md-chips>
+    <div class="hint">{{ctrl.options.hint | translate}}</div>
+    <div class="customErrors" ng-messages="ctrl.form[ctrl.options.name].$error"
+         ng-if="ctrl.form.submitted || ctrl.form[ctrl.options.name].$dirty">
+        <div ng-message="minsize">{{'REQUIRED_VALIDATION' | translate}}</div>
+        <div ng-message="maxsize">{{'PEOPLE_PICKER_MAXSIZE_ERROR' | translate}} {{ctrl.pickerOptions.maxSize}}</div>
+        <div ng-message="invalidpersons">{{'INVALID_PERSONS_ERROR' | translate}}</div>
+    </div>
+    <div class="customErrors" ng-if="!ctrl.form">
+        <div ng-show="ctrl.errors.minSize">{{'REQUIRED_VALIDATION' | translate}} {{ctrl.pickerOptions.minSize}}.</div>
+        <div ng-show="ctrl.errors.maxSize">{{'PEOPLE_PICKER_MAXSIZE_ERROR' | translate}} {{ctrl.pickerOptions.maxSize}}.</div>
+        <div ng-show="ctrl.errors.invalidPersons">{{'INVALID_PERSONS_ERROR' | translate}}</div>
+    </div>
+</div>

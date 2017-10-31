@@ -1,0 +1,3 @@
+{
+    "getAll": "/_api/Lists/getByTitle('Account Codes')/items?$select=Title,TAR_AccountCode"
+}

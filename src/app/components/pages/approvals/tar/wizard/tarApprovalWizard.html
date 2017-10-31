@@ -1,0 +1,26 @@
+<md-content>
+    <div layout-gt-sm="row" layout-align="space-between center">
+        <h2>{{ctrl.title | translate}}</h2>
+        <div layout="row">
+            <md-button class="md-raised md-primary" aria-label="save"
+                       ng-hide="ctrl.isRequestProcessing"
+                       ng-click="ctrl.approve()">
+                {{'APPROVE' | translate}}
+            </md-button>
+            <md-button class="md-raised md-primary" aria-label="save"
+                       ng-hide="ctrl.isRequestProcessing"
+                       ng-click="ctrl.reject()">
+                {{'REJECT' | translate}}
+            </md-button>
+            <md-progress-circular md-mode="indeterminate" class="md-primary md-hue-3" ng-show="ctrl.isRequestProcessing"
+                                  md-diameter="70"></md-progress-circular>
+        </div>
+    </div>
+    <div layout-gt-sm="row" layout-align="space-between center" class="comments">
+        <md-input-container class="md-block" flex-gt-sm="50">
+            <label>{{'APPROVER_COMMENTS' | translate}}</label>
+            <textarea ng-model="ctrl.comments"></textarea>
+        </md-input-container>
+    </div>
+    <ng-outlet></ng-outlet>
+</md-content>
