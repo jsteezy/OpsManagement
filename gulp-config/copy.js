@@ -1,6 +1,7 @@
 var gulp = require("gulp");
 var gulpSettings = require("./gulpSettings.json");
 
+
 gulp.task("copy", function() {
 	gulp.src(["./src/assets/img/**/*"])
 		.pipe(gulp.dest(gulpSettings.distFolder + "/img"));

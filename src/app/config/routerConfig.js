@@ -14,10 +14,10 @@ export default class StateConfig {
 
     static getPaths() {
         return [
-            /*             {
-                            path: '/profile-search', name: 'ProfileSearch', component: 'profileSearch'
+                         {
+                            path: '/create', name: 'Create', component: 'create'
                         },
-                        {
+                       /* {
                             path: '/profile-wizard', name: 'ProfileWizard', component: 'profileWizard'
                         },
                         {

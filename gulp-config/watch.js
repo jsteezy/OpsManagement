@@ -1,4 +1,13 @@
 var gulp = require("gulp");
+var envConfig = require("../src/app/config/envConfig.json");
+var gutil = require("gulp-util");
+var gulpSettings = require("./gulpSettings.json");
+
+gulp.task("copy", function() {
+	gulp.src([gulpSettings.distFolder + "/js"])
+		.pipe(gulp.dest(envConfig.site_url +  "/ProjectLibrary/OMT/js"));
+		gutil.log(envConfig.site_url +  "/ProjectLibrary/OMT/js");
+});
 
 gulp.task("watch", function() {
 	gulp.watch([
