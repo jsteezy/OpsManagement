@@ -15,7 +15,7 @@ import angularTranslateLoaderStaticFiles from 'angular-translate-loader-static-f
 import angularSanitize from 'angular-sanitize';
 import angularMessages from 'angular-messages';
 
-import grid from "./config/gridConfig"
+import grid from "./config/gridConfig";
 
 import components from "./bootstrap/componentsBootstrap";
 import directives from "./bootstrap/directivesBootstrap";
@@ -35,20 +35,20 @@ import jQueryConfig from "./config/jQueryConfig";
 import angularApp from "./config/bootstrap";
 
 const getModules = () => {
-	const angularModules = [
-		angularMaterial,
-		angularAnimate,
-		angularAria,
-		angularTranslate,
-		angularSanitize,
-		angularTranslateLoaderStaticFiles,
-		angularMessages
-	];
+    const angularModules = [
+        angularMaterial,
+        angularAnimate,
+        angularAria,
+        angularTranslate,
+        angularSanitize,
+        angularTranslateLoaderStaticFiles,
+        angularMessages
+    ];
 
-	return angularModules
-				.concat(routerConfig.getModules())
-				.concat(grid.getModules())
-                .concat(featuresConfig.getModules())
+    return angularModules
+        .concat(routerConfig.getModules())
+        .concat(grid.getModules())
+        .concat(featuresConfig.getModules())
 };
 
 angular.module("omt", getModules());
