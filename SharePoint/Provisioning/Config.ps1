@@ -1,14 +1,14 @@
 ﻿$global:spWebAppUrl = "https://amsdev.savethechildren.net";
 $global:spSiteUrl = "$($global:spWebAppUrl)/sites/OMT";
 
-$global:solutionPath = "D:\srcJohn\TAR\dist";
+$global:solutionPath = "D:\srcJohn\OMT\dist";
 $global:solutionStorageDocLibraryName = "ProjectLibrary";
 $global:documentLibraryFolder = "OMT";
 $global:solutionExportDocLibraryName = "OMT Exports";
 
 $global:masterPageFileName = "Application.master";
 $global:spaPageLayoutFileName = "ApplicationSPALayout.aspx";
-$global:masterPageCssFileName = "tar-master.css";
+$global:masterPageCssFileName = "omt-master.css";
 
 $global:pageLayoutContentType = "Page Layout";
 $global:masterPageContentType = "ASP NET Master Page";
