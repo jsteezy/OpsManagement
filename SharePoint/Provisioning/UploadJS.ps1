@@ -27,5 +27,5 @@ foreach ($file in $srcFiles)
 
       $done= $folder.Files.Add($file.Name, $stream, $true)
 
-      Write-Host $done.Name  "Uploaded into the Site" -BackgroundColor Green
+      Write-Host $done.Name  "Uploaded into the Site" -ForegroundColor Green
 }
