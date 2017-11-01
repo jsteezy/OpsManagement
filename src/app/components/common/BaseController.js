@@ -151,7 +151,7 @@ export default class BaseController extends BaseComponentController {
         return this.hasPermissions([super.appPermissions.everyone]);
     }
 
-    get currentUser(){
+    get currentUser() {
         const userService = this.$injector.get("userService");
 
         return userService.getCurrentUser();
@@ -178,17 +178,16 @@ export default class BaseController extends BaseComponentController {
 
         let initPageActionPromise = Promise.resolve(action())
             .then(
-            () => {
-                if (this.hasServerErrors()) {
-                    this.redirectToHome();
-                }
-                else {
+                () => {
+                    if (this.hasServerErrors()) {
+                        this.redirectToHome();
+                    } else {
+                        this.stopSpinner();
+                    }
+                },
+                () => {
                     this.stopSpinner();
-                }
-            },
-            () => {
-                this.stopSpinner();
-            });
+                });
 
         return initPageActionPromise;
     }
@@ -197,13 +196,13 @@ export default class BaseController extends BaseComponentController {
         return Promise.all(promises);
     }
 
-    startSpinner() {
-        super.emit(EventsTypes.loading, true);
-    }
+    // startSpinner() {
+    //     super.emit(EventsTypes.loading, true);
+    // }
 
-    stopSpinner() {
-        super.emit(EventsTypes.loading, false);
-    }
+    // stopSpinner() {
+    //     super.emit(EventsTypes.loading, false);
+    // }
 
     IsSubmittedFormValid(form) {
         form.submitted = true;

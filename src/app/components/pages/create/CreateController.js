@@ -1,6 +1,6 @@
 import BaseController from "../../common/BaseController";
 
-export default class HomeController extends BaseController {
+export default class CreateController extends BaseController {
     constructor($window, $injector) {
         super($injector);
 
@@ -22,4 +22,4 @@ export default class HomeController extends BaseController {
     }
 }
 
-HomeController.$inject = ["$window", "$injector"];
+CreateController.$inject = ["$window", "$injector"];

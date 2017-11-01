@@ -9,15 +9,14 @@ gulp.task("default", ["runDevelopment"]);
 
 gulp.task("prod", ["runProduction"]);
 
-gulp.task("runDevelopment", function () {
+gulp.task("runDevelopment", function() {
     if (!gulpSettings.isSPEnv) {
         runSequence("clean", "baseTagInject", "copy", "js-core", "js-shims", "less-core", "webserver", "watch");
-    }
-    else {
-        runSequence("clean", "baseTagInject", "copy", "js-core", "js-shims", "less-core", "watch");
+    } else {
+        runSequence("clean", "baseTagInject", "copy", "js-core", "js-shims", "less-core", "copyJs");
     }
 });
 
-gulp.task("runProduction", function () {
+gulp.task("runProduction", function() {
     runSequence("clean", "baseTagInject", "copy", "js-core", "js-shims", "less-core");
 });

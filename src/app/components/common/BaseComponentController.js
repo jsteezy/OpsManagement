@@ -1,10 +1,10 @@
 import Events from "../../common/helpers/Events";
-import Permissions from "../../common/enums/permissions.json";
+import Permissions from "../../../app/common/enums/permissions.json";
 
 export default class BaseComponentController {
     constructor() {
         this.customEventsListener = new Map();
-        
+
     }
 
     setListener(key, action) {
@@ -12,8 +12,8 @@ export default class BaseComponentController {
 
         this.customEventsListener.set(key, action);
     }
-    
-    emit(key, ...args){
+
+    emit(key, ...args) {
         Events.Emitter.emit(key, args);
     }
 

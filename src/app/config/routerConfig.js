@@ -14,6 +14,7 @@ export default class StateConfig {
 
     static getPaths() {
         return [
+
             /*             {
                             path: '/profile-search', name: 'ProfileSearch', component: 'profileSearch'
                         },
@@ -26,9 +27,7 @@ export default class StateConfig {
                         {
                             path: '/tar-search', name: 'TarSearch', component: 'tarSearch', useAsDefault: true
                         },
-                        {
-                            path: '/add/tar-wizard', name: 'TarWizardAdd', component: 'tarWizard'
-                        },
+
                         {
                             path: '/edit/draft/tar-wizard/:id', name: 'TarWizardDraftEdit', component: 'tarWizard'
                         },
@@ -68,6 +67,11 @@ export default class StateConfig {
                         {
                             path: '/eif-search-all' , name: 'EifSearchAll', component: 'eifSearchAll'
                         }, */
+            {
+                path: '/create',
+                name: 'Create',
+                component: 'create'
+            },
             {
                 path: '/access-denied',
                 name: 'AccessDenied',
