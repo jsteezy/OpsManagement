@@ -9,7 +9,7 @@ import regions from "../components/pages/administrator/regions/regions";
 import users from "../components/pages/administrator/users/users";
 import exportComponent from "../components/pages/administrator/export/export";
 import countries from "../components/pages/administrator/countries/countries";
-import orgUnitTypes from "../components/pages/administrator/orgUnitTypes/orgUnitTypes";
+import create1 from "../components/pages/administrator/create1/create1";
 
 
 import accessDenied from "../components/pages/accessDenied/accessDenied";
@@ -53,7 +53,7 @@ export default class Bootstrap {
         app.component("users", users);
         app.component("export", exportComponent);
         app.component("countries", countries);
-        app.component("orgUnitTypes", orgUnitTypes);
+        app.component("create1", create1);
         app.component("accessDenied", accessDenied);
 
         //layout components

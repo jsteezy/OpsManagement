@@ -68,11 +68,6 @@ export default class StateConfig {
                             path: '/eif-search-all' , name: 'EifSearchAll', component: 'eifSearchAll'
                         }, */
             {
-                path: '/create',
-                name: 'Create',
-                component: 'create'
-            },
-            {
                 path: '/access-denied',
                 name: 'AccessDenied',
                 component: 'accessDenied'
@@ -100,7 +95,7 @@ export default class StateConfig {
             {
                 path: '/admin-org-unit-types',
                 name: 'OrgUnitTypes',
-                component: 'orgUnitTypes'
+                component: 'create1'
             },
             {
                 path: '/admin-org-units',
@@ -111,6 +106,11 @@ export default class StateConfig {
                 path: '/admin-users',
                 name: 'Users',
                 component: 'users'
+            },
+            {
+                path: '/create',
+                name: 'Create',
+                component: 'create'
             },
             {
                 path: '/admin-export',

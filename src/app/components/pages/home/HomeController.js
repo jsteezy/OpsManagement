@@ -1,8 +1,6 @@
 import BaseController from "../../common/BaseController";
 import ResponseTypes from "../../../common/enums/responseTypes.json";
 import Countries from "../../../common/enums/countries.json";
-//import ResponseCodes from "../../../common/enums/responseCodes.json";
-
 
 export default class HomeController extends BaseController {
     constructor($window, $injector) {

@@ -2,8 +2,7 @@ import Permissions from "../../../common/enums/permissions.json";
 
 export default class MenuFeatures {
     static get menuItems() {
-        return [
-            {
+        return [{
                 "name": "HOME_SIDE_NAV",
                 "type": "link",
                 "icon": "home",
@@ -56,7 +55,12 @@ export default class MenuFeatures {
                 "type": "toggle",
                 "icon": "supervisor_account",
                 "permissions": [Permissions.admin],
-                "pages": [
+                "pages": [{
+                        "name": "Create",
+                        "type": "link",
+                        "state": "Create",
+                        "permissions": [Permissions.admin]
+                    },
                     {
                         "name": "USERS_SIDE_NAV",
                         "state": "Users",

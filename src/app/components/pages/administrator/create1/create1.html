@@ -1,0 +1,40 @@
+<md-content>
+        <div class="col-md-12">
+            <div class="md-no-sticky md-subheader _md md-pageTheme-theme">
+                <div class="md-subheader-inner">
+                    <div class="md-subheader-content">
+                        <h1>Create new response</h1>
+                    </div>
+                </div>
+            </div>
+            <form>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Country</label>
+                    <md-select ng-model="ctrl.countries" placeholder="Country">
+                        <md-option ng-repeat="item in ctrl.countries" ng-value="item">
+                            {{item}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Response</label>
+                    <md-select ng-model="ctrl.responseTypes" placeholder="Response">
+                        <md-option ng-repeat="item in ctrl.responseTypes" ng-value="item">
+                            {{item}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Description</label>
+                    <input required name="comments" ng-model="project.comments">
+                    <div ng-messages="projectForm.comments.$error">
+                        <div ng-message="required">Please enter a description</div>
+                    </div>
+                </md-input-container>
+                <div class="md-block" flex-gt-sm="50">
+                    <label>Start date</label>
+                    <md-datepicker ng-model="ctrl.myDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                </div>
+            </form>
+        </div>
+    </md-content>

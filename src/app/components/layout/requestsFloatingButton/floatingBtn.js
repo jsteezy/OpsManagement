@@ -1,10 +1,10 @@
-import template from "./floatingBtn.html";
-import controller from "./FloatingBtnController";
+// import template from "./floatingBtn.html";
+// import controller from "./FloatingBtnController";
 
-let component = {
-    template,
-    controller,
-    controllerAs: "ctrl"
-};
+// let component = {
+//     template,
+//     controller,
+//     controllerAs: "ctrl"
+// };
 
-export default component;
+// export default component;

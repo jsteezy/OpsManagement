@@ -166,7 +166,7 @@ export default class BaseController extends BaseComponentController {
     }
 
     $routerCanDeactivate() {
-        this.startSpinner();
+        //this.startSpinner();
 
         return true;
     }
@@ -182,11 +182,11 @@ export default class BaseController extends BaseComponentController {
                     if (this.hasServerErrors()) {
                         this.redirectToHome();
                     } else {
-                        this.stopSpinner();
+                        // this.stopSpinner();
                     }
                 },
                 () => {
-                    this.stopSpinner();
+                    //  this.stopSpinner();
                 });
 
         return initPageActionPromise;
@@ -228,7 +228,7 @@ export default class BaseController extends BaseComponentController {
 
         $timeout(() => {
             this.isRequestProcessing = false;
-            this.stopSpinner();
+            // this.stopSpinner();
 
             this.router.forceNavigate(route)
         });
