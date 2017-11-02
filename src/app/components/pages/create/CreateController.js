@@ -20,6 +20,9 @@ export default class CreateController extends BaseController {
 
         return super.initializePage(init);
     }
+
+
+    activate() {}
 }
 
 CreateController.$inject = ["$window", "$injector"];

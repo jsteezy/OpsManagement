@@ -20,6 +20,8 @@ export default class HomeController extends BaseController {
 
         return super.initializePage(init);
     }
+
+    activate() {}
 }
 
 HomeController.$inject = ["$window", "$injector"];
