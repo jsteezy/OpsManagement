@@ -10,24 +10,24 @@
         <form>
             <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Country</label>
-                <md-select ng-model="ctrl.waitingForApprovalFilters.budgetApproverStatus" placeholder="Country">
-                    <md-option ng-repeat="item in ctrl.waitingForApprovalFilters.aprrovalStatuses" ng-value="item">
+                <md-select ng-model="ctrl.countries" placeholder="Country">
+                    <md-option ng-repeat="item in ctrl.countries" ng-value="item">
                         {{item}}
                     </md-option>
                 </md-select>
             </md-input-container>
-            <md-input-container class="md-block" flex-gt-sm="50">
+            <!-- <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Region</label>
                 <md-select ng-model="ctrl.waitingForApprovalFilters.budgetApproverStatus" placeholder="Region">
-                    <md-option ng-repeat="item in ctrl.waitingForApprovalFilters.aprrovalStatuses" ng-value="item">
+                    <md-option ng-repeat="item in ctrl.responseCodes" ng-value="item">
                         {{item}}
                     </md-option>
                 </md-select>
-            </md-input-container>
+            </md-input-container> -->
             <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Response</label>
-                <md-select ng-model="ctrl.waitingForApprovalFilters.budgetApproverStatus" placeholder="Response">
-                    <md-option ng-repeat="item in ctrl.waitingForApprovalFilters.aprrovalStatuses" ng-value="item">
+                <md-select ng-model="ctrl.responseTypes" placeholder="Response">
+                    <md-option ng-repeat="item in ctrl.responseTypes" ng-value="item">
                         {{item}}
                     </md-option>
                 </md-select>
