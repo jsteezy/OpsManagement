@@ -4,14 +4,12 @@ import appMainComponent from "../components/root/root";
 //page components
 import emptyPage from "../components/pages/emptyPage/emptyPage";
 import home from "../components/pages/home/home";
-import members from "../components/pages/administrator/members/members";
-import regions from "../components/pages/administrator/regions/regions";
+//import members from "../components/pages/administrator/members/members";
+//import regions from "../components/pages/administrator/regions/regions";
 import users from "../components/pages/administrator/users/users";
-import exportComponent from "../components/pages/administrator/export/export";
+//import exportComponent from "../components/pages/administrator/export/export";
 import countries from "../components/pages/administrator/countries/countries";
-import create1 from "../components/pages/administrator/create1/create1";
-
-
+import create from "../components/pages/administrator/create/create";
 import accessDenied from "../components/pages/accessDenied/accessDenied";
 
 //layout components
@@ -48,12 +46,12 @@ export default class Bootstrap {
         //page components
         app.component("emptyPage", emptyPage);
         app.component("home", home);
-        app.component("members", members);
-        app.component("regions", regions);
+        // app.component("members", members);
+        // app.component("regions", regions);
         app.component("users", users);
-        app.component("export", exportComponent);
+        //app.component("export", exportComponent);
         app.component("countries", countries);
-        app.component("create1", create1);
+        app.component("create", create);
         app.component("accessDenied", accessDenied);
 
         //layout components

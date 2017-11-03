@@ -77,51 +77,46 @@ export default class StateConfig {
                 name: "Home",
                 component: 'home'
             },
-            {
-                path: '/admin-members',
-                name: 'Members',
-                component: 'members'
-            },
-            {
-                path: '/admin-regions',
-                name: 'Regions',
-                component: 'regions'
-            },
+            // {
+            //     path: '/admin-members',
+            //     name: 'Members',
+            //     component: 'members'
+            // },
+            // {
+            //     path: '/admin-regions',
+            //     name: 'Regions',
+            //     component: 'regions'
+            // },
             {
                 path: '/admin-countries',
                 name: 'Countries',
                 component: 'countries'
             },
             {
-                path: '/admin-org-unit-types',
-                name: 'OrgUnitTypes',
-                component: 'create1'
+                path: '/admin-create',
+                name: 'Create',
+                component: 'create'
             },
-            {
-                path: '/admin-org-units',
-                name: 'OrgUnits',
-                component: 'orgUnits'
-            },
+            // {
+            //     path: '/admin-org-units',
+            //     name: 'OrgUnits',
+            //     component: 'orgUnits'
+            // },
             {
                 path: '/admin-users',
                 name: 'Users',
                 component: 'users'
-            },
-            {
-                path: '/create',
-                name: 'Create',
-                component: 'create'
-            },
-            {
-                path: '/admin-export',
-                name: 'Export',
-                component: 'export'
-            },
-            {
-                path: '/admin-archive',
-                name: 'Archive',
-                component: 'archive'
             }
+            // {
+            //     path: '/admin-export',
+            //     name: 'Export',
+            //     component: 'export'
+            // },
+            // {
+            //     path: '/admin-archive',
+            //     name: 'Archive',
+            //     component: 'archive'
+            // }
         ];
     }
 }
