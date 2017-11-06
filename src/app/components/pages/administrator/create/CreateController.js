@@ -1,6 +1,7 @@
 import BaseController from "../../../common/BaseController";
 import Regions from "../../../../common/enums/regions.json";
 import Countries from "../../../../common/enums/countries.json";
+// import ResponseModel from "../../models/ResponseModel";
 
 export default class CreateController extends BaseController {
     constructor($window, $injector) {
@@ -26,6 +27,29 @@ export default class CreateController extends BaseController {
     }
 
     activate() {}
+
+    storeResponse(form) {
+        super.IsSubmittedFormValid(form).then(() => {
+
+            super.isRequestProcessing = true;
+
+            let storeResponsePromise = this.profileService.store(super.pageMode, super.model);
+
+            storeResponsePromise.then(
+                () => {
+                    this.toastService.showToast('Response created', 'app');
+
+                    super.redirectToHome();
+                },
+                (errorData) => {
+                    super.serverRequestErrors = errorData;
+                });
+        });
+    }
+
+    cancel() {
+        super.redirectToHome();
+    }
 }
 
 CreateController.$inject = ["$window", "$injector"];
