@@ -1,5 +1,5 @@
 import BaseController from "../../../common/BaseController";
-import ResponseTypes from "../../../../common/enums/responseTypes.json";
+import Regions from "../../../../common/enums/regions.json";
 import Countries from "../../../../common/enums/countries.json";
 
 export default class CreateController extends BaseController {
@@ -10,7 +10,7 @@ export default class CreateController extends BaseController {
 
         this.$window = $window;
         this.countries = Countries;
-        this.responseTypes = ResponseTypes;
+        this.regions = Regions;
     }
 
     $routerOnActivate(next, current) {
