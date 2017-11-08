@@ -18,7 +18,6 @@ export default class MenuFeatures {
                 "pages": [{
                         "name": "Create",
                         "state": "Create",
-                        "icon": "add",
                         "type": "link",
                         "permissions": [Permissions.admin]
                     },
@@ -34,18 +33,20 @@ export default class MenuFeatures {
                         "type": "link",
                         "permissions": [Permissions.admin]
                     }
-                    // {
-                    //     "name": "MEMBERS_SIDE_NAV",
-                    //     "state": "Members",
-                    //     "type": "link",
-                    //     "permissions": [Permissions.admin]
                     // },
                     // {
                     //     "name": "REGIONS_SIDE_NAV",
                     //     "state": "Regions",
                     //     "type": "link",
                     //     "permissions": [Permissions.admin]
+                    // }
+                    // {
+                    //     "name": "MEMBERS_SIDE_NAV",
+                    //     "state": "Members",
+                    //     "type": "link",
+                    //     "permissions": [Permissions.admin]
                     // },
+
 
                     // {
                     //     "name": "ORG_UNITS_SIDE_NAV",
@@ -67,6 +68,6 @@ export default class MenuFeatures {
                     // }
                 ]
             }
-        ]
+        ];
     }
 }

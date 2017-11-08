@@ -41,17 +41,12 @@
         </md-input-container>
         <div class="md-block" flex-gt-sm="50">
             <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-
                 <label>Start date</label>
                 <md-datepicker ng-model="ctrl.startDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
-
                 <md-button class="md-raised md-primary" ng-click="ctrl.cancel()">Cancel</md-button>
-
                 <md-button class="md-raised md-primary" aria-label="save" ng-show="!ctrl.isRequestProcessing" ng-disabled="!form.$dirty" ng-click="ctrl.storeResponse(form)">Create</md-button>
             </section>
-
         </div>
-
 
         <!-- </div> -->
     </ng-form>

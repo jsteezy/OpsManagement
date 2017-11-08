@@ -1,7 +1,7 @@
 import BaseController from "../../../common/BaseController";
 import Regions from "../../../../common/enums/regions.json";
 import Countries from "../../../../common/enums/countries.json";
-// import ResponseModel from "../../models/ResponseModel";
+import ResponseModel from "../../models/ResponseModel";
 
 export default class CreateController extends BaseController {
     constructor($window, $injector) {
@@ -12,6 +12,7 @@ export default class CreateController extends BaseController {
         this.$window = $window;
         this.countries = Countries;
         this.regions = Regions;
+        this.responseModel = ResponseModel;
     }
 
     $routerOnActivate(next, current) {
