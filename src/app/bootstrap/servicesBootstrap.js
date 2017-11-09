@@ -8,7 +8,7 @@ import cacheService from "../common/services/Cache";
 import navigationService from "../common/services/NavigationService";
 
 import userService from "../common/services/user/UserService";
-import profileDataAccessService from "../common/services/dataAccess/profile/ProfileDataAccessService";
+import responseDataAccessService from "../common/services/dataAccess/profile/ResponseDataAccessService";
 import currencyDataAccessService from "../common/services/dataAccess/currency/CurrencyDataAccessService";
 import countryDataAccessService from "../common/services/dataAccess/country/CountryDataAccessService";
 import peoplePickerService from "../common/services/peoplePicker/PeoplePickerService";
@@ -16,6 +16,8 @@ import attachmentsDataAccessService from "../common/services/dataAccess/attachme
 import commonDataService from "../common/services/CommonDataService";
 import exportService from "../common/services/export/ExportService";
 import appHttpInterceptor from "../common/interceptors/AppHttpInterceptor";
+import responseService from "../common/services/response/ResponseService";
+
 
 import angular from "angular";
 
@@ -33,7 +35,7 @@ export default class Bootstrap {
         app.service("navigationService", navigationService);
 
         app.service("userService", userService);
-        app.service("profileDataAccessService", profileDataAccessService);
+        app.service("responseDataAccessService", responseDataAccessService);
         app.service("currencyDataAccessService", currencyDataAccessService);
         app.service("countryDataAccessService", countryDataAccessService);
         app.service("attachmentsDataAccessService", attachmentsDataAccessService);
@@ -41,5 +43,7 @@ export default class Bootstrap {
         app.service("commonDataService", commonDataService);
         app.service("exportService", exportService);
         app.service("appHttpInterceptor", appHttpInterceptor);
+        app.service("responseService", responseService);
+
     }
 }

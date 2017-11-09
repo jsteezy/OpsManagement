@@ -166,7 +166,7 @@ export default class BaseController extends BaseComponentController {
     }
 
     $routerCanDeactivate() {
-        //this.startSpinner();
+        this.startSpinner();
 
         return true;
     }
@@ -182,11 +182,11 @@ export default class BaseController extends BaseComponentController {
                     if (this.hasServerErrors()) {
                         this.redirectToHome();
                     } else {
-                        // this.stopSpinner();
+                        this.stopSpinner();
                     }
                 },
                 () => {
-                    //  this.stopSpinner();
+                    this.stopSpinner();
                 });
 
         return initPageActionPromise;
@@ -196,13 +196,13 @@ export default class BaseController extends BaseComponentController {
         return Promise.all(promises);
     }
 
-    // startSpinner() {
-    //     super.emit(EventsTypes.loading, true);
-    // }
+    startSpinner() {
+        super.emit(EventsTypes.loading, true);
+    }
 
-    // stopSpinner() {
-    //     super.emit(EventsTypes.loading, false);
-    // }
+    stopSpinner() {
+        super.emit(EventsTypes.loading, false);
+    }
 
     IsSubmittedFormValid(form) {
         form.submitted = true;
@@ -219,16 +219,16 @@ export default class BaseController extends BaseComponentController {
         return Promise.reject();
     }
 
-    // redirectToHome() {
-    //     this.redirectTo(["TarSearch"])
-    // }
+    redirectToHome() {
+        this.redirectTo(["Home"])
+    }
 
     redirectTo(route) {
         let $timeout = this.$injector.get("$timeout");
 
         $timeout(() => {
             this.isRequestProcessing = false;
-            // this.stopSpinner();
+            this.stopSpinner();
 
             this.router.forceNavigate(route)
         });

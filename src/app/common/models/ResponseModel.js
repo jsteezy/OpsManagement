@@ -5,7 +5,7 @@ export default class ResponseModel {
         this.country = null;
         this.startDate = DateUtils.today;
         this.region = null;
-        this.responseDescription = null;
+        this.description = null;
         this.code = null;
     }
 }
