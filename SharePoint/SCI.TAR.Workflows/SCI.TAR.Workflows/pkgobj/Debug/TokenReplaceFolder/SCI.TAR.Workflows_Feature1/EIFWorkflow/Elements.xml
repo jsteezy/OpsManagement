@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="EIFWorkflow" Url="wfsvc/0f598011f5c5477687b87243aec215e1">
+    <File Url="Workflow.xaml" Type="GhostableInLibrary" Path="EIFWorkflow\Workflow.xaml" DoGUIDFixUp="TRUE">
+      <Property Name="ContentType" Value="WorkflowServiceDefinition" />
+      <Property Name="isReusable" Value="true" />
+      <Property Name="RequiresInitiationForm" Value="False" />
+      <Property Name="RequiresAssociationForm" Value="False" />
+      <Property Name="WSPublishState" Value="3" />
+      <Property Name="WSDisplayName" Value="EIFRequests Workflow" />
+      <Property Name="WSDescription" Value="'EIFWorkflow' Workflow" />
+      <!-- If you change the name or Url of your custom initiation or association form, 
+           remember to update the corresponding property value (InitiationUrl or AssociationUrl) to match the new web relative url.
+      -->
+      <Property Name="RestrictToType" Value="List" />
+      <Property Name="RestrictToScope" Value="{$ListId:Lists/EIFRequests;}" />
+    </File>
+    <File Url="WorkflowStartAssociation" Path="EIFWorkflow\WorkflowStartAssociation" Type="GhostableInLibrary">
+      <Property Name="WSDisplayName" Value="EIFWorkflow - Workflow Start" />
+      <Property Name="ContentType" Value="WorkflowServiceSubscription" />
+      <Property Name="WSPublishState" Value="3" />
+      <Property Name="WSEventType" Value="WorkflowStart" />
+      <Property Name="WSEnabled" Value="true" />
+      <Property Name="WSGUID" Value="7276ed4b-42a0-4913-81a1-036dbfe18fe1" />
+      <Property Name="WSEventSourceGUID" Value="{$ListId:Lists/EIFRequests;}" />
+      <Property Name="Microsoft.SharePoint.ActivationProperties.ListId" Value="{$ListId:Lists/EIFRequests;}" />
+      <Property Name="HistoryListId" Value="{$ListId:Lists/TARWorkflowHistory;}" />
+      <Property Name="TaskListId" Value="{$ListId:Lists/TARWorkflowTasks;}" />
+    </File>
+    <File Url="ItemAddedAssociation" Path="EIFWorkflow\ItemAddedAssociation" Type="GhostableInLibrary">
+      <Property Name="WSDisplayName" Value="EIFWorkflow - Item Added" />
+      <Property Name="ContentType" Value="WorkflowServiceSubscription" />
+      <Property Name="WSPublishState" Value="3" />
+      <Property Name="WSEventType" Value="ItemAdded" />
+      <Property Name="WSEnabled" Value="true" />
+      <Property Name="WSGUID" Value="670e07c0-bbb0-4acf-b9ff-a368e1dac221" />
+      <Property Name="WSEventSourceGUID" Value="{$ListId:Lists/EIFRequests;}" />
+      <Property Name="Microsoft.SharePoint.ActivationProperties.ListId" Value="{$ListId:Lists/EIFRequests;}" />
+      <Property Name="HistoryListId" Value="{$ListId:Lists/TARWorkflowHistory;}" />
+      <Property Name="TaskListId" Value="{$ListId:Lists/TARWorkflowTasks;}" />
+    </File>
+  </Module>
+  <ListInstance FeatureId="{2c63df2b-ceab-42c6-aeff-b3968162d4b1}"
+                TemplateType="4501"
+                Title="wfsvc"
+                Description="This list instance is used by SharePoint to keep track of workflows. Do not modify."
+                Url="wfsvc"
+                RootWebOnly="FALSE" />
+</Elements>

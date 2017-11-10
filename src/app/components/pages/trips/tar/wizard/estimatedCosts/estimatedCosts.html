@@ -1,0 +1,74 @@
+<md-content md-theme="pageTheme" flex>
+    <ng-form name="form" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools" layout-align="space-between center">
+                <h2>{{'OTHER_ESTIMATED_COSTS' | translate}}</h2>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <i class="material-icons">close</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content layout="column" class="md-padding md-dialog-content">
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>{{'LOCATION_LABEL' | translate}}</label>
+                    <input type="text" name="location" ng-model="ctrl.model.location" required maxlength="255">
+                    <div ng-messages="form.location.$error" ng-if='ctrl.isFieldErrorVisible(form, "location")'>
+                        <div ng-messages-include="error-messages"></div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>{{'NO_OF_DAYS' | translate}}</label>
+                    <input type="number" name="noOfDays" ng-model="ctrl.model.noOfDays"
+                           required
+                           min="0"
+                           max="500">
+                    <div ng-messages="form.noOfDays.$error" ng-if='ctrl.isFieldErrorVisible(form, "noOfDays")'>
+                        <div ng-messages-include="error-messages"></div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>{{'ESTIMATED_BOARD_LABEL' | translate}}</label>
+                    <input type="number" name="estimatedBoard" ng-model="ctrl.model.estimatedBoard"
+                           ng-change="ctrl.calculateTotal()"
+                           required
+                           min="0"
+                           max="990000000000">
+                    <div ng-messages="form.estimatedBoard.$error"
+                         ng-if='ctrl.isFieldErrorVisible(form, "estimatedBoard")'>
+                        <div ng-messages-include="error-messages"></div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>{{'ESTIMATED_OTHER_LABEL' | translate}}</label>
+                    <input type="number" name="otherCosts" ng-model="ctrl.model.otherCosts"
+                           ng-change="ctrl.calculateTotal()"
+                           required
+                           min="0"
+                           max="990000000000">
+                    <div ng-messages="form.otherCosts.$error" ng-if='ctrl.isFieldErrorVisible(form, "otherCosts")'>
+                        <div ng-messages-include="error-messages"></div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>{{'TOTAL_ESTIMATED_COSTS' | translate}}</label>
+                    <input type="number" name="totalCosts" ng-model="ctrl.model.totalCosts"
+                           disabled
+                           required>
+                    <div ng-messages="form.totalCosts.$error" ng-if='ctrl.isFieldErrorVisible(form, "totalCosts")'>
+                        <div ng-messages-include="error-messages"></div>
+                    </div>
+                </md-input-container>
+            </div>
+        </md-content>
+        <div layout="row" layout-align="end center">
+            <md-button class="md-raised md-primary saveButton" ng-click="ctrl.store(form)">
+                {{ctrl.pageMode.actionName | translate}}
+            </md-button>
+        </div>
+    </ng-form>
+</md-content>

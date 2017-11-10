@@ -1,0 +1,29 @@
+<md-content ng-cloak>
+    <div layout-gt-sm="row" layout-align="start center">
+        <h2>{{ctrl.title | translate}}</h2>
+    </div>
+
+    <toggle-accordion-section></toggle-accordion-section>
+
+    <accordion heading="{{'REQUEST_INFO' | translate | uppercase}}">
+        <div layout-gt-md="row" layout-padding>
+            <people-picker ng-model="ctrl.model.eif.staffResponsibleForGuest"
+                           model-ids="ctrl.model.eif.staffResponsibleForGuestId"
+                           options="ctrl.pickerOptions.staffResponsiblePickerOptions"
+                           flex-gt-sm="50"></people-picker>
+            <people-picker ng-model="ctrl.model.lineManager"
+                           model-ids="ctrl.model.lineManagerId"
+                           options="ctrl.pickerOptions.lineManagerPickerOptions" flex-gt-sm="50"></people-picker>
+        </div>
+        <div layout-gt-md="row" layout-padding>
+            <md-input-container class="md-block" flex-gt-sm="50">
+                <label>{{'TRAVEL_PURPOSE_QUESTION' | translate}}</label>
+                <textarea ng-model="ctrl.model.purposeOfTravel" disabled></textarea>
+            </md-input-container>
+        </div>
+    </accordion>
+
+    <eif-details-common ng-model="ctrl.model.eif"></eif-details-common>
+
+    <tar-details-common ng-model="ctrl.model.tar"></tar-details-common>
+</md-content>

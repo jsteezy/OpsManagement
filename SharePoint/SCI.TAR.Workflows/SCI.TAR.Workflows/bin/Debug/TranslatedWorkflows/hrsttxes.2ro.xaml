@@ -1,0 +1,494 @@
+<Activity mc:Ignorable="sads" x:Class="SCI.TAR.Workflows.EIFArchivingWorkflow.Workflow"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:made="clr-namespace:Microsoft.Activities.Design.ExpressionTranslation;assembly=Microsoft.Activities.Design"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:p="http://schemas.microsoft.com/workflow/2012/07/xaml/activities"
+ xmlns:p1="wf://workflow.windows.net/$Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Sequence DisplayName="Main Sequence" sads:DebugSymbol.Symbol="d2lEOlxQcm9qZWN0c1xTQ0kuVEFSXHRhclxTaGFyZVBvaW50XFNDSS5UQVIuV29ya2Zsb3dzXFNDSS5UQVIuV29ya2Zsb3dzXEVJRkFyY2hpdmluZ1dvcmtmbG93XFdvcmtmbG93LnhhbWwXMQOJAg4CAQE5BT8RAgFUQAWdARACAS+eAQWyARICASazAQW+ASECASC/AQXIASACARvJAQXUAQ4CARfVAQWHAg0CAQJEB4QBEgIBOoUBB5ABEAIBNZEBB5wBEAIBMKEBC6UBKQIBLdwBB4YCEgIBBkkJWSECAU5aCWYOAgFGZwl3HwIBQHgJgwEgAgE73QEJ7QElAgEQ7gEJ+QEdAgEM+gEJhQISAgEHYQ1kGAIBSWIPYoYBAgFMYw9jiAECAUo=">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" x:Name="__ReferenceID0" Name="webUrl" />
+      <Variable x:TypeArguments="s:DateTime" x:Name="__ReferenceID4" Name="dateThreshold" />
+      <Variable x:TypeArguments="p:DynamicValue" x:Name="__ReferenceID5" Name="restResponse" />
+      <Variable x:TypeArguments="x:Int32" x:Name="__ReferenceID6" Name="itemsCount" />
+      <Variable x:TypeArguments="x:Int32" x:Name="__ReferenceID7" Name="index" />
+    </Sequence.Variables>
+    <p1:WebUri DisplayName="Get Web URL">
+      <p1:WebUri.Result>
+        <OutArgument x:TypeArguments="x:String">
+          <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="webUrl">
+            <p:ExpressionContainerReference.Arguments>
+              <InOutArgument x:TypeArguments="x:String" x:Key="webUrl">
+                <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID0}" />
+              </InOutArgument>
+            </p:ExpressionContainerReference.Arguments>
+            <ArgumentReference x:TypeArguments="x:String" ArgumentName="webUrl" />
+          </p:ExpressionContainerReference>
+        </OutArgument>
+      </p1:WebUri.Result>
+    </p1:WebUri>
+    <Sequence DisplayName="Initialization">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Int32" x:Name="__ReferenceID3" Name="daysThreshold" />
+      </Sequence.Variables>
+      <Sequence DisplayName="Get Threshold Days">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Int32" x:Name="__ReferenceID1" Name="itemId" />
+          <Variable x:TypeArguments="p:DynamicValue" x:Name="__ReferenceID2" Name="dynamicValue" />
+        </Sequence.Variables>
+        <p1:LookupSPListItemId DisplayName="Lookup EIF Storage Days setting" PropertyValue="EIF_StorageDays">
+          <p1:LookupSPListItemId.ListId>
+            <InArgument x:TypeArguments="s:Guid">
+              <p:ExpressionContainerValue x:TypeArguments="s:Guid" DisplayName="System.Guid.Parse(&quot;{$ListId:Lists/TARSettings;}&quot;)">
+                <p:ParseGuid Value="{}{$ListId:Lists/TARSettings;}" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:LookupSPListItemId.ListId>
+          <p1:LookupSPListItemId.PropertyName>
+            <InArgument x:TypeArguments="x:String">
+              <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="&quot;Title&quot;" Expression="Title" />
+            </InArgument>
+          </p1:LookupSPListItemId.PropertyName>
+          <p1:LookupSPListItemId.Result>
+            <OutArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="itemId">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:Int32" x:Key="itemId">
+                    <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID1}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="itemId" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p1:LookupSPListItemId.Result>
+        </p1:LookupSPListItemId>
+        <If DisplayName="If setting not found">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="itemId &lt; 1">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="itemId">
+                    <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID1}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:IsLessThan x:TypeArguments="x:Int32">
+                  <p:IsLessThan.Left>
+                    <InArgument x:TypeArguments="x:Int32" EvaluationOrder="0">
+                      <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="itemId" />
+                    </InArgument>
+                  </p:IsLessThan.Left>
+                  <p:IsLessThan.Right>
+                    <InArgument x:TypeArguments="x:Int32" EvaluationOrder="1" Expression="1" />
+                  </p:IsLessThan.Right>
+                </p:IsLessThan>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence DisplayName="Error">
+              <p1:WriteToHistory Message="Cannot find EIF_StorageDays setting." />
+              <TerminateWorkflow Reason="Cannot find EIF_StorageDays setting." />
+            </Sequence>
+          </If.Then>
+        </If>
+        <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Lookup item setting">
+          <p1:LookupSPListItem.ItemId>
+            <InArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="itemId">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="itemId">
+                    <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID1}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="itemId" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:LookupSPListItem.ItemId>
+          <p1:LookupSPListItem.ListId>
+            <InArgument x:TypeArguments="s:Guid">
+              <p:ExpressionContainerValue x:TypeArguments="s:Guid" DisplayName="System.Guid.Parse(&quot;{$ListId:Lists/TARSettings;}&quot;)">
+                <p:ParseGuid Value="{}{$ListId:Lists/TARSettings;}" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:LookupSPListItem.ListId>
+          <p1:LookupSPListItem.Result>
+            <OutArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerReference x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                    <VariableReference x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID2}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p1:LookupSPListItem.Result>
+        </p1:LookupSPListItem>
+        <p:GetODataProperties DisplayName="GetDynamicValueProperties">
+          <p:GetODataProperties.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID2}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetODataProperties.Source>
+          <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+            <OutArgument x:TypeArguments="x:Int32" x:Key="TAR_SettingValue">
+              <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="daysThreshold">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:Int32" x:Key="daysThreshold">
+                    <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID3}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="daysThreshold" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </scg:Dictionary>
+        </p:GetODataProperties>
+      </Sequence>
+      <Assign DisplayName="Negate daysThreshold">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Int32">
+            <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="daysThreshold">
+              <p:ExpressionContainerReference.Arguments>
+                <InOutArgument x:TypeArguments="x:Int32" x:Key="daysThreshold">
+                  <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID3}" />
+                </InOutArgument>
+              </p:ExpressionContainerReference.Arguments>
+              <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="daysThreshold" />
+            </p:ExpressionContainerReference>
+          </OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Int32">
+            <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="0 - daysThreshold;">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="x:Int32" x:Key="daysThreshold">
+                  <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID3}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <p:Subtract x:TypeArguments="x:Int32">
+                <p:Subtract.Left>
+                  <InArgument x:TypeArguments="x:Int32" EvaluationOrder="0" Expression="0" />
+                </p:Subtract.Left>
+                <p:Subtract.Right>
+                  <InArgument x:TypeArguments="x:Int32" EvaluationOrder="1">
+                    <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="daysThreshold" />
+                  </InArgument>
+                </p:Subtract.Right>
+              </p:Subtract>
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Compute date threshold">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:DateTime">
+            <p:ExpressionContainerReference x:TypeArguments="s:DateTime" DisplayName="dateThreshold">
+              <p:ExpressionContainerReference.Arguments>
+                <InOutArgument x:TypeArguments="s:DateTime" x:Key="dateThreshold">
+                  <VariableReference x:TypeArguments="s:DateTime" Variable="{x:Reference __ReferenceID4}" />
+                </InOutArgument>
+              </p:ExpressionContainerReference.Arguments>
+              <ArgumentReference x:TypeArguments="s:DateTime" ArgumentName="dateThreshold" />
+            </p:ExpressionContainerReference>
+          </OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:DateTime">
+            <p:ExpressionContainerValue x:TypeArguments="s:DateTime" DisplayName="DateTime.UtcNow.AddDays(daysThreshold);">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="x:Int32" x:Key="daysThreshold">
+                  <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID3}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <p:AddToDate>
+                <p:AddToDate.Input>
+                  <InArgument x:TypeArguments="s:DateTime">
+                    <p:CurrentDate />
+                  </InArgument>
+                </p:AddToDate.Input>
+                <p:AddToDate.Days>
+                  <InArgument x:TypeArguments="x:Double">
+                    <p:Convert x:TypeArguments="x:Int32, x:Double">
+                      <InArgument x:TypeArguments="x:Int32">
+                        <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="daysThreshold" />
+                      </InArgument>
+                    </p:Convert>
+                  </InArgument>
+                </p:AddToDate.Days>
+              </p:AddToDate>
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </Assign.Value>
+      </Assign>
+    </Sequence>
+    <p:HttpSend DisplayName="Call REST to get expired EIF Requests" Method="GET">
+      <p:HttpSend.RequestHeaders>
+        <InArgument x:TypeArguments="p:DynamicValue">
+          <p:SetDynamicValueProperties>
+            <scg:Dictionary x:TypeArguments="x:String, InArgument">
+              <InArgument x:TypeArguments="x:String" x:Key="Accept">application/json;odata=verbose</InArgument>
+            </scg:Dictionary>
+          </p:SetDynamicValueProperties>
+        </InArgument>
+      </p:HttpSend.RequestHeaders>
+      <p:HttpSend.ResponseContent>
+        <OutArgument x:TypeArguments="p:DynamicValue">
+          <p:ExpressionContainerReference x:TypeArguments="p:DynamicValue" DisplayName="restResponse">
+            <p:ExpressionContainerReference.Arguments>
+              <InOutArgument x:TypeArguments="p:DynamicValue" x:Key="restResponse">
+                <VariableReference x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID5}" />
+              </InOutArgument>
+            </p:ExpressionContainerReference.Arguments>
+            <ArgumentReference x:TypeArguments="p:DynamicValue" ArgumentName="restResponse" />
+          </p:ExpressionContainerReference>
+        </OutArgument>
+      </p:HttpSend.ResponseContent>
+      <p:HttpSend.Uri>
+        <InArgument x:TypeArguments="x:String">
+          <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Format(&quot;{0}/_api/Lists/getByTitle('EIF Requests')/items?$filter=Created lt datetime'{1}'&quot;, webUrl, dateThreshold.ToString(&quot;s&quot;));">
+            <p:ExpressionContainerValue.Arguments>
+              <InArgument x:TypeArguments="x:Object" x:Key="webUrl">
+                <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID0}" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:Object" x:Key="dateThreshold">
+                <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID4}" />
+              </InArgument>
+            </p:ExpressionContainerValue.Arguments>
+            <p:FormatString Format="{}{0}/_api/Lists/getByTitle('EIF Requests')/items?$filter=Created lt datetime'{1}'">
+              <InArgument x:TypeArguments="x:Object">
+                <ArgumentValue x:TypeArguments="x:Object" ArgumentName="webUrl" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:Object">
+                <p:Convert x:TypeArguments="x:String, x:Object">
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ToString CultureName="{x:Null}" Format="s">
+                      <p:ToString.Result>
+                        <OutArgument x:TypeArguments="x:String" />
+                      </p:ToString.Result>
+                      <InArgument x:TypeArguments="x:Object">
+                        <ArgumentValue x:TypeArguments="x:Object" ArgumentName="dateThreshold" />
+                      </InArgument>
+                    </p:ToString>
+                  </InArgument>
+                </p:Convert>
+              </InArgument>
+            </p:FormatString>
+          </p:ExpressionContainerValue>
+        </InArgument>
+      </p:HttpSend.Uri>
+    </p:HttpSend>
+    <p:GetDynamicValueProperty x:TypeArguments="p:DynamicValue" DisplayName="Get d/results from REST response" PropertyName="d/results">
+      <p:GetDynamicValueProperty.Result>
+        <OutArgument x:TypeArguments="p:DynamicValue">
+          <p:ExpressionContainerReference x:TypeArguments="p:DynamicValue" DisplayName="restResponse">
+            <p:ExpressionContainerReference.Arguments>
+              <InOutArgument x:TypeArguments="p:DynamicValue" x:Key="restResponse">
+                <VariableReference x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID5}" />
+              </InOutArgument>
+            </p:ExpressionContainerReference.Arguments>
+            <ArgumentReference x:TypeArguments="p:DynamicValue" ArgumentName="restResponse" />
+          </p:ExpressionContainerReference>
+        </OutArgument>
+      </p:GetDynamicValueProperty.Result>
+      <p:GetDynamicValueProperty.Source>
+        <InArgument x:TypeArguments="p:DynamicValue">
+          <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="restResponse">
+            <p:ExpressionContainerValue.Arguments>
+              <InArgument x:TypeArguments="p:DynamicValue" x:Key="restResponse">
+                <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID5}" />
+              </InArgument>
+            </p:ExpressionContainerValue.Arguments>
+            <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="restResponse" />
+          </p:ExpressionContainerValue>
+        </InArgument>
+      </p:GetDynamicValueProperty.Source>
+    </p:GetDynamicValueProperty>
+    <p:CountDynamicValueItems DisplayName="Count finished TAR items">
+      <p:CountDynamicValueItems.Result>
+        <OutArgument x:TypeArguments="x:Int32">
+          <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="itemsCount">
+            <p:ExpressionContainerReference.Arguments>
+              <InOutArgument x:TypeArguments="x:Int32" x:Key="itemsCount">
+                <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID6}" />
+              </InOutArgument>
+            </p:ExpressionContainerReference.Arguments>
+            <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="itemsCount" />
+          </p:ExpressionContainerReference>
+        </OutArgument>
+      </p:CountDynamicValueItems.Result>
+      <InArgument x:TypeArguments="p:DynamicValue">
+        <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="restResponse">
+          <p:ExpressionContainerValue.Arguments>
+            <InArgument x:TypeArguments="p:DynamicValue" x:Key="restResponse">
+              <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID5}" />
+            </InArgument>
+          </p:ExpressionContainerValue.Arguments>
+          <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="restResponse" />
+        </p:ExpressionContainerValue>
+      </InArgument>
+    </p:CountDynamicValueItems>
+    <Assign DisplayName="Initialize index">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">
+          <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="index">
+            <p:ExpressionContainerReference.Arguments>
+              <InOutArgument x:TypeArguments="x:Int32" x:Key="index">
+                <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+              </InOutArgument>
+            </p:ExpressionContainerReference.Arguments>
+            <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="index" />
+          </p:ExpressionContainerReference>
+        </OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">
+          <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="0;" Expression="0" />
+        </InArgument>
+      </Assign.Value>
+    </Assign>
+    <While DisplayName="Iterate over expired EIFs">
+      <While.Variables>
+        <Variable x:TypeArguments="x:Int32" x:Name="__ReferenceID8" Name="eifId" />
+      </While.Variables>
+      <While.Condition>
+        <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="index &lt; itemsCount">
+          <p:ExpressionContainerValue.Arguments>
+            <InArgument x:TypeArguments="x:Int32" x:Key="index">
+              <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+            </InArgument>
+            <InArgument x:TypeArguments="x:Int32" x:Key="itemsCount">
+              <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID6}" />
+            </InArgument>
+          </p:ExpressionContainerValue.Arguments>
+          <p:IsLessThan x:TypeArguments="x:Int32">
+            <p:IsLessThan.Left>
+              <InArgument x:TypeArguments="x:Int32" EvaluationOrder="0">
+                <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="index" />
+              </InArgument>
+            </p:IsLessThan.Left>
+            <p:IsLessThan.Right>
+              <InArgument x:TypeArguments="x:Int32" EvaluationOrder="1">
+                <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="itemsCount" />
+              </InArgument>
+            </p:IsLessThan.Right>
+          </p:IsLessThan>
+        </p:ExpressionContainerValue>
+      </While.Condition>
+      <Sequence>
+        <p:GetDynamicValueProperty x:TypeArguments="x:Int32" DisplayName="Get EIF Id">
+          <p:GetDynamicValueProperty.PropertyName>
+            <InArgument x:TypeArguments="x:String">
+              <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Format(&quot;({0})/Id&quot;, index);">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="index">
+                    <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:FormatString Format="({0})/Id">
+                  <InArgument x:TypeArguments="x:Object">
+                    <p:Convert x:TypeArguments="x:Int32, x:Object">
+                      <InArgument x:TypeArguments="x:Int32">
+                        <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="index" />
+                      </InArgument>
+                    </p:Convert>
+                  </InArgument>
+                </p:FormatString>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.PropertyName>
+          <p:GetDynamicValueProperty.Result>
+            <OutArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="eifId">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:Int32" x:Key="eifId">
+                    <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID8}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="eifId" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:GetDynamicValueProperty.Result>
+          <p:GetDynamicValueProperty.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="restResponse">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="restResponse">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID5}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="restResponse" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.Source>
+        </p:GetDynamicValueProperty>
+        <p1:DeleteListItem ItemGuid="{x:Null}" DisplayName="Delete expired EIF">
+          <p1:DeleteListItem.ItemId>
+            <InArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="eifId">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="eifId">
+                    <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID8}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="eifId" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:DeleteListItem.ItemId>
+          <p1:DeleteListItem.ListId>
+            <InArgument x:TypeArguments="s:Guid">
+              <p:ExpressionContainerValue x:TypeArguments="s:Guid" DisplayName="System.Guid.Parse(&quot;{$ListId:Lists/EIFRequests;}&quot;)">
+                <p:ParseGuid Value="{}{$ListId:Lists/EIFRequests;}" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:DeleteListItem.ListId>
+        </p1:DeleteListItem>
+        <Assign>
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="index">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:Int32" x:Key="index">
+                    <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="index" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="index + 1;">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="index">
+                    <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:Add x:TypeArguments="x:Int32">
+                  <p:Add.Left>
+                    <InArgument x:TypeArguments="x:Int32" EvaluationOrder="0">
+                      <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="index" />
+                    </InArgument>
+                  </p:Add.Left>
+                  <p:Add.Right>
+                    <InArgument x:TypeArguments="x:Int32" EvaluationOrder="1" Expression="1" />
+                  </p:Add.Right>
+                </p:Add>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+    </While>
+  </Sequence>
+</Activity>

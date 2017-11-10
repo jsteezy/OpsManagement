@@ -2,7 +2,7 @@ import constants from "./objectMapperConstants.json";
 import helper from "./AppHelpers";
 import UserModel from "../models/UserModel";
 import BaseModel from "../models/BaseModel";
-//import ProfileModel from "../models/ProfileModel";
+import ProfileModel from "../models/ProfileModel";
 import ArrayUtils from "./ArrayUtils";
 
 export default class ObjectMapper {
@@ -15,15 +15,15 @@ export default class ObjectMapper {
             if (object.hasOwnProperty(prop) && !baseObject.hasOwnProperty(prop)) {
                 let propertyName = this.uppercaseFirstLetter(prop);
                 if (prop !== constants.titlePropertyName) {
-                    propertyName = constants.prefix + propertyName;
+                    // propertyName = constants.prefix + propertyName;
                 }
 
                 let objValue = object[prop];
 
                 if (object.multipleValuesProperties &&
                     object.multipleValuesProperties.includes(prop)) {
-                    
-                    jsonObject[propertyName] = !object[prop] || !object[prop].results ? {results: []} : objValue;
+
+                    jsonObject[propertyName] = !object[prop] || !object[prop].results ? { results: [] } : objValue;
                     continue;
                 }
 
@@ -47,14 +47,14 @@ export default class ObjectMapper {
                 continue;
             }
 
-            let propertyName = this.lowercaseFirstLetter(prop.replace(constants.prefix, ""));
+            let propertyName = this.lowercaseFirstLetter(prop.replace("", ""));
             if (!destinationObject.hasOwnProperty(propertyName) ||
-                 (ArrayUtils.contains(ignoreProperties, propertyName))) {
+                (ArrayUtils.contains(ignoreProperties, propertyName))) {
                 continue;
             }
 
             if (Array.isArray(destinationObject[propertyName]) && !Array.isArray(sourceObject[prop])) {
-                if (typeof (sourceObject[prop]) === 'object') {
+                if (typeof(sourceObject[prop]) === 'object') {
                     destinationObject[propertyName].push(sourceObject[prop]);
                 } else {
                     let value = JSON.parse(sourceObject[prop]);
@@ -89,8 +89,7 @@ export default class ObjectMapper {
             data.forEach((x) => {
                 result.push(ObjectMapper.getAnonymousObject(x))
             })
-        }
-        else {
+        } else {
             result = ObjectMapper.getAnonymousObject(data);
         }
 
@@ -120,7 +119,7 @@ export default class ObjectMapper {
     }
 
     static
-        toUserModels(object) {
+    toUserModels(object) {
         let userModels = [];
 
         let arrayObjects = helper.transformResponse(object);
@@ -132,15 +131,23 @@ export default class ObjectMapper {
         return userModels;
     }
 
-    
+    static
+    userModelToProfileModel(object) {
+        let profileModel = new ProfileModel();
+
+        profileModel.userId = object.id;
+        profileModel.userEmail = object.email;
+
+        return profileModel;
+    }
 
     static
-        uppercaseFirstLetter(stringObject) {
+    uppercaseFirstLetter(stringObject) {
         return stringObject.charAt(0).toUpperCase() + stringObject.slice(1);
     }
 
     static
-        lowercaseFirstLetter(stringObject) {
+    lowercaseFirstLetter(stringObject) {
         return stringObject.charAt(0).toLowerCase() + stringObject.slice(1);
     }
 
@@ -149,7 +156,7 @@ export default class ObjectMapper {
 
         for (let prop in obj) {
             if (obj.hasOwnProperty(prop)) {
-                let propertyName = this.lowercaseFirstLetter(prop.replace(constants.prefix, ""));
+                let propertyName = this.lowercaseFirstLetter(prop.replace("", ""));
                 destObj[propertyName] = obj[prop];
             }
         }

@@ -1,0 +1,2930 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<stwb:Workflow xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:msdad="clr-namespace:Microsoft.SharePoint.DesignTime.Activities.Design;assembly=Microsoft.SharePoint.DesignTime.Activities.Design" xmlns:p="http://schemas.microsoft.com/workflow/2012/07/xaml/activities" xmlns:p1="wf://workflow.windows.net/$Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:stwb="clr-namespace:SCI.TAR.Workflows.BudgetApprovalWorkflow;assembly=SCI.TAR.Workflows" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>Microsoft.Activities</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Activities.Design</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint.DesignTime.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint.DesignTime.Activities.Design</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Workflow.Runtime</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint.Client.ServerRuntime</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>SCI.TAR.Workflows</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <stwb:Workflow.Implementation>
+    <Sequence DisplayName="Main Sequence">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Int32" Name="emailTemplateId" />
+        <Variable x:TypeArguments="p:DynamicValue" Name="dynamicValue" />
+        <Variable x:TypeArguments="x:String" Name="emailSubject" />
+        <Variable x:TypeArguments="x:String" Name="emailContent" />
+        <Variable x:TypeArguments="x:String" Name="myUser" />
+        <Variable x:TypeArguments="sco:Collection(x:String)" Name="toRecipients" />
+        <Variable x:TypeArguments="x:String" Name="tokenValue" />
+        <Variable x:TypeArguments="p:DynamicValue" Name="tarDetails" />
+        <Variable x:TypeArguments="x:Int32" Name="tokenValueInt" />
+        <Variable x:TypeArguments="x:String" Name="webUrl" />
+        <Variable x:TypeArguments="x:String" Name="travellerLoginName" />
+        <Variable x:TypeArguments="x:String" Name="budgetApproverLoginName" />
+        <Variable x:TypeArguments="x:String" Name="requesterLoginName" />
+        <Variable x:TypeArguments="x:String" Name="emailAddress">
+          <Variable.Default>
+            <mca:CSharpValue x:TypeArguments="x:String">string.Empty</mca:CSharpValue>
+          </Variable.Default>
+        </Variable>
+        <Variable x:TypeArguments="x:Int32" Name="taskBudgetApprovalOutcome" />
+        <Variable x:TypeArguments="sco:Collection(x:String)" Name="ccRecipients" />
+        <Variable x:TypeArguments="x:Int32" Name="taskBudgetApprovalId" />
+        <Variable x:TypeArguments="x:String" Name="rejectedEmailSubject" />
+        <Variable x:TypeArguments="x:String" Name="rejectedEmailContent" />
+        <Variable x:TypeArguments="x:Int32" Name="taskGSSApprovalId" />
+        <Variable x:TypeArguments="x:Int32" Name="taskGSSApprovalOutcome" />
+        <Variable x:TypeArguments="x:Boolean" Name="requiresGssApproval" />
+        <Variable x:TypeArguments="x:String" Name="taskDescription" />
+        <Variable x:TypeArguments="s:Guid" Name="tasksListGuid" />
+        <Variable x:TypeArguments="x:String" Name="budgetApproverName" />
+        <Variable x:TypeArguments="x:String" Name="approvedEmailSubject" />
+        <Variable x:TypeArguments="x:String" Name="approvedEmailContent" />
+        <Variable x:TypeArguments="s:DateTime" Name="tokenValueDateTime" />
+        <Variable x:TypeArguments="x:String" Name="gssEmailSubject" />
+        <Variable x:TypeArguments="x:String" Name="gssEmailContent" />
+        <Variable x:TypeArguments="x:String" Name="tarId" />
+        <Variable x:TypeArguments="sco:Collection(x:String)" Name="tokenPlaceholders" />
+        <Variable x:TypeArguments="sco:Collection(x:String)" Name="tokenValues" />
+        <Variable x:TypeArguments="x:String" Name="travelCoordinatorLoginName" />
+        <Variable x:TypeArguments="sco:Collection(x:String)" Name="countryDirectorsLoginNames" />
+        <Variable x:TypeArguments="x:String" Name="additionalStaffMemberLoginName" />
+        <Variable x:TypeArguments="sco:Collection(x:String)" Name="securityDirectorsLoginNames" />
+        <Variable x:TypeArguments="x:String" Name="diversityLoginName" />
+      </Sequence.Variables>
+      <p1:WebUri DisplayName="Get WebUri">
+        <p1:WebUri.Result>
+          <OutArgument x:TypeArguments="x:String">
+            <mca:CSharpReference x:TypeArguments="x:String">webUrl</mca:CSharpReference>
+          </OutArgument>
+        </p1:WebUri.Result>
+      </p1:WebUri>
+      <Sequence DisplayName="Initialization">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Boolean" Name="dynamicValueIsEmpty" />
+          <Variable x:TypeArguments="x:String" Name="destinations" />
+          <Variable x:TypeArguments="x:Int32" Name="collectionSize" />
+          <Variable x:TypeArguments="x:String" Name="appRelativeUrl" />
+          <Variable x:TypeArguments="sco:Collection(x:String)" Name="restrictedTravelCountries" />
+          <Variable x:TypeArguments="x:Boolean" Name="tarFromEif" />
+        </Sequence.Variables>
+        <p:BuildCollection x:TypeArguments="x:String" DisplayName="Initialize tokenPlaceholders">
+          <p:BuildCollection.Collection>
+            <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+              <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)">tokenPlaceholders</mca:CSharpValue>
+            </InArgument>
+          </p:BuildCollection.Collection>
+          <p:BuildCollection.Result>
+            <OutArgument x:TypeArguments="sco:Collection(x:String)">
+              <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">tokenPlaceholders</mca:CSharpReference>
+            </OutArgument>
+          </p:BuildCollection.Result>
+        </p:BuildCollection>
+        <p:BuildCollection x:TypeArguments="x:String" DisplayName="Initialize tokenValues">
+          <p:BuildCollection.Collection>
+            <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+              <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)">tokenValues</mca:CSharpValue>
+            </InArgument>
+          </p:BuildCollection.Collection>
+          <p:BuildCollection.Result>
+            <OutArgument x:TypeArguments="sco:Collection(x:String)">
+              <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">tokenValues</mca:CSharpReference>
+            </OutArgument>
+          </p:BuildCollection.Result>
+        </p:BuildCollection>
+        <Sequence DisplayName="Get Submitted Email Template">
+          <p1:LookupSPListItemId DisplayName="Get Email Template Id" PropertyName="LinkTitle" PropertyValue="TAR_Submitted">
+            <p1:LookupSPListItemId.ListId>
+              <InArgument x:TypeArguments="s:Guid">
+                <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/TAREmailTemplates;}")</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItemId.ListId>
+            <p1:LookupSPListItemId.Result>
+              <OutArgument x:TypeArguments="x:Int32">
+                <mca:CSharpReference x:TypeArguments="x:Int32">emailTemplateId</mca:CSharpReference>
+              </OutArgument>
+            </p1:LookupSPListItemId.Result>
+          </p1:LookupSPListItemId>
+          <If DisplayName="If email template not found">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">emailTemplateId &lt; 1</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:WriteToHistory DisplayName="Log error" Message="Cannot find submitted email template." />
+                <TerminateWorkflow Reason="Invalid input data." />
+              </Sequence>
+            </If.Then>
+          </If>
+          <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Lookup Email Template ">
+            <p1:LookupSPListItem.ItemId>
+              <InArgument x:TypeArguments="x:Int32">
+                <mca:CSharpValue x:TypeArguments="x:Int32">emailTemplateId</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItem.ItemId>
+            <p1:LookupSPListItem.ListId>
+              <InArgument x:TypeArguments="s:Guid">
+                <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/TAREmailTemplates;}")</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItem.ListId>
+            <p1:LookupSPListItem.Result>
+              <OutArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+              </OutArgument>
+            </p1:LookupSPListItem.Result>
+          </p1:LookupSPListItem>
+          <p:GetODataProperties DisplayName="Get Email Template details">
+            <p:GetODataProperties.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+              </InArgument>
+            </p:GetODataProperties.Source>
+            <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_EmailSubject">
+                <mca:CSharpReference x:TypeArguments="x:String">emailSubject</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_EmailContent">
+                <mca:CSharpReference x:TypeArguments="x:String">emailContent</mca:CSharpReference>
+              </OutArgument>
+            </scg:Dictionary>
+          </p:GetODataProperties>
+          <If DisplayName="If there is no subject or content to the email">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">string.IsNullOrEmpty(emailSubject) || string.IsNullOrEmpty(emailContent)</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:WriteToHistory DisplayName="Log error" Message="Invalid submitted email template details." />
+                <TerminateWorkflow Reason="Invalid input data." />
+              </Sequence>
+            </If.Then>
+          </If>
+        </Sequence>
+        <Sequence DisplayName="Get GSS Approval Email Template">
+          <p1:LookupSPListItemId DisplayName="Get Email Template Id" PropertyName="LinkTitle" PropertyValue="TAR_GSSApproval">
+            <p1:LookupSPListItemId.ListId>
+              <InArgument x:TypeArguments="s:Guid">
+                <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/TAREmailTemplates;}")</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItemId.ListId>
+            <p1:LookupSPListItemId.Result>
+              <OutArgument x:TypeArguments="x:Int32">
+                <mca:CSharpReference x:TypeArguments="x:Int32">emailTemplateId</mca:CSharpReference>
+              </OutArgument>
+            </p1:LookupSPListItemId.Result>
+          </p1:LookupSPListItemId>
+          <If DisplayName="If email template not found">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">emailTemplateId &lt; 1</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:WriteToHistory DisplayName="Log error" Message="Cannot find gss approval email template." />
+                <TerminateWorkflow Reason="Invalid input data." />
+              </Sequence>
+            </If.Then>
+          </If>
+          <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Lookup Email Template ">
+            <p1:LookupSPListItem.ItemId>
+              <InArgument x:TypeArguments="x:Int32">
+                <mca:CSharpValue x:TypeArguments="x:Int32">emailTemplateId</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItem.ItemId>
+            <p1:LookupSPListItem.ListId>
+              <InArgument x:TypeArguments="s:Guid">
+                <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/TAREmailTemplates;}")</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItem.ListId>
+            <p1:LookupSPListItem.Result>
+              <OutArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+              </OutArgument>
+            </p1:LookupSPListItem.Result>
+          </p1:LookupSPListItem>
+          <p:GetODataProperties DisplayName="Get Email Template details">
+            <p:GetODataProperties.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+              </InArgument>
+            </p:GetODataProperties.Source>
+            <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_EmailSubject">
+                <mca:CSharpReference x:TypeArguments="x:String">gssEmailSubject</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_EmailContent">
+                <mca:CSharpReference x:TypeArguments="x:String">gssEmailContent</mca:CSharpReference>
+              </OutArgument>
+            </scg:Dictionary>
+          </p:GetODataProperties>
+          <If DisplayName="If there is no subject or content to the email">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">string.IsNullOrEmpty(gssEmailSubject) || string.IsNullOrEmpty(gssEmailContent)</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:WriteToHistory DisplayName="Log error" Message="Invalid gss approval email template details." />
+                <TerminateWorkflow Reason="Invalid input data." />
+              </Sequence>
+            </If.Then>
+          </If>
+        </Sequence>
+        <Sequence DisplayName="Get Rejected Email Template">
+          <p1:LookupSPListItemId DisplayName="Get Email Template Id" PropertyName="LinkTitle" PropertyValue="TAR_Rejected">
+            <p1:LookupSPListItemId.ListId>
+              <InArgument x:TypeArguments="s:Guid">
+                <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/TAREmailTemplates;}")</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItemId.ListId>
+            <p1:LookupSPListItemId.Result>
+              <OutArgument x:TypeArguments="x:Int32">
+                <mca:CSharpReference x:TypeArguments="x:Int32">emailTemplateId</mca:CSharpReference>
+              </OutArgument>
+            </p1:LookupSPListItemId.Result>
+          </p1:LookupSPListItemId>
+          <If DisplayName="If email template not found">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">emailTemplateId &lt; 1</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:WriteToHistory DisplayName="Log error" Message="Cannot find rejected email template." />
+                <TerminateWorkflow Reason="Invalid input data." />
+              </Sequence>
+            </If.Then>
+          </If>
+          <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Lookup Email Template ">
+            <p1:LookupSPListItem.ItemId>
+              <InArgument x:TypeArguments="x:Int32">
+                <mca:CSharpValue x:TypeArguments="x:Int32">emailTemplateId</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItem.ItemId>
+            <p1:LookupSPListItem.ListId>
+              <InArgument x:TypeArguments="s:Guid">
+                <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/TAREmailTemplates;}")</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItem.ListId>
+            <p1:LookupSPListItem.Result>
+              <OutArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+              </OutArgument>
+            </p1:LookupSPListItem.Result>
+          </p1:LookupSPListItem>
+          <p:GetODataProperties DisplayName="Get Email Template details">
+            <p:GetODataProperties.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+              </InArgument>
+            </p:GetODataProperties.Source>
+            <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_EmailSubject">
+                <mca:CSharpReference x:TypeArguments="x:String">rejectedEmailSubject</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_EmailContent">
+                <mca:CSharpReference x:TypeArguments="x:String">rejectedEmailContent</mca:CSharpReference>
+              </OutArgument>
+            </scg:Dictionary>
+          </p:GetODataProperties>
+          <If DisplayName="If there is no subject or content in the email">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">string.IsNullOrEmpty(rejectedEmailSubject) || string.IsNullOrEmpty(rejectedEmailContent)</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:WriteToHistory DisplayName="Log error" Message="Invalid rejected email template details." />
+                <TerminateWorkflow Reason="Invalid input data." />
+              </Sequence>
+            </If.Then>
+          </If>
+        </Sequence>
+        <Sequence DisplayName="Get Approved Email Template">
+          <p1:LookupSPListItemId DisplayName="Get Email Template Id" PropertyName="LinkTitle" PropertyValue="TAR_Approved">
+            <p1:LookupSPListItemId.ListId>
+              <InArgument x:TypeArguments="s:Guid">
+                <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/TAREmailTemplates;}")</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItemId.ListId>
+            <p1:LookupSPListItemId.Result>
+              <OutArgument x:TypeArguments="x:Int32">
+                <mca:CSharpReference x:TypeArguments="x:Int32">emailTemplateId</mca:CSharpReference>
+              </OutArgument>
+            </p1:LookupSPListItemId.Result>
+          </p1:LookupSPListItemId>
+          <If DisplayName="If email template not found">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">emailTemplateId &lt; 1</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:WriteToHistory DisplayName="Log error" Message="Cannot find approved email template." />
+                <TerminateWorkflow Reason="Invalid input data." />
+              </Sequence>
+            </If.Then>
+          </If>
+          <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Lookup Email Template ">
+            <p1:LookupSPListItem.ItemId>
+              <InArgument x:TypeArguments="x:Int32">
+                <mca:CSharpValue x:TypeArguments="x:Int32">emailTemplateId</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItem.ItemId>
+            <p1:LookupSPListItem.ListId>
+              <InArgument x:TypeArguments="s:Guid">
+                <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/TAREmailTemplates;}")</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItem.ListId>
+            <p1:LookupSPListItem.Result>
+              <OutArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+              </OutArgument>
+            </p1:LookupSPListItem.Result>
+          </p1:LookupSPListItem>
+          <p:GetODataProperties DisplayName="Get Email Template details">
+            <p:GetODataProperties.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+              </InArgument>
+            </p:GetODataProperties.Source>
+            <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_EmailSubject">
+                <mca:CSharpReference x:TypeArguments="x:String">approvedEmailSubject</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_EmailContent">
+                <mca:CSharpReference x:TypeArguments="x:String">approvedEmailContent</mca:CSharpReference>
+              </OutArgument>
+            </scg:Dictionary>
+          </p:GetODataProperties>
+          <If DisplayName="If there is no subject or content in the email">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">string.IsNullOrEmpty(approvedEmailSubject) || string.IsNullOrEmpty(approvedEmailContent)</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:WriteToHistory DisplayName="Log error" Message="Invalid approved email template details." />
+                <TerminateWorkflow Reason="Invalid input data." />
+              </Sequence>
+            </If.Then>
+          </If>
+        </Sequence>
+        <Sequence DisplayName="Get TAR WF Settings">
+          <p1:LookupSPListItemId DisplayName="Lookup TARSettings App relative path" PropertyValue="AppRelativeUrl">
+            <p1:LookupSPListItemId.ListId>
+              <InArgument x:TypeArguments="s:Guid">
+                <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/TARSettings;}")</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItemId.ListId>
+            <p1:LookupSPListItemId.PropertyName>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String">"LinkTitle"</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItemId.PropertyName>
+            <p1:LookupSPListItemId.Result>
+              <OutArgument x:TypeArguments="x:Int32">
+                <mca:CSharpReference x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpReference>
+              </OutArgument>
+            </p1:LookupSPListItemId.Result>
+          </p1:LookupSPListItemId>
+          <If DisplayName="If setting exists">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">tokenValueInt &gt; 0</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Lookup TAR Setting">
+                  <p1:LookupSPListItem.ItemId>
+                    <InArgument x:TypeArguments="x:Int32">
+                      <mca:CSharpValue x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpValue>
+                    </InArgument>
+                  </p1:LookupSPListItem.ItemId>
+                  <p1:LookupSPListItem.ListId>
+                    <InArgument x:TypeArguments="s:Guid">
+                      <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/TARSettings;}")</mca:CSharpValue>
+                    </InArgument>
+                  </p1:LookupSPListItem.ListId>
+                  <p1:LookupSPListItem.Result>
+                    <OutArgument x:TypeArguments="p:DynamicValue">
+                      <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+                    </OutArgument>
+                  </p1:LookupSPListItem.Result>
+                </p1:LookupSPListItem>
+                <p:GetODataProperties DisplayName="Get App relative URL">
+                  <p:GetODataProperties.Source>
+                    <InArgument x:TypeArguments="p:DynamicValue">
+                      <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                    </InArgument>
+                  </p:GetODataProperties.Source>
+                  <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                    <OutArgument x:TypeArguments="x:String" x:Key="TAR_SettingValue">
+                      <mca:CSharpReference x:TypeArguments="x:String">appRelativeUrl</mca:CSharpReference>
+                    </OutArgument>
+                  </scg:Dictionary>
+                </p:GetODataProperties>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <p1:WriteToHistory DisplayName="Log error" Message="AppRelativeUrl does not exist in TAR Settings list." />
+            </If.Else>
+          </If>
+        </Sequence>
+        <Sequence DisplayName="Get Diversity User">
+          <p1:LookupSPListItemId DisplayName="Lookup TARSettings Diversity Inbox" PropertyValue="Diversity_Inbox">
+            <p1:LookupSPListItemId.ListId>
+              <InArgument x:TypeArguments="s:Guid">
+                <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/TARSettings;}")</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItemId.ListId>
+            <p1:LookupSPListItemId.PropertyName>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String">"LinkTitle"</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPListItemId.PropertyName>
+            <p1:LookupSPListItemId.Result>
+              <OutArgument x:TypeArguments="x:Int32">
+                <mca:CSharpReference x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpReference>
+              </OutArgument>
+            </p1:LookupSPListItemId.Result>
+          </p1:LookupSPListItemId>
+          <If DisplayName="If Diversity User exists">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">tokenValueInt &gt; 0</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Lookup TAR Setting">
+                  <p1:LookupSPListItem.ItemId>
+                    <InArgument x:TypeArguments="x:Int32">
+                      <mca:CSharpValue x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpValue>
+                    </InArgument>
+                  </p1:LookupSPListItem.ItemId>
+                  <p1:LookupSPListItem.ListId>
+                    <InArgument x:TypeArguments="s:Guid">
+                      <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/TARSettings;}")</mca:CSharpValue>
+                    </InArgument>
+                  </p1:LookupSPListItem.ListId>
+                  <p1:LookupSPListItem.Result>
+                    <OutArgument x:TypeArguments="p:DynamicValue">
+                      <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+                    </OutArgument>
+                  </p1:LookupSPListItem.Result>
+                </p1:LookupSPListItem>
+                <p:GetODataProperties DisplayName="Get Diversity User">
+                  <p:GetODataProperties.Source>
+                    <InArgument x:TypeArguments="p:DynamicValue">
+                      <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                    </InArgument>
+                  </p:GetODataProperties.Source>
+                  <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                    <OutArgument x:TypeArguments="x:String" x:Key="TAR_SettingValue">
+                      <mca:CSharpReference x:TypeArguments="x:String">diversityLoginName</mca:CSharpReference>
+                    </OutArgument>
+                  </scg:Dictionary>
+                </p:GetODataProperties>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <p1:WriteToHistory DisplayName="Log error" Message="Diversity_Inbox does not exist in TAR Settings list." />
+            </If.Else>
+          </If>
+        </Sequence>
+        <Sequence DisplayName="Get TAR Request item">
+          <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Lookup Current TAR item">
+            <p1:LookupSPListItem.ItemId>
+              <InArgument x:TypeArguments="x:Int32">
+                <p:ExpressionContainerValue x:TypeArguments="x:Int32">
+                  <p1:GetCurrentItemId />
+                </p:ExpressionContainerValue>
+              </InArgument>
+            </p1:LookupSPListItem.ItemId>
+            <p1:LookupSPListItem.ListId>
+              <InArgument x:TypeArguments="s:Guid">
+                <p:ExpressionContainerValue x:TypeArguments="s:Guid">
+                  <p1:GetCurrentListId />
+                </p:ExpressionContainerValue>
+              </InArgument>
+            </p1:LookupSPListItem.ListId>
+            <p1:LookupSPListItem.Result>
+              <OutArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpReference x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpReference>
+              </OutArgument>
+            </p1:LookupSPListItem.Result>
+          </p1:LookupSPListItem>
+          <p:IsEmptyDynamicValue DisplayName="Check if empty tarDetails">
+            <p:IsEmptyDynamicValue.Input>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+              </InArgument>
+            </p:IsEmptyDynamicValue.Input>
+            <p:IsEmptyDynamicValue.Result>
+              <OutArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpReference x:TypeArguments="x:Boolean">dynamicValueIsEmpty</mca:CSharpReference>
+              </OutArgument>
+            </p:IsEmptyDynamicValue.Result>
+          </p:IsEmptyDynamicValue>
+          <If DisplayName="If tarDetails is empty">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">dynamicValueIsEmpty</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:WriteToHistory DisplayName="Log error" Message="No TAR Request found." />
+                <TerminateWorkflow Reason="No TAR Request found." />
+              </Sequence>
+            </If.Then>
+          </If>
+        </Sequence>
+        <Sequence DisplayName="Get TAR Requester">
+          <p:GetDynamicValueProperty x:TypeArguments="x:Int32" DisplayName="Get Requester Id" PropertyName="d/results/(0)/TAR_RequesterId">
+            <p:GetDynamicValueProperty.Result>
+              <OutArgument x:TypeArguments="x:Int32">
+                <mca:CSharpReference x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpReference>
+              </OutArgument>
+            </p:GetDynamicValueProperty.Result>
+            <p:GetDynamicValueProperty.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+              </InArgument>
+            </p:GetDynamicValueProperty.Source>
+          </p:GetDynamicValueProperty>
+          <p1:LookupSPUser DisplayName="Lookup Requester">
+            <p1:LookupSPUser.PrincipalId>
+              <InArgument x:TypeArguments="x:Int32">
+                <mca:CSharpValue x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPUser.PrincipalId>
+            <p1:LookupSPUser.Result>
+              <OutArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+              </OutArgument>
+            </p1:LookupSPUser.Result>
+          </p1:LookupSPUser>
+          <p:GetODataProperties DisplayName="Get Requester properties">
+            <p:GetODataProperties.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+              </InArgument>
+            </p:GetODataProperties.Source>
+            <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+              <OutArgument x:TypeArguments="x:String" x:Key="LoginName">
+                <mca:CSharpReference x:TypeArguments="x:String">requesterLoginName</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="Email">
+                <mca:CSharpReference x:TypeArguments="x:String">emailAddress</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="Title">
+                <mca:CSharpReference x:TypeArguments="x:String">tokenValue</mca:CSharpReference>
+              </OutArgument>
+            </scg:Dictionary>
+          </p:GetODataProperties>
+          <If DisplayName="If Email is empty">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">string.IsNullOrEmpty(emailAddress)</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:WriteToHistory DisplayName="Log error">
+                  <p1:WriteToHistory.Message>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">string.Format("User {0} has no email address", requesterLoginName);</mca:CSharpValue>
+                    </InArgument>
+                  </p1:WriteToHistory.Message>
+                </p1:WriteToHistory>
+                <TerminateWorkflow>
+                  <TerminateWorkflow.Reason>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">string.Format("User {0} has no email address", requesterLoginName);</mca:CSharpValue>
+                    </InArgument>
+                  </TerminateWorkflow.Reason>
+                </TerminateWorkflow>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add {REQUESTER} to tokenPlaceholders" Item="{}{REQUESTER}">
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add {REQUESTER} encoded to tokenPlaceholders" Item="&amp;#123;REQUESTER&amp;#125;">
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add requester to tokenValues">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">tokenValue</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add requester to tokenValues for encoding">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">tokenValue</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+        <Sequence DisplayName="Get TAR FromEif">
+          <p:GetDynamicValueProperty x:TypeArguments="x:Boolean" DisplayName="Get FromEif " PropertyName="d/results/(0)/TAR_FromEif">
+            <p:GetDynamicValueProperty.Result>
+              <OutArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpReference x:TypeArguments="x:Boolean">tarFromEif</mca:CSharpReference>
+              </OutArgument>
+            </p:GetDynamicValueProperty.Result>
+            <p:GetDynamicValueProperty.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+              </InArgument>
+            </p:GetDynamicValueProperty.Source>
+          </p:GetDynamicValueProperty>
+        </Sequence>
+        <If DisplayName="If TAR is from EIF">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean">tarFromEif</mca:CSharpValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence DisplayName="Get TAR Guest Traveller as Traveller">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="tarGuestTraveller" />
+              </Sequence.Variables>
+              <Sequence DisplayName="Get TAR Traveller LoginName for email">
+                <p:GetDynamicValueProperty x:TypeArguments="x:Int32" DisplayName="Get Traveller Id" PropertyName="d/results/(0)/TAR_TravellerId">
+                  <p:GetDynamicValueProperty.Result>
+                    <OutArgument x:TypeArguments="x:Int32">
+                      <mca:CSharpReference x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpReference>
+                    </OutArgument>
+                  </p:GetDynamicValueProperty.Result>
+                  <p:GetDynamicValueProperty.Source>
+                    <InArgument x:TypeArguments="p:DynamicValue">
+                      <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+                    </InArgument>
+                  </p:GetDynamicValueProperty.Source>
+                </p:GetDynamicValueProperty>
+                <p1:LookupSPUser DisplayName="Lookup Traveller">
+                  <p1:LookupSPUser.PrincipalId>
+                    <InArgument x:TypeArguments="x:Int32">
+                      <mca:CSharpValue x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpValue>
+                    </InArgument>
+                  </p1:LookupSPUser.PrincipalId>
+                  <p1:LookupSPUser.Result>
+                    <OutArgument x:TypeArguments="p:DynamicValue">
+                      <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+                    </OutArgument>
+                  </p1:LookupSPUser.Result>
+                </p1:LookupSPUser>
+                <p:GetODataProperties DisplayName="Get Traveller Login Name">
+                  <p:GetODataProperties.Source>
+                    <InArgument x:TypeArguments="p:DynamicValue">
+                      <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                    </InArgument>
+                  </p:GetODataProperties.Source>
+                  <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                    <OutArgument x:TypeArguments="x:String" x:Key="LoginName">
+                      <mca:CSharpReference x:TypeArguments="x:String">travellerLoginName</mca:CSharpReference>
+                    </OutArgument>
+                  </scg:Dictionary>
+                </p:GetODataProperties>
+              </Sequence>
+              <p:GetDynamicValueProperty x:TypeArguments="x:String" DisplayName="Get Guest Traveller name" PropertyName="d/results/(0)/TAR_GuestTraveller">
+                <p:GetDynamicValueProperty.Result>
+                  <OutArgument x:TypeArguments="x:String">
+                    <mca:CSharpReference x:TypeArguments="x:String">tarGuestTraveller</mca:CSharpReference>
+                  </OutArgument>
+                </p:GetDynamicValueProperty.Result>
+                <p:GetDynamicValueProperty.Source>
+                  <InArgument x:TypeArguments="p:DynamicValue">
+                    <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+                  </InArgument>
+                </p:GetDynamicValueProperty.Source>
+              </p:GetDynamicValueProperty>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add {TRAVELLER} to tokenPlaceholders" Item="{}{TRAVELLER}">
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+                </InArgument>
+              </AddToCollection>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add {TRAVELLER} encoded to tokenPlaceholders" Item="&amp;#123;TRAVELLER&amp;#125;">
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+                </InArgument>
+              </AddToCollection>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add traveller to tokenValues">
+                <AddToCollection.Item>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">tarGuestTraveller</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection.Item>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+                </InArgument>
+              </AddToCollection>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add traveller to tokenValues for encoding">
+                <AddToCollection.Item>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">tarGuestTraveller</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection.Item>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+                </InArgument>
+              </AddToCollection>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="Get TAR Traveller as Traveller ">
+              <p:GetDynamicValueProperty x:TypeArguments="x:Int32" DisplayName="Get Traveller Id" PropertyName="d/results/(0)/TAR_TravellerId">
+                <p:GetDynamicValueProperty.Result>
+                  <OutArgument x:TypeArguments="x:Int32">
+                    <mca:CSharpReference x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpReference>
+                  </OutArgument>
+                </p:GetDynamicValueProperty.Result>
+                <p:GetDynamicValueProperty.Source>
+                  <InArgument x:TypeArguments="p:DynamicValue">
+                    <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+                  </InArgument>
+                </p:GetDynamicValueProperty.Source>
+              </p:GetDynamicValueProperty>
+              <p1:LookupSPUser DisplayName="Lookup Traveller">
+                <p1:LookupSPUser.PrincipalId>
+                  <InArgument x:TypeArguments="x:Int32">
+                    <mca:CSharpValue x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpValue>
+                  </InArgument>
+                </p1:LookupSPUser.PrincipalId>
+                <p1:LookupSPUser.Result>
+                  <OutArgument x:TypeArguments="p:DynamicValue">
+                    <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+                  </OutArgument>
+                </p1:LookupSPUser.Result>
+              </p1:LookupSPUser>
+              <p:GetODataProperties DisplayName="Get Traveller Name">
+                <p:GetODataProperties.Source>
+                  <InArgument x:TypeArguments="p:DynamicValue">
+                    <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                  </InArgument>
+                </p:GetODataProperties.Source>
+                <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                  <OutArgument x:TypeArguments="x:String" x:Key="Title">
+                    <mca:CSharpReference x:TypeArguments="x:String">tokenValue</mca:CSharpReference>
+                  </OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="LoginName">
+                    <mca:CSharpReference x:TypeArguments="x:String">travellerLoginName</mca:CSharpReference>
+                  </OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="Email">
+                    <mca:CSharpReference x:TypeArguments="x:String">emailAddress</mca:CSharpReference>
+                  </OutArgument>
+                </scg:Dictionary>
+              </p:GetODataProperties>
+              <If DisplayName="If Email is empty">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">string.IsNullOrEmpty(emailAddress)</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <Sequence>
+                    <p1:WriteToHistory DisplayName="Log error">
+                      <p1:WriteToHistory.Message>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">string.Format("User {0} has no email address", travellerLoginName);</mca:CSharpValue>
+                        </InArgument>
+                      </p1:WriteToHistory.Message>
+                    </p1:WriteToHistory>
+                    <TerminateWorkflow>
+                      <TerminateWorkflow.Reason>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">string.Format("User {0} has no email address", travellerLoginName);</mca:CSharpValue>
+                        </InArgument>
+                      </TerminateWorkflow.Reason>
+                    </TerminateWorkflow>
+                  </Sequence>
+                </If.Then>
+              </If>
+              <If DisplayName="If Traveller Name is empty">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">string.IsNullOrEmpty(tokenValue)</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <Sequence>
+                    <p1:WriteToHistory DisplayName="Log error" Message="Invalid traveller name." />
+                    <TerminateWorkflow Reason="Invalid input data." />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence>
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dict" />
+                    </Sequence.Variables>
+                    <AddToCollection x:TypeArguments="x:String" DisplayName="Add {TRAVELLER} to tokenPlaceholders" Item="{}{TRAVELLER}">
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                        <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+                      </InArgument>
+                    </AddToCollection>
+                    <AddToCollection x:TypeArguments="x:String" DisplayName="Add {TRAVELLER} encoded to tokenPlaceholders" Item="&amp;#123;TRAVELLER&amp;#125;">
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                        <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+                      </InArgument>
+                    </AddToCollection>
+                    <AddToCollection x:TypeArguments="x:String" DisplayName="Add traveller to tokenValues">
+                      <AddToCollection.Item>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">tokenValue</mca:CSharpValue>
+                        </InArgument>
+                      </AddToCollection.Item>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                        <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+                      </InArgument>
+                    </AddToCollection>
+                    <AddToCollection x:TypeArguments="x:String" DisplayName="Add traveller to tokenValues for encoding">
+                      <AddToCollection.Item>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">tokenValue</mca:CSharpValue>
+                        </InArgument>
+                      </AddToCollection.Item>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                        <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+                      </InArgument>
+                    </AddToCollection>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </If.Else>
+        </If>
+        <Sequence DisplayName="Get TAR Budget Approver ">
+          <p:GetDynamicValueProperty x:TypeArguments="x:Int32" DisplayName="Get Budget Approver Id" PropertyName="d/results/(0)/TAR_BudgetApproverId">
+            <p:GetDynamicValueProperty.Result>
+              <OutArgument x:TypeArguments="x:Int32">
+                <mca:CSharpReference x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpReference>
+              </OutArgument>
+            </p:GetDynamicValueProperty.Result>
+            <p:GetDynamicValueProperty.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+              </InArgument>
+            </p:GetDynamicValueProperty.Source>
+          </p:GetDynamicValueProperty>
+          <p1:LookupSPUser DisplayName="Lookup Budget Approver">
+            <p1:LookupSPUser.PrincipalId>
+              <InArgument x:TypeArguments="x:Int32">
+                <mca:CSharpValue x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpValue>
+              </InArgument>
+            </p1:LookupSPUser.PrincipalId>
+            <p1:LookupSPUser.Result>
+              <OutArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+              </OutArgument>
+            </p1:LookupSPUser.Result>
+          </p1:LookupSPUser>
+          <p:GetODataProperties DisplayName="Get Budget Approver Name">
+            <p:GetODataProperties.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+              </InArgument>
+            </p:GetODataProperties.Source>
+            <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+              <OutArgument x:TypeArguments="x:String" x:Key="Title">
+                <mca:CSharpReference x:TypeArguments="x:String">budgetApproverName</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="LoginName">
+                <mca:CSharpReference x:TypeArguments="x:String">budgetApproverLoginName</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="Email">
+                <mca:CSharpReference x:TypeArguments="x:String">emailAddress</mca:CSharpReference>
+              </OutArgument>
+            </scg:Dictionary>
+          </p:GetODataProperties>
+          <If DisplayName="If Email is empty">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">string.IsNullOrEmpty(emailAddress)</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:WriteToHistory DisplayName="Log error">
+                  <p1:WriteToHistory.Message>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">string.Format("User {0} has no email address", budgetApproverLoginName);</mca:CSharpValue>
+                    </InArgument>
+                  </p1:WriteToHistory.Message>
+                </p1:WriteToHistory>
+                <TerminateWorkflow>
+                  <TerminateWorkflow.Reason>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">string.Format("User {0} has no email address", budgetApproverLoginName);</mca:CSharpValue>
+                    </InArgument>
+                  </TerminateWorkflow.Reason>
+                </TerminateWorkflow>
+              </Sequence>
+            </If.Then>
+          </If>
+          <If DisplayName="If Budget Approver Name is empty">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">string.IsNullOrEmpty(budgetApproverName)</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:WriteToHistory DisplayName="Log error" Message="Invalid budget approver name." />
+                <TerminateWorkflow Reason="Invalid input data." />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add {BUDGET_APPROVER} to tokenPlaceholders" Item="{}{BUDGET_APPROVER}">
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add {BUDGET_APPROVER} encoded to tokenPlaceholders" Item="&amp;#123;BUDGET_APPROVER&amp;#125;">
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add budget approver to tokenValues">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">budgetApproverName</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add budget approver to tokenValues">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">budgetApproverName</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+        <Sequence DisplayName="Get Travel Coordinator">
+          <p:GetDynamicValueProperty x:TypeArguments="x:Int32" DisplayName="Get Travel Coordinator Id" PropertyName="d/results/(0)/TAR_TravelCoordinatorId">
+            <p:GetDynamicValueProperty.Result>
+              <OutArgument x:TypeArguments="x:Int32">
+                <mca:CSharpReference x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpReference>
+              </OutArgument>
+            </p:GetDynamicValueProperty.Result>
+            <p:GetDynamicValueProperty.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+              </InArgument>
+            </p:GetDynamicValueProperty.Source>
+          </p:GetDynamicValueProperty>
+          <If DisplayName="If travel coordinator has been selected">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">tokenValueInt &gt; 0</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:LookupSPUser>
+                  <p1:LookupSPUser.PrincipalId>
+                    <InArgument x:TypeArguments="x:Int32">
+                      <mca:CSharpValue x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpValue>
+                    </InArgument>
+                  </p1:LookupSPUser.PrincipalId>
+                  <p1:LookupSPUser.Result>
+                    <OutArgument x:TypeArguments="p:DynamicValue">
+                      <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+                    </OutArgument>
+                  </p1:LookupSPUser.Result>
+                </p1:LookupSPUser>
+                <p:GetODataProperties DisplayName="Get Travel Coordinator login name">
+                  <p:GetODataProperties.Source>
+                    <InArgument x:TypeArguments="p:DynamicValue">
+                      <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                    </InArgument>
+                  </p:GetODataProperties.Source>
+                  <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                    <OutArgument x:TypeArguments="x:String" x:Key="LoginName">
+                      <mca:CSharpReference x:TypeArguments="x:String">travelCoordinatorLoginName</mca:CSharpReference>
+                    </OutArgument>
+                  </scg:Dictionary>
+                </p:GetODataProperties>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Assign DisplayName="Set Travel Coordinator to empty string">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">
+                    <mca:CSharpReference x:TypeArguments="x:String">travelCoordinatorLoginName</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">string.Empty;</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+            </If.Else>
+          </If>
+        </Sequence>
+        <Sequence DisplayName="Get TAR Additional Staff Member">
+          <p:GetDynamicValueProperty x:TypeArguments="x:Int32" DisplayName="Get Additional Staff Member Id" PropertyName="d/results/(0)/TAR_AdditionalStaffMemberId">
+            <p:GetDynamicValueProperty.Result>
+              <OutArgument x:TypeArguments="x:Int32">
+                <mca:CSharpReference x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpReference>
+              </OutArgument>
+            </p:GetDynamicValueProperty.Result>
+            <p:GetDynamicValueProperty.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+              </InArgument>
+            </p:GetDynamicValueProperty.Source>
+          </p:GetDynamicValueProperty>
+          <If DisplayName="If there is a Staff Member added">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">tokenValueInt &gt; 0</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:LookupSPUser DisplayName="Lookup Additional Staff Member">
+                  <p1:LookupSPUser.PrincipalId>
+                    <InArgument x:TypeArguments="x:Int32">
+                      <mca:CSharpValue x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpValue>
+                    </InArgument>
+                  </p1:LookupSPUser.PrincipalId>
+                  <p1:LookupSPUser.Result>
+                    <OutArgument x:TypeArguments="p:DynamicValue">
+                      <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+                    </OutArgument>
+                  </p1:LookupSPUser.Result>
+                </p1:LookupSPUser>
+                <p:GetODataProperties DisplayName="Get Additional Staff Member Login Name">
+                  <p:GetODataProperties.Source>
+                    <InArgument x:TypeArguments="p:DynamicValue">
+                      <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                    </InArgument>
+                  </p:GetODataProperties.Source>
+                  <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                    <OutArgument x:TypeArguments="x:String" x:Key="LoginName">
+                      <mca:CSharpReference x:TypeArguments="x:String">additionalStaffMemberLoginName</mca:CSharpReference>
+                    </OutArgument>
+                  </scg:Dictionary>
+                </p:GetODataProperties>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Assign DisplayName="Set staff member login name to empty">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">
+                    <mca:CSharpReference x:TypeArguments="x:String">additionalStaffMemberLoginName</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">string.Empty</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+            </If.Else>
+          </If>
+        </Sequence>
+        <Sequence DisplayName="Get TAR ID">
+          <p:GetDynamicValueProperty x:TypeArguments="x:String" DisplayName="Get TAR ID" PropertyName="d/results/(0)/Title">
+            <p:GetDynamicValueProperty.Result>
+              <OutArgument x:TypeArguments="x:String">
+                <mca:CSharpReference x:TypeArguments="x:String">tokenValue</mca:CSharpReference>
+              </OutArgument>
+            </p:GetDynamicValueProperty.Result>
+            <p:GetDynamicValueProperty.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+              </InArgument>
+            </p:GetDynamicValueProperty.Source>
+          </p:GetDynamicValueProperty>
+          <Assign DisplayName="Store TAR ID">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">
+                <mca:CSharpReference x:TypeArguments="x:String">tarId</mca:CSharpReference>
+              </OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String">tokenValue</mca:CSharpValue>
+              </InArgument>
+            </Assign.Value>
+          </Assign>
+          <If DisplayName="If TAR ID is empty">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">string.IsNullOrEmpty(tokenValue)</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:WriteToHistory DisplayName="Log error" Message="Invalid TAR ID." />
+                <TerminateWorkflow Reason="Invalid input data." />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add {TAR_ID} to tokenPlaceholders" Item="{}{TAR_ID}">
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add {TAR_ID} encoded to tokenPlaceholders" Item="&amp;#123;TAR_ID&amp;#125;">
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add http://TAR_LINK encoded to tokenPlaceholders" Item="http&amp;#58;//tar_link">
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add http://TAR_LINK to tokenPlaceholders" Item="http://tar_link">
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add http://TAR_APPROVAL_LINK encoded to tokenPlaceholders" Item="http&amp;#58;//tar_approval_link">
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add http://TAR_APPROVAL_LINK to tokenPlaceholders" Item="http://tar_approval_link">
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add TAR ID to tokenValues">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">tarId</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add TAR ID for encoded to tokenValues">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">tarId</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add TAR LINK for encoded to tokenValues">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">string.Format("{0}{1}#/details/tar-details/{2}", webUrl, appRelativeUrl, tokenValue);</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add TAR LINK to tokenValues">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">string.Format("{0}{1}#/details/tar-details/{2}", webUrl, appRelativeUrl, tokenValue);</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add TAR APPROVAL LINK for encoded to tokenValues">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">string.Format("{0}{1}#/approval/tar/{2}", webUrl, appRelativeUrl, tokenValue);</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add TAR APPROVAL LINK to tokenValues">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">string.Format("{0}{1}#/approval/tar/{2}", webUrl, appRelativeUrl, tokenValue);</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+        <Sequence DisplayName="Get TAR Destinations">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:Int32" Name="destinationsCount" />
+            <Variable x:TypeArguments="x:Int32" Name="index" />
+          </Sequence.Variables>
+          <p:GetDynamicValueProperty x:TypeArguments="x:String" DisplayName="Get Destinations JSON" PropertyName="d/results/(0)/TAR_Destinations">
+            <p:GetDynamicValueProperty.Result>
+              <OutArgument x:TypeArguments="x:String">
+                <mca:CSharpReference x:TypeArguments="x:String">tokenValue</mca:CSharpReference>
+              </OutArgument>
+            </p:GetDynamicValueProperty.Result>
+            <p:GetDynamicValueProperty.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+              </InArgument>
+            </p:GetDynamicValueProperty.Source>
+          </p:GetDynamicValueProperty>
+          <p:ParseDynamicValue DisplayName="Parse Destinations JSON">
+            <p:ParseDynamicValue.Result>
+              <OutArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+              </OutArgument>
+            </p:ParseDynamicValue.Result>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">tokenValue</mca:CSharpValue>
+            </InArgument>
+          </p:ParseDynamicValue>
+          <p:CountDynamicValueItems DisplayName="Count Destinations DynamicValueItems">
+            <p:CountDynamicValueItems.Result>
+              <OutArgument x:TypeArguments="x:Int32">
+                <mca:CSharpReference x:TypeArguments="x:Int32">destinationsCount</mca:CSharpReference>
+              </OutArgument>
+            </p:CountDynamicValueItems.Result>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+            </InArgument>
+          </p:CountDynamicValueItems>
+          <p:BuildCollection x:TypeArguments="x:String" DisplayName="Build countryDirectorsLoginNames collection">
+            <p:BuildCollection.Collection>
+              <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+                <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)">countryDirectorsLoginNames</mca:CSharpValue>
+              </InArgument>
+            </p:BuildCollection.Collection>
+            <p:BuildCollection.Result>
+              <OutArgument x:TypeArguments="sco:Collection(x:String)">
+                <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">countryDirectorsLoginNames</mca:CSharpReference>
+              </OutArgument>
+            </p:BuildCollection.Result>
+          </p:BuildCollection>
+          <p:BuildCollection x:TypeArguments="x:String" DisplayName="Build restrictedTravelCountries">
+            <p:BuildCollection.Collection>
+              <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+                <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)">restrictedTravelCountries</mca:CSharpValue>
+              </InArgument>
+            </p:BuildCollection.Collection>
+            <p:BuildCollection.Result>
+              <OutArgument x:TypeArguments="sco:Collection(x:String)">
+                <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">restrictedTravelCountries</mca:CSharpReference>
+              </OutArgument>
+            </p:BuildCollection.Result>
+          </p:BuildCollection>
+          <If DisplayName="If destinationsCount == 0">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">destinationsCount == 0</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <p1:WriteToHistory DisplayName="Log error" Message="No destinations introduced." />
+                <TerminateWorkflow Reason="Invalid input data." />
+              </Sequence>
+            </If.Then>
+          </If>
+          <Assign DisplayName="Initialize index">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">
+                <mca:CSharpReference x:TypeArguments="x:Int32">index</mca:CSharpReference>
+              </OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">0</InArgument>
+            </Assign.Value>
+          </Assign>
+          <While DisplayName="Iterate over destinations dynamicValue ">
+            <While.Variables>
+              <Variable x:TypeArguments="x:String" Name="destinationsQuery" />
+              <Variable x:TypeArguments="x:String" Name="directorQuery" />
+              <Variable x:TypeArguments="x:String" Name="travelRestrictionsQuery" />
+            </While.Variables>
+            <While.Condition>
+              <mca:CSharpValue x:TypeArguments="x:Boolean">index &lt; destinationsCount</mca:CSharpValue>
+            </While.Condition>
+            <Sequence>
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="currentCountry" />
+              </Sequence.Variables>
+              <Assign DisplayName="Create query statement for country name">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">
+                    <mca:CSharpReference x:TypeArguments="x:String">destinationsQuery</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">string.Format("({0})/country/title", index);</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Create query statement for country director">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">
+                    <mca:CSharpReference x:TypeArguments="x:String">directorQuery</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">string.Format("({0})/country/director/Id", index);</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Create query statement for country travel restrictions">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">
+                    <mca:CSharpReference x:TypeArguments="x:String">travelRestrictionsQuery</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">string.Format("({0})/country/travelRestrictions", index);</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+              <p:GetDynamicValueProperty x:TypeArguments="x:String" DisplayName="Get destination from JSON">
+                <p:GetDynamicValueProperty.PropertyName>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">destinationsQuery</mca:CSharpValue>
+                  </InArgument>
+                </p:GetDynamicValueProperty.PropertyName>
+                <p:GetDynamicValueProperty.Result>
+                  <OutArgument x:TypeArguments="x:String">
+                    <mca:CSharpReference x:TypeArguments="x:String">currentCountry</mca:CSharpReference>
+                  </OutArgument>
+                </p:GetDynamicValueProperty.Result>
+                <p:GetDynamicValueProperty.Source>
+                  <InArgument x:TypeArguments="p:DynamicValue">
+                    <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                  </InArgument>
+                </p:GetDynamicValueProperty.Source>
+              </p:GetDynamicValueProperty>
+              <If DisplayName="If destinations is empty">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">string.IsNullOrEmpty(destinations)</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <Assign>
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">
+                        <mca:CSharpReference x:TypeArguments="x:String">destinations</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String">currentCountry</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </If.Then>
+                <If.Else>
+                  <Assign DisplayName="Add new destination">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">
+                        <mca:CSharpReference x:TypeArguments="x:String">destinations</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String">string.Format("{0}, {1}", destinations, currentCountry);</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </If.Else>
+              </If>
+              <p:GetDynamicValueProperty x:TypeArguments="x:Int32" DisplayName="Get Country Director Id from JSON">
+                <p:GetDynamicValueProperty.PropertyName>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">directorQuery</mca:CSharpValue>
+                  </InArgument>
+                </p:GetDynamicValueProperty.PropertyName>
+                <p:GetDynamicValueProperty.Result>
+                  <OutArgument x:TypeArguments="x:Int32">
+                    <mca:CSharpReference x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpReference>
+                  </OutArgument>
+                </p:GetDynamicValueProperty.Result>
+                <p:GetDynamicValueProperty.Source>
+                  <InArgument x:TypeArguments="p:DynamicValue">
+                    <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                  </InArgument>
+                </p:GetDynamicValueProperty.Source>
+              </p:GetDynamicValueProperty>
+              <If DisplayName="If there is a valid country director">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">tokenValueInt &gt; 0</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <Sequence DisplayName="Lookup and Add CD">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="p:DynamicValue" Name="userDetails" />
+                      <Variable x:TypeArguments="x:String" Name="userLoginName" />
+                    </Sequence.Variables>
+                    <p1:LookupSPUser DisplayName="Lookup Country Director">
+                      <p1:LookupSPUser.PrincipalId>
+                        <InArgument x:TypeArguments="x:Int32">
+                          <mca:CSharpValue x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpValue>
+                        </InArgument>
+                      </p1:LookupSPUser.PrincipalId>
+                      <p1:LookupSPUser.Result>
+                        <OutArgument x:TypeArguments="p:DynamicValue">
+                          <mca:CSharpReference x:TypeArguments="p:DynamicValue">userDetails</mca:CSharpReference>
+                        </OutArgument>
+                      </p1:LookupSPUser.Result>
+                    </p1:LookupSPUser>
+                    <p:GetODataProperties DisplayName="Get Country Director Login Name">
+                      <p:GetODataProperties.Source>
+                        <InArgument x:TypeArguments="p:DynamicValue">
+                          <mca:CSharpValue x:TypeArguments="p:DynamicValue">userDetails</mca:CSharpValue>
+                        </InArgument>
+                      </p:GetODataProperties.Source>
+                      <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                        <OutArgument x:TypeArguments="x:String" x:Key="LoginName">
+                          <mca:CSharpReference x:TypeArguments="x:String">userLoginName</mca:CSharpReference>
+                        </OutArgument>
+                      </scg:Dictionary>
+                    </p:GetODataProperties>
+                    <AddToCollection x:TypeArguments="x:String" DisplayName="Add CD Login Name to collection">
+                      <AddToCollection.Item>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">userLoginName</mca:CSharpValue>
+                        </InArgument>
+                      </AddToCollection.Item>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                        <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">countryDirectorsLoginNames</mca:CSharpValue>
+                      </InArgument>
+                    </AddToCollection>
+                  </Sequence>
+                </If.Then>
+              </If>
+              <p:GetDynamicValueProperty x:TypeArguments="x:String" DisplayName="Get destination from JSON">
+                <p:GetDynamicValueProperty.PropertyName>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">travelRestrictionsQuery</mca:CSharpValue>
+                  </InArgument>
+                </p:GetDynamicValueProperty.PropertyName>
+                <p:GetDynamicValueProperty.Result>
+                  <OutArgument x:TypeArguments="x:String">
+                    <mca:CSharpReference x:TypeArguments="x:String">tokenValue</mca:CSharpReference>
+                  </OutArgument>
+                </p:GetDynamicValueProperty.Result>
+                <p:GetDynamicValueProperty.Source>
+                  <InArgument x:TypeArguments="p:DynamicValue">
+                    <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                  </InArgument>
+                </p:GetDynamicValueProperty.Source>
+              </p:GetDynamicValueProperty>
+              <If DisplayName="If the destination is a restricted travel country">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">tokenValue.Equals("true")</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <AddToCollection x:TypeArguments="x:String" DisplayName="Add destination to restricted travel countries">
+                    <AddToCollection.Item>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String">currentCountry</mca:CSharpValue>
+                      </InArgument>
+                    </AddToCollection.Item>
+                    <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                      <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">restrictedTravelCountries</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection>
+                </If.Then>
+              </If>
+              <Assign DisplayName="Increase index">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">
+                    <mca:CSharpReference x:TypeArguments="x:Int32">index</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">
+                    <mca:CSharpValue x:TypeArguments="x:Int32">index + 1</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </While>
+          <AddToCollection x:TypeArguments="x:String" DisplayName="Add {DESTINATIONS} to tokenPlaceholders" Item="{}{DESTINATIONS}">
+            <InArgument x:TypeArguments="scg:ICollection(x:String)">
+              <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+            </InArgument>
+          </AddToCollection>
+          <AddToCollection x:TypeArguments="x:String" DisplayName="Add {DESTINATIONS} encoded to tokenPlaceholders" Item="&amp;#123;DESTINATIONS&amp;#125;">
+            <InArgument x:TypeArguments="scg:ICollection(x:String)">
+              <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+            </InArgument>
+          </AddToCollection>
+          <AddToCollection x:TypeArguments="x:String" DisplayName="Add destinations to tokenValues">
+            <AddToCollection.Item>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String">destinations</mca:CSharpValue>
+              </InArgument>
+            </AddToCollection.Item>
+            <InArgument x:TypeArguments="scg:ICollection(x:String)">
+              <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+            </InArgument>
+          </AddToCollection>
+          <AddToCollection x:TypeArguments="x:String" DisplayName="Add destinations to tokenValues">
+            <AddToCollection.Item>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String">destinations</mca:CSharpValue>
+              </InArgument>
+            </AddToCollection.Item>
+            <InArgument x:TypeArguments="scg:ICollection(x:String)">
+              <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+            </InArgument>
+          </AddToCollection>
+        </Sequence>
+        <Sequence DisplayName="Get TAR Relevant Security Directors">
+          <p:BuildCollection x:TypeArguments="x:String" DisplayName="Build securityDirectorsLoginNames">
+            <p:BuildCollection.Collection>
+              <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+                <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)">securityDirectorsLoginNames</mca:CSharpValue>
+              </InArgument>
+            </p:BuildCollection.Collection>
+            <p:BuildCollection.Result>
+              <OutArgument x:TypeArguments="sco:Collection(x:String)">
+                <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">securityDirectorsLoginNames</mca:CSharpReference>
+              </OutArgument>
+            </p:BuildCollection.Result>
+          </p:BuildCollection>
+          <ForEach x:TypeArguments="x:String" DisplayName="ForEach restricted travel country">
+            <ForEach.Values>
+              <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+                <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)">restrictedTravelCountries</mca:CSharpValue>
+              </InArgument>
+            </ForEach.Values>
+            <ActivityAction x:TypeArguments="x:String">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="x:String" Name="country" />
+              </ActivityAction.Argument>
+              <Sequence>
+                <p1:LookupSPListItemId DisplayName="Lookup country ID">
+                  <p1:LookupSPListItemId.ListId>
+                    <InArgument x:TypeArguments="s:Guid">
+                      <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/Countries;}")</mca:CSharpValue>
+                    </InArgument>
+                  </p1:LookupSPListItemId.ListId>
+                  <p1:LookupSPListItemId.PropertyName>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">"Title"</mca:CSharpValue>
+                    </InArgument>
+                  </p1:LookupSPListItemId.PropertyName>
+                  <p1:LookupSPListItemId.PropertyValue>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">country</mca:CSharpValue>
+                    </InArgument>
+                  </p1:LookupSPListItemId.PropertyValue>
+                  <p1:LookupSPListItemId.Result>
+                    <OutArgument x:TypeArguments="x:Int32">
+                      <mca:CSharpReference x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpReference>
+                    </OutArgument>
+                  </p1:LookupSPListItemId.Result>
+                </p1:LookupSPListItemId>
+                <If DisplayName="If country exists">
+                  <If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean">tokenValueInt &gt; 0</mca:CSharpValue>
+                    </InArgument>
+                  </If.Condition>
+                  <If.Then>
+                    <Sequence>
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:Int32" Name="countryRegion" />
+                        <Variable x:TypeArguments="x:Int32" Name="securityDirector" />
+                        <Variable x:TypeArguments="x:String" Name="securityDirectorLoginName" />
+                      </Sequence.Variables>
+                      <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Lookup Country ">
+                        <p1:LookupSPListItem.ItemId>
+                          <InArgument x:TypeArguments="x:Int32">
+                            <mca:CSharpValue x:TypeArguments="x:Int32">tokenValueInt</mca:CSharpValue>
+                          </InArgument>
+                        </p1:LookupSPListItem.ItemId>
+                        <p1:LookupSPListItem.ListId>
+                          <InArgument x:TypeArguments="s:Guid">
+                            <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/Countries;}")</mca:CSharpValue>
+                          </InArgument>
+                        </p1:LookupSPListItem.ListId>
+                        <p1:LookupSPListItem.Result>
+                          <OutArgument x:TypeArguments="p:DynamicValue">
+                            <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+                          </OutArgument>
+                        </p1:LookupSPListItem.Result>
+                      </p1:LookupSPListItem>
+                      <p:GetODataProperties DisplayName="Get Country Region">
+                        <p:GetODataProperties.Source>
+                          <InArgument x:TypeArguments="p:DynamicValue">
+                            <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                          </InArgument>
+                        </p:GetODataProperties.Source>
+                        <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                          <OutArgument x:TypeArguments="x:Int32" x:Key="TAR_RegionLookupId">
+                            <mca:CSharpReference x:TypeArguments="x:Int32">countryRegion</mca:CSharpReference>
+                          </OutArgument>
+                        </scg:Dictionary>
+                      </p:GetODataProperties>
+                      <If DisplayName="If Country has a Region associated">
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean">countryRegion &gt; 0</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence DisplayName="Get Security Director Account">
+                            <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Lookup Country Region">
+                              <p1:LookupSPListItem.ItemId>
+                                <InArgument x:TypeArguments="x:Int32">
+                                  <mca:CSharpValue x:TypeArguments="x:Int32">countryRegion</mca:CSharpValue>
+                                </InArgument>
+                              </p1:LookupSPListItem.ItemId>
+                              <p1:LookupSPListItem.ListId>
+                                <InArgument x:TypeArguments="s:Guid">
+                                  <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/Regions;}")</mca:CSharpValue>
+                                </InArgument>
+                              </p1:LookupSPListItem.ListId>
+                              <p1:LookupSPListItem.Result>
+                                <OutArgument x:TypeArguments="p:DynamicValue">
+                                  <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+                                </OutArgument>
+                              </p1:LookupSPListItem.Result>
+                            </p1:LookupSPListItem>
+                            <p:GetODataProperties DisplayName="Get Region Security Director ID">
+                              <p:GetODataProperties.Source>
+                                <InArgument x:TypeArguments="p:DynamicValue">
+                                  <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                                </InArgument>
+                              </p:GetODataProperties.Source>
+                              <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                                <OutArgument x:TypeArguments="x:Int32" x:Key="TAR_SecurityDirectorAccountId">
+                                  <mca:CSharpReference x:TypeArguments="x:Int32">securityDirector</mca:CSharpReference>
+                                </OutArgument>
+                              </scg:Dictionary>
+                            </p:GetODataProperties>
+                            <If DisplayName="If Region has Security Director">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpValue x:TypeArguments="x:Boolean">securityDirector &gt; 0</mca:CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Sequence>
+                                  <p1:LookupSPUser DisplayName="Lookup Security Director">
+                                    <p1:LookupSPUser.PrincipalId>
+                                      <InArgument x:TypeArguments="x:Int32">
+                                        <mca:CSharpValue x:TypeArguments="x:Int32">securityDirector</mca:CSharpValue>
+                                      </InArgument>
+                                    </p1:LookupSPUser.PrincipalId>
+                                    <p1:LookupSPUser.Result>
+                                      <OutArgument x:TypeArguments="p:DynamicValue">
+                                        <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+                                      </OutArgument>
+                                    </p1:LookupSPUser.Result>
+                                  </p1:LookupSPUser>
+                                  <p:GetODataProperties DisplayName="Get Security director login name">
+                                    <p:GetODataProperties.Source>
+                                      <InArgument x:TypeArguments="p:DynamicValue">
+                                        <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                                      </InArgument>
+                                    </p:GetODataProperties.Source>
+                                    <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                                      <OutArgument x:TypeArguments="x:String" x:Key="LoginName">
+                                        <mca:CSharpReference x:TypeArguments="x:String">securityDirectorLoginName</mca:CSharpReference>
+                                      </OutArgument>
+                                    </scg:Dictionary>
+                                  </p:GetODataProperties>
+                                  <AddToCollection x:TypeArguments="x:String" DisplayName="Add security director to securityDirectorsLoginNames">
+                                    <AddToCollection.Item>
+                                      <InArgument x:TypeArguments="x:String">
+                                        <mca:CSharpValue x:TypeArguments="x:String">securityDirectorLoginName</mca:CSharpValue>
+                                      </InArgument>
+                                    </AddToCollection.Item>
+                                    <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                                      <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">securityDirectorsLoginNames</mca:CSharpValue>
+                                    </InArgument>
+                                  </AddToCollection>
+                                </Sequence>
+                              </If.Then>
+                            </If>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                  </If.Then>
+                </If>
+              </Sequence>
+            </ActivityAction>
+          </ForEach>
+        </Sequence>
+        <Sequence DisplayName="Get TAR Departure Date">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Name="departureDateString" />
+          </Sequence.Variables>
+          <p:GetDynamicValueProperty x:TypeArguments="x:String" DisplayName="Get Departure Date" PropertyName="d/results/(0)/TAR_DepartureDateString">
+            <p:GetDynamicValueProperty.Result>
+              <OutArgument x:TypeArguments="x:String">
+                <mca:CSharpReference x:TypeArguments="x:String">departureDateString</mca:CSharpReference>
+              </OutArgument>
+            </p:GetDynamicValueProperty.Result>
+            <p:GetDynamicValueProperty.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+              </InArgument>
+            </p:GetDynamicValueProperty.Source>
+          </p:GetDynamicValueProperty>
+          <AddToCollection x:TypeArguments="x:String" DisplayName="Add {DEPARTURE_DATE} to tokenPlaceholders" Item="{}{DEPARTURE_DATE}">
+            <InArgument x:TypeArguments="scg:ICollection(x:String)">
+              <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+            </InArgument>
+          </AddToCollection>
+          <AddToCollection x:TypeArguments="x:String" DisplayName="Add {DEPARTURE_DATE} encoded to tokenPlaceholders" Item="&amp;#123;DEPARTURE_DATE&amp;#125;">
+            <InArgument x:TypeArguments="scg:ICollection(x:String)">
+              <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+            </InArgument>
+          </AddToCollection>
+          <AddToCollection x:TypeArguments="x:String" DisplayName="Add departure date to tokenValues">
+            <AddToCollection.Item>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String">departureDateString</mca:CSharpValue>
+              </InArgument>
+            </AddToCollection.Item>
+            <InArgument x:TypeArguments="scg:ICollection(x:String)">
+              <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+            </InArgument>
+          </AddToCollection>
+          <AddToCollection x:TypeArguments="x:String" DisplayName="Add departure date to tokenValues">
+            <AddToCollection.Item>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String">departureDateString</mca:CSharpValue>
+              </InArgument>
+            </AddToCollection.Item>
+            <InArgument x:TypeArguments="scg:ICollection(x:String)">
+              <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+            </InArgument>
+          </AddToCollection>
+        </Sequence>
+        <Sequence DisplayName="Get TAR Requires GSS Approval">
+          <p:GetDynamicValueProperty x:TypeArguments="x:Boolean" DisplayName="Get Requires GSS Approval" PropertyName="d/results/(0)/TAR_RequiresGssApproval">
+            <p:GetDynamicValueProperty.Result>
+              <OutArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpReference x:TypeArguments="x:Boolean">requiresGssApproval</mca:CSharpReference>
+              </OutArgument>
+            </p:GetDynamicValueProperty.Result>
+            <p:GetDynamicValueProperty.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+              </InArgument>
+            </p:GetDynamicValueProperty.Source>
+          </p:GetDynamicValueProperty>
+        </Sequence>
+        <p1:GetTaskListId DisplayName="Get TAR Task List Id">
+          <p1:GetTaskListId.Result>
+            <OutArgument x:TypeArguments="s:Guid">
+              <mca:CSharpReference x:TypeArguments="s:Guid">tasksListGuid</mca:CSharpReference>
+            </OutArgument>
+          </p1:GetTaskListId.Result>
+        </p1:GetTaskListId>
+        <p:CountCollection x:TypeArguments="x:String" DisplayName="Count tokenPlaceholders">
+          <p:CountCollection.Collection>
+            <InArgument x:TypeArguments="scg:ICollection(x:String)">
+              <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+            </InArgument>
+          </p:CountCollection.Collection>
+          <p:CountCollection.Result>
+            <OutArgument x:TypeArguments="x:Int32">
+              <mca:CSharpReference x:TypeArguments="x:Int32">collectionSize</mca:CSharpReference>
+            </OutArgument>
+          </p:CountCollection.Result>
+        </p:CountCollection>
+        <While DisplayName="Iterate over tokenPlaceholders">
+          <While.Variables>
+            <Variable x:TypeArguments="x:Int32" Default="0" Name="index" />
+            <Variable x:TypeArguments="x:String" Name="placeholder" />
+            <Variable x:TypeArguments="x:String" Name="placeholderReplacement" />
+          </While.Variables>
+          <While.Condition>
+            <mca:CSharpValue x:TypeArguments="x:Boolean">index &lt; collectionSize</mca:CSharpValue>
+          </While.Condition>
+          <Sequence>
+            <p:GetItemFromCollection x:TypeArguments="x:String" DisplayName="Get Item From tokenPlaceholders">
+              <p:GetItemFromCollection.Index>
+                <InArgument x:TypeArguments="x:Int32">
+                  <mca:CSharpValue x:TypeArguments="x:Int32">index</mca:CSharpValue>
+                </InArgument>
+              </p:GetItemFromCollection.Index>
+              <p:GetItemFromCollection.Result>
+                <OutArgument x:TypeArguments="x:String">
+                  <mca:CSharpReference x:TypeArguments="x:String">placeholder</mca:CSharpReference>
+                </OutArgument>
+              </p:GetItemFromCollection.Result>
+              <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenPlaceholders</mca:CSharpValue>
+              </InArgument>
+            </p:GetItemFromCollection>
+            <p:GetItemFromCollection x:TypeArguments="x:String" DisplayName="Get Item From tokenValues">
+              <p:GetItemFromCollection.Index>
+                <InArgument x:TypeArguments="x:Int32">
+                  <mca:CSharpValue x:TypeArguments="x:Int32">index</mca:CSharpValue>
+                </InArgument>
+              </p:GetItemFromCollection.Index>
+              <p:GetItemFromCollection.Result>
+                <OutArgument x:TypeArguments="x:String">
+                  <mca:CSharpReference x:TypeArguments="x:String">placeholderReplacement</mca:CSharpReference>
+                </OutArgument>
+              </p:GetItemFromCollection.Result>
+              <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">tokenValues</mca:CSharpValue>
+              </InArgument>
+            </p:GetItemFromCollection>
+            <Assign>
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">
+                  <mca:CSharpReference x:TypeArguments="x:String">emailContent</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">emailContent.Replace(placeholder, placeholderReplacement);</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign>
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">
+                  <mca:CSharpReference x:TypeArguments="x:String">emailSubject</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">emailSubject.Replace(placeholder, placeholderReplacement);</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign>
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">
+                  <mca:CSharpReference x:TypeArguments="x:String">rejectedEmailContent</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">rejectedEmailContent.Replace(placeholder, placeholderReplacement);</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign>
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">
+                  <mca:CSharpReference x:TypeArguments="x:String">rejectedEmailSubject</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">rejectedEmailSubject.Replace(placeholder, placeholderReplacement);</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign>
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">
+                  <mca:CSharpReference x:TypeArguments="x:String">gssEmailContent</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">gssEmailContent.Replace(placeholder, placeholderReplacement);</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign>
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">
+                  <mca:CSharpReference x:TypeArguments="x:String">gssEmailSubject</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">gssEmailSubject.Replace(placeholder, placeholderReplacement);</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign>
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">
+                  <mca:CSharpReference x:TypeArguments="x:String">approvedEmailContent</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">approvedEmailContent.Replace(placeholder, placeholderReplacement);</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign>
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">
+                  <mca:CSharpReference x:TypeArguments="x:String">approvedEmailSubject</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">approvedEmailSubject.Replace(placeholder, placeholderReplacement);</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="Increase index">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">
+                  <mca:CSharpReference x:TypeArguments="x:Int32">index</mca:CSharpReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">
+                  <mca:CSharpValue x:TypeArguments="x:Int32">index + 1</mca:CSharpValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </While>
+      </Sequence>
+      <Sequence DisplayName="Send Budget Approval Email">
+        <p:BuildCollection x:TypeArguments="x:String" DisplayName="Build Email To Collection">
+          <p:BuildCollection.Result>
+            <OutArgument x:TypeArguments="sco:Collection(x:String)">
+              <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">toRecipients</mca:CSharpReference>
+            </OutArgument>
+          </p:BuildCollection.Result>
+          <p:BuildCollection.Values>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">budgetApproverLoginName</mca:CSharpValue>
+            </InArgument>
+          </p:BuildCollection.Values>
+        </p:BuildCollection>
+        <p:BuildCollection x:TypeArguments="x:String" DisplayName="Build Email Cc Collection">
+          <p:BuildCollection.Result>
+            <OutArgument x:TypeArguments="sco:Collection(x:String)">
+              <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">ccRecipients</mca:CSharpReference>
+            </OutArgument>
+          </p:BuildCollection.Result>
+          <p:BuildCollection.Values>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">travellerLoginName</mca:CSharpValue>
+            </InArgument>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">requesterLoginName</mca:CSharpValue>
+            </InArgument>
+          </p:BuildCollection.Values>
+        </p:BuildCollection>
+        <p1:Email AdditionalHeaders="{x:Null}" BCC="{x:Null}" DisplayName="Send Submitted Email">
+          <p1:Email.Body>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">emailContent</mca:CSharpValue>
+            </InArgument>
+          </p1:Email.Body>
+          <p1:Email.CC>
+            <InArgument x:TypeArguments="sco:Collection(x:String)">
+              <mca:CSharpValue x:TypeArguments="sco:Collection(x:String)">ccRecipients</mca:CSharpValue>
+            </InArgument>
+          </p1:Email.CC>
+          <p1:Email.Subject>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">emailSubject</mca:CSharpValue>
+            </InArgument>
+          </p1:Email.Subject>
+          <p1:Email.To>
+            <InArgument x:TypeArguments="sco:Collection(x:String)">
+              <mca:CSharpValue x:TypeArguments="sco:Collection(x:String)">toRecipients</mca:CSharpValue>
+            </InArgument>
+          </p1:Email.To>
+        </p1:Email>
+      </Sequence>
+      <Sequence DisplayName="Provision Budget Task">
+        <p1:UpdateListItem ItemGuid="{x:Null}" ListItemProperties="{x:Null}" DisplayName="Update Budget Approval Status">
+          <p1:UpdateListItem.ItemId>
+            <InArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerValue x:TypeArguments="x:Int32">
+                <p1:GetCurrentItemId />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:UpdateListItem.ItemId>
+          <p1:UpdateListItem.ListId>
+            <InArgument x:TypeArguments="s:Guid">
+              <p:ExpressionContainerValue x:TypeArguments="s:Guid">
+                <p1:GetCurrentListId />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:UpdateListItem.ListId>
+          <p1:UpdateListItem.ListItemPropertiesDynamicValue>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:SetDynamicValueProperties>
+                <scg:Dictionary x:TypeArguments="x:String, InArgument">
+                  <InArgument x:TypeArguments="x:String" x:Key="TAR_BudgetApprovalStatus">Pending</InArgument>
+                </scg:Dictionary>
+              </p:SetDynamicValueProperties>
+            </InArgument>
+          </p1:UpdateListItem.ListItemPropertiesDynamicValue>
+        </p1:UpdateListItem>
+        <p1:SingleTask Body="{x:Null}" DueDate="{x:Null}" TaskId="{x:Null}" AssignmentEmailBody="&lt;html&gt;&lt;body style='font-size:11pt;font-family:Segoe UI Light,sans-serif;color:#444444;'&gt;&lt;div&gt;&lt;span style='font-size:13.5pt'&gt;You have a new task.&lt;/span&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;" AssignmentEmailSubject="Task Assigned" CancelationEmailBody="&lt;html&gt;&lt;body style='font-size:11pt;font-family:Segoe UI Light,sans-serif;color:#444444;'&gt;&lt;div&gt;&lt;span style='font-size:13.5pt'&gt;One of your tasks was canceled and deleted. You do not need to take any further action on that task.&lt;/span&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;" CancelationEmailSubject="Task Canceled" CompletedStatus="Completed" ContentTypeId="0x0108003365C4474CAE8C42BCE396314E88E51F" DefaultTaskOutcome="1" DisplayName="Create Budget Approval Task" OutcomeFieldName="TaskOutcome" OverdueEmailBody="&lt;html&gt;&lt;body style='font-size:11pt;font-family:Segoe UI Light,sans-serif;color:#444444;'&gt;&lt;div&gt;&lt;span style='font-size:13.5pt'&gt;You have an &lt;/span&gt;&lt;span style='font-size:13.5pt;color:#ff3b3b;'&gt;overdue&lt;/span&gt;&lt;span style='font-size:13.5pt'&gt; task.&lt;/span&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;" OverdueEmailSubject="Task Overdue" OverdueReminderRepeat="0" OverdueRepeatTimes="1" SendReminderEmail="False" WaitForTaskCompletion="True">
+          <p1:SingleTask.AssignedTo>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">budgetApproverLoginName</mca:CSharpValue>
+            </InArgument>
+          </p1:SingleTask.AssignedTo>
+          <p1:SingleTask.Outcome>
+            <OutArgument x:TypeArguments="x:Int32">
+              <mca:CSharpReference x:TypeArguments="x:Int32">taskBudgetApprovalOutcome</mca:CSharpReference>
+            </OutArgument>
+          </p1:SingleTask.Outcome>
+          <p1:SingleTask.RelatedContentLinkListId>
+            <InArgument x:TypeArguments="s:Guid">
+              <p:ExpressionContainerValue x:TypeArguments="s:Guid">
+                <p1:GetCurrentListId />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:SingleTask.RelatedContentLinkListId>
+          <p1:SingleTask.RelatedContentLinkListItemId>
+            <InArgument x:TypeArguments="s:Guid">
+              <p:ExpressionContainerValue x:TypeArguments="s:Guid">
+                <p1:GetCurrentItemGuid />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:SingleTask.RelatedContentLinkListItemId>
+          <p1:SingleTask.RelatedContentLinkListItemIntegerId>
+            <InArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerValue x:TypeArguments="x:Int32">
+                <p1:GetCurrentItemId />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:SingleTask.RelatedContentLinkListItemIntegerId>
+          <p1:SingleTask.TaskItemId>
+            <OutArgument x:TypeArguments="x:Int32">
+              <mca:CSharpReference x:TypeArguments="x:Int32">taskBudgetApprovalId</mca:CSharpReference>
+            </OutArgument>
+          </p1:SingleTask.TaskItemId>
+          <p1:SingleTask.Title>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">string.Format("Budget Approval Workflow task - {0}", tarId);</mca:CSharpValue>
+            </InArgument>
+          </p1:SingleTask.Title>
+        </p1:SingleTask>
+      </Sequence>
+      <Sequence DisplayName="Approve/Reject Budget">
+        <If DisplayName="If Budget Approval Task has been rejected">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean">taskBudgetApprovalOutcome != 0</mca:CSharpValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence>
+              <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Get Approval Task">
+                <p1:LookupSPListItem.ItemId>
+                  <InArgument x:TypeArguments="x:Int32">
+                    <mca:CSharpValue x:TypeArguments="x:Int32">taskBudgetApprovalId</mca:CSharpValue>
+                  </InArgument>
+                </p1:LookupSPListItem.ItemId>
+                <p1:LookupSPListItem.ListId>
+                  <InArgument x:TypeArguments="s:Guid">
+                    <mca:CSharpValue x:TypeArguments="s:Guid">tasksListGuid</mca:CSharpValue>
+                  </InArgument>
+                </p1:LookupSPListItem.ListId>
+                <p1:LookupSPListItem.Result>
+                  <OutArgument x:TypeArguments="p:DynamicValue">
+                    <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+                  </OutArgument>
+                </p1:LookupSPListItem.Result>
+              </p1:LookupSPListItem>
+              <p:GetODataProperties DisplayName="Get Task Description">
+                <p:GetODataProperties.Source>
+                  <InArgument x:TypeArguments="p:DynamicValue">
+                    <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                  </InArgument>
+                </p:GetODataProperties.Source>
+                <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                  <OutArgument x:TypeArguments="x:String" x:Key="Body">
+                    <mca:CSharpReference x:TypeArguments="x:String">taskDescription</mca:CSharpReference>
+                  </OutArgument>
+                </scg:Dictionary>
+              </p:GetODataProperties>
+              <Assign DisplayName="Replace {REJECTOR}  in Rejected Email">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">
+                    <mca:CSharpReference x:TypeArguments="x:String">rejectedEmailContent</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">rejectedEmailContent.Replace("&amp;#123;REJECTOR&amp;#125;", budgetApproverName).Replace("{REJECTOR}", budgetApproverName);</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Replace {REJECTOR_COMMENTS} in Rejected Email Template">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">
+                    <mca:CSharpReference x:TypeArguments="x:String">rejectedEmailContent</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">rejectedEmailContent.Replace("&amp;#123;REJECTOR_COMMENTS&amp;#125;", taskDescription).Replace("{REJECTOR_COMMENTS}", taskDescription);</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+              <ClearCollection x:TypeArguments="x:String" DisplayName="Clear Email To Collection">
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">toRecipients</mca:CSharpValue>
+                </InArgument>
+              </ClearCollection>
+              <p:BuildCollection x:TypeArguments="x:String" DisplayName="Build Email To Collection">
+                <p:BuildCollection.Result>
+                  <OutArgument x:TypeArguments="sco:Collection(x:String)">
+                    <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">toRecipients</mca:CSharpReference>
+                  </OutArgument>
+                </p:BuildCollection.Result>
+                <p:BuildCollection.Values>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">travellerLoginName</mca:CSharpValue>
+                  </InArgument>
+                </p:BuildCollection.Values>
+              </p:BuildCollection>
+              <Sequence DisplayName="Build Email Cc Collection">
+                <ClearCollection x:TypeArguments="x:String" DisplayName="Clear Email Cc Collection">
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">ccRecipients</mca:CSharpValue>
+                  </InArgument>
+                </ClearCollection>
+                <p:BuildCollection x:TypeArguments="x:String" DisplayName="Initialize Email Cc Collection">
+                  <p:BuildCollection.Collection>
+                    <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+                      <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)">ccRecipients</mca:CSharpValue>
+                    </InArgument>
+                  </p:BuildCollection.Collection>
+                  <p:BuildCollection.Result>
+                    <OutArgument x:TypeArguments="sco:Collection(x:String)">
+                      <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">ccRecipients</mca:CSharpReference>
+                    </OutArgument>
+                  </p:BuildCollection.Result>
+                  <p:BuildCollection.Values>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">requesterLoginName</mca:CSharpValue>
+                    </InArgument>
+                  </p:BuildCollection.Values>
+                </p:BuildCollection>
+                <If DisplayName="If travelCoordinatorLoginName is not empty">
+                  <If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean">!string.IsNullOrEmpty(travelCoordinatorLoginName)</mca:CSharpValue>
+                    </InArgument>
+                  </If.Condition>
+                  <If.Then>
+                    <AddToCollection x:TypeArguments="x:String" DisplayName="Add travel coordinator login name to toCollection">
+                      <AddToCollection.Item>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">travelCoordinatorLoginName</mca:CSharpValue>
+                        </InArgument>
+                      </AddToCollection.Item>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                        <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">ccRecipients</mca:CSharpValue>
+                      </InArgument>
+                    </AddToCollection>
+                  </If.Then>
+                </If>
+                <If DisplayName="If additionalStaffMemberLoginName is not empty">
+                  <If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean">!string.IsNullOrEmpty(additionalStaffMemberLoginName)</mca:CSharpValue>
+                    </InArgument>
+                  </If.Condition>
+                  <If.Then>
+                    <AddToCollection x:TypeArguments="x:String" DisplayName="Add additional staff member login name to toCollection">
+                      <AddToCollection.Item>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">additionalStaffMemberLoginName</mca:CSharpValue>
+                        </InArgument>
+                      </AddToCollection.Item>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                        <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">ccRecipients</mca:CSharpValue>
+                      </InArgument>
+                    </AddToCollection>
+                  </If.Then>
+                </If>
+              </Sequence>
+              <p1:Email AdditionalHeaders="{x:Null}" BCC="{x:Null}" DisplayName="Send Rejected Email">
+                <p1:Email.Body>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">rejectedEmailContent</mca:CSharpValue>
+                  </InArgument>
+                </p1:Email.Body>
+                <p1:Email.CC>
+                  <InArgument x:TypeArguments="sco:Collection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="sco:Collection(x:String)">ccRecipients</mca:CSharpValue>
+                  </InArgument>
+                </p1:Email.CC>
+                <p1:Email.Subject>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">rejectedEmailSubject</mca:CSharpValue>
+                  </InArgument>
+                </p1:Email.Subject>
+                <p1:Email.To>
+                  <InArgument x:TypeArguments="sco:Collection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="sco:Collection(x:String)">toRecipients</mca:CSharpValue>
+                  </InArgument>
+                </p1:Email.To>
+              </p1:Email>
+              <p1:UpdateListItem ItemGuid="{x:Null}" ListItemProperties="{x:Null}" DisplayName="Update current TAR with Budget Approval Status &amp; Timestamp">
+                <p1:UpdateListItem.ItemId>
+                  <InArgument x:TypeArguments="x:Int32">
+                    <p:ExpressionContainerValue x:TypeArguments="x:Int32">
+                      <p1:GetCurrentItemId />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </p1:UpdateListItem.ItemId>
+                <p1:UpdateListItem.ListId>
+                  <InArgument x:TypeArguments="s:Guid">
+                    <p:ExpressionContainerValue x:TypeArguments="s:Guid">
+                      <p1:GetCurrentListId />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </p1:UpdateListItem.ListId>
+                <p1:UpdateListItem.ListItemPropertiesDynamicValue>
+                  <InArgument x:TypeArguments="p:DynamicValue">
+                    <p:SetDynamicValueProperties>
+                      <scg:Dictionary x:TypeArguments="x:String, InArgument">
+                        <InArgument x:TypeArguments="x:String" x:Key="TAR_BudgetApprovalStatus">Rejected</InArgument>
+                        <InArgument x:TypeArguments="s:DateTime" x:Key="TAR_BudgetApprovalTimestamp">
+                          <mca:CSharpValue x:TypeArguments="s:DateTime">DateTime.UtcNow</mca:CSharpValue>
+                        </InArgument>
+                      </scg:Dictionary>
+                    </p:SetDynamicValueProperties>
+                  </InArgument>
+                </p1:UpdateListItem.ListItemPropertiesDynamicValue>
+              </p1:UpdateListItem>
+              <TerminateWorkflow Reason="Budget Approver has rejected the TAR." />
+            </Sequence>
+          </If.Then>
+        </If>
+      </Sequence>
+      <If DisplayName="If TAR requires GSS approval">
+        <If.Condition>
+          <InArgument x:TypeArguments="x:Boolean">
+            <mca:CSharpValue x:TypeArguments="x:Boolean">requiresGssApproval</mca:CSharpValue>
+          </InArgument>
+        </If.Condition>
+        <If.Then>
+          <Sequence DisplayName="Requires GSS Approval Sequence">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:Int32" Name="gssApprovalGroupId" />
+            </Sequence.Variables>
+            <Sequence DisplayName="Build Email To Collection">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="p:DynamicValue" Name="properties" />
+                <Variable x:TypeArguments="x:Int32" Name="membersCount" />
+                <Variable x:TypeArguments="x:Int32" Name="index" />
+              </Sequence.Variables>
+              <p1:LookupSPPrincipalId AddToUserInfoList="{x:Null}" DisplayName="Get GSS Approvers Group Id" UserName="GSS Approvers">
+                <p1:LookupSPPrincipalId.Result>
+                  <OutArgument x:TypeArguments="x:Int32">
+                    <mca:CSharpReference x:TypeArguments="x:Int32">gssApprovalGroupId</mca:CSharpReference>
+                  </OutArgument>
+                </p1:LookupSPPrincipalId.Result>
+              </p1:LookupSPPrincipalId>
+              <p1:LookupSPGroupMembers DisplayName="Lookup GSS Approvers members">
+                <p1:LookupSPGroupMembers.GroupPrincipalId>
+                  <InArgument x:TypeArguments="x:Int32">
+                    <mca:CSharpValue x:TypeArguments="x:Int32">gssApprovalGroupId</mca:CSharpValue>
+                  </InArgument>
+                </p1:LookupSPGroupMembers.GroupPrincipalId>
+                <p1:LookupSPGroupMembers.Result>
+                  <OutArgument x:TypeArguments="p:DynamicValue">
+                    <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+                  </OutArgument>
+                </p1:LookupSPGroupMembers.Result>
+              </p1:LookupSPGroupMembers>
+              <p:GetDynamicValueProperty x:TypeArguments="p:DynamicValue" DisplayName="Get GSS Members" PropertyName="d/results">
+                <p:GetDynamicValueProperty.Result>
+                  <OutArgument x:TypeArguments="p:DynamicValue">
+                    <mca:CSharpReference x:TypeArguments="p:DynamicValue">properties</mca:CSharpReference>
+                  </OutArgument>
+                </p:GetDynamicValueProperty.Result>
+                <p:GetDynamicValueProperty.Source>
+                  <InArgument x:TypeArguments="p:DynamicValue">
+                    <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                  </InArgument>
+                </p:GetDynamicValueProperty.Source>
+              </p:GetDynamicValueProperty>
+              <p:CountDynamicValueItems DisplayName="Count GSS Members">
+                <p:CountDynamicValueItems.Result>
+                  <OutArgument x:TypeArguments="x:Int32">
+                    <mca:CSharpReference x:TypeArguments="x:Int32">membersCount</mca:CSharpReference>
+                  </OutArgument>
+                </p:CountDynamicValueItems.Result>
+                <InArgument x:TypeArguments="p:DynamicValue">
+                  <mca:CSharpValue x:TypeArguments="p:DynamicValue">properties</mca:CSharpValue>
+                </InArgument>
+              </p:CountDynamicValueItems>
+              <Assign DisplayName="Initialize index">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">
+                    <mca:CSharpReference x:TypeArguments="x:Int32">index</mca:CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">
+                    <mca:CSharpValue x:TypeArguments="x:Int32">0;</mca:CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+              <ClearCollection x:TypeArguments="x:String" DisplayName="Clear Email To Collection">
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">toRecipients</mca:CSharpValue>
+                </InArgument>
+              </ClearCollection>
+              <ClearCollection x:TypeArguments="x:String" DisplayName="Clear Email Cc Collection">
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">ccRecipients</mca:CSharpValue>
+                </InArgument>
+              </ClearCollection>
+              <p:BuildCollection x:TypeArguments="x:String" DisplayName="Build Email To Collection">
+                <p:BuildCollection.Result>
+                  <OutArgument x:TypeArguments="sco:Collection(x:String)">
+                    <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">toRecipients</mca:CSharpReference>
+                  </OutArgument>
+                </p:BuildCollection.Result>
+              </p:BuildCollection>
+              <While DisplayName="Iterate over GSS group members">
+                <While.Condition>
+                  <mca:CSharpValue x:TypeArguments="x:Boolean">index &lt; membersCount</mca:CSharpValue>
+                </While.Condition>
+                <Sequence>
+                  <p:GetDynamicValueProperty x:TypeArguments="x:String" DisplayName="Get Member LoginName">
+                    <p:GetDynamicValueProperty.PropertyName>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String">string.Format("d/results({0})/LoginName", index);</mca:CSharpValue>
+                      </InArgument>
+                    </p:GetDynamicValueProperty.PropertyName>
+                    <p:GetDynamicValueProperty.Result>
+                      <OutArgument x:TypeArguments="x:String">
+                        <mca:CSharpReference x:TypeArguments="x:String">tokenValue</mca:CSharpReference>
+                      </OutArgument>
+                    </p:GetDynamicValueProperty.Result>
+                    <p:GetDynamicValueProperty.Source>
+                      <InArgument x:TypeArguments="p:DynamicValue">
+                        <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                      </InArgument>
+                    </p:GetDynamicValueProperty.Source>
+                  </p:GetDynamicValueProperty>
+                  <AddToCollection x:TypeArguments="x:String" DisplayName="Add member login name to ccRecipients">
+                    <AddToCollection.Item>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String">tokenValue</mca:CSharpValue>
+                      </InArgument>
+                    </AddToCollection.Item>
+                    <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                      <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">toRecipients</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection>
+                  <Assign DisplayName="Increment index">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">
+                        <mca:CSharpReference x:TypeArguments="x:Int32">index</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">
+                        <mca:CSharpValue x:TypeArguments="x:Int32">index + 1;</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </While>
+            </Sequence>
+            <p1:Email AdditionalHeaders="{x:Null}" BCC="{x:Null}" CC="{x:Null}" DisplayName="Send GSS Approval Email">
+              <p1:Email.Body>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">gssEmailContent</mca:CSharpValue>
+                </InArgument>
+              </p1:Email.Body>
+              <p1:Email.Subject>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">gssEmailSubject</mca:CSharpValue>
+                </InArgument>
+              </p1:Email.Subject>
+              <p1:Email.To>
+                <InArgument x:TypeArguments="sco:Collection(x:String)">
+                  <mca:CSharpValue x:TypeArguments="sco:Collection(x:String)">toRecipients</mca:CSharpValue>
+                </InArgument>
+              </p1:Email.To>
+            </p1:Email>
+            <Sequence DisplayName="Provision GSS Task">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Int32" Name="outcome_0" />
+                <Variable x:TypeArguments="x:String" Name="gssApproversLoginName" />
+              </Sequence.Variables>
+              <p1:UpdateListItem ItemGuid="{x:Null}" ListItemProperties="{x:Null}" DisplayName="Update GSS Approval Status">
+                <p1:UpdateListItem.ItemId>
+                  <InArgument x:TypeArguments="x:Int32">
+                    <p:ExpressionContainerValue x:TypeArguments="x:Int32">
+                      <p1:GetCurrentItemId />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </p1:UpdateListItem.ItemId>
+                <p1:UpdateListItem.ListId>
+                  <InArgument x:TypeArguments="s:Guid">
+                    <p:ExpressionContainerValue x:TypeArguments="s:Guid">
+                      <p1:GetCurrentListId />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </p1:UpdateListItem.ListId>
+                <p1:UpdateListItem.ListItemPropertiesDynamicValue>
+                  <InArgument x:TypeArguments="p:DynamicValue">
+                    <p:SetDynamicValueProperties>
+                      <scg:Dictionary x:TypeArguments="x:String, InArgument">
+                        <InArgument x:TypeArguments="x:String" x:Key="TAR_GSSApprovalStatus">Pending</InArgument>
+                      </scg:Dictionary>
+                    </p:SetDynamicValueProperties>
+                  </InArgument>
+                </p1:UpdateListItem.ListItemPropertiesDynamicValue>
+              </p1:UpdateListItem>
+              <p1:SingleTask Body="{x:Null}" DueDate="{x:Null}" TaskId="{x:Null}" AssignmentEmailBody="&lt;html&gt;&lt;body style='font-size:11pt;font-family:Segoe UI Light,sans-serif;color:#444444;'&gt;&lt;div&gt;&lt;span style='font-size:13.5pt'&gt;You have a new task.&lt;/span&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;" AssignmentEmailSubject="Task Assigned" CancelationEmailBody="&lt;html&gt;&lt;body style='font-size:11pt;font-family:Segoe UI Light,sans-serif;color:#444444;'&gt;&lt;div&gt;&lt;span style='font-size:13.5pt'&gt;One of your tasks was canceled and deleted. You do not need to take any further action on that task.&lt;/span&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;" CancelationEmailSubject="Task Canceled" CompletedStatus="Completed" ContentTypeId="0x0108003365C4474CAE8C42BCE396314E88E51F" DefaultTaskOutcome="1" DisplayName="Create GSS Approval Task" OutcomeFieldName="TaskOutcome" OverdueEmailBody="&lt;html&gt;&lt;body style='font-size:11pt;font-family:Segoe UI Light,sans-serif;color:#444444;'&gt;&lt;div&gt;&lt;span style='font-size:13.5pt'&gt;You have an &lt;/span&gt;&lt;span style='font-size:13.5pt;color:#ff3b3b;'&gt;overdue&lt;/span&gt;&lt;span style='font-size:13.5pt'&gt; task.&lt;/span&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;" OverdueEmailSubject="Task Overdue" OverdueReminderRepeat="0" OverdueRepeatTimes="1" SendReminderEmail="False" WaitForTaskCompletion="True">
+                <p1:SingleTask.AssignedTo>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">gssApprovalGroupId.ToString()</mca:CSharpValue>
+                  </InArgument>
+                </p1:SingleTask.AssignedTo>
+                <p1:SingleTask.Outcome>
+                  <OutArgument x:TypeArguments="x:Int32">
+                    <mca:CSharpReference x:TypeArguments="x:Int32">taskGSSApprovalOutcome</mca:CSharpReference>
+                  </OutArgument>
+                </p1:SingleTask.Outcome>
+                <p1:SingleTask.RelatedContentLinkListId>
+                  <InArgument x:TypeArguments="s:Guid">
+                    <p:ExpressionContainerValue x:TypeArguments="s:Guid">
+                      <p1:GetCurrentListId />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </p1:SingleTask.RelatedContentLinkListId>
+                <p1:SingleTask.RelatedContentLinkListItemId>
+                  <InArgument x:TypeArguments="s:Guid">
+                    <p:ExpressionContainerValue x:TypeArguments="s:Guid">
+                      <p1:GetCurrentItemGuid />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </p1:SingleTask.RelatedContentLinkListItemId>
+                <p1:SingleTask.RelatedContentLinkListItemIntegerId>
+                  <InArgument x:TypeArguments="x:Int32">
+                    <p:ExpressionContainerValue x:TypeArguments="x:Int32">
+                      <p1:GetCurrentItemId />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </p1:SingleTask.RelatedContentLinkListItemIntegerId>
+                <p1:SingleTask.TaskItemId>
+                  <OutArgument x:TypeArguments="x:Int32">
+                    <mca:CSharpReference x:TypeArguments="x:Int32">taskGSSApprovalId</mca:CSharpReference>
+                  </OutArgument>
+                </p1:SingleTask.TaskItemId>
+                <p1:SingleTask.Title>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">string.Format("GSS Approval Workflow Task - {0}", tarId);</mca:CSharpValue>
+                  </InArgument>
+                </p1:SingleTask.Title>
+              </p1:SingleTask>
+            </Sequence>
+            <Sequence DisplayName="Approve/Reject GSS">
+              <If DisplayName="If GSS Approval Task has been rejected">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">taskGSSApprovalOutcome != 0</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <Sequence>
+                    <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Get Approval Task">
+                      <p1:LookupSPListItem.ItemId>
+                        <InArgument x:TypeArguments="x:Int32">
+                          <mca:CSharpValue x:TypeArguments="x:Int32">taskGSSApprovalId</mca:CSharpValue>
+                        </InArgument>
+                      </p1:LookupSPListItem.ItemId>
+                      <p1:LookupSPListItem.ListId>
+                        <InArgument x:TypeArguments="s:Guid">
+                          <mca:CSharpValue x:TypeArguments="s:Guid">tasksListGuid</mca:CSharpValue>
+                        </InArgument>
+                      </p1:LookupSPListItem.ListId>
+                      <p1:LookupSPListItem.Result>
+                        <OutArgument x:TypeArguments="p:DynamicValue">
+                          <mca:CSharpReference x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpReference>
+                        </OutArgument>
+                      </p1:LookupSPListItem.Result>
+                    </p1:LookupSPListItem>
+                    <p:GetODataProperties DisplayName="Get Task Description">
+                      <p:GetODataProperties.Source>
+                        <InArgument x:TypeArguments="p:DynamicValue">
+                          <mca:CSharpValue x:TypeArguments="p:DynamicValue">dynamicValue</mca:CSharpValue>
+                        </InArgument>
+                      </p:GetODataProperties.Source>
+                      <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                        <OutArgument x:TypeArguments="x:String" x:Key="Body">
+                          <mca:CSharpReference x:TypeArguments="x:String">taskDescription</mca:CSharpReference>
+                        </OutArgument>
+                      </scg:Dictionary>
+                    </p:GetODataProperties>
+                    <Assign DisplayName="Replace {REJECTOR} in Rejected Email">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">
+                          <mca:CSharpReference x:TypeArguments="x:String">rejectedEmailContent</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">rejectedEmailContent.Replace("&amp;#123;REJECTOR&amp;#125;", "Global Safety and Security").Replace("{REJECTOR}", "Global Safety and Security");</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign DisplayName="Replace {REJECTOR_COMMENTS} in Email">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">
+                          <mca:CSharpReference x:TypeArguments="x:String">rejectedEmailContent</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">rejectedEmailContent.Replace("&amp;#123;REJECTOR_COMMENTS&amp;#125;", taskDescription).Replace("{REJECTOR_COMMENTS}", taskDescription);</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ClearCollection x:TypeArguments="x:String" DisplayName="Clear Email To Collection">
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                        <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">toRecipients</mca:CSharpValue>
+                      </InArgument>
+                    </ClearCollection>
+                    <ClearCollection x:TypeArguments="x:String" DisplayName="Clear Email Cc Collection">
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                        <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">ccRecipients</mca:CSharpValue>
+                      </InArgument>
+                    </ClearCollection>
+                    <p:BuildCollection x:TypeArguments="x:String" DisplayName="Build Email To Collection">
+                      <p:BuildCollection.Result>
+                        <OutArgument x:TypeArguments="sco:Collection(x:String)">
+                          <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">toRecipients</mca:CSharpReference>
+                        </OutArgument>
+                      </p:BuildCollection.Result>
+                      <p:BuildCollection.Values>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">travellerLoginName</mca:CSharpValue>
+                        </InArgument>
+                      </p:BuildCollection.Values>
+                    </p:BuildCollection>
+                    <p:BuildCollection x:TypeArguments="x:String" DisplayName="Build Email Cc Collection">
+                      <p:BuildCollection.Result>
+                        <OutArgument x:TypeArguments="sco:Collection(x:String)">
+                          <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">ccRecipients</mca:CSharpReference>
+                        </OutArgument>
+                      </p:BuildCollection.Result>
+                      <p:BuildCollection.Values>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">requesterLoginName</mca:CSharpValue>
+                        </InArgument>
+                      </p:BuildCollection.Values>
+                    </p:BuildCollection>
+                    <If DisplayName="If travelCoordinatorLoginName is not empty">
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean">!string.IsNullOrEmpty(travelCoordinatorLoginName)</mca:CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <AddToCollection x:TypeArguments="x:String" DisplayName="Add travel coordinator login name to toCollection">
+                          <AddToCollection.Item>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String">travelCoordinatorLoginName</mca:CSharpValue>
+                            </InArgument>
+                          </AddToCollection.Item>
+                          <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                            <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">ccRecipients</mca:CSharpValue>
+                          </InArgument>
+                        </AddToCollection>
+                      </If.Then>
+                    </If>
+                    <If DisplayName="If additionalStaffMemberLoginName is not empty">
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean">!string.IsNullOrEmpty(additionalStaffMemberLoginName)</mca:CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <If.Then>
+                        <AddToCollection x:TypeArguments="x:String" DisplayName="Add additional staff member login name to toCollection">
+                          <AddToCollection.Item>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String">additionalStaffMemberLoginName</mca:CSharpValue>
+                            </InArgument>
+                          </AddToCollection.Item>
+                          <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                            <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">ccRecipients</mca:CSharpValue>
+                          </InArgument>
+                        </AddToCollection>
+                      </If.Then>
+                    </If>
+                    <p1:Email AdditionalHeaders="{x:Null}" BCC="{x:Null}" DisplayName="Send Rejected Email">
+                      <p1:Email.Body>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">rejectedEmailContent</mca:CSharpValue>
+                        </InArgument>
+                      </p1:Email.Body>
+                      <p1:Email.CC>
+                        <InArgument x:TypeArguments="sco:Collection(x:String)">
+                          <mca:CSharpValue x:TypeArguments="sco:Collection(x:String)">ccRecipients</mca:CSharpValue>
+                        </InArgument>
+                      </p1:Email.CC>
+                      <p1:Email.Subject>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">rejectedEmailSubject</mca:CSharpValue>
+                        </InArgument>
+                      </p1:Email.Subject>
+                      <p1:Email.To>
+                        <InArgument x:TypeArguments="sco:Collection(x:String)">
+                          <mca:CSharpValue x:TypeArguments="sco:Collection(x:String)">toRecipients</mca:CSharpValue>
+                        </InArgument>
+                      </p1:Email.To>
+                    </p1:Email>
+                    <p1:UpdateListItem ItemGuid="{x:Null}" ListItemProperties="{x:Null}" DisplayName="Update current TAR with GSS Approval Status &amp; Timestamp">
+                      <p1:UpdateListItem.ItemId>
+                        <InArgument x:TypeArguments="x:Int32">
+                          <p:ExpressionContainerValue x:TypeArguments="x:Int32">
+                            <p1:GetCurrentItemId />
+                          </p:ExpressionContainerValue>
+                        </InArgument>
+                      </p1:UpdateListItem.ItemId>
+                      <p1:UpdateListItem.ListId>
+                        <InArgument x:TypeArguments="s:Guid">
+                          <p:ExpressionContainerValue x:TypeArguments="s:Guid">
+                            <p1:GetCurrentListId />
+                          </p:ExpressionContainerValue>
+                        </InArgument>
+                      </p1:UpdateListItem.ListId>
+                      <p1:UpdateListItem.ListItemPropertiesDynamicValue>
+                        <InArgument x:TypeArguments="p:DynamicValue">
+                          <p:SetDynamicValueProperties>
+                            <scg:Dictionary x:TypeArguments="x:String, InArgument">
+                              <InArgument x:TypeArguments="x:String" x:Key="TAR_GSSApprovalStatus">Rejected</InArgument>
+                              <InArgument x:TypeArguments="s:DateTime" x:Key="TAR_GSSApprovalTimestamp">
+                                <mca:CSharpValue x:TypeArguments="s:DateTime">DateTime.UtcNow</mca:CSharpValue>
+                              </InArgument>
+                            </scg:Dictionary>
+                          </p:SetDynamicValueProperties>
+                        </InArgument>
+                      </p1:UpdateListItem.ListItemPropertiesDynamicValue>
+                    </p1:UpdateListItem>
+                    <TerminateWorkflow Reason="GSS Approvers has rejected the TAR." />
+                  </Sequence>
+                </If.Then>
+              </If>
+            </Sequence>
+          </Sequence>
+        </If.Then>
+      </If>
+      <Sequence DisplayName="Send TAR Approved Email">
+        <ClearCollection x:TypeArguments="x:String" DisplayName="Clear Email To Collection">
+          <InArgument x:TypeArguments="scg:ICollection(x:String)">
+            <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">toRecipients</mca:CSharpValue>
+          </InArgument>
+        </ClearCollection>
+        <ClearCollection x:TypeArguments="x:String" DisplayName="Clear Email Cc Collection">
+          <InArgument x:TypeArguments="scg:ICollection(x:String)">
+            <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">ccRecipients</mca:CSharpValue>
+          </InArgument>
+        </ClearCollection>
+        <p:BuildCollection x:TypeArguments="x:String" DisplayName="Build Email To Collection">
+          <p:BuildCollection.Collection>
+            <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+              <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)">toRecipients</mca:CSharpValue>
+            </InArgument>
+          </p:BuildCollection.Collection>
+          <p:BuildCollection.Result>
+            <OutArgument x:TypeArguments="sco:Collection(x:String)">
+              <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">toRecipients</mca:CSharpReference>
+            </OutArgument>
+          </p:BuildCollection.Result>
+          <p:BuildCollection.Values>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">travellerLoginName</mca:CSharpValue>
+            </InArgument>
+          </p:BuildCollection.Values>
+        </p:BuildCollection>
+        <Sequence DisplayName="Build Email Cc Collection">
+          <p:BuildCollection x:TypeArguments="x:String" DisplayName="Initialize Email Cc Collection">
+            <p:BuildCollection.Collection>
+              <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+                <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)">ccRecipients</mca:CSharpValue>
+              </InArgument>
+            </p:BuildCollection.Collection>
+            <p:BuildCollection.Result>
+              <OutArgument x:TypeArguments="sco:Collection(x:String)">
+                <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">ccRecipients</mca:CSharpReference>
+              </OutArgument>
+            </p:BuildCollection.Result>
+            <p:BuildCollection.Values>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String">requesterLoginName</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String">diversityLoginName</mca:CSharpValue>
+              </InArgument>
+            </p:BuildCollection.Values>
+          </p:BuildCollection>
+          <If DisplayName="If travelCoordinatorLoginName is not empty">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">!string.IsNullOrEmpty(travelCoordinatorLoginName)</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add travel coordinator login name to toCollection">
+                <AddToCollection.Item>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">travelCoordinatorLoginName</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection.Item>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">ccRecipients</mca:CSharpValue>
+                </InArgument>
+              </AddToCollection>
+            </If.Then>
+          </If>
+          <If DisplayName="If additionalStaffMemberLoginName is not empty">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">!string.IsNullOrEmpty(additionalStaffMemberLoginName)</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add additional staff member login name to toCollection">
+                <AddToCollection.Item>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">additionalStaffMemberLoginName</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection.Item>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">ccRecipients</mca:CSharpValue>
+                </InArgument>
+              </AddToCollection>
+            </If.Then>
+          </If>
+          <Sequence DisplayName="Add Country Directors to Cc">
+            <ForEach x:TypeArguments="x:String" DisplayName="For each country director login name">
+              <ForEach.Values>
+                <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+                  <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)">countryDirectorsLoginNames</mca:CSharpValue>
+                </InArgument>
+              </ForEach.Values>
+              <ActivityAction x:TypeArguments="x:String">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:String" Name="cdLoginName" />
+                </ActivityAction.Argument>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add Country Director Login Name to Cc">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">cdLoginName</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">ccRecipients</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+              </ActivityAction>
+            </ForEach>
+          </Sequence>
+          <Sequence DisplayName="Add Security Directors to Cc">
+            <ForEach x:TypeArguments="x:String" DisplayName="For each security director login name">
+              <ForEach.Values>
+                <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+                  <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)">securityDirectorsLoginNames</mca:CSharpValue>
+                </InArgument>
+              </ForEach.Values>
+              <ActivityAction x:TypeArguments="x:String">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:String" Name="sdLoginName" />
+                </ActivityAction.Argument>
+                <AddToCollection x:TypeArguments="x:String" DisplayName="Add Security Director Login Name to Cc">
+                  <AddToCollection.Item>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">sdLoginName</mca:CSharpValue>
+                    </InArgument>
+                  </AddToCollection.Item>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">ccRecipients</mca:CSharpValue>
+                  </InArgument>
+                </AddToCollection>
+              </ActivityAction>
+            </ForEach>
+          </Sequence>
+        </Sequence>
+        <p1:Email AdditionalHeaders="{x:Null}" BCC="{x:Null}" DisplayName="Send Approved Email">
+          <p1:Email.Body>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">approvedEmailContent</mca:CSharpValue>
+            </InArgument>
+          </p1:Email.Body>
+          <p1:Email.CC>
+            <InArgument x:TypeArguments="sco:Collection(x:String)">
+              <mca:CSharpValue x:TypeArguments="sco:Collection(x:String)">ccRecipients</mca:CSharpValue>
+            </InArgument>
+          </p1:Email.CC>
+          <p1:Email.Subject>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">approvedEmailSubject</mca:CSharpValue>
+            </InArgument>
+          </p1:Email.Subject>
+          <p1:Email.To>
+            <InArgument x:TypeArguments="sco:Collection(x:String)">
+              <mca:CSharpValue x:TypeArguments="sco:Collection(x:String)">toRecipients</mca:CSharpValue>
+            </InArgument>
+          </p1:Email.To>
+        </p1:Email>
+      </Sequence>
+      <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </stwb:Workflow.Implementation>
+</stwb:Workflow>

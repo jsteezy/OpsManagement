@@ -1,11 +1,10 @@
 import BaseDataAccessService from "../BaseDataAccessService";
 import dataAccessConfig from "./profileDataAccessConfig.json";
-import profileListLimits from "./profileListLimits.json";
 import helper from "../../../helpers/AppHelpers";
 import mapper from "../../../helpers/ObjectMapper";
 import QueryBuilder from "../../../queryUtils/QueryBuilder";
 
-export default class ResponseDataAccessService extends BaseDataAccessService {
+export default class ProfileDataAccessService extends BaseDataAccessService {
     constructor($http) {
         super();
         this.$http = $http;
@@ -14,7 +13,7 @@ export default class ResponseDataAccessService extends BaseDataAccessService {
     }
 
     get(id) {
-        let listName = this.determineProfileList(id);
+        let listName = "ResponseCodes";
 
         let replacements = {
             "{ID}": id,
@@ -34,7 +33,7 @@ export default class ResponseDataAccessService extends BaseDataAccessService {
     }
 
     save(data) {
-        let listName = this.determineProfileList(data.userId);
+        let listName = "ResponseCodes";
 
         let replacements = {
             "{LIST_NAME}": listName
@@ -56,7 +55,7 @@ export default class ResponseDataAccessService extends BaseDataAccessService {
     }
 
     update(data) {
-        let listName = this.determineProfileList(data.userId);
+        let listName = "ResponseCodes";
 
         let replacements = {
             "{ID}": data.id,
@@ -82,20 +81,6 @@ export default class ResponseDataAccessService extends BaseDataAccessService {
 
         return this.$http.post(requestUrl, data, config);
     }
-
-    determineProfileList(id) {
-        let listLimits = profileListLimits.d;
-
-        for (let i = 0; i < listLimits.length; i++) {
-            if (id < listLimits[i].limit) {
-                return listLimits[i].list;
-            }
-        }
-
-        return listLimits.find((arrValue) => {
-            return arrValue.limit == "*";
-        }).list;
-    }
 }
 
-ResponseDataAccessService.$inject = ["$http"];
+ProfileDataAccessService.$inject = ["$http"];

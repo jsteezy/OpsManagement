@@ -151,7 +151,7 @@ export default class BaseController extends BaseComponentController {
         return this.hasPermissions([super.appPermissions.everyone]);
     }
 
-    get currentUser() {
+    get currentUser(){
         const userService = this.$injector.get("userService");
 
         return userService.getCurrentUser();
@@ -178,16 +178,17 @@ export default class BaseController extends BaseComponentController {
 
         let initPageActionPromise = Promise.resolve(action())
             .then(
-                () => {
-                    if (this.hasServerErrors()) {
-                        this.redirectToHome();
-                    } else {
-                        this.stopSpinner();
-                    }
-                },
-                () => {
+            () => {
+                if (this.hasServerErrors()) {
+                    this.redirectToHome();
+                }
+                else {
                     this.stopSpinner();
-                });
+                }
+            },
+            () => {
+                this.stopSpinner();
+            });
 
         return initPageActionPromise;
     }
@@ -220,7 +221,7 @@ export default class BaseController extends BaseComponentController {
     }
 
     redirectToHome() {
-        this.redirectTo(["Home"])
+        this.redirectTo(["TarSearch"])
     }
 
     redirectTo(route) {

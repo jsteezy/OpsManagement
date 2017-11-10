@@ -10,4 +10,5 @@
   "expandTravellerAndRequester": "TAR_Requester/Title,TAR_Requester/Id,TAR_Traveller/Title,TAR_Traveller/Id&$expand=TAR_Requester,TAR_Traveller",
   "getTask": "/_api/Lists/getByTitle('TAR Workflow Tasks')/items?$filter=((Status eq 'Not Started') and (substringof('{TAR_ID}',Title)))",
   "approveTask": "/_api/Lists/getByTitle('TAR Workflow Tasks')/items('{ITEM_ID}')",
+  "updateTarApprovalStatus": "/_api/Lists/getByTitle('TAR Requests')/items('{ITEM_ID}')"
 }

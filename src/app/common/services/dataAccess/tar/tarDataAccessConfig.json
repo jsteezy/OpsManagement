@@ -1,0 +1,12 @@
+{
+  "tarRequestsListName": "TAR Requests",
+  "tarDraftsListName": "TAR Drafts",
+  "getItem": "/_api/Lists/getByTitle('{LIST_NAME}')/items?$filter=Title eq '{TAR_ID}'&$select=*,",
+  "getTarsForUser": "/_api/Lists/getByTitle('TAR Requests')/items",
+  "getTarsFilter": "?$filter=((TAR_Requester eq {USER_ID} or TAR_Traveller eq {USER_ID}) and ((TAR_BudgetApprovalStatus ne 'Approved' and TAR_BudgetApprovalStatus ne 'Rejected') and ((TAR_RequiresGssApproval eq 1 and (TAR_GSSApprovalStatus ne 'Approved' and TAR_GSSApprovalStatus ne 'Rejected')) or (TAR_RequiresGssApproval eq 0))))",
+  "getTarDraftsForUser": "/_api/Lists/getByTitle('TAR Drafts')/items?$filter=TAR_Requester eq {USER_ID}&$select=Id,Title,TAR_Traveller/Title,TAR_Requester/Title,TAR_Destinations&$expand=TAR_Traveller,TAR_Requester",
+  "expandUsers": "TAR_Requester/Title,TAR_Requester/Id,TAR_Traveller/Title,TAR_Traveller/Id,TAR_LineManager/Title,TAR_LineManager/Id,TAR_TravelCoordinator/Title,TAR_TravelCoordinator/Id,TAR_BudgetApprover/Title,TAR_BudgetApprover/Id,TAR_AdditionalStaffMember/Title,TAR_AdditionalStaffMember/Id&$expand=TAR_Requester,TAR_Traveller,TAR_LineManager,TAR_TravelCoordinator,TAR_BudgetApprover,TAR_AdditionalStaffMember",
+  "update":"/_api/Lists/getByTitle('{LIST_NAME}')/items('{ITEM_ID}')",
+  "saveTar": "/_api/Lists/getByTitle('{LIST_NAME}')/items",
+  "delete": "/_api/Lists/getByTitle('{LIST_NAME}')/items('{ITEM_ID}')"
+}

@@ -1,0 +1,3089 @@
+<Activity mc:Ignorable="sads" x:Class="SCI.TAR.Workflows.EIFWorkflow.Workflow"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:made="clr-namespace:Microsoft.Activities.Design.ExpressionTranslation;assembly=Microsoft.Activities.Design"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:p="http://schemas.microsoft.com/workflow/2012/07/xaml/activities"
+ xmlns:p1="wf://workflow.windows.net/$Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Sequence DisplayName="Main Sequence" sads:DebugSymbol.Symbol="d2BEOlxQcm9qZWN0c1xTQ0kuVEFSXHRhclxTaGFyZVBvaW50XFNDSS5UQVIuV29ya2Zsb3dzXFNDSS5UQVIuV29ya2Zsb3dzXEVJRldvcmtmbG93XFdvcmtmbG93LnhhbWyiATIDhQsOAgEBQgVIEQMB5gRJBawJEAIBWq0JBYMLEAIBAlUHYBsDAeEEYQdsGwMB3ARtB7wBEgMBtwS9AQfsARIDAaUE7QEHnAISAwGSBJ0CB5wDEgMB1gOdAwf0AxIDAagD9QMHswQSAwGPA7QEB/AEEgMB7QLxBAf+BBIDAeYC/wQHqAUSAwHNAqkFB5IGEgMBmgKTBgecCBIDAaMBnQgHyAgSAwGKAckIB9QIGwMBhQHVCAfeCBADAYEB3wgHqwkPAgFbsgkHwgkbAgFTwwkH0wkbAgFM1AkH5gkMAgFE5wkH1AoSAgEV1QoH7AoSAgEM7QoHggsSAgEDcQmBASEDAdYEggEJjgEOAwHOBI8BCZ8BHwMByASgAQmuASADAcEErwEJuwEOAwG4BL4BCc4BIQMBsQTPAQnfAR8DAasE4AEJ6wEgAwGmBO4BCYICHwMBoASDAgmOAiEDAZsEjwIJmwIOAwGTBJ4CCakCJQMBjASqAgm1AhsDAYcEtgIJxwIgAwH+A8gCCeACDgMB9APhAgmbAw4DAdcDoQMJrAMlAwHQA60DCbgDJQMBygO5AwnEAxIDAcQDxQMJ8wMOAwGpA/YDCYEEJQMBogOCBAmyBA4DAZADtQQJwAQlAwGJA8EECe8EDgMB7gLyBAn9BCUDAecCgAUJhAUbAwHiAoUFCacFDgMBzgKtBQm4BSUDAccCuQUJxAUbAwHCAsUFCdYFIAMBuQLXBQmRBg4DAZsCmAYJowYlAwGUAqQGCa0GHwMBjwKuBgm3BiQDAYoCuAYJxAYOAwGCAsUGCdAGHQMB/QHRBgnaBhIDAfkB2wYJ/QcRAwG2Af4HCYIIGwMBsgGDCAmHCBsDAa4BiAgJkQgbAwGpAZIICZsIGwMBpAGeCAmpCCUDAZ0BqggJrggbAwGZAa8ICbMIGwMBlQG0CAm9CBsDAZABvggJxwgbAwGLAecICaoJFAIBX9sJC+QJHQIBR+4JCfQJIgIBQPUJCYAKIwIBO4EKCYwKJQIBNY0KCZYKJAIBMJcKCaIKEgIBLKMKCdMKEQIBFtYKCesKEwIBDYkBDYwBGAMB0QS2AQ25ARgDAbwElgINmQIYAwGWBM8CDd4CGAMB9wPoAg33AhgDAe0D+gINmQMYAwHaA8wDDc8DGAMBvwPSAw3xAxgDAawDiQQNogQYAwGXA6UEDbAEFgMBkwPIBA3LBBgDAYQDzgQN7QQYAwHxAowFDZcFGAMB2QKaBQ2lBRgDAdEC3gUN7QUYAwGyAvAFDY8GGAMBnwK/Bg3CBhgDAYUC5QYL/AcWAwG6AegIC/YIJQIBevcIC4UJJQIBc4YJC5EJFAIBbJIJC50JFAIBZZ4JC6kJFAIBYKoKC9IKFgIBGuAKDekKHwIBDooBD4oBoQEDAdQEiwEPiwGLAQMB0gS3AQ+3AZkBAwG/BLgBD7gBgwEDAb0ElwIPlwKPAQMBmQSYAg+YAnkDAZcE0AIP1gIjAwH7A9cCD90CIwMB+APpAg/vAiMDAfED8AIP9gIjAwHuA/sCD/8CIQMB6QOAAw+EAyEDAeUDhQMPjgMhAwHgA48DD5gDIQMB2wPNAw/NA5gBAwHCA84DD84DggEDAcAD0wMP1wMhAwG7A9gDD9wDIQMBtwPdAw/mAyEDAbID5wMP8AMhAwGtA4oED5UEIQMBnQOWBA+hBCYDAZgDyQQPyQSKAQMBhwPKBA/KBHQDAYUDzwQP0wQhAwGAA9QED9gEIQMB/ALZBA/iBCEDAfcC4wQP7AQhAwHyAo0FD5YFIQMB2gKbBQ+kBSEDAdIC3wUP5QUjAwG2AuYFD+wFIwMBswLxBQ/1BSEDAa4C9gUP+gUhAwGqAvsFD4QGIQMBpQKFBg+OBiEDAaACwAYPwAaWAQMBiALBBg/BBncDAYYC5gYN8QYWAwH0AfIGDf0GFgMB7wH+Bg2OBykDAegBjwcNsQcSAwHaAbIHDcIHKQMB0wHDBw3vBxIDAcAB8AcN+wcWAwG7AasKDbsKKQIBJbwKDcUKHwIBIMYKDdEKFgIBG5YHEaEHGgMB4wGkBxGvBxoDAd0BygcR7QccAwHDAcsHE9YHJQMBzgHXBxPiByoDAckB4wcT7AclAwHEAQ==">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" x:Name="__ReferenceID0" Name="webUrl" />
+      <Variable x:TypeArguments="sco:Collection(x:String)" x:Name="__ReferenceID1" Name="tokenPlaceholders" />
+      <Variable x:TypeArguments="sco:Collection(x:String)" x:Name="__ReferenceID2" Name="tokenValues" />
+      <Variable x:TypeArguments="p:DynamicValue" x:Name="__ReferenceID4" Name="dynamicValue" />
+      <Variable x:TypeArguments="x:String" x:Name="__ReferenceID5" Name="submittedEmailSubject" />
+      <Variable x:TypeArguments="x:String" x:Name="__ReferenceID6" Name="submittedEmailContent" />
+      <Variable x:TypeArguments="p:DynamicValue" x:Name="__ReferenceID9" Name="eifDetails" />
+      <Variable x:TypeArguments="x:String" x:Name="__ReferenceID11" Name="requesterLoginName" />
+      <Variable x:TypeArguments="x:String" x:Name="__ReferenceID13" Name="requesterName" />
+      <Variable x:TypeArguments="x:String" x:Name="__ReferenceID20" Name="staffResponsibleLoginName" />
+      <Variable x:TypeArguments="x:String" x:Name="__ReferenceID8" Name="appRelativeUrl" />
+      <Variable x:TypeArguments="sco:Collection(x:String)" x:Name="__ReferenceID22" Name="countryDirectorsLoginNames" />
+      <Variable x:TypeArguments="x:String" x:Name="__ReferenceID16" Name="additionalStaffMemberLoginName" />
+    </Sequence.Variables>
+    <p1:WebUri>
+      <p1:WebUri.Result>
+        <OutArgument x:TypeArguments="x:String">
+          <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="webUrl">
+            <p:ExpressionContainerReference.Arguments>
+              <InOutArgument x:TypeArguments="x:String" x:Key="webUrl">
+                <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID0}" />
+              </InOutArgument>
+            </p:ExpressionContainerReference.Arguments>
+            <ArgumentReference x:TypeArguments="x:String" ArgumentName="webUrl" />
+          </p:ExpressionContainerReference>
+        </OutArgument>
+      </p1:WebUri.Result>
+    </p1:WebUri>
+    <Sequence DisplayName="Initialization">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Boolean" x:Name="__ReferenceID10" Name="dynamicValueIsEmpty" />
+        <Variable x:TypeArguments="x:Int32" x:Name="__ReferenceID7" Name="tokenValueInt" />
+        <Variable x:TypeArguments="x:String" x:Name="__ReferenceID12" Name="emailAddress" />
+        <Variable x:TypeArguments="x:String" x:Name="__ReferenceID15" Name="tokenValueString" />
+        <Variable x:TypeArguments="x:Int32" x:Name="__ReferenceID30" Name="collectionSize" />
+        <Variable x:TypeArguments="x:Int32" x:Name="__ReferenceID23" Name="index" />
+        <Variable x:TypeArguments="s:DateTime" x:Name="__ReferenceID29" Name="tokenValueDateTime" />
+        <Variable x:TypeArguments="x:String" x:Name="__ReferenceID17" Name="eifId" />
+        <Variable x:TypeArguments="x:String" x:Name="__ReferenceID18" Name="tarId" />
+      </Sequence.Variables>
+      <p:BuildCollection x:TypeArguments="x:String" DisplayName="Initialize tokenPlaceholders">
+        <p:BuildCollection.Collection>
+          <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="scg:IEnumerable(x:String)" DisplayName="tokenPlaceholders">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="tokenPlaceholders">
+                  <VariableValue x:TypeArguments="scg:IEnumerable(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="scg:IEnumerable(x:String)" ArgumentName="tokenPlaceholders" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </p:BuildCollection.Collection>
+        <p:BuildCollection.Result>
+          <OutArgument x:TypeArguments="sco:Collection(x:String)">
+            <p:ExpressionContainerReference x:TypeArguments="sco:Collection(x:String)" DisplayName="tokenPlaceholders">
+              <p:ExpressionContainerReference.Arguments>
+                <InOutArgument x:TypeArguments="sco:Collection(x:String)" x:Key="tokenPlaceholders">
+                  <VariableReference x:TypeArguments="sco:Collection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                </InOutArgument>
+              </p:ExpressionContainerReference.Arguments>
+              <ArgumentReference x:TypeArguments="sco:Collection(x:String)" ArgumentName="tokenPlaceholders" />
+            </p:ExpressionContainerReference>
+          </OutArgument>
+        </p:BuildCollection.Result>
+      </p:BuildCollection>
+      <p:BuildCollection x:TypeArguments="x:String" DisplayName="Initialize tokenValues">
+        <p:BuildCollection.Collection>
+          <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="scg:IEnumerable(x:String)" DisplayName="tokenValues">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="tokenValues">
+                  <VariableValue x:TypeArguments="scg:IEnumerable(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="scg:IEnumerable(x:String)" ArgumentName="tokenValues" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </p:BuildCollection.Collection>
+        <p:BuildCollection.Result>
+          <OutArgument x:TypeArguments="sco:Collection(x:String)">
+            <p:ExpressionContainerReference x:TypeArguments="sco:Collection(x:String)" DisplayName="tokenValues">
+              <p:ExpressionContainerReference.Arguments>
+                <InOutArgument x:TypeArguments="sco:Collection(x:String)" x:Key="tokenValues">
+                  <VariableReference x:TypeArguments="sco:Collection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                </InOutArgument>
+              </p:ExpressionContainerReference.Arguments>
+              <ArgumentReference x:TypeArguments="sco:Collection(x:String)" ArgumentName="tokenValues" />
+            </p:ExpressionContainerReference>
+          </OutArgument>
+        </p:BuildCollection.Result>
+      </p:BuildCollection>
+      <Sequence DisplayName="Get Submitted Email Template">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Int32" x:Name="__ReferenceID3" Name="emailTemplateId" />
+        </Sequence.Variables>
+        <p1:LookupSPListItemId DisplayName="Get Email Template Id" PropertyValue="EIF_Submitted">
+          <p1:LookupSPListItemId.ListId>
+            <InArgument x:TypeArguments="s:Guid">
+              <p:ExpressionContainerValue x:TypeArguments="s:Guid" DisplayName="System.Guid.Parse(&quot;{$ListId:Lists/TAREmailTemplates;}&quot;)">
+                <p:ParseGuid Value="{}{$ListId:Lists/TAREmailTemplates;}" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:LookupSPListItemId.ListId>
+          <p1:LookupSPListItemId.PropertyName>
+            <InArgument x:TypeArguments="x:String">
+              <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="&quot;LinkTitle&quot;" Expression="LinkTitle" />
+            </InArgument>
+          </p1:LookupSPListItemId.PropertyName>
+          <p1:LookupSPListItemId.Result>
+            <OutArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="emailTemplateId">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:Int32" x:Key="emailTemplateId">
+                    <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID3}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="emailTemplateId" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p1:LookupSPListItemId.Result>
+        </p1:LookupSPListItemId>
+        <If DisplayName="If email template not found">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="emailTemplateId &lt; 1">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="emailTemplateId">
+                    <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID3}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:IsLessThan x:TypeArguments="x:Int32">
+                  <p:IsLessThan.Left>
+                    <InArgument x:TypeArguments="x:Int32" EvaluationOrder="0">
+                      <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="emailTemplateId" />
+                    </InArgument>
+                  </p:IsLessThan.Left>
+                  <p:IsLessThan.Right>
+                    <InArgument x:TypeArguments="x:Int32" EvaluationOrder="1" Expression="1" />
+                  </p:IsLessThan.Right>
+                </p:IsLessThan>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence>
+              <p1:WriteToHistory DisplayName="Log Error" Message="EIF_Submitted email template not found." />
+              <TerminateWorkflow Reason="EIF_Submitted email template not found." />
+            </Sequence>
+          </If.Then>
+        </If>
+        <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Lookup Email Template">
+          <p1:LookupSPListItem.ItemId>
+            <InArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="emailTemplateId">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="emailTemplateId">
+                    <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID3}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="emailTemplateId" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:LookupSPListItem.ItemId>
+          <p1:LookupSPListItem.ListId>
+            <InArgument x:TypeArguments="s:Guid">
+              <p:ExpressionContainerValue x:TypeArguments="s:Guid" DisplayName="System.Guid.Parse(&quot;{$ListId:Lists/TAREmailTemplates;}&quot;)">
+                <p:ParseGuid Value="{}{$ListId:Lists/TAREmailTemplates;}" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:LookupSPListItem.ListId>
+          <p1:LookupSPListItem.Result>
+            <OutArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerReference x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                    <VariableReference x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p1:LookupSPListItem.Result>
+        </p1:LookupSPListItem>
+        <p:GetODataProperties DisplayName="Get Email Template details">
+          <p:GetODataProperties.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetODataProperties.Source>
+          <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+            <OutArgument x:TypeArguments="x:String" x:Key="TAR_EmailSubject">
+              <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="submittedEmailSubject">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="submittedEmailSubject">
+                    <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID5}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:String" ArgumentName="submittedEmailSubject" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+            <OutArgument x:TypeArguments="x:String" x:Key="TAR_EmailContent">
+              <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="submittedEmailContent">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="submittedEmailContent">
+                    <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID6}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:String" ArgumentName="submittedEmailContent" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </scg:Dictionary>
+        </p:GetODataProperties>
+        <If DisplayName="If email details are empty">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="string.IsNullOrEmpty(submittedEmailSubject) || string.IsNullOrEmpty(submittedEmailContent)">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="submittedEmailSubject">
+                    <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID5}" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="submittedEmailContent">
+                    <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID6}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:Or>
+                  <p:Or.Left>
+                    <InArgument x:TypeArguments="x:Boolean" EvaluationOrder="0">
+                      <p:IsEmptyString>
+                        <InArgument x:TypeArguments="x:String">
+                          <ArgumentValue x:TypeArguments="x:String" ArgumentName="submittedEmailSubject" />
+                        </InArgument>
+                      </p:IsEmptyString>
+                    </InArgument>
+                  </p:Or.Left>
+                  <p:Or.Right>
+                    <InArgument x:TypeArguments="x:Boolean" EvaluationOrder="1">
+                      <p:IsEmptyString>
+                        <InArgument x:TypeArguments="x:String">
+                          <ArgumentValue x:TypeArguments="x:String" ArgumentName="submittedEmailContent" />
+                        </InArgument>
+                      </p:IsEmptyString>
+                    </InArgument>
+                  </p:Or.Right>
+                </p:Or>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence>
+              <p1:WriteToHistory DisplayName="Log error" Message="Invalid email template details." />
+              <TerminateWorkflow Reason="Invalid email template details." />
+            </Sequence>
+          </If.Then>
+        </If>
+      </Sequence>
+      <Sequence DisplayName="Get EIF WF Settings">
+        <p1:LookupSPListItemId DisplayName="Lookup TARSettings App relative path" PropertyValue="AppRelativeUrl">
+          <p1:LookupSPListItemId.ListId>
+            <InArgument x:TypeArguments="s:Guid">
+              <p:ExpressionContainerValue x:TypeArguments="s:Guid" DisplayName="System.Guid.Parse(&quot;{$ListId:Lists/TARSettings;}&quot;)">
+                <p:ParseGuid Value="{}{$ListId:Lists/TARSettings;}" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:LookupSPListItemId.ListId>
+          <p1:LookupSPListItemId.PropertyName>
+            <InArgument x:TypeArguments="x:String">
+              <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="&quot;LinkTitle&quot;" Expression="LinkTitle" />
+            </InArgument>
+          </p1:LookupSPListItemId.PropertyName>
+          <p1:LookupSPListItemId.Result>
+            <OutArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="tokenValueInt">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:Int32" x:Key="tokenValueInt">
+                    <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="tokenValueInt" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p1:LookupSPListItemId.Result>
+        </p1:LookupSPListItemId>
+        <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Lookup TAR Setting">
+          <p1:LookupSPListItem.ItemId>
+            <InArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="tokenValueInt">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="tokenValueInt">
+                    <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="tokenValueInt" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:LookupSPListItem.ItemId>
+          <p1:LookupSPListItem.ListId>
+            <InArgument x:TypeArguments="s:Guid">
+              <p:ExpressionContainerValue x:TypeArguments="s:Guid" DisplayName="System.Guid.Parse(&quot;{$ListId:Lists/TARSettings;}&quot;)">
+                <p:ParseGuid Value="{}{$ListId:Lists/TARSettings;}" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:LookupSPListItem.ListId>
+          <p1:LookupSPListItem.Result>
+            <OutArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerReference x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                    <VariableReference x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p1:LookupSPListItem.Result>
+        </p1:LookupSPListItem>
+        <p:GetODataProperties DisplayName="Get App relative URL">
+          <p:GetODataProperties.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetODataProperties.Source>
+          <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+            <OutArgument x:TypeArguments="x:String" x:Key="TAR_SettingValue">
+              <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="appRelativeUrl">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="appRelativeUrl">
+                    <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID8}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:String" ArgumentName="appRelativeUrl" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </scg:Dictionary>
+        </p:GetODataProperties>
+      </Sequence>
+      <Sequence DisplayName="Get EIF Request item">
+        <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Lookup current EIF item">
+          <p1:LookupSPListItem.ItemId>
+            <InArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerValue x:TypeArguments="x:Int32">
+                <p1:GetCurrentItemId />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:LookupSPListItem.ItemId>
+          <p1:LookupSPListItem.ListId>
+            <InArgument x:TypeArguments="s:Guid">
+              <p:ExpressionContainerValue x:TypeArguments="s:Guid">
+                <p1:GetCurrentListId />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:LookupSPListItem.ListId>
+          <p1:LookupSPListItem.Result>
+            <OutArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerReference x:TypeArguments="p:DynamicValue" DisplayName="eifDetails">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="p:DynamicValue" x:Key="eifDetails">
+                    <VariableReference x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID9}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="p:DynamicValue" ArgumentName="eifDetails" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p1:LookupSPListItem.Result>
+        </p1:LookupSPListItem>
+        <p:IsEmptyDynamicValue DisplayName="Check if eifDetails is empty">
+          <p:IsEmptyDynamicValue.Input>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="eifDetails">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="eifDetails">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID9}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="eifDetails" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:IsEmptyDynamicValue.Input>
+          <p:IsEmptyDynamicValue.Result>
+            <OutArgument x:TypeArguments="x:Boolean">
+              <p:ExpressionContainerReference x:TypeArguments="x:Boolean" DisplayName="dynamicValueIsEmpty">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:Boolean" x:Key="dynamicValueIsEmpty">
+                    <VariableReference x:TypeArguments="x:Boolean" Variable="{x:Reference __ReferenceID10}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:Boolean" ArgumentName="dynamicValueIsEmpty" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:IsEmptyDynamicValue.Result>
+        </p:IsEmptyDynamicValue>
+        <If DisplayName="If eifDetails is empty">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="dynamicValueIsEmpty">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Boolean" x:Key="dynamicValueIsEmpty">
+                    <VariableValue x:TypeArguments="x:Boolean" Variable="{x:Reference __ReferenceID10}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="x:Boolean" ArgumentName="dynamicValueIsEmpty" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence>
+              <p1:WriteToHistory DisplayName="Log error" Message="No EIF Request found." />
+              <TerminateWorkflow Reason="No EIF Request found." />
+            </Sequence>
+          </If.Then>
+        </If>
+      </Sequence>
+      <Sequence DisplayName="Get EIF Requester">
+        <p:GetDynamicValueProperty x:TypeArguments="x:Int32" DisplayName="Get Requester Id" PropertyName="d/results/(0)/TAR_RequesterId">
+          <p:GetDynamicValueProperty.Result>
+            <OutArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="tokenValueInt">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:Int32" x:Key="tokenValueInt">
+                    <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="tokenValueInt" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:GetDynamicValueProperty.Result>
+          <p:GetDynamicValueProperty.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="eifDetails">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="eifDetails">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID9}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="eifDetails" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.Source>
+        </p:GetDynamicValueProperty>
+        <p1:LookupSPUser DisplayName="Lookup Requester">
+          <p1:LookupSPUser.PrincipalId>
+            <InArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="tokenValueInt">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="tokenValueInt">
+                    <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="tokenValueInt" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:LookupSPUser.PrincipalId>
+          <p1:LookupSPUser.Result>
+            <OutArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerReference x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                    <VariableReference x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p1:LookupSPUser.Result>
+        </p1:LookupSPUser>
+        <p:GetODataProperties DisplayName="Get Requester properties">
+          <p:GetODataProperties.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetODataProperties.Source>
+          <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+            <OutArgument x:TypeArguments="x:String" x:Key="LoginName">
+              <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="requesterLoginName">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="requesterLoginName">
+                    <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID11}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:String" ArgumentName="requesterLoginName" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+            <OutArgument x:TypeArguments="x:String" x:Key="Email">
+              <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="emailAddress">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="emailAddress">
+                    <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID12}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:String" ArgumentName="emailAddress" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+            <OutArgument x:TypeArguments="x:String" x:Key="Title">
+              <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="requesterName">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="requesterName">
+                    <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID13}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:String" ArgumentName="requesterName" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </scg:Dictionary>
+        </p:GetODataProperties>
+        <If DisplayName="If requester has no email address">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="string.IsNullOrEmpty(emailAddress)">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="emailAddress">
+                    <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID12}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:IsEmptyString>
+                  <InArgument x:TypeArguments="x:String">
+                    <ArgumentValue x:TypeArguments="x:String" ArgumentName="emailAddress" />
+                  </InArgument>
+                </p:IsEmptyString>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence>
+              <p1:WriteToHistory DisplayName="Log error">
+                <p1:WriteToHistory.Message>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Format(&quot;User {} has no email address.&quot;, requesterLoginName);">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:Object" x:Key="requesterLoginName">
+                          <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID11}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <p:FormatString Format="User {} has no email address.">
+                        <InArgument x:TypeArguments="x:Object">
+                          <ArgumentValue x:TypeArguments="x:Object" ArgumentName="requesterLoginName" />
+                        </InArgument>
+                      </p:FormatString>
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </p1:WriteToHistory.Message>
+              </p1:WriteToHistory>
+              <TerminateWorkflow>
+                <TerminateWorkflow.Reason>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Format(&quot;User {} has no email address.&quot;, requesterLoginName);">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:Object" x:Key="requesterLoginName">
+                          <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID11}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <p:FormatString Format="User {} has no email address.">
+                        <InArgument x:TypeArguments="x:Object">
+                          <ArgumentValue x:TypeArguments="x:Object" ArgumentName="requesterLoginName" />
+                        </InArgument>
+                      </p:FormatString>
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </TerminateWorkflow.Reason>
+              </TerminateWorkflow>
+            </Sequence>
+          </If.Then>
+        </If>
+        <If DisplayName="If requester has no name">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="string.IsNullOrEmpty(requesterName)">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="requesterName">
+                    <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID13}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:IsEmptyString>
+                  <InArgument x:TypeArguments="x:String">
+                    <ArgumentValue x:TypeArguments="x:String" ArgumentName="requesterName" />
+                  </InArgument>
+                </p:IsEmptyString>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence>
+              <p1:WriteToHistory DisplayName="Log error">
+                <p1:WriteToHistory.Message>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Format(&quot;User {0} has no name associated.&quot;, requesterLoginName);">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:Object" x:Key="requesterLoginName">
+                          <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID11}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <p:FormatString Format="User {0} has no name associated.">
+                        <InArgument x:TypeArguments="x:Object">
+                          <ArgumentValue x:TypeArguments="x:Object" ArgumentName="requesterLoginName" />
+                        </InArgument>
+                      </p:FormatString>
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </p1:WriteToHistory.Message>
+              </p1:WriteToHistory>
+              <TerminateWorkflow>
+                <TerminateWorkflow.Reason>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Format(&quot;User {0} has no name associated.&quot;, requesterLoginName);">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:Object" x:Key="requesterLoginName">
+                          <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID11}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <p:FormatString Format="User {0} has no name associated.">
+                        <InArgument x:TypeArguments="x:Object">
+                          <ArgumentValue x:TypeArguments="x:Object" ArgumentName="requesterLoginName" />
+                        </InArgument>
+                      </p:FormatString>
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </TerminateWorkflow.Reason>
+              </TerminateWorkflow>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="Add tokens">
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add {REQUESTER} to tokenPlaceholders" Item="{}{REQUESTER}">
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenPlaceholders">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenPlaceholders">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenPlaceholders" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add {REQUESTER} encoded to tokenPlaceholders" Item="&amp;#123;REQUESTER&amp;#125;">
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenPlaceholders">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenPlaceholders">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenPlaceholders" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add requester to tokenValues">
+                <AddToCollection.Item>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="requesterName">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="requesterName">
+                          <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID13}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <ArgumentValue x:TypeArguments="x:String" ArgumentName="requesterName" />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </AddToCollection.Item>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenValues">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenValues">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenValues" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add requester to tokenValues">
+                <AddToCollection.Item>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="requesterName">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="requesterName">
+                          <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID13}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <ArgumentValue x:TypeArguments="x:String" ArgumentName="requesterName" />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </AddToCollection.Item>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenValues">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenValues">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenValues" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+            </Sequence>
+          </If.Else>
+        </If>
+      </Sequence>
+      <Sequence DisplayName="Get EIF Guest Traveller">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:String" x:Name="__ReferenceID14" Name="guestTravellerName" />
+        </Sequence.Variables>
+        <p:GetDynamicValueProperty x:TypeArguments="x:String" DisplayName="Get Guest Traveller First Name" PropertyName="d/results/(0)/TAR_FirstName">
+          <p:GetDynamicValueProperty.Result>
+            <OutArgument x:TypeArguments="x:String">
+              <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="guestTravellerName">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="guestTravellerName">
+                    <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID14}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:String" ArgumentName="guestTravellerName" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:GetDynamicValueProperty.Result>
+          <p:GetDynamicValueProperty.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="eifDetails">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="eifDetails">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID9}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="eifDetails" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.Source>
+        </p:GetDynamicValueProperty>
+        <p:GetDynamicValueProperty x:TypeArguments="x:String" DisplayName="Get Guest Travller Last Name" PropertyName="d/results/(0)/TAR_LastName">
+          <p:GetDynamicValueProperty.Result>
+            <OutArgument x:TypeArguments="x:String">
+              <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="tokenValueString">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="tokenValueString">
+                    <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID15}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:String" ArgumentName="tokenValueString" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:GetDynamicValueProperty.Result>
+          <p:GetDynamicValueProperty.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="eifDetails">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="eifDetails">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID9}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="eifDetails" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.Source>
+        </p:GetDynamicValueProperty>
+        <Assign DisplayName="Build Guest Traveller Full Name">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">
+              <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="guestTravellerName">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="guestTravellerName">
+                    <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID14}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:String" ArgumentName="guestTravellerName" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">
+              <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Format(&quot;{0} {1}&quot;, guestTravellerName, tokenValueString);">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Object" x:Key="guestTravellerName">
+                    <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID14}" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:Object" x:Key="tokenValueString">
+                    <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID15}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:FormatString Format="{}{0} {1}">
+                  <InArgument x:TypeArguments="x:Object">
+                    <ArgumentValue x:TypeArguments="x:Object" ArgumentName="guestTravellerName" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:Object">
+                    <ArgumentValue x:TypeArguments="x:Object" ArgumentName="tokenValueString" />
+                  </InArgument>
+                </p:FormatString>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+        <If DisplayName="If guest traveller name is empty">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="string.IsNullOrEmpty(guestTravellerName)">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="guestTravellerName">
+                    <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID14}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:IsEmptyString>
+                  <InArgument x:TypeArguments="x:String">
+                    <ArgumentValue x:TypeArguments="x:String" ArgumentName="guestTravellerName" />
+                  </InArgument>
+                </p:IsEmptyString>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence>
+              <p1:WriteToHistory DisplayName="Log error" Message="Guest traveller name is empty." />
+              <TerminateWorkflow Reason="Guest traveller name is empty." />
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="Add tokens">
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add {GUEST_TRAVELLER} to tokenPlaceholders" Item="{}{GUEST_TRAVELLER}">
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenPlaceholders">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenPlaceholders">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenPlaceholders" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add {GUEST_TRAVELLER} encoded to tokenPlaceholders" Item="&amp;#123;GUEST_TRAVELLER&amp;#125;">
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenPlaceholders">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenPlaceholders">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenPlaceholders" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add guest traveller to tokenValues">
+                <AddToCollection.Item>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="guestTravellerName">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="guestTravellerName">
+                          <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID14}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <ArgumentValue x:TypeArguments="x:String" ArgumentName="guestTravellerName" />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </AddToCollection.Item>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenValues">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenValues">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenValues" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add guest traveller to tokenValues">
+                <AddToCollection.Item>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="guestTravellerName">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="guestTravellerName">
+                          <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID14}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <ArgumentValue x:TypeArguments="x:String" ArgumentName="guestTravellerName" />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </AddToCollection.Item>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenValues">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenValues">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenValues" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+            </Sequence>
+          </If.Else>
+        </If>
+      </Sequence>
+      <Sequence DisplayName="Get EIF Additional Staff Member">
+        <p:GetDynamicValueProperty x:TypeArguments="x:Int32" DisplayName="Get Additional Staff Member Id" PropertyName="d/results/(0)/TAR_AdditionalStaffMemberId">
+          <p:GetDynamicValueProperty.Result>
+            <OutArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="tokenValueInt">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:Int32" x:Key="tokenValueInt">
+                    <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="tokenValueInt" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:GetDynamicValueProperty.Result>
+          <p:GetDynamicValueProperty.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="eifDetails">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="eifDetails">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID9}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="eifDetails" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.Source>
+        </p:GetDynamicValueProperty>
+        <If DisplayName="If there is a Staff Member added">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="tokenValueInt &gt; 0">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="tokenValueInt">
+                    <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:IsGreaterThan x:TypeArguments="x:Int32">
+                  <p:IsGreaterThan.Left>
+                    <InArgument x:TypeArguments="x:Int32" EvaluationOrder="0">
+                      <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="tokenValueInt" />
+                    </InArgument>
+                  </p:IsGreaterThan.Left>
+                  <p:IsGreaterThan.Right>
+                    <InArgument x:TypeArguments="x:Int32" EvaluationOrder="1" Expression="0" />
+                  </p:IsGreaterThan.Right>
+                </p:IsGreaterThan>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence>
+              <p1:LookupSPUser DisplayName="Lookup Additional Staff Member">
+                <p1:LookupSPUser.PrincipalId>
+                  <InArgument x:TypeArguments="x:Int32">
+                    <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="tokenValueInt">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:Int32" x:Key="tokenValueInt">
+                          <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="tokenValueInt" />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </p1:LookupSPUser.PrincipalId>
+                <p1:LookupSPUser.Result>
+                  <OutArgument x:TypeArguments="p:DynamicValue">
+                    <p:ExpressionContainerReference x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                      <p:ExpressionContainerReference.Arguments>
+                        <InOutArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                          <VariableReference x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                        </InOutArgument>
+                      </p:ExpressionContainerReference.Arguments>
+                      <ArgumentReference x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+                    </p:ExpressionContainerReference>
+                  </OutArgument>
+                </p1:LookupSPUser.Result>
+              </p1:LookupSPUser>
+              <p:GetODataProperties DisplayName="Get Additional Staff Member Login Name">
+                <p:GetODataProperties.Source>
+                  <InArgument x:TypeArguments="p:DynamicValue">
+                    <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                          <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </p:GetODataProperties.Source>
+                <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                  <OutArgument x:TypeArguments="x:String" x:Key="LoginName">
+                    <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="additionalStaffMemberLoginName">
+                      <p:ExpressionContainerReference.Arguments>
+                        <InOutArgument x:TypeArguments="x:String" x:Key="additionalStaffMemberLoginName">
+                          <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID16}" />
+                        </InOutArgument>
+                      </p:ExpressionContainerReference.Arguments>
+                      <ArgumentReference x:TypeArguments="x:String" ArgumentName="additionalStaffMemberLoginName" />
+                    </p:ExpressionContainerReference>
+                  </OutArgument>
+                </scg:Dictionary>
+              </p:GetODataProperties>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Assign DisplayName="Set staff member login name to empty">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">
+                  <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="additionalStaffMemberLoginName">
+                    <p:ExpressionContainerReference.Arguments>
+                      <InOutArgument x:TypeArguments="x:String" x:Key="additionalStaffMemberLoginName">
+                        <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID16}" />
+                      </InOutArgument>
+                    </p:ExpressionContainerReference.Arguments>
+                    <ArgumentReference x:TypeArguments="x:String" ArgumentName="additionalStaffMemberLoginName" />
+                  </p:ExpressionContainerReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Empty">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+          </If.Else>
+        </If>
+      </Sequence>
+      <Sequence DisplayName="Get EIF ID">
+        <p:GetDynamicValueProperty x:TypeArguments="x:String" DisplayName="Get EIF Title from eifDetails" PropertyName="d/results/(0)/Title">
+          <p:GetDynamicValueProperty.Result>
+            <OutArgument x:TypeArguments="x:String">
+              <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="eifId">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="eifId">
+                    <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID17}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:String" ArgumentName="eifId" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:GetDynamicValueProperty.Result>
+          <p:GetDynamicValueProperty.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="eifDetails">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="eifDetails">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID9}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="eifDetails" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.Source>
+        </p:GetDynamicValueProperty>
+        <If>
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="string.IsNullOrEmpty(eifId)">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="eifId">
+                    <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID17}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:IsEmptyString>
+                  <InArgument x:TypeArguments="x:String">
+                    <ArgumentValue x:TypeArguments="x:String" ArgumentName="eifId" />
+                  </InArgument>
+                </p:IsEmptyString>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence>
+              <p1:WriteToHistory DisplayName="Log error" Message="No EIF ID found." />
+              <TerminateWorkflow Reason="No EIF ID found." />
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="Add tokens">
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add {EIF_ID} to tokenPlaceholders" Item="{}{EIF_ID}">
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenPlaceholders">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenPlaceholders">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenPlaceholders" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add {EIF_ID} encoded to tokenPlaceholders" Item="&amp;#123;EIF_ID&amp;#125;">
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenPlaceholders">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenPlaceholders">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenPlaceholders" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add eif ID to tokenValues">
+                <AddToCollection.Item>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="eifId">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="eifId">
+                          <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID17}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <ArgumentValue x:TypeArguments="x:String" ArgumentName="eifId" />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </AddToCollection.Item>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenValues">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenValues">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenValues" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add eif ID to tokenValues">
+                <AddToCollection.Item>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="eifId">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="eifId">
+                          <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID17}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <ArgumentValue x:TypeArguments="x:String" ArgumentName="eifId" />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </AddToCollection.Item>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenValues">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenValues">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenValues" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+            </Sequence>
+          </If.Else>
+        </If>
+      </Sequence>
+      <Sequence DisplayName="Get TAR ID">
+        <p:GetDynamicValueProperty x:TypeArguments="x:String" DisplayName="Get EIF TAR Id from eifDetails" PropertyName="d/results/(0)/TAR_TarId">
+          <p:GetDynamicValueProperty.Result>
+            <OutArgument x:TypeArguments="x:String">
+              <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="tarId">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="tarId">
+                    <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID18}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:String" ArgumentName="tarId" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:GetDynamicValueProperty.Result>
+          <p:GetDynamicValueProperty.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="eifDetails">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="eifDetails">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID9}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="eifDetails" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.Source>
+        </p:GetDynamicValueProperty>
+      </Sequence>
+      <Sequence DisplayName="Set EIF details link">
+        <AddToCollection x:TypeArguments="x:String" DisplayName="Add http://{EIF_LINK} encoded to tokenPlaceholders" Item="http&amp;#58;//eif_link">
+          <InArgument x:TypeArguments="scg:ICollection(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenPlaceholders">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenPlaceholders">
+                  <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenPlaceholders" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </AddToCollection>
+        <If DisplayName="If EIF is with funds">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="!string.IsNullOrEmpty(tarId)">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="tarId">
+                    <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID18}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:Not>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <p:IsEmptyString>
+                      <InArgument x:TypeArguments="x:String">
+                        <ArgumentValue x:TypeArguments="x:String" ArgumentName="tarId" />
+                      </InArgument>
+                    </p:IsEmptyString>
+                  </InArgument>
+                </p:Not>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence DisplayName="Has tar associated">
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add EIF LINK to tokenValues">
+                <AddToCollection.Item>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Format(&quot;{0}{1}#/details/eif-funds-details/{2}/{3}&quot;, webUrl, appRelativeUrl, eifId, tarId);">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:Object" x:Key="webUrl">
+                          <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID0}" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:Object" x:Key="appRelativeUrl">
+                          <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID8}" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:Object" x:Key="eifId">
+                          <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID17}" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:Object" x:Key="tarId">
+                          <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID18}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <p:FormatString Format="{}{0}{1}#/details/eif-funds-details/{2}/{3}">
+                        <InArgument x:TypeArguments="x:Object">
+                          <ArgumentValue x:TypeArguments="x:Object" ArgumentName="webUrl" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:Object">
+                          <ArgumentValue x:TypeArguments="x:Object" ArgumentName="appRelativeUrl" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:Object">
+                          <ArgumentValue x:TypeArguments="x:Object" ArgumentName="eifId" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:Object">
+                          <ArgumentValue x:TypeArguments="x:Object" ArgumentName="tarId" />
+                        </InArgument>
+                      </p:FormatString>
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </AddToCollection.Item>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenValues">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenValues">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenValues" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="Does not have tar associated">
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add EIF LINK to tokenValues">
+                <AddToCollection.Item>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Format(&quot;{0}{1}#/details/eif-details/{2}&quot;, webUrl, appRelativeUrl, eifId);">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:Object" x:Key="webUrl">
+                          <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID0}" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:Object" x:Key="appRelativeUrl">
+                          <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID8}" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:Object" x:Key="eifId">
+                          <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID17}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <p:FormatString Format="{}{0}{1}#/details/eif-details/{2}">
+                        <InArgument x:TypeArguments="x:Object">
+                          <ArgumentValue x:TypeArguments="x:Object" ArgumentName="webUrl" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:Object">
+                          <ArgumentValue x:TypeArguments="x:Object" ArgumentName="appRelativeUrl" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:Object">
+                          <ArgumentValue x:TypeArguments="x:Object" ArgumentName="eifId" />
+                        </InArgument>
+                      </p:FormatString>
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </AddToCollection.Item>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenValues">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenValues">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenValues" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+            </Sequence>
+          </If.Else>
+        </If>
+      </Sequence>
+      <Sequence DisplayName="Get EIF Staff Responsible">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:String" x:Name="__ReferenceID19" Name="staffResponsibleName" />
+        </Sequence.Variables>
+        <p:GetDynamicValueProperty x:TypeArguments="x:Int32" DisplayName="Get Staff Responsible Id" PropertyName="d/results/(0)/TAR_StaffResponsibleForGuestId">
+          <p:GetDynamicValueProperty.Result>
+            <OutArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="tokenValueInt">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:Int32" x:Key="tokenValueInt">
+                    <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="tokenValueInt" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:GetDynamicValueProperty.Result>
+          <p:GetDynamicValueProperty.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="eifDetails">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="eifDetails">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID9}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="eifDetails" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.Source>
+        </p:GetDynamicValueProperty>
+        <p1:LookupSPUser DisplayName="Lookup Staff Responsible">
+          <p1:LookupSPUser.PrincipalId>
+            <InArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="tokenValueInt">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="tokenValueInt">
+                    <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="tokenValueInt" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:LookupSPUser.PrincipalId>
+          <p1:LookupSPUser.Result>
+            <OutArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerReference x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                    <VariableReference x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p1:LookupSPUser.Result>
+        </p1:LookupSPUser>
+        <p:GetODataProperties DisplayName="Get Staff Responsible properties">
+          <p:GetODataProperties.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetODataProperties.Source>
+          <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+            <OutArgument x:TypeArguments="x:String" x:Key="Title">
+              <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="staffResponsibleName">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="staffResponsibleName">
+                    <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID19}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:String" ArgumentName="staffResponsibleName" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+            <OutArgument x:TypeArguments="x:String" x:Key="Email">
+              <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="emailAddress">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="emailAddress">
+                    <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID12}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:String" ArgumentName="emailAddress" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+            <OutArgument x:TypeArguments="x:String" x:Key="LoginName">
+              <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="staffResponsibleLoginName">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="staffResponsibleLoginName">
+                    <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID20}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:String" ArgumentName="staffResponsibleLoginName" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </scg:Dictionary>
+        </p:GetODataProperties>
+        <If DisplayName="If staff responsible has no email address OR no name">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="string.IsNullOrEmpty(emailAddress) || string.IsNullOrEmpty(staffResponsibleName)">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="emailAddress">
+                    <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID12}" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="staffResponsibleName">
+                    <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID19}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:Or>
+                  <p:Or.Left>
+                    <InArgument x:TypeArguments="x:Boolean" EvaluationOrder="0">
+                      <p:IsEmptyString>
+                        <InArgument x:TypeArguments="x:String">
+                          <ArgumentValue x:TypeArguments="x:String" ArgumentName="emailAddress" />
+                        </InArgument>
+                      </p:IsEmptyString>
+                    </InArgument>
+                  </p:Or.Left>
+                  <p:Or.Right>
+                    <InArgument x:TypeArguments="x:Boolean" EvaluationOrder="1">
+                      <p:IsEmptyString>
+                        <InArgument x:TypeArguments="x:String">
+                          <ArgumentValue x:TypeArguments="x:String" ArgumentName="staffResponsibleName" />
+                        </InArgument>
+                      </p:IsEmptyString>
+                    </InArgument>
+                  </p:Or.Right>
+                </p:Or>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence>
+              <p1:WriteToHistory DisplayName="Log error">
+                <p1:WriteToHistory.Message>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Format(&quot;User {0} has no email address or no name&quot;, staffResponsibleLoginName);">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:Object" x:Key="staffResponsibleLoginName">
+                          <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID20}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <p:FormatString Format="User {0} has no email address or no name">
+                        <InArgument x:TypeArguments="x:Object">
+                          <ArgumentValue x:TypeArguments="x:Object" ArgumentName="staffResponsibleLoginName" />
+                        </InArgument>
+                      </p:FormatString>
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </p1:WriteToHistory.Message>
+              </p1:WriteToHistory>
+              <TerminateWorkflow>
+                <TerminateWorkflow.Reason>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Format(&quot;User {0} has no email address or no name&quot;, staffResponsibleLoginName);">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:Object" x:Key="staffResponsibleLoginName">
+                          <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID20}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <p:FormatString Format="User {0} has no email address or no name">
+                        <InArgument x:TypeArguments="x:Object">
+                          <ArgumentValue x:TypeArguments="x:Object" ArgumentName="staffResponsibleLoginName" />
+                        </InArgument>
+                      </p:FormatString>
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </TerminateWorkflow.Reason>
+              </TerminateWorkflow>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="Add tokens">
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add {STAFF_RESPONSIBLE_FOR_GUEST} to tokenPlaceholders" Item="{}{STAFF_RESPONSIBLE_FOR_GUEST}">
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenPlaceholders">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenPlaceholders">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenPlaceholders" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add {STAFF_RESPONSIBLE_FOR_GUEST} encoded to tokenPlaceholders" Item="&amp;#123;STAFF_RESPONSIBLE_FOR_GUEST&amp;#125;">
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenPlaceholders">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenPlaceholders">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenPlaceholders" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add staff responsible name to tokenValues">
+                <AddToCollection.Item>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="staffResponsibleName">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="staffResponsibleName">
+                          <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID19}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <ArgumentValue x:TypeArguments="x:String" ArgumentName="staffResponsibleName" />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </AddToCollection.Item>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenValues">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenValues">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenValues" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+              <AddToCollection x:TypeArguments="x:String" DisplayName="Add staff responsible name to tokenValues">
+                <AddToCollection.Item>
+                  <InArgument x:TypeArguments="x:String">
+                    <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="staffResponsibleName">
+                      <p:ExpressionContainerValue.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="staffResponsibleName">
+                          <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID19}" />
+                        </InArgument>
+                      </p:ExpressionContainerValue.Arguments>
+                      <ArgumentValue x:TypeArguments="x:String" ArgumentName="staffResponsibleName" />
+                    </p:ExpressionContainerValue>
+                  </InArgument>
+                </AddToCollection.Item>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                  <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenValues">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenValues">
+                        <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenValues" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection>
+            </Sequence>
+          </If.Else>
+        </If>
+      </Sequence>
+      <Sequence DisplayName="Get EIF Destinations">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Int32" x:Name="__ReferenceID21" Name="destinationsCount" />
+          <Variable x:TypeArguments="x:String" x:Name="__ReferenceID26" Name="destinations" />
+        </Sequence.Variables>
+        <p:GetDynamicValueProperty x:TypeArguments="x:String" DisplayName="Get Destinations JSON" PropertyName="d/results/(0)/TAR_Destinations">
+          <p:GetDynamicValueProperty.Result>
+            <OutArgument x:TypeArguments="x:String">
+              <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="tokenValueString">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="tokenValueString">
+                    <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID15}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:String" ArgumentName="tokenValueString" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:GetDynamicValueProperty.Result>
+          <p:GetDynamicValueProperty.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="eifDetails">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="eifDetails">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID9}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="eifDetails" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.Source>
+        </p:GetDynamicValueProperty>
+        <p:ParseDynamicValue DisplayName="Parse Destinations JSON">
+          <p:ParseDynamicValue.Result>
+            <OutArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerReference x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                    <VariableReference x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:ParseDynamicValue.Result>
+          <InArgument x:TypeArguments="x:String">
+            <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="tokenValueString">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="tokenValueString">
+                  <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID15}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="x:String" ArgumentName="tokenValueString" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </p:ParseDynamicValue>
+        <p:CountDynamicValueItems DisplayName="Count Destinations DynamicValueItems">
+          <p:CountDynamicValueItems.Result>
+            <OutArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="destinationsCount">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:Int32" x:Key="destinationsCount">
+                    <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID21}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="destinationsCount" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:CountDynamicValueItems.Result>
+          <InArgument x:TypeArguments="p:DynamicValue">
+            <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                  <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </p:CountDynamicValueItems>
+        <If DisplayName="If destinationsCount == 0">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="destinationsCount == 0">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="destinationsCount">
+                    <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID21}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:IsEqual x:TypeArguments="x:Int32">
+                  <p:IsEqual.Left>
+                    <InArgument x:TypeArguments="x:Int32" EvaluationOrder="0">
+                      <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="destinationsCount" />
+                    </InArgument>
+                  </p:IsEqual.Left>
+                  <p:IsEqual.Right>
+                    <InArgument x:TypeArguments="x:Int32" EvaluationOrder="1" Expression="0" />
+                  </p:IsEqual.Right>
+                </p:IsEqual>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence>
+              <p1:WriteToHistory DisplayName="Log error" Message="No destinations introduced." />
+              <TerminateWorkflow Reason="Invalid input data." />
+            </Sequence>
+          </If.Then>
+        </If>
+        <p:BuildCollection x:TypeArguments="x:String" DisplayName="Build countryDirectorsLoginNames collection">
+          <p:BuildCollection.Collection>
+            <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+              <p:ExpressionContainerValue x:TypeArguments="scg:IEnumerable(x:String)" DisplayName="countryDirectorsLoginNames">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="countryDirectorsLoginNames">
+                    <VariableValue x:TypeArguments="scg:IEnumerable(x:String)" Variable="{x:Reference __ReferenceID22}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="scg:IEnumerable(x:String)" ArgumentName="countryDirectorsLoginNames" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:BuildCollection.Collection>
+          <p:BuildCollection.Result>
+            <OutArgument x:TypeArguments="sco:Collection(x:String)">
+              <p:ExpressionContainerReference x:TypeArguments="sco:Collection(x:String)" DisplayName="countryDirectorsLoginNames">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="sco:Collection(x:String)" x:Key="countryDirectorsLoginNames">
+                    <VariableReference x:TypeArguments="sco:Collection(x:String)" Variable="{x:Reference __ReferenceID22}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="sco:Collection(x:String)" ArgumentName="countryDirectorsLoginNames" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:BuildCollection.Result>
+        </p:BuildCollection>
+        <Assign DisplayName="Initialize index">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="index">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:Int32" x:Key="index">
+                    <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID23}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="index" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Int32">0</InArgument>
+          </Assign.Value>
+        </Assign>
+        <While DisplayName="Iterate over destinations dynamicValue ">
+          <While.Variables>
+            <Variable x:TypeArguments="x:String" x:Name="__ReferenceID24" Name="destinationsQuery" />
+            <Variable x:TypeArguments="x:String" x:Name="__ReferenceID25" Name="directorQuery" />
+            <Variable x:TypeArguments="p:DynamicValue" x:Name="__ReferenceID27" Name="userDetails" />
+            <Variable x:TypeArguments="x:String" x:Name="__ReferenceID28" Name="userLoginName" />
+          </While.Variables>
+          <While.Condition>
+            <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="index &lt; destinationsCount">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="x:Int32" x:Key="index">
+                  <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID23}" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:Int32" x:Key="destinationsCount">
+                  <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID21}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <p:IsLessThan x:TypeArguments="x:Int32">
+                <p:IsLessThan.Left>
+                  <InArgument x:TypeArguments="x:Int32" EvaluationOrder="0">
+                    <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="index" />
+                  </InArgument>
+                </p:IsLessThan.Left>
+                <p:IsLessThan.Right>
+                  <InArgument x:TypeArguments="x:Int32" EvaluationOrder="1">
+                    <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="destinationsCount" />
+                  </InArgument>
+                </p:IsLessThan.Right>
+              </p:IsLessThan>
+            </p:ExpressionContainerValue>
+          </While.Condition>
+          <Sequence>
+            <Assign DisplayName="Create query statement for country title">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">
+                  <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="destinationsQuery">
+                    <p:ExpressionContainerReference.Arguments>
+                      <InOutArgument x:TypeArguments="x:String" x:Key="destinationsQuery">
+                        <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID24}" />
+                      </InOutArgument>
+                    </p:ExpressionContainerReference.Arguments>
+                    <ArgumentReference x:TypeArguments="x:String" ArgumentName="destinationsQuery" />
+                  </p:ExpressionContainerReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Format(&quot;({0})/country/title&quot;, index);">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="index">
+                        <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID23}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <p:FormatString Format="({0})/country/title">
+                      <InArgument x:TypeArguments="x:Object">
+                        <p:Convert x:TypeArguments="x:Int32, x:Object">
+                          <InArgument x:TypeArguments="x:Int32">
+                            <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="index" />
+                          </InArgument>
+                        </p:Convert>
+                      </InArgument>
+                    </p:FormatString>
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="Create query statement for country director">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">
+                  <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="directorQuery">
+                    <p:ExpressionContainerReference.Arguments>
+                      <InOutArgument x:TypeArguments="x:String" x:Key="directorQuery">
+                        <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID25}" />
+                      </InOutArgument>
+                    </p:ExpressionContainerReference.Arguments>
+                    <ArgumentReference x:TypeArguments="x:String" ArgumentName="directorQuery" />
+                  </p:ExpressionContainerReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Format(&quot;({0})/country/director/Id&quot;, index);">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="index">
+                        <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID23}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <p:FormatString Format="({0})/country/director/Id">
+                      <InArgument x:TypeArguments="x:Object">
+                        <p:Convert x:TypeArguments="x:Int32, x:Object">
+                          <InArgument x:TypeArguments="x:Int32">
+                            <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="index" />
+                          </InArgument>
+                        </p:Convert>
+                      </InArgument>
+                    </p:FormatString>
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+            <p:GetDynamicValueProperty x:TypeArguments="x:String" DisplayName="Get destination from JSON">
+              <p:GetDynamicValueProperty.PropertyName>
+                <InArgument x:TypeArguments="x:String">
+                  <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="destinationsQuery">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="destinationsQuery">
+                        <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID24}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="x:String" ArgumentName="destinationsQuery" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </p:GetDynamicValueProperty.PropertyName>
+              <p:GetDynamicValueProperty.Result>
+                <OutArgument x:TypeArguments="x:String">
+                  <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="tokenValueString">
+                    <p:ExpressionContainerReference.Arguments>
+                      <InOutArgument x:TypeArguments="x:String" x:Key="tokenValueString">
+                        <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID15}" />
+                      </InOutArgument>
+                    </p:ExpressionContainerReference.Arguments>
+                    <ArgumentReference x:TypeArguments="x:String" ArgumentName="tokenValueString" />
+                  </p:ExpressionContainerReference>
+                </OutArgument>
+              </p:GetDynamicValueProperty.Result>
+              <p:GetDynamicValueProperty.Source>
+                <InArgument x:TypeArguments="p:DynamicValue">
+                  <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                        <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </p:GetDynamicValueProperty.Source>
+            </p:GetDynamicValueProperty>
+            <If DisplayName="If destinations is empty">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="string.IsNullOrEmpty(destinations)">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="destinations">
+                        <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID26}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <p:IsEmptyString>
+                      <InArgument x:TypeArguments="x:String">
+                        <ArgumentValue x:TypeArguments="x:String" ArgumentName="destinations" />
+                      </InArgument>
+                    </p:IsEmptyString>
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Assign>
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">
+                      <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="destinations">
+                        <p:ExpressionContainerReference.Arguments>
+                          <InOutArgument x:TypeArguments="x:String" x:Key="destinations">
+                            <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID26}" />
+                          </InOutArgument>
+                        </p:ExpressionContainerReference.Arguments>
+                        <ArgumentReference x:TypeArguments="x:String" ArgumentName="destinations" />
+                      </p:ExpressionContainerReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">
+                      <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="tokenValueString">
+                        <p:ExpressionContainerValue.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="tokenValueString">
+                            <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID15}" />
+                          </InArgument>
+                        </p:ExpressionContainerValue.Arguments>
+                        <ArgumentValue x:TypeArguments="x:String" ArgumentName="tokenValueString" />
+                      </p:ExpressionContainerValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+              </If.Then>
+              <If.Else>
+                <Assign DisplayName="Add new destination">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">
+                      <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="destinations">
+                        <p:ExpressionContainerReference.Arguments>
+                          <InOutArgument x:TypeArguments="x:String" x:Key="destinations">
+                            <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID26}" />
+                          </InOutArgument>
+                        </p:ExpressionContainerReference.Arguments>
+                        <ArgumentReference x:TypeArguments="x:String" ArgumentName="destinations" />
+                      </p:ExpressionContainerReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">
+                      <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Format(&quot;{0}, {1}&quot;, destinations, tokenValueString);">
+                        <p:ExpressionContainerValue.Arguments>
+                          <InArgument x:TypeArguments="x:Object" x:Key="destinations">
+                            <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID26}" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="x:Object" x:Key="tokenValueString">
+                            <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID15}" />
+                          </InArgument>
+                        </p:ExpressionContainerValue.Arguments>
+                        <p:FormatString Format="{}{0}, {1}">
+                          <InArgument x:TypeArguments="x:Object">
+                            <ArgumentValue x:TypeArguments="x:Object" ArgumentName="destinations" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="x:Object">
+                            <ArgumentValue x:TypeArguments="x:Object" ArgumentName="tokenValueString" />
+                          </InArgument>
+                        </p:FormatString>
+                      </p:ExpressionContainerValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+              </If.Else>
+            </If>
+            <p:GetDynamicValueProperty x:TypeArguments="x:Int32" DisplayName="Get Country Director Id from JSON">
+              <p:GetDynamicValueProperty.PropertyName>
+                <InArgument x:TypeArguments="x:String">
+                  <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="directorQuery">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="directorQuery">
+                        <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID25}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="x:String" ArgumentName="directorQuery" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </p:GetDynamicValueProperty.PropertyName>
+              <p:GetDynamicValueProperty.Result>
+                <OutArgument x:TypeArguments="x:Int32">
+                  <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="tokenValueInt">
+                    <p:ExpressionContainerReference.Arguments>
+                      <InOutArgument x:TypeArguments="x:Int32" x:Key="tokenValueInt">
+                        <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+                      </InOutArgument>
+                    </p:ExpressionContainerReference.Arguments>
+                    <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="tokenValueInt" />
+                  </p:ExpressionContainerReference>
+                </OutArgument>
+              </p:GetDynamicValueProperty.Result>
+              <p:GetDynamicValueProperty.Source>
+                <InArgument x:TypeArguments="p:DynamicValue">
+                  <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                        <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </p:GetDynamicValueProperty.Source>
+            </p:GetDynamicValueProperty>
+            <If DisplayName="If there is a valid country director">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="tokenValueInt &gt; 0">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="tokenValueInt">
+                        <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <p:IsGreaterThan x:TypeArguments="x:Int32">
+                      <p:IsGreaterThan.Left>
+                        <InArgument x:TypeArguments="x:Int32" EvaluationOrder="0">
+                          <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="tokenValueInt" />
+                        </InArgument>
+                      </p:IsGreaterThan.Left>
+                      <p:IsGreaterThan.Right>
+                        <InArgument x:TypeArguments="x:Int32" EvaluationOrder="1" Expression="0" />
+                      </p:IsGreaterThan.Right>
+                    </p:IsGreaterThan>
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Sequence DisplayName="Lookup and Add CD">
+                  <p1:LookupSPUser DisplayName="Lookup Country Director">
+                    <p1:LookupSPUser.PrincipalId>
+                      <InArgument x:TypeArguments="x:Int32">
+                        <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="tokenValueInt">
+                          <p:ExpressionContainerValue.Arguments>
+                            <InArgument x:TypeArguments="x:Int32" x:Key="tokenValueInt">
+                              <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID7}" />
+                            </InArgument>
+                          </p:ExpressionContainerValue.Arguments>
+                          <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="tokenValueInt" />
+                        </p:ExpressionContainerValue>
+                      </InArgument>
+                    </p1:LookupSPUser.PrincipalId>
+                    <p1:LookupSPUser.Result>
+                      <OutArgument x:TypeArguments="p:DynamicValue">
+                        <p:ExpressionContainerReference x:TypeArguments="p:DynamicValue" DisplayName="userDetails">
+                          <p:ExpressionContainerReference.Arguments>
+                            <InOutArgument x:TypeArguments="p:DynamicValue" x:Key="userDetails">
+                              <VariableReference x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID27}" />
+                            </InOutArgument>
+                          </p:ExpressionContainerReference.Arguments>
+                          <ArgumentReference x:TypeArguments="p:DynamicValue" ArgumentName="userDetails" />
+                        </p:ExpressionContainerReference>
+                      </OutArgument>
+                    </p1:LookupSPUser.Result>
+                  </p1:LookupSPUser>
+                  <p:GetODataProperties DisplayName="Get Country Director Login Name">
+                    <p:GetODataProperties.Source>
+                      <InArgument x:TypeArguments="p:DynamicValue">
+                        <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="userDetails">
+                          <p:ExpressionContainerValue.Arguments>
+                            <InArgument x:TypeArguments="p:DynamicValue" x:Key="userDetails">
+                              <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID27}" />
+                            </InArgument>
+                          </p:ExpressionContainerValue.Arguments>
+                          <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="userDetails" />
+                        </p:ExpressionContainerValue>
+                      </InArgument>
+                    </p:GetODataProperties.Source>
+                    <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                      <OutArgument x:TypeArguments="x:String" x:Key="LoginName">
+                        <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="userLoginName">
+                          <p:ExpressionContainerReference.Arguments>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="userLoginName">
+                              <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID28}" />
+                            </InOutArgument>
+                          </p:ExpressionContainerReference.Arguments>
+                          <ArgumentReference x:TypeArguments="x:String" ArgumentName="userLoginName" />
+                        </p:ExpressionContainerReference>
+                      </OutArgument>
+                    </scg:Dictionary>
+                  </p:GetODataProperties>
+                  <AddToCollection x:TypeArguments="x:String" DisplayName="Add CD Login Name to collection">
+                    <AddToCollection.Item>
+                      <InArgument x:TypeArguments="x:String">
+                        <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="userLoginName">
+                          <p:ExpressionContainerValue.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="userLoginName">
+                              <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID28}" />
+                            </InArgument>
+                          </p:ExpressionContainerValue.Arguments>
+                          <ArgumentValue x:TypeArguments="x:String" ArgumentName="userLoginName" />
+                        </p:ExpressionContainerValue>
+                      </InArgument>
+                    </AddToCollection.Item>
+                    <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                      <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="countryDirectorsLoginNames">
+                        <p:ExpressionContainerValue.Arguments>
+                          <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="countryDirectorsLoginNames">
+                            <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID22}" />
+                          </InArgument>
+                        </p:ExpressionContainerValue.Arguments>
+                        <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="countryDirectorsLoginNames" />
+                      </p:ExpressionContainerValue>
+                    </InArgument>
+                  </AddToCollection>
+                </Sequence>
+              </If.Then>
+            </If>
+            <Assign DisplayName="Increase index">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">
+                  <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="index">
+                    <p:ExpressionContainerReference.Arguments>
+                      <InOutArgument x:TypeArguments="x:Int32" x:Key="index">
+                        <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID23}" />
+                      </InOutArgument>
+                    </p:ExpressionContainerReference.Arguments>
+                    <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="index" />
+                  </p:ExpressionContainerReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">
+                  <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="index + 1">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="index">
+                        <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID23}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <p:Add x:TypeArguments="x:Int32">
+                      <p:Add.Left>
+                        <InArgument x:TypeArguments="x:Int32" EvaluationOrder="0">
+                          <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="index" />
+                        </InArgument>
+                      </p:Add.Left>
+                      <p:Add.Right>
+                        <InArgument x:TypeArguments="x:Int32" EvaluationOrder="1" Expression="1" />
+                      </p:Add.Right>
+                    </p:Add>
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </While>
+        <AddToCollection x:TypeArguments="x:String" DisplayName="Add {DESTINATIONS} to tokenPlaceholders" Item="{}{DESTINATIONS}">
+          <InArgument x:TypeArguments="scg:ICollection(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenPlaceholders">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenPlaceholders">
+                  <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenPlaceholders" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </AddToCollection>
+        <AddToCollection x:TypeArguments="x:String" DisplayName="Add {DESTINATIONS} encoded to tokenPlaceholders" Item="&amp;#123;DESTINATIONS&amp;#125;">
+          <InArgument x:TypeArguments="scg:ICollection(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenPlaceholders">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenPlaceholders">
+                  <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenPlaceholders" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </AddToCollection>
+        <AddToCollection x:TypeArguments="x:String" DisplayName="Add destinations to tokenValues">
+          <AddToCollection.Item>
+            <InArgument x:TypeArguments="x:String">
+              <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="destinations">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="destinations">
+                    <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID26}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="x:String" ArgumentName="destinations" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </AddToCollection.Item>
+          <InArgument x:TypeArguments="scg:ICollection(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenValues">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenValues">
+                  <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenValues" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </AddToCollection>
+        <AddToCollection x:TypeArguments="x:String" DisplayName="Add destinations to tokenValues">
+          <AddToCollection.Item>
+            <InArgument x:TypeArguments="x:String">
+              <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="destinations">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="destinations">
+                    <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID26}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="x:String" ArgumentName="destinations" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </AddToCollection.Item>
+          <InArgument x:TypeArguments="scg:ICollection(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenValues">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenValues">
+                  <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenValues" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </AddToCollection>
+      </Sequence>
+      <Sequence DisplayName="Get EIF Departure Date">
+        <p:GetDynamicValueProperty x:TypeArguments="s:DateTime" DisplayName="Get Departure Date" PropertyName="d/results/(0)/TAR_DepartureDate">
+          <p:GetDynamicValueProperty.Result>
+            <OutArgument x:TypeArguments="s:DateTime">
+              <p:ExpressionContainerReference x:TypeArguments="s:DateTime" DisplayName="tokenValueDateTime">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="s:DateTime" x:Key="tokenValueDateTime">
+                    <VariableReference x:TypeArguments="s:DateTime" Variable="{x:Reference __ReferenceID29}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="s:DateTime" ArgumentName="tokenValueDateTime" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:GetDynamicValueProperty.Result>
+          <p:GetDynamicValueProperty.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="eifDetails">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="eifDetails">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID9}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="eifDetails" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.Source>
+        </p:GetDynamicValueProperty>
+        <AddToCollection x:TypeArguments="x:String" DisplayName="Add {DEPARTURE_DATE} to tokenPlaceholders" Item="{}{DEPARTURE_DATE}">
+          <InArgument x:TypeArguments="scg:ICollection(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenPlaceholders">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenPlaceholders">
+                  <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenPlaceholders" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </AddToCollection>
+        <AddToCollection x:TypeArguments="x:String" DisplayName="Add {DEPARTURE_DATE} encoded to tokenPlaceholders" Item="&amp;#123;DEPARTURE_DATE&amp;#125;">
+          <InArgument x:TypeArguments="scg:ICollection(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenPlaceholders">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenPlaceholders">
+                  <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenPlaceholders" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </AddToCollection>
+        <AddToCollection x:TypeArguments="x:String" DisplayName="Add departure date to tokenValues">
+          <AddToCollection.Item>
+            <InArgument x:TypeArguments="x:String">
+              <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="tokenValueDateTime.ToString(&quot;MM/dd/yyyy&quot;)">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Object" x:Key="tokenValueDateTime">
+                    <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID29}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:ToString Format="MM/dd/yyyy">
+                  <InArgument x:TypeArguments="x:Object">
+                    <ArgumentValue x:TypeArguments="x:Object" ArgumentName="tokenValueDateTime" />
+                  </InArgument>
+                </p:ToString>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </AddToCollection.Item>
+          <InArgument x:TypeArguments="scg:ICollection(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenValues">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenValues">
+                  <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenValues" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </AddToCollection>
+        <AddToCollection x:TypeArguments="x:String" DisplayName="Add departure date to tokenValues">
+          <AddToCollection.Item>
+            <InArgument x:TypeArguments="x:String">
+              <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="tokenValueDateTime.ToString(&quot;MM/dd/yyyy&quot;)">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Object" x:Key="tokenValueDateTime">
+                    <VariableValue x:TypeArguments="x:Object" Variable="{x:Reference __ReferenceID29}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <p:ToString Format="MM/dd/yyyy">
+                  <InArgument x:TypeArguments="x:Object">
+                    <ArgumentValue x:TypeArguments="x:Object" ArgumentName="tokenValueDateTime" />
+                  </InArgument>
+                </p:ToString>
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </AddToCollection.Item>
+          <InArgument x:TypeArguments="scg:ICollection(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenValues">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenValues">
+                  <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenValues" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </AddToCollection>
+      </Sequence>
+      <p:CountCollection x:TypeArguments="x:String" DisplayName="Count tokenPlaceholders">
+        <p:CountCollection.Collection>
+          <InArgument x:TypeArguments="scg:ICollection(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenPlaceholders">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenPlaceholders">
+                  <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenPlaceholders" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </p:CountCollection.Collection>
+        <p:CountCollection.Result>
+          <OutArgument x:TypeArguments="x:Int32">
+            <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="collectionSize">
+              <p:ExpressionContainerReference.Arguments>
+                <InOutArgument x:TypeArguments="x:Int32" x:Key="collectionSize">
+                  <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID30}" />
+                </InOutArgument>
+              </p:ExpressionContainerReference.Arguments>
+              <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="collectionSize" />
+            </p:ExpressionContainerReference>
+          </OutArgument>
+        </p:CountCollection.Result>
+      </p:CountCollection>
+      <Assign>
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Int32">
+            <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="index">
+              <p:ExpressionContainerReference.Arguments>
+                <InOutArgument x:TypeArguments="x:Int32" x:Key="index">
+                  <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID23}" />
+                </InOutArgument>
+              </p:ExpressionContainerReference.Arguments>
+              <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="index" />
+            </p:ExpressionContainerReference>
+          </OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Int32">0</InArgument>
+        </Assign.Value>
+      </Assign>
+      <While DisplayName="Iterate over tokenPlaceholders">
+        <While.Variables>
+          <Variable x:TypeArguments="x:String" x:Name="__ReferenceID31" Name="placeholder" />
+          <Variable x:TypeArguments="x:String" x:Name="__ReferenceID32" Name="placeholderValue" />
+        </While.Variables>
+        <While.Condition>
+          <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="index &lt; collectionSize">
+            <p:ExpressionContainerValue.Arguments>
+              <InArgument x:TypeArguments="x:Int32" x:Key="index">
+                <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID23}" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="collectionSize">
+                <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID30}" />
+              </InArgument>
+            </p:ExpressionContainerValue.Arguments>
+            <p:IsLessThan x:TypeArguments="x:Int32">
+              <p:IsLessThan.Left>
+                <InArgument x:TypeArguments="x:Int32" EvaluationOrder="0">
+                  <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="index" />
+                </InArgument>
+              </p:IsLessThan.Left>
+              <p:IsLessThan.Right>
+                <InArgument x:TypeArguments="x:Int32" EvaluationOrder="1">
+                  <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="collectionSize" />
+                </InArgument>
+              </p:IsLessThan.Right>
+            </p:IsLessThan>
+          </p:ExpressionContainerValue>
+        </While.Condition>
+        <Sequence>
+          <p:GetItemFromCollection x:TypeArguments="x:String" DisplayName="Get item from tokenPlaceholders">
+            <p:GetItemFromCollection.Index>
+              <InArgument x:TypeArguments="x:Int32">
+                <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="index">
+                  <p:ExpressionContainerValue.Arguments>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="index">
+                      <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID23}" />
+                    </InArgument>
+                  </p:ExpressionContainerValue.Arguments>
+                  <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="index" />
+                </p:ExpressionContainerValue>
+              </InArgument>
+            </p:GetItemFromCollection.Index>
+            <p:GetItemFromCollection.Result>
+              <OutArgument x:TypeArguments="x:String">
+                <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="placeholder">
+                  <p:ExpressionContainerReference.Arguments>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="placeholder">
+                      <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID31}" />
+                    </InOutArgument>
+                  </p:ExpressionContainerReference.Arguments>
+                  <ArgumentReference x:TypeArguments="x:String" ArgumentName="placeholder" />
+                </p:ExpressionContainerReference>
+              </OutArgument>
+            </p:GetItemFromCollection.Result>
+            <InArgument x:TypeArguments="scg:ICollection(x:String)">
+              <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenPlaceholders">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenPlaceholders">
+                    <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID1}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenPlaceholders" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetItemFromCollection>
+          <p:GetItemFromCollection x:TypeArguments="x:String" DisplayName="Get item from tokenValues">
+            <p:GetItemFromCollection.Index>
+              <InArgument x:TypeArguments="x:Int32">
+                <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="index">
+                  <p:ExpressionContainerValue.Arguments>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="index">
+                      <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID23}" />
+                    </InArgument>
+                  </p:ExpressionContainerValue.Arguments>
+                  <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="index" />
+                </p:ExpressionContainerValue>
+              </InArgument>
+            </p:GetItemFromCollection.Index>
+            <p:GetItemFromCollection.Result>
+              <OutArgument x:TypeArguments="x:String">
+                <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="placeholderValue">
+                  <p:ExpressionContainerReference.Arguments>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="placeholderValue">
+                      <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID32}" />
+                    </InOutArgument>
+                  </p:ExpressionContainerReference.Arguments>
+                  <ArgumentReference x:TypeArguments="x:String" ArgumentName="placeholderValue" />
+                </p:ExpressionContainerReference>
+              </OutArgument>
+            </p:GetItemFromCollection.Result>
+            <InArgument x:TypeArguments="scg:ICollection(x:String)">
+              <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="tokenValues">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="tokenValues">
+                    <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID2}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="tokenValues" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetItemFromCollection>
+          <Assign>
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">
+                <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="submittedEmailSubject">
+                  <p:ExpressionContainerReference.Arguments>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="submittedEmailSubject">
+                      <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID5}" />
+                    </InOutArgument>
+                  </p:ExpressionContainerReference.Arguments>
+                  <ArgumentReference x:TypeArguments="x:String" ArgumentName="submittedEmailSubject" />
+                </p:ExpressionContainerReference>
+              </OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">
+                <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="submittedEmailSubject.Replace(placeholder, placeholderValue);">
+                  <p:ExpressionContainerValue.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="submittedEmailSubject">
+                      <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID5}" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="placeholderValue">
+                      <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID32}" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="placeholder">
+                      <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID31}" />
+                    </InArgument>
+                  </p:ExpressionContainerValue.Arguments>
+                  <p:ReplaceString>
+                    <p:ReplaceString.ExistingValue>
+                      <InArgument x:TypeArguments="x:String">
+                        <ArgumentValue x:TypeArguments="x:String" ArgumentName="placeholder" />
+                      </InArgument>
+                    </p:ReplaceString.ExistingValue>
+                    <p:ReplaceString.Input>
+                      <InArgument x:TypeArguments="x:String">
+                        <ArgumentValue x:TypeArguments="x:String" ArgumentName="submittedEmailSubject" />
+                      </InArgument>
+                    </p:ReplaceString.Input>
+                    <p:ReplaceString.Replacement>
+                      <InArgument x:TypeArguments="x:String">
+                        <ArgumentValue x:TypeArguments="x:String" ArgumentName="placeholderValue" />
+                      </InArgument>
+                    </p:ReplaceString.Replacement>
+                  </p:ReplaceString>
+                </p:ExpressionContainerValue>
+              </InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign>
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">
+                <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="submittedEmailContent">
+                  <p:ExpressionContainerReference.Arguments>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="submittedEmailContent">
+                      <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID6}" />
+                    </InOutArgument>
+                  </p:ExpressionContainerReference.Arguments>
+                  <ArgumentReference x:TypeArguments="x:String" ArgumentName="submittedEmailContent" />
+                </p:ExpressionContainerReference>
+              </OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">
+                <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="submittedEmailContent.Replace(placeholder, placeholderValue);">
+                  <p:ExpressionContainerValue.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="submittedEmailContent">
+                      <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID6}" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="placeholderValue">
+                      <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID32}" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="placeholder">
+                      <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID31}" />
+                    </InArgument>
+                  </p:ExpressionContainerValue.Arguments>
+                  <p:ReplaceString>
+                    <p:ReplaceString.ExistingValue>
+                      <InArgument x:TypeArguments="x:String">
+                        <ArgumentValue x:TypeArguments="x:String" ArgumentName="placeholder" />
+                      </InArgument>
+                    </p:ReplaceString.ExistingValue>
+                    <p:ReplaceString.Input>
+                      <InArgument x:TypeArguments="x:String">
+                        <ArgumentValue x:TypeArguments="x:String" ArgumentName="submittedEmailContent" />
+                      </InArgument>
+                    </p:ReplaceString.Input>
+                    <p:ReplaceString.Replacement>
+                      <InArgument x:TypeArguments="x:String">
+                        <ArgumentValue x:TypeArguments="x:String" ArgumentName="placeholderValue" />
+                      </InArgument>
+                    </p:ReplaceString.Replacement>
+                  </p:ReplaceString>
+                </p:ExpressionContainerValue>
+              </InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign>
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">
+                <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="index">
+                  <p:ExpressionContainerReference.Arguments>
+                    <InOutArgument x:TypeArguments="x:Int32" x:Key="index">
+                      <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID23}" />
+                    </InOutArgument>
+                  </p:ExpressionContainerReference.Arguments>
+                  <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="index" />
+                </p:ExpressionContainerReference>
+              </OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">
+                <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="index + 1">
+                  <p:ExpressionContainerValue.Arguments>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="index">
+                      <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID23}" />
+                    </InArgument>
+                  </p:ExpressionContainerValue.Arguments>
+                  <p:Add x:TypeArguments="x:Int32">
+                    <p:Add.Left>
+                      <InArgument x:TypeArguments="x:Int32" EvaluationOrder="0">
+                        <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="index" />
+                      </InArgument>
+                    </p:Add.Left>
+                    <p:Add.Right>
+                      <InArgument x:TypeArguments="x:Int32" EvaluationOrder="1" Expression="1" />
+                    </p:Add.Right>
+                  </p:Add>
+                </p:ExpressionContainerValue>
+              </InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </While>
+    </Sequence>
+    <Sequence DisplayName="Send EIF Submitted Alert">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="sco:Collection(x:String)" x:Name="__ReferenceID33" Name="toCollection" />
+        <Variable x:TypeArguments="sco:Collection(x:String)" x:Name="__ReferenceID34" Name="ccCollection" />
+      </Sequence.Variables>
+      <p:BuildCollection x:TypeArguments="x:String" DisplayName="Build email To collection">
+        <p:BuildCollection.Collection>
+          <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="scg:IEnumerable(x:String)" DisplayName="toCollection">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="toCollection">
+                  <VariableValue x:TypeArguments="scg:IEnumerable(x:String)" Variable="{x:Reference __ReferenceID33}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="scg:IEnumerable(x:String)" ArgumentName="toCollection" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </p:BuildCollection.Collection>
+        <p:BuildCollection.Result>
+          <OutArgument x:TypeArguments="sco:Collection(x:String)">
+            <p:ExpressionContainerReference x:TypeArguments="sco:Collection(x:String)" DisplayName="toCollection">
+              <p:ExpressionContainerReference.Arguments>
+                <InOutArgument x:TypeArguments="sco:Collection(x:String)" x:Key="toCollection">
+                  <VariableReference x:TypeArguments="sco:Collection(x:String)" Variable="{x:Reference __ReferenceID33}" />
+                </InOutArgument>
+              </p:ExpressionContainerReference.Arguments>
+              <ArgumentReference x:TypeArguments="sco:Collection(x:String)" ArgumentName="toCollection" />
+            </p:ExpressionContainerReference>
+          </OutArgument>
+        </p:BuildCollection.Result>
+        <p:BuildCollection.Values>
+          <InArgument x:TypeArguments="x:String">
+            <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="requesterLoginName">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="requesterLoginName">
+                  <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID11}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="x:String" ArgumentName="requesterLoginName" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </p:BuildCollection.Values>
+      </p:BuildCollection>
+      <p:BuildCollection x:TypeArguments="x:String" DisplayName="Build email Cc collection">
+        <p:BuildCollection.Collection>
+          <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="scg:IEnumerable(x:String)" DisplayName="ccCollection">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="ccCollection">
+                  <VariableValue x:TypeArguments="scg:IEnumerable(x:String)" Variable="{x:Reference __ReferenceID34}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="scg:IEnumerable(x:String)" ArgumentName="ccCollection" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </p:BuildCollection.Collection>
+        <p:BuildCollection.Result>
+          <OutArgument x:TypeArguments="sco:Collection(x:String)">
+            <p:ExpressionContainerReference x:TypeArguments="sco:Collection(x:String)" DisplayName="ccCollection">
+              <p:ExpressionContainerReference.Arguments>
+                <InOutArgument x:TypeArguments="sco:Collection(x:String)" x:Key="ccCollection">
+                  <VariableReference x:TypeArguments="sco:Collection(x:String)" Variable="{x:Reference __ReferenceID34}" />
+                </InOutArgument>
+              </p:ExpressionContainerReference.Arguments>
+              <ArgumentReference x:TypeArguments="sco:Collection(x:String)" ArgumentName="ccCollection" />
+            </p:ExpressionContainerReference>
+          </OutArgument>
+        </p:BuildCollection.Result>
+        <p:BuildCollection.Values>
+          <InArgument x:TypeArguments="x:String">
+            <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="staffResponsibleLoginName">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="staffResponsibleLoginName">
+                  <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID20}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="x:String" ArgumentName="staffResponsibleLoginName" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </p:BuildCollection.Values>
+      </p:BuildCollection>
+      <If DisplayName="If additionalStaffMemberLoginName is not empty">
+        <If.Condition>
+          <InArgument x:TypeArguments="x:Boolean">
+            <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="!string.IsNullOrEmpty(additionalStaffMemberLoginName)">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="additionalStaffMemberLoginName">
+                  <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID16}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <p:Not>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <p:IsEmptyString>
+                    <InArgument x:TypeArguments="x:String">
+                      <ArgumentValue x:TypeArguments="x:String" ArgumentName="additionalStaffMemberLoginName" />
+                    </InArgument>
+                  </p:IsEmptyString>
+                </InArgument>
+              </p:Not>
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </If.Condition>
+        <If.Then>
+          <AddToCollection x:TypeArguments="x:String" DisplayName="Add additional staff member login name to toCollection">
+            <AddToCollection.Item>
+              <InArgument x:TypeArguments="x:String">
+                <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="additionalStaffMemberLoginName">
+                  <p:ExpressionContainerValue.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="additionalStaffMemberLoginName">
+                      <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID16}" />
+                    </InArgument>
+                  </p:ExpressionContainerValue.Arguments>
+                  <ArgumentValue x:TypeArguments="x:String" ArgumentName="additionalStaffMemberLoginName" />
+                </p:ExpressionContainerValue>
+              </InArgument>
+            </AddToCollection.Item>
+            <InArgument x:TypeArguments="scg:ICollection(x:String)">
+              <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="ccCollection">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="ccCollection">
+                    <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID34}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="ccCollection" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </AddToCollection>
+        </If.Then>
+      </If>
+      <Sequence DisplayName="Get GSS Approvers emails">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Int32" x:Name="__ReferenceID35" Name="gssApproversGroupId" />
+          <Variable x:TypeArguments="p:DynamicValue" x:Name="__ReferenceID36" Name="properties" />
+          <Variable x:TypeArguments="x:Int32" x:Name="__ReferenceID37" Name="membersCount" />
+          <Variable x:TypeArguments="x:Int32" x:Name="__ReferenceID38" Name="index" />
+        </Sequence.Variables>
+        <p1:LookupSPPrincipalId AddToUserInfoList="{x:Null}" DisplayName="Get GSS Approvers Group Id" UserName="GSS Approvers">
+          <p1:LookupSPPrincipalId.Result>
+            <OutArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="gssApproversGroupId">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:Int32" x:Key="gssApproversGroupId">
+                    <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID35}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="gssApproversGroupId" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p1:LookupSPPrincipalId.Result>
+        </p1:LookupSPPrincipalId>
+        <p1:LookupSPGroupMembers DisplayName="Lookup GSS Approvers members">
+          <p1:LookupSPGroupMembers.GroupPrincipalId>
+            <InArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="gssApproversGroupId">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="gssApproversGroupId">
+                    <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID35}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="gssApproversGroupId" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p1:LookupSPGroupMembers.GroupPrincipalId>
+          <p1:LookupSPGroupMembers.Result>
+            <OutArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerReference x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                    <VariableReference x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p1:LookupSPGroupMembers.Result>
+        </p1:LookupSPGroupMembers>
+        <p:GetDynamicValueProperty x:TypeArguments="p:DynamicValue" DisplayName="Get GSS Members" PropertyName="d/results">
+          <p:GetDynamicValueProperty.Result>
+            <OutArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerReference x:TypeArguments="p:DynamicValue" DisplayName="properties">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="p:DynamicValue" x:Key="properties">
+                    <VariableReference x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID36}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="p:DynamicValue" ArgumentName="properties" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:GetDynamicValueProperty.Result>
+          <p:GetDynamicValueProperty.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                    <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.Source>
+        </p:GetDynamicValueProperty>
+        <p:CountDynamicValueItems DisplayName="Count GSS Members">
+          <p:CountDynamicValueItems.Result>
+            <OutArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="membersCount">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:Int32" x:Key="membersCount">
+                    <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID37}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="membersCount" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </p:CountDynamicValueItems.Result>
+          <InArgument x:TypeArguments="p:DynamicValue">
+            <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="properties">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="p:DynamicValue" x:Key="properties">
+                  <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID36}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="properties" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </p:CountDynamicValueItems>
+        <Assign DisplayName="Initialize index">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="index">
+                <p:ExpressionContainerReference.Arguments>
+                  <InOutArgument x:TypeArguments="x:Int32" x:Key="index">
+                    <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID38}" />
+                  </InOutArgument>
+                </p:ExpressionContainerReference.Arguments>
+                <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="index" />
+              </p:ExpressionContainerReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Int32">
+              <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="0;" Expression="0" />
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+        <While DisplayName="Iterate over GSS group members">
+          <While.Variables>
+            <Variable x:TypeArguments="x:String" x:Name="__ReferenceID39" Name="memberLoginName" />
+          </While.Variables>
+          <While.Condition>
+            <p:ExpressionContainerValue x:TypeArguments="x:Boolean" DisplayName="index &lt; membersCount">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="x:Int32" x:Key="index">
+                  <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID38}" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:Int32" x:Key="membersCount">
+                  <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID37}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <p:IsLessThan x:TypeArguments="x:Int32">
+                <p:IsLessThan.Left>
+                  <InArgument x:TypeArguments="x:Int32" EvaluationOrder="0">
+                    <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="index" />
+                  </InArgument>
+                </p:IsLessThan.Left>
+                <p:IsLessThan.Right>
+                  <InArgument x:TypeArguments="x:Int32" EvaluationOrder="1">
+                    <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="membersCount" />
+                  </InArgument>
+                </p:IsLessThan.Right>
+              </p:IsLessThan>
+            </p:ExpressionContainerValue>
+          </While.Condition>
+          <Sequence>
+            <p:GetDynamicValueProperty x:TypeArguments="x:String" DisplayName="Get Member LoginName">
+              <p:GetDynamicValueProperty.PropertyName>
+                <InArgument x:TypeArguments="x:String">
+                  <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="string.Format(&quot;d/results({0})/LoginName&quot;, index);">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="index">
+                        <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID38}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <p:FormatString Format="d/results({0})/LoginName">
+                      <InArgument x:TypeArguments="x:Object">
+                        <p:Convert x:TypeArguments="x:Int32, x:Object">
+                          <InArgument x:TypeArguments="x:Int32">
+                            <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="index" />
+                          </InArgument>
+                        </p:Convert>
+                      </InArgument>
+                    </p:FormatString>
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </p:GetDynamicValueProperty.PropertyName>
+              <p:GetDynamicValueProperty.Result>
+                <OutArgument x:TypeArguments="x:String">
+                  <p:ExpressionContainerReference x:TypeArguments="x:String" DisplayName="memberLoginName">
+                    <p:ExpressionContainerReference.Arguments>
+                      <InOutArgument x:TypeArguments="x:String" x:Key="memberLoginName">
+                        <VariableReference x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID39}" />
+                      </InOutArgument>
+                    </p:ExpressionContainerReference.Arguments>
+                    <ArgumentReference x:TypeArguments="x:String" ArgumentName="memberLoginName" />
+                  </p:ExpressionContainerReference>
+                </OutArgument>
+              </p:GetDynamicValueProperty.Result>
+              <p:GetDynamicValueProperty.Source>
+                <InArgument x:TypeArguments="p:DynamicValue">
+                  <p:ExpressionContainerValue x:TypeArguments="p:DynamicValue" DisplayName="dynamicValue">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="p:DynamicValue" x:Key="dynamicValue">
+                        <VariableValue x:TypeArguments="p:DynamicValue" Variable="{x:Reference __ReferenceID4}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="p:DynamicValue" ArgumentName="dynamicValue" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </p:GetDynamicValueProperty.Source>
+            </p:GetDynamicValueProperty>
+            <AddToCollection x:TypeArguments="x:String" DisplayName="Add member login name to ccCollection">
+              <AddToCollection.Item>
+                <InArgument x:TypeArguments="x:String">
+                  <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="memberLoginName">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="memberLoginName">
+                        <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID39}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="x:String" ArgumentName="memberLoginName" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection.Item>
+              <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="ccCollection">
+                  <p:ExpressionContainerValue.Arguments>
+                    <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="ccCollection">
+                      <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID34}" />
+                    </InArgument>
+                  </p:ExpressionContainerValue.Arguments>
+                  <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="ccCollection" />
+                </p:ExpressionContainerValue>
+              </InArgument>
+            </AddToCollection>
+            <Assign DisplayName="Increment index">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">
+                  <p:ExpressionContainerReference x:TypeArguments="x:Int32" DisplayName="index">
+                    <p:ExpressionContainerReference.Arguments>
+                      <InOutArgument x:TypeArguments="x:Int32" x:Key="index">
+                        <VariableReference x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID38}" />
+                      </InOutArgument>
+                    </p:ExpressionContainerReference.Arguments>
+                    <ArgumentReference x:TypeArguments="x:Int32" ArgumentName="index" />
+                  </p:ExpressionContainerReference>
+                </OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">
+                  <p:ExpressionContainerValue x:TypeArguments="x:Int32" DisplayName="index + 1;">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="index">
+                        <VariableValue x:TypeArguments="x:Int32" Variable="{x:Reference __ReferenceID38}" />
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <p:Add x:TypeArguments="x:Int32">
+                      <p:Add.Left>
+                        <InArgument x:TypeArguments="x:Int32" EvaluationOrder="0">
+                          <ArgumentValue x:TypeArguments="x:Int32" ArgumentName="index" />
+                        </InArgument>
+                      </p:Add.Left>
+                      <p:Add.Right>
+                        <InArgument x:TypeArguments="x:Int32" EvaluationOrder="1" Expression="1" />
+                      </p:Add.Right>
+                    </p:Add>
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </While>
+      </Sequence>
+      <Sequence DisplayName="Add Country Directors to Cc">
+        <ForEach x:TypeArguments="x:String" DisplayName="ForEach Country Director Login Name">
+          <ForEach.Values>
+            <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+              <p:ExpressionContainerValue x:TypeArguments="scg:IEnumerable(x:String)" DisplayName="countryDirectorsLoginNames">
+                <p:ExpressionContainerValue.Arguments>
+                  <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="countryDirectorsLoginNames">
+                    <VariableValue x:TypeArguments="scg:IEnumerable(x:String)" Variable="{x:Reference __ReferenceID22}" />
+                  </InArgument>
+                </p:ExpressionContainerValue.Arguments>
+                <ArgumentValue x:TypeArguments="scg:IEnumerable(x:String)" ArgumentName="countryDirectorsLoginNames" />
+              </p:ExpressionContainerValue>
+            </InArgument>
+          </ForEach.Values>
+          <ActivityAction x:TypeArguments="x:String">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:String" x:Name="__ReferenceID40" Name="cdLoginName" />
+            </ActivityAction.Argument>
+            <AddToCollection x:TypeArguments="x:String" DisplayName="Add Country Director Login Name to Cc">
+              <AddToCollection.Item>
+                <InArgument x:TypeArguments="x:String">
+                  <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="cdLoginName">
+                    <p:ExpressionContainerValue.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="cdLoginName">
+                        <DelegateArgumentValue x:TypeArguments="x:String">
+                          <x:Reference>__ReferenceID40</x:Reference>
+                        </DelegateArgumentValue>
+                      </InArgument>
+                    </p:ExpressionContainerValue.Arguments>
+                    <ArgumentValue x:TypeArguments="x:String" ArgumentName="cdLoginName" />
+                  </p:ExpressionContainerValue>
+                </InArgument>
+              </AddToCollection.Item>
+              <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                <p:ExpressionContainerValue x:TypeArguments="scg:ICollection(x:String)" DisplayName="ccCollection">
+                  <p:ExpressionContainerValue.Arguments>
+                    <InArgument x:TypeArguments="scg:ICollection(x:String)" x:Key="ccCollection">
+                      <VariableValue x:TypeArguments="scg:ICollection(x:String)" Variable="{x:Reference __ReferenceID34}" />
+                    </InArgument>
+                  </p:ExpressionContainerValue.Arguments>
+                  <ArgumentValue x:TypeArguments="scg:ICollection(x:String)" ArgumentName="ccCollection" />
+                </p:ExpressionContainerValue>
+              </InArgument>
+            </AddToCollection>
+          </ActivityAction>
+        </ForEach>
+      </Sequence>
+      <p1:Email AdditionalHeaders="{x:Null}" BCC="{x:Null}" DisplayName="Send Submitted Email Alert">
+        <p1:Email.Body>
+          <InArgument x:TypeArguments="x:String">
+            <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="submittedEmailContent">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="submittedEmailContent">
+                  <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID6}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="x:String" ArgumentName="submittedEmailContent" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </p1:Email.Body>
+        <p1:Email.CC>
+          <InArgument x:TypeArguments="sco:Collection(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="sco:Collection(x:String)" DisplayName="ccCollection">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="sco:Collection(x:String)" x:Key="ccCollection">
+                  <VariableValue x:TypeArguments="sco:Collection(x:String)" Variable="{x:Reference __ReferenceID34}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="sco:Collection(x:String)" ArgumentName="ccCollection" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </p1:Email.CC>
+        <p1:Email.Subject>
+          <InArgument x:TypeArguments="x:String">
+            <p:ExpressionContainerValue x:TypeArguments="x:String" DisplayName="submittedEmailSubject">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="submittedEmailSubject">
+                  <VariableValue x:TypeArguments="x:String" Variable="{x:Reference __ReferenceID5}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="x:String" ArgumentName="submittedEmailSubject" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </p1:Email.Subject>
+        <p1:Email.To>
+          <InArgument x:TypeArguments="sco:Collection(x:String)">
+            <p:ExpressionContainerValue x:TypeArguments="sco:Collection(x:String)" DisplayName="toCollection">
+              <p:ExpressionContainerValue.Arguments>
+                <InArgument x:TypeArguments="sco:Collection(x:String)" x:Key="toCollection">
+                  <VariableValue x:TypeArguments="sco:Collection(x:String)" Variable="{x:Reference __ReferenceID33}" />
+                </InArgument>
+              </p:ExpressionContainerValue.Arguments>
+              <ArgumentValue x:TypeArguments="sco:Collection(x:String)" ArgumentName="toCollection" />
+            </p:ExpressionContainerValue>
+          </InArgument>
+        </p1:Email.To>
+      </p1:Email>
+    </Sequence>
+  </Sequence>
+</Activity>

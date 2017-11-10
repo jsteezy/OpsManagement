@@ -1,0 +1,53 @@
+<md-content ng-cloak class="md-inline-form">
+    <ng-form name="form" novalidate>
+        <wizard-header main="ctrl"></wizard-header>
+
+        <md-subheader>{{'TAR_FORM_HINT' | translate}}</md-subheader>
+
+        <toggle-accordion-section></toggle-accordion-section>
+
+        <accordion heading="{{'REQUEST_INFO' | translate | uppercase}}">
+            <div layout-gt-md="row" layout-padding>
+                <people-picker ng-model="ctrl.model.traveller"
+                                model-ids="ctrl.model.travellerId"
+                               options="ctrl.features.pickerOptions.travellerPickerOptions" flex-gt-sm="50"></people-picker>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>{{'TRAVEL_PURPOSE_QUESTION' | translate}}</label>
+                    <textarea ng-model="ctrl.model.purposeOfTravel" name="purposeOfTravel" md-maxlength="255" required></textarea>
+                    <div ng-messages="form.purposeOfTravel.$error"
+                         ng-if='ctrl.isFieldErrorVisible(form, "purposeOfTravel")'>
+                        <div ng-messages-include="error-messages"></div>
+                    </div>
+                </md-input-container>
+                <people-picker ng-model="ctrl.model.selectedEmergencyContacts"
+                               options="ctrl.features.pickerOptions.emergencyPickerOptions" flex-gt-sm="50"></people-picker>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <people-picker ng-model="ctrl.model.lineManager"
+                               model-ids="ctrl.model.lineManagerId"
+                               options="ctrl.features.pickerOptions.lineManagerPickerOptions" flex-gt-sm="50"></people-picker>
+                <people-picker ng-model="ctrl.model.additionalStaffMember"
+                                model-ids="ctrl.model.additionalStaffMemberId"
+                                options="ctrl.features.pickerOptions.additionalStaffMemberOptions" flex-gt-sm="50"></people-picker>
+            </div>
+        </accordion>
+
+        <tar-wizard-common ng-model="ctrl.model" currencies="ctrl.currencies"></tar-wizard-common>
+
+        <accordion heading="{{'TERMS_AND_CONDITIONS' | translate | uppercase}}">
+            <div class="questions-section-padding">
+                <question ng-model="ctrl.model.informationRead.travelProcedures"
+                          options="ctrl.features.questionsOptions.travelProceduresOptions"></question>
+                <question ng-model="ctrl.model.informationRead.departureProcedures"
+                          options="ctrl.features.questionsOptions.departureProceduresOptions"></question>
+            </div>
+            <md-subheader>
+                <md-checkbox ng-model="ctrl.model.formSubmitConfirmation" aria-label="submitConfirmation">
+                    {{'TAR_SUBMIT_CONFIRMATION' | translate}}
+                </md-checkbox>
+            </md-subheader>
+        </accordion>
+    </ng-form>
+</md-content>

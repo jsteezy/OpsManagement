@@ -1,0 +1,38 @@
+<question ng-model="ctrl.model.photoId" options="ctrl.questionsOptions.photoIdOptions"></question>
+<question ng-model="ctrl.model.gSSTraining" options="ctrl.questionsOptions.securityTrainingOptions"
+          is-disabled="!ctrl.isSecurityTrainingValid()">
+    <div ng-show="ctrl.hasSecurityTraining() || !ctrl.isSecurityTrainingValid()"
+         class="global-security-date">
+        <md-datepicker ng-model="ctrl.model.gSSTrainingDate"
+                       ng-change="ctrl.processSecurityTrainingDate()"
+                       md-placeholder="{{'GLOBALSECURIY_DATE' | translate}}"></md-datepicker>
+    </div>
+</question>
+<question ng-model="ctrl.model.medicalEmergencyCard"
+          options="ctrl.questionsOptions.medicalCardOptions"></question>
+<div layout-gt-sm="row" layout-padding layout-align="start center" ng-show="ctrl.hasMedicalCard()">
+    <md-input-container layout-margin class="md-block" flex-gt-sm="20">
+        <label>{{'MEDICALPROVIDERNAME_QUESTION' | translate}}</label>
+        <input type="text" name="medicalProviderName"
+               ng-model="ctrl.model.medicalProviderName"
+               ng-required="ctrl.hasMedicalCard()"
+               maxlength="255"
+               aria-label="provider">
+        <div ng-messages="ctrl.form.medicalProviderName.$error"
+             ng-if='ctrl.form.submitted || ctrl.form.medicalProviderName.$touched'>
+            <div ng-messages-include="error-messages"></div>
+        </div>
+    </md-input-container>
+    <md-input-container layout-margin class="md-block" flex-gt-sm="20">
+        <label>{{'POLICYNUMBER_QUESTION' | translate}}</label>
+        <input type="text" name="policyNumber"
+               ng-model="ctrl.model.policyNumber"
+               ng-required="ctrl.hasMedicalCard()"
+               maxlength="255"
+               aria-label="policy">
+        <div ng-messages="ctrl.form.policyNumber.$error"
+             ng-if='ctrl.form.submitted || ctrl.form.policyNumber.$touched'>
+            <div ng-messages-include="error-messages"></div>
+        </div>
+    </md-input-container>
+</div>

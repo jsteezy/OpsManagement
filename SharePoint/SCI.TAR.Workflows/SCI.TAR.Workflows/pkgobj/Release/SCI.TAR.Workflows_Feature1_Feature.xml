@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Id="d9a0b1d1-1481-48d7-8a9c-a9195872bd12" ReceiverAssembly="Microsoft.SharePoint.WorkflowServices, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" ReceiverClass="Microsoft.SharePoint.WorkflowServices.SPWorkflowPackageFeatureReceiver" Scope="Web" Title="SCI.TAR.Workflows Feature1">
+  <ElementManifests>
+    <ElementManifest Location="TARWorkflow\Elements.xml" />
+    <ElementFile Location="TARWorkflow\Workflow.xaml" />
+    <ElementManifest Location="EIFWorkflow\Elements.xml" />
+    <ElementFile Location="EIFWorkflow\Workflow.xaml" />
+    <ElementFile Location="EIFWorkflow\WorkflowStartAssociation" />
+    <ElementFile Location="EIFWorkflow\ItemAddedAssociation" />
+    <ElementManifest Location="TARArchivingWorkflow\Elements.xml" />
+    <ElementFile Location="TARArchivingWorkflow\Workflow.xaml" />
+    <ElementFile Location="TARArchivingWorkflow\WorkflowStartAssociation" />
+  </ElementManifests>
+</Feature>

@@ -1,53 +1,55 @@
 <md-content md-theme="pageTheme" flex>
     <ng-form name="form" novalidate>
-        <!-- <div class="col-md-12"> -->
-        <div class="md-no-sticky md-subheader _md md-pageTheme-theme">
-            <div class="md-subheader-inner">
-                <div class="md-subheader-content">
-                    <h1>Create new response</h1>
+        <div class="col-md-8" layout-align="center center">
+            <div class="md-no-sticky md-subheader _md md-pageTheme-theme">
+                <div class="md-subheader-inner">
+                    <div class="md-subheader-content">
+                        <h1>Create new response</h1>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <md-input-container class="md-block" flex-gt-sm="50">
-            <label>Country</label>
-            <md-select ng-model="ctrl.countries" placeholder="Country">
-                <md-option ng-repeat="item in ctrl.countries" ng-value="item">
-                    {{item}}
-                </md-option>
-            </md-select>
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm="50">
-            <label>Regions</label>
-            <md-select ng-model="ctrl.regions" placeholder="Regions">
-                <md-option ng-repeat="item in ctrl.regions" ng-value="item">
-                    {{item}}
-                </md-option>
-            </md-select>
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm="50">
-            <label>Code</label>
-            <input required name="code" ng-model="create.code">
-            <div ng-messages="createForm.code.$error">
-                <div ng-message="required">Please enter a code</div>
-            </div>
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm="50">
-            <label>Description</label>
-            <input required name="description" ng-model="create.description">
-            <div ng-messages="createForm.description.$error">
-                <div ng-message="required">Please enter a description</div>
-            </div>
-        </md-input-container>
-        <div class="md-block" flex-gt-sm="50">
-            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+            <md-input-container class="md-block" flex-gt-sm="50">
+                <label>Country</label>
+                <md-select ng-model="ctrl.countries" placeholder="Country">
+                    <md-option ng-repeat="item in ctrl.countries" ng-value="item">
+                        {{item}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm="50">
+                <label>Regions</label>
+                <md-select ng-model="ctrl.regions" placeholder="Regions">
+                    <md-option ng-repeat="item in ctrl.regions" ng-value="item">
+                        {{item}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm="50">
+                <label>Code</label>
+                <input required name="code" ng-model="create.code">
+                <div ng-messages="createForm.code.$error">
+                    <div ng-message="required">Please enter a code</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm="50">
+                <label>Description</label>
+                <input required name="description" ng-model="create.description">
+                <div ng-messages="createForm.description.$error">
+                    <div ng-message="required">Please enter a description</div>
+                </div>
+            </md-input-container>
+            <div class="md-block" flex-gt-sm="50">
                 <label>Start date</label>
                 <md-datepicker ng-model="ctrl.startDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
-                <md-button class="md-raised md-primary" ng-click="ctrl.cancel()">Cancel</md-button>
-                <md-button class="md-raised md-primary" aria-label="save" ng-show="!ctrl.isRequestProcessing" ng-disabled="!form.$dirty" ng-click="ctrl.storeResponse(form)">Create</md-button>
-            </section>
-        </div>
+            </div>
+            <div class="md-block" flex-gt-sm="50">
+                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                    <md-button class="md-raised md-primary" ng-click="ctrl.cancel()">Cancel</md-button>
+                    <md-button class="md-raised md-primary" aria-label="save" ng-show="!ctrl.isRequestProcessing" ng-disabled="!form.$dirty" ng-click="ctrl.storeResponse(form)">Create</md-button>
+                </section>
+            </div>
 
-        <!-- </div> -->
+        </div>
     </ng-form>
 </md-content>

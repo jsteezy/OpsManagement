@@ -1,0 +1,16 @@
+<md-content ng-cloak>
+    <md-tabs class="md-primary" md-dynamic-height="true" md-border-bottom="true">
+        <md-tab id="submitted">
+                <md-tab-label>{{'SUBMITTED_EIFS' | translate}}</md-tab-label>
+                <md-tab-body>
+                    <grid options="ctrl.eifSubmittedOptions"></grid>
+                </md-tab-body>
+            </md-tab>
+        <md-tab id="drafts">
+            <md-tab-label>{{'DRAFT_EIFS' | translate}}</md-tab-label>
+            <md-tab-body>
+                <grid options="ctrl.eifDraftsOptions"></grid>
+            </md-tab-body>
+        </md-tab>
+    </md-tabs>
+</md-content>

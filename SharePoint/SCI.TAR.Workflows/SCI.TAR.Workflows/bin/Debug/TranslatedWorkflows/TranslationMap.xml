@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TranslatedWorkflowsFileMap xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Microsoft.Workflow.Service.Build">
+  <fileMap xmlns:d2p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+    <d2p1:KeyValueOfstringstring>
+      <d2p1:Key>C:\O365\tar\SharePoint\SCI.TAR.Workflows\SCI.TAR.Workflows\TARWorkflow\Workflow.xaml</d2p1:Key>
+      <d2p1:Value>C:\O365\tar\SharePoint\SCI.TAR.Workflows\SCI.TAR.Workflows\bin\Debug\TranslatedWorkflows\hmvdbzxg.xmm.xaml</d2p1:Value>
+    </d2p1:KeyValueOfstringstring>
+    <d2p1:KeyValueOfstringstring>
+      <d2p1:Key>C:\O365\tar\SharePoint\SCI.TAR.Workflows\SCI.TAR.Workflows\EIFWorkflow\Workflow.xaml</d2p1:Key>
+      <d2p1:Value>C:\O365\tar\SharePoint\SCI.TAR.Workflows\SCI.TAR.Workflows\bin\Debug\TranslatedWorkflows\pzoyhnxt.bfp.xaml</d2p1:Value>
+    </d2p1:KeyValueOfstringstring>
+    <d2p1:KeyValueOfstringstring>
+      <d2p1:Key>C:\O365\tar\SharePoint\SCI.TAR.Workflows\SCI.TAR.Workflows\TARArchivingWorkflow\Workflow.xaml</d2p1:Key>
+      <d2p1:Value>C:\O365\tar\SharePoint\SCI.TAR.Workflows\SCI.TAR.Workflows\bin\Debug\TranslatedWorkflows\qbihpgtz.iot.xaml</d2p1:Value>
+    </d2p1:KeyValueOfstringstring>
+    <d2p1:KeyValueOfstringstring>
+      <d2p1:Key>C:\O365\tar\SharePoint\SCI.TAR.Workflows\SCI.TAR.Workflows\EIFArchivingWorkflow\Workflow.xaml</d2p1:Key>
+      <d2p1:Value>C:\O365\tar\SharePoint\SCI.TAR.Workflows\SCI.TAR.Workflows\bin\Debug\TranslatedWorkflows\hrsttxes.2ro.xaml</d2p1:Value>
+    </d2p1:KeyValueOfstringstring>
+  </fileMap>
+</TranslatedWorkflowsFileMap>

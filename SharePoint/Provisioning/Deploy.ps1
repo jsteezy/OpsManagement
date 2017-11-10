@@ -17,4 +17,5 @@ SetListPermissionsForGroups -Web $web
 UploadFilesInLibrary -WebUrl $web.Url -FolderPath $global:solutionPath -DocLibName $global:solutionStorageDocLibraryName -DocLibraryFolder $global:documentLibraryFolder
 
 
+
 $web.Update();

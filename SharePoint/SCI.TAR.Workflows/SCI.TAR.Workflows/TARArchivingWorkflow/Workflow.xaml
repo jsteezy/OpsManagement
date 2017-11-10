@@ -1,0 +1,1079 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="SCI.TAR.Workflows.TARArchivingWorkflow.Workflow" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="SCI.TAR.Workflows.TARArchivingWorkflow.Workflow_1"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:msdad="clr-namespace:Microsoft.SharePoint.DesignTime.Activities.Design;assembly=Microsoft.SharePoint.DesignTime.Activities.Design"
+ xmlns:p="http://schemas.microsoft.com/workflow/2012/07/xaml/activities"
+ xmlns:p1="wf://workflow.windows.net/$Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sn="clr-namespace:System.Net;assembly=System"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>Microsoft.Activities</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Net</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Activities.Design</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint.DesignTime.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint.DesignTime.Activities.Design</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Workflow.Runtime</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint.Client.ServerRuntime</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>SCI.TAR.Workflows</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Main Sequence" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="webUrl" />
+      <Variable x:TypeArguments="p:DynamicValue" Name="restResponse" />
+      <Variable x:TypeArguments="x:Int32" Name="itemsCount" />
+      <Variable x:TypeArguments="x:Int32" Name="index" />
+      <Variable x:TypeArguments="s:DateTime" Name="dateThreshold" />
+    </Sequence.Variables>
+    <p1:WebUri DisplayName="Get Web URL" sap2010:WorkflowViewState.IdRef="WebUri_1">
+      <p1:WebUri.Result>
+        <OutArgument x:TypeArguments="x:String">
+          <mca:CSharpReference x:TypeArguments="x:String">webUrl</mca:CSharpReference>
+        </OutArgument>
+      </p1:WebUri.Result>
+    </p1:WebUri>
+    <Sequence DisplayName="Initialization" sap2010:WorkflowViewState.IdRef="Sequence_5">
+      <Sequence DisplayName="Get Storage Threshold Months" sap2010:WorkflowViewState.IdRef="Sequence_6">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Int32" Name="settingItemId" />
+          <Variable x:TypeArguments="p:DynamicValue" Name="settingDynamicValue" />
+          <Variable x:TypeArguments="x:Int32" Name="monthsThreshold" />
+        </Sequence.Variables>
+        <p1:LookupSPListItemId DisplayName="Lookup TAR Setting Id" sap2010:WorkflowViewState.IdRef="LookupSPListItemId_1" PropertyValue="TAR_StorageMonths">
+          <p1:LookupSPListItemId.ListId>
+            <InArgument x:TypeArguments="s:Guid">
+              <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/TARSettings;}")</mca:CSharpValue>
+            </InArgument>
+          </p1:LookupSPListItemId.ListId>
+          <p1:LookupSPListItemId.PropertyName>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">"Title"</mca:CSharpValue>
+            </InArgument>
+          </p1:LookupSPListItemId.PropertyName>
+          <p1:LookupSPListItemId.Result>
+            <OutArgument x:TypeArguments="x:Int32">
+              <mca:CSharpReference x:TypeArguments="x:Int32">settingItemId</mca:CSharpReference>
+            </OutArgument>
+          </p1:LookupSPListItemId.Result>
+        </p1:LookupSPListItemId>
+        <If DisplayName="If there is no storage threshold setting" sap2010:WorkflowViewState.IdRef="If_3">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean">settingItemId &lt; 1</mca:CSharpValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <p1:WriteToHistory sap2010:WorkflowViewState.IdRef="WriteToHistory_13" Message="Item with title TAR_StorageMonths was not found in TAR Settings list" />
+              <TerminateWorkflow sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" Reason="Item with title TAR_StorageMonths was not found in TAR Settings list" />
+            </Sequence>
+          </If.Then>
+        </If>
+        <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" DisplayName="Lookup TAR Setting" sap2010:WorkflowViewState.IdRef="LookupSPListItem_1">
+          <p1:LookupSPListItem.ItemId>
+            <InArgument x:TypeArguments="x:Int32">
+              <mca:CSharpValue x:TypeArguments="x:Int32">settingItemId</mca:CSharpValue>
+            </InArgument>
+          </p1:LookupSPListItem.ItemId>
+          <p1:LookupSPListItem.ListId>
+            <InArgument x:TypeArguments="s:Guid">
+              <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/TARSettings;}")</mca:CSharpValue>
+            </InArgument>
+          </p1:LookupSPListItem.ListId>
+          <p1:LookupSPListItem.Result>
+            <OutArgument x:TypeArguments="p:DynamicValue">
+              <mca:CSharpReference x:TypeArguments="p:DynamicValue">settingDynamicValue</mca:CSharpReference>
+            </OutArgument>
+          </p1:LookupSPListItem.Result>
+        </p1:LookupSPListItem>
+        <p:GetODataProperties DisplayName="Get Storage Threshold Months" sap2010:WorkflowViewState.IdRef="GetODataProperties_2">
+          <p:GetODataProperties.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <mca:CSharpValue x:TypeArguments="p:DynamicValue">settingDynamicValue</mca:CSharpValue>
+            </InArgument>
+          </p:GetODataProperties.Source>
+          <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+            <OutArgument x:TypeArguments="x:Int32" x:Key="TAR_SettingValue">
+              <mca:CSharpReference x:TypeArguments="x:Int32">monthsThreshold</mca:CSharpReference>
+            </OutArgument>
+          </scg:Dictionary>
+        </p:GetODataProperties>
+        <Assign DisplayName="Negate months threshold" sap2010:WorkflowViewState.IdRef="Assign_7">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Int32">
+              <mca:CSharpReference x:TypeArguments="x:Int32">monthsThreshold</mca:CSharpReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Int32">
+              <mca:CSharpValue x:TypeArguments="x:Int32">0 - monthsThreshold;</mca:CSharpValue>
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign DisplayName="Compute date threshold" sap2010:WorkflowViewState.IdRef="Assign_8">
+          <Assign.To>
+            <OutArgument x:TypeArguments="s:DateTime">
+              <mca:CSharpReference x:TypeArguments="s:DateTime">dateThreshold</mca:CSharpReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="s:DateTime">
+              <mca:CSharpValue x:TypeArguments="s:DateTime">DateTime.UtcNow.AddMonths(monthsThreshold);</mca:CSharpValue>
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+    </Sequence>
+    <p:HttpSend DisplayName="Call REST to get finished TARs" sap2010:WorkflowViewState.IdRef="HttpSend_1" Method="GET">
+      <p:HttpSend.RequestHeaders>
+        <InArgument x:TypeArguments="p:DynamicValue">
+          <p:SetDynamicValueProperties>
+            <scg:Dictionary x:TypeArguments="x:String, InArgument">
+              <InArgument x:TypeArguments="x:String" x:Key="Accept">application/json;odata=verbose</InArgument>
+            </scg:Dictionary>
+          </p:SetDynamicValueProperties>
+        </InArgument>
+      </p:HttpSend.RequestHeaders>
+      <p:HttpSend.ResponseContent>
+        <OutArgument x:TypeArguments="p:DynamicValue">
+          <mca:CSharpReference x:TypeArguments="p:DynamicValue">restResponse</mca:CSharpReference>
+        </OutArgument>
+      </p:HttpSend.ResponseContent>
+      <p:HttpSend.Uri>
+        <InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String">string.Format("{0}/_api/Lists/getByTitle('TAR Requests')/items?$filter=(Created lt datetime'{1}') and ((TAR_BudgetApprovalStatus eq 'Rejected') or ((TAR_RequiresGssApproval eq 1 and (TAR_GSSApprovalStatus eq 'Approved' or TAR_GSSApprovalStatus eq 'Rejected')) or (TAR_RequiresGssApproval eq 0 and TAR_BudgetApprovalStatus eq 'Approved')))", webUrl, dateThreshold.ToString("s"));</mca:CSharpValue>
+        </InArgument>
+      </p:HttpSend.Uri>
+    </p:HttpSend>
+    <p:GetDynamicValueProperty x:TypeArguments="p:DynamicValue" DisplayName="Get d/results from REST response" sap2010:WorkflowViewState.IdRef="GetDynamicValueProperty`1_1" PropertyName="d/results">
+      <p:GetDynamicValueProperty.Result>
+        <OutArgument x:TypeArguments="p:DynamicValue">
+          <mca:CSharpReference x:TypeArguments="p:DynamicValue">restResponse</mca:CSharpReference>
+        </OutArgument>
+      </p:GetDynamicValueProperty.Result>
+      <p:GetDynamicValueProperty.Source>
+        <InArgument x:TypeArguments="p:DynamicValue">
+          <mca:CSharpValue x:TypeArguments="p:DynamicValue">restResponse</mca:CSharpValue>
+        </InArgument>
+      </p:GetDynamicValueProperty.Source>
+    </p:GetDynamicValueProperty>
+    <p:CountDynamicValueItems DisplayName="Count finished TAR items" sap2010:WorkflowViewState.IdRef="CountDynamicValueItems_1">
+      <p:CountDynamicValueItems.Result>
+        <OutArgument x:TypeArguments="x:Int32">
+          <mca:CSharpReference x:TypeArguments="x:Int32">itemsCount</mca:CSharpReference>
+        </OutArgument>
+      </p:CountDynamicValueItems.Result>
+      <InArgument x:TypeArguments="p:DynamicValue">
+        <mca:CSharpValue x:TypeArguments="p:DynamicValue">restResponse</mca:CSharpValue>
+      </InArgument>
+    </p:CountDynamicValueItems>
+    <Assign DisplayName="Initialize index" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">
+          <mca:CSharpReference x:TypeArguments="x:Int32">index</mca:CSharpReference>
+        </OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">
+          <mca:CSharpValue x:TypeArguments="x:Int32">0;</mca:CSharpValue>
+        </InArgument>
+      </Assign.Value>
+    </Assign>
+    <While DisplayName="Iterate over TARs" sap2010:WorkflowViewState.IdRef="While_1">
+      <While.Variables>
+        <Variable x:TypeArguments="x:String" Name="tarQuery" />
+        <Variable x:TypeArguments="x:Int32" Name="tarId" />
+        <Variable x:TypeArguments="x:String" Name="tarTitle" />
+      </While.Variables>
+      <While.Condition>
+        <mca:CSharpValue x:TypeArguments="x:Boolean">index &lt; itemsCount</mca:CSharpValue>
+      </While.Condition>
+      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="p:DynamicValue" Name="tarDetails" />
+          <Variable x:TypeArguments="s:DateTime" Name="tarCreationDate" />
+          <Variable x:TypeArguments="x:String" Name="archiveListName" />
+          <Variable x:TypeArguments="x:String" Name="postResponse" />
+          <Variable x:TypeArguments="x:String" Name="archiveListItemName" />
+          <Variable x:TypeArguments="p:DynamicValue" Name="tarRequestBody" />
+          <Variable x:TypeArguments="p:DynamicValue" Name="newTarDetails" />
+          <Variable x:TypeArguments="p:DynamicValue" Name="renewDigestResponse" />
+          <Variable x:TypeArguments="x:String" Name="formDigest" />
+          <Variable x:TypeArguments="sn:HttpStatusCode" Name="postResponseStatusCode" />
+        </Sequence.Variables>
+        <p:HttpSend sap2010:WorkflowViewState.IdRef="HttpSend_4" Method="POST">
+          <p:HttpSend.RequestHeaders>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:SetDynamicValueProperties>
+                <scg:Dictionary x:TypeArguments="x:String, InArgument">
+                  <InArgument x:TypeArguments="x:String" x:Key="Accept">application/json; odata=verbose</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Content-Type">application/json; odata=verbose</InArgument>
+                </scg:Dictionary>
+              </p:SetDynamicValueProperties>
+            </InArgument>
+          </p:HttpSend.RequestHeaders>
+          <p:HttpSend.ResponseContent>
+            <OutArgument x:TypeArguments="p:DynamicValue">
+              <mca:CSharpReference x:TypeArguments="p:DynamicValue">renewDigestResponse</mca:CSharpReference>
+            </OutArgument>
+          </p:HttpSend.ResponseContent>
+          <p:HttpSend.Uri>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">string.Format("{0}/_api/contextinfo", webUrl);</mca:CSharpValue>
+            </InArgument>
+          </p:HttpSend.Uri>
+        </p:HttpSend>
+        <p:GetDynamicValueProperty x:TypeArguments="x:String" DisplayName="Get Form Digest Value" sap2010:WorkflowViewState.IdRef="GetDynamicValueProperty`1_5" PropertyName="d/GetContextWebInformation/FormDigestValue">
+          <p:GetDynamicValueProperty.Result>
+            <OutArgument x:TypeArguments="x:String">
+              <mca:CSharpReference x:TypeArguments="x:String">formDigest</mca:CSharpReference>
+            </OutArgument>
+          </p:GetDynamicValueProperty.Result>
+          <p:GetDynamicValueProperty.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <mca:CSharpValue x:TypeArguments="p:DynamicValue">renewDigestResponse</mca:CSharpValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.Source>
+        </p:GetDynamicValueProperty>
+        <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">
+              <mca:CSharpReference x:TypeArguments="x:String">tarQuery</mca:CSharpReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">string.Format("({0})", index);</mca:CSharpValue>
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+        <p:GetDynamicValueProperty x:TypeArguments="p:DynamicValue" DisplayName="Get current TAR " sap2010:WorkflowViewState.IdRef="GetDynamicValueProperty`1_3">
+          <p:GetDynamicValueProperty.PropertyName>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">tarQuery</mca:CSharpValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.PropertyName>
+          <p:GetDynamicValueProperty.Result>
+            <OutArgument x:TypeArguments="p:DynamicValue">
+              <mca:CSharpReference x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpReference>
+            </OutArgument>
+          </p:GetDynamicValueProperty.Result>
+          <p:GetDynamicValueProperty.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <mca:CSharpValue x:TypeArguments="p:DynamicValue">restResponse</mca:CSharpValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.Source>
+        </p:GetDynamicValueProperty>
+        <p:GetDynamicValueProperty x:TypeArguments="s:DateTime" DisplayName="Get TAR Created Date" sap2010:WorkflowViewState.IdRef="GetDynamicValueProperty`1_4" PropertyName="Created">
+          <p:GetDynamicValueProperty.Result>
+            <OutArgument x:TypeArguments="s:DateTime">
+              <mca:CSharpReference x:TypeArguments="s:DateTime">tarCreationDate</mca:CSharpReference>
+            </OutArgument>
+          </p:GetDynamicValueProperty.Result>
+          <p:GetDynamicValueProperty.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.Source>
+        </p:GetDynamicValueProperty>
+        <p:GetDynamicValueProperty x:TypeArguments="x:Int32" DisplayName="Get TAR Id" sap2010:WorkflowViewState.IdRef="GetDynamicValueProperty`1_6" PropertyName="Id">
+          <p:GetDynamicValueProperty.Result>
+            <OutArgument x:TypeArguments="x:Int32">
+              <mca:CSharpReference x:TypeArguments="x:Int32">tarId</mca:CSharpReference>
+            </OutArgument>
+          </p:GetDynamicValueProperty.Result>
+          <p:GetDynamicValueProperty.Source>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+            </InArgument>
+          </p:GetDynamicValueProperty.Source>
+        </p:GetDynamicValueProperty>
+        <Assign DisplayName="Assign Archive list name" sap2010:WorkflowViewState.IdRef="Assign_5">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">
+              <mca:CSharpReference x:TypeArguments="x:String">archiveListName</mca:CSharpReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">string.Format("TAR Requests Archive {0}", tarCreationDate.Year);</mca:CSharpValue>
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign DisplayName="Assign Archive list item name (for metadata)" sap2010:WorkflowViewState.IdRef="Assign_6">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">
+              <mca:CSharpReference x:TypeArguments="x:String">archiveListItemName</mca:CSharpReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">archiveListName.Replace(" ", string.Empty);</mca:CSharpValue>
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+        <Sequence DisplayName="Build new TAR" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:Int32" Name="tarRequesterId" />
+            <Variable x:TypeArguments="x:Int32" Name="tarTravellerId" />
+            <Variable x:TypeArguments="x:Int32" Name="tarLineManagerId" />
+            <Variable x:TypeArguments="x:String" Name="tarEmergencyContacts" />
+            <Variable x:TypeArguments="x:String" Name="tarTypeOfTravel" />
+            <Variable x:TypeArguments="x:String" Name="tarVisaRequired" />
+            <Variable x:TypeArguments="x:String" Name="tarVisaNumber" />
+            <Variable x:TypeArguments="x:String" Name="tarPhotoId" />
+            <Variable x:TypeArguments="x:String" Name="tarMedicalEmergencyCard" />
+            <Variable x:TypeArguments="x:String" Name="tarMedicalProviderName" />
+            <Variable x:TypeArguments="x:String" Name="tarPolicyNumber" />
+            <Variable x:TypeArguments="x:String" Name="tarReadPDI" />
+            <Variable x:TypeArguments="x:String" Name="tarUsaidFunds" />
+            <Variable x:TypeArguments="x:String" Name="tarVaccination" />
+            <Variable x:TypeArguments="x:String" Name="tarTravelAdvances" />
+            <Variable x:TypeArguments="x:String" Name="tarGssTraining" />
+            <Variable x:TypeArguments="x:String" Name="tarGssTrainingDateString" />
+            <Variable x:TypeArguments="x:String" Name="tarPurposeOfTravel" />
+            <Variable x:TypeArguments="x:String" Name="tarApprovedByDirector" />
+            <Variable x:TypeArguments="x:String" Name="tarHasAppropriateEmergency" />
+            <Variable x:TypeArguments="x:String" Name="tarDestinations" />
+            <Variable x:TypeArguments="x:String" Name="tarBudgetSession" />
+            <Variable x:TypeArguments="x:String" Name="tarOtherEstimatedCosts" />
+            <Variable x:TypeArguments="x:String" Name="tarBudgetCodes" />
+            <Variable x:TypeArguments="x:String" Name="tarAdditionalInfo" />
+            <Variable x:TypeArguments="x:Int32" Name="tarTravelCoordinatorId" />
+            <Variable x:TypeArguments="x:Int32" Name="tarBudgetApproverId" />
+            <Variable x:TypeArguments="x:String" Name="tarInformationRead" />
+            <Variable x:TypeArguments="x:String" Name="tarLocatedInLondon" />
+            <Variable x:TypeArguments="x:Boolean" Name="tarRequiresGssApproval" />
+            <Variable x:TypeArguments="s:DateTime" Name="tarDepartureDate" />
+            <Variable x:TypeArguments="x:String" Name="tarReturnDate" />
+            <Variable x:TypeArguments="x:String" Name="tarBudgetApprovalStatus" />
+            <Variable x:TypeArguments="x:String" Name="tarBudgetApprovalTimestampString" />
+            <Variable x:TypeArguments="x:String" Name="tarGssApprovalStatus" />
+            <Variable x:TypeArguments="x:String" Name="tarGssApprovalTimestampString" />
+            <Variable x:TypeArguments="x:Int32" Name="tarAdditionalStaffMemberId" />
+            <Variable x:TypeArguments="x:String" Name="tarReturnDateString" />
+            <Variable x:TypeArguments="s:DateTime" Name="tarCreated" />
+          </Sequence.Variables>
+          <p:GetODataProperties DisplayName="Get TAR details" sap2010:WorkflowViewState.IdRef="GetODataProperties_1">
+            <p:GetODataProperties.Source>
+              <InArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpValue x:TypeArguments="p:DynamicValue">tarDetails</mca:CSharpValue>
+              </InArgument>
+            </p:GetODataProperties.Source>
+            <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+              <OutArgument x:TypeArguments="x:String" x:Key="Title">
+                <mca:CSharpReference x:TypeArguments="x:String">tarTitle</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="TAR_RequesterId">
+                <mca:CSharpReference x:TypeArguments="x:Int32">tarRequesterId</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="TAR_TravellerId">
+                <mca:CSharpReference x:TypeArguments="x:Int32">tarTravellerId</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="TAR_LineManagerId">
+                <mca:CSharpReference x:TypeArguments="x:Int32">tarLineManagerId</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_SelectedEmergencyContacts">
+                <mca:CSharpReference x:TypeArguments="x:String">tarEmergencyContacts</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_TypeOfTravel">
+                <mca:CSharpReference x:TypeArguments="x:String">tarTypeOfTravel</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_VisaRequired">
+                <mca:CSharpReference x:TypeArguments="x:String">tarVisaRequired</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_VisaNumber">
+                <mca:CSharpReference x:TypeArguments="x:String">tarVisaNumber</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_PhotoId">
+                <mca:CSharpReference x:TypeArguments="x:String">tarPhotoId</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_MedicalEmergencyCard">
+                <mca:CSharpReference x:TypeArguments="x:String">tarMedicalEmergencyCard</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_MedicalProviderName">
+                <mca:CSharpReference x:TypeArguments="x:String">tarMedicalProviderName</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_PolicyNumber">
+                <mca:CSharpReference x:TypeArguments="x:String">tarPolicyNumber</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_ReadPDI">
+                <mca:CSharpReference x:TypeArguments="x:String">tarReadPDI</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_UsaidFunds">
+                <mca:CSharpReference x:TypeArguments="x:String">tarUsaidFunds</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_AppropriateVaccination">
+                <mca:CSharpReference x:TypeArguments="x:String">tarVaccination</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_TravelAdvances">
+                <mca:CSharpReference x:TypeArguments="x:String">tarTravelAdvances</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_GSSTraining">
+                <mca:CSharpReference x:TypeArguments="x:String">tarGssTraining</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_GSSTrainingDate">
+                <mca:CSharpReference x:TypeArguments="x:String">tarGssTrainingDateString</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_PurposeOfTravel">
+                <mca:CSharpReference x:TypeArguments="x:String">tarPurposeOfTravel</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_ApprovedByDirector">
+                <mca:CSharpReference x:TypeArguments="x:String">tarApprovedByDirector</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_AppropriateEmergencyContacts">
+                <mca:CSharpReference x:TypeArguments="x:String">tarHasAppropriateEmergency</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_Destinations">
+                <mca:CSharpReference x:TypeArguments="x:String">tarDestinations</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_BudgetSession">
+                <mca:CSharpReference x:TypeArguments="x:String">tarBudgetSession</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_OtherEstimatedCosts">
+                <mca:CSharpReference x:TypeArguments="x:String">tarOtherEstimatedCosts</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_BudgetCodes">
+                <mca:CSharpReference x:TypeArguments="x:String">tarBudgetCodes</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_AdditionalInformation">
+                <mca:CSharpReference x:TypeArguments="x:String">tarAdditionalInfo</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="TAR_TravelCoordinatorId">
+                <mca:CSharpReference x:TypeArguments="x:Int32">tarTravelCoordinatorId</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="TAR_BudgetApproverId">
+                <mca:CSharpReference x:TypeArguments="x:Int32">tarBudgetApproverId</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_InformationRead">
+                <mca:CSharpReference x:TypeArguments="x:String">tarInformationRead</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_LondonOfficeLocation">
+                <mca:CSharpReference x:TypeArguments="x:String">tarLocatedInLondon</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="TAR_RequiresGssApproval">
+                <mca:CSharpReference x:TypeArguments="x:Boolean">tarRequiresGssApproval</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="s:DateTime" x:Key="TAR_DepartureDate">
+                <mca:CSharpReference x:TypeArguments="s:DateTime">tarDepartureDate</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_ReturnDate">
+                <mca:CSharpReference x:TypeArguments="x:String">tarReturnDateString</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_BudgetApprovalStatus">
+                <mca:CSharpReference x:TypeArguments="x:String">tarBudgetApprovalStatus</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_BudgetApprovalTimestamp">
+                <mca:CSharpReference x:TypeArguments="x:String">tarBudgetApprovalTimestampString</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_GSSApprovalStatus">
+                <mca:CSharpReference x:TypeArguments="x:String">tarGssApprovalStatus</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TAR_GSSApprovalTimestamp">
+                <mca:CSharpReference x:TypeArguments="x:String">tarGssApprovalTimestampString</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="TAR_AdditionalStaffMemberId">
+                <mca:CSharpReference x:TypeArguments="x:Int32">tarAdditionalStaffMemberId</mca:CSharpReference>
+              </OutArgument>
+              <OutArgument x:TypeArguments="s:DateTime" x:Key="Created">
+                <mca:CSharpReference x:TypeArguments="s:DateTime">tarCreated</mca:CSharpReference>
+              </OutArgument>
+            </scg:Dictionary>
+          </p:GetODataProperties>
+          <p:BuildDynamicValue DisplayName="Build new TAR details" sap2010:WorkflowViewState.IdRef="BuildDynamicValue_1">
+            <p:BuildDynamicValue.Result>
+              <InOutArgument x:TypeArguments="p:DynamicValue">
+                <mca:CSharpReference x:TypeArguments="p:DynamicValue">newTarDetails</mca:CSharpReference>
+              </InOutArgument>
+            </p:BuildDynamicValue.Result>
+            <scg:Dictionary x:TypeArguments="x:String, InArgument">
+              <InArgument x:TypeArguments="x:String" x:Key="__metadata/type">
+                <mca:CSharpValue x:TypeArguments="x:String">string.Format("SP.Data.{0}ListItem", archiveListItemName)</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Title">
+                <mca:CSharpValue x:TypeArguments="x:String">tarTitle</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="TAR_RequesterId">
+                <mca:CSharpValue x:TypeArguments="x:Int32">tarRequesterId</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="TAR_TravellerId">
+                <mca:CSharpValue x:TypeArguments="x:Int32">tarTravellerId</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="TAR_LineManagerId">
+                <mca:CSharpValue x:TypeArguments="x:Int32">tarLineManagerId</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_SelectedEmergencyContacts">
+                <mca:CSharpValue x:TypeArguments="x:String">tarEmergencyContacts</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_TypeOfTravel">
+                <mca:CSharpValue x:TypeArguments="x:String">tarTypeOfTravel</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_VisaRequired">
+                <mca:CSharpValue x:TypeArguments="x:String">tarVisaRequired</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_VisaNumber">
+                <mca:CSharpValue x:TypeArguments="x:String">tarVisaNumber</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_PhotoId">
+                <mca:CSharpValue x:TypeArguments="x:String">tarPhotoId</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_MedicalEmergencyCard">
+                <mca:CSharpValue x:TypeArguments="x:String">tarMedicalEmergencyCard</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_MedicalProviderName">
+                <mca:CSharpValue x:TypeArguments="x:String">tarMedicalProviderName</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_PolicyNumber">
+                <mca:CSharpValue x:TypeArguments="x:String">tarPolicyNumber</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_ReadPDI">
+                <mca:CSharpValue x:TypeArguments="x:String">tarReadPDI</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_UsaidFunds">
+                <mca:CSharpValue x:TypeArguments="x:String">tarUsaidFunds</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_AppropriateVaccination">
+                <mca:CSharpValue x:TypeArguments="x:String">tarVaccination</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_TravelAdvances">
+                <mca:CSharpValue x:TypeArguments="x:String">tarTravelAdvances</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_GSSTraining">
+                <mca:CSharpValue x:TypeArguments="x:String">tarGssTraining</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_GSSTrainingDate">
+                <mca:CSharpValue x:TypeArguments="x:String">tarGssTrainingDateString</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_PurposeOfTravel">
+                <mca:CSharpValue x:TypeArguments="x:String">tarPurposeOfTravel</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_ApprovedByDirector">
+                <mca:CSharpValue x:TypeArguments="x:String">tarApprovedByDirector</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_AppropriateEmergencyContacts">
+                <mca:CSharpValue x:TypeArguments="x:String">tarHasAppropriateEmergency</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_Destinations">
+                <mca:CSharpValue x:TypeArguments="x:String">tarDestinations</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_BudgetSession">
+                <mca:CSharpValue x:TypeArguments="x:String">tarBudgetSession</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_OtherEstimatedCosts">
+                <mca:CSharpValue x:TypeArguments="x:String">tarOtherEstimatedCosts</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_BudgetCodes">
+                <mca:CSharpValue x:TypeArguments="x:String">tarBudgetCodes</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_AdditionalInformation">
+                <mca:CSharpValue x:TypeArguments="x:String">tarAdditionalInfo</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="TAR_TravelCoordinatorId">
+                <mca:CSharpValue x:TypeArguments="x:Int32">tarTravelCoordinatorId</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="TAR_BudgetApproverId">
+                <mca:CSharpValue x:TypeArguments="x:Int32">tarBudgetApproverId</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_InformationRead">
+                <mca:CSharpValue x:TypeArguments="x:String">tarInformationRead</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_LondonOfficeLocation">
+                <mca:CSharpValue x:TypeArguments="x:String">tarLocatedInLondon</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="TAR_RequiresGssApproval">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">tarRequiresGssApproval</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="s:DateTime" x:Key="TAR_DepartureDate">
+                <mca:CSharpValue x:TypeArguments="s:DateTime">tarDepartureDate</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_ReturnDate">
+                <mca:CSharpValue x:TypeArguments="x:String">tarReturnDateString</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_BudgetApprovalStatus">
+                <mca:CSharpValue x:TypeArguments="x:String">tarBudgetApprovalStatus</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_BudgetApprovalTimestamp">
+                <mca:CSharpValue x:TypeArguments="x:String">tarBudgetApprovalTimestampString</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_GSSApprovalStatus">
+                <mca:CSharpValue x:TypeArguments="x:String">tarGssApprovalStatus</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TAR_GSSApprovalTimestamp">
+                <mca:CSharpValue x:TypeArguments="x:String">tarGssApprovalTimestampString</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="TAR_AdditionalStaffMemberId">
+                <mca:CSharpValue x:TypeArguments="x:Int32">tarAdditionalStaffMemberId</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="s:DateTime" x:Key="TAR_CreatedDate">
+                <mca:CSharpValue x:TypeArguments="s:DateTime">tarCreated</mca:CSharpValue>
+              </InArgument>
+            </scg:Dictionary>
+          </p:BuildDynamicValue>
+        </Sequence>
+        <p:HttpSend sap2010:WorkflowViewState.IdRef="HttpSend_3" Method="POST">
+          <p:HttpSend.RequestContent>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">newTarDetails.ToString()</mca:CSharpValue>
+            </InArgument>
+          </p:HttpSend.RequestContent>
+          <p:HttpSend.RequestHeaders>
+            <InArgument x:TypeArguments="p:DynamicValue">
+              <p:SetDynamicValueProperties>
+                <scg:Dictionary x:TypeArguments="x:String, InArgument">
+                  <InArgument x:TypeArguments="x:String" x:Key="Accept">application/json;odata=verbose</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Content-Type">application/json;odata=verbose</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="X-RequestDigest">
+                    <mca:CSharpValue x:TypeArguments="x:String">formDigest</mca:CSharpValue>
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Content-Length">
+                    <mca:CSharpValue x:TypeArguments="x:String">newTarDetails.ToString().Length.ToString()</mca:CSharpValue>
+                  </InArgument>
+                </scg:Dictionary>
+              </p:SetDynamicValueProperties>
+            </InArgument>
+          </p:HttpSend.RequestHeaders>
+          <p:HttpSend.ResponseContent>
+            <OutArgument x:TypeArguments="x:String">
+              <mca:CSharpReference x:TypeArguments="x:String">postResponse</mca:CSharpReference>
+            </OutArgument>
+          </p:HttpSend.ResponseContent>
+          <p:HttpSend.ResponseStatusCode>
+            <OutArgument x:TypeArguments="sn:HttpStatusCode">
+              <mca:CSharpReference x:TypeArguments="sn:HttpStatusCode">postResponseStatusCode</mca:CSharpReference>
+            </OutArgument>
+          </p:HttpSend.ResponseStatusCode>
+          <p:HttpSend.Uri>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String">string.Format("{0}/_api/Lists/getByTitle('{1}')/items", webUrl, archiveListName);</mca:CSharpValue>
+            </InArgument>
+          </p:HttpSend.Uri>
+        </p:HttpSend>
+        <If DisplayName="If TAR item has been archived successfully" sap2010:WorkflowViewState.IdRef="If_1">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean">postResponseStatusCode == HttpStatusCode.Created</mca:CSharpValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <p:HttpSend DisplayName="Delete old TAR" sap2010:WorkflowViewState.IdRef="HttpSend_5" Method="POST">
+                <p:HttpSend.RequestHeaders>
+                  <InArgument x:TypeArguments="p:DynamicValue">
+                    <p:SetDynamicValueProperties>
+                      <scg:Dictionary x:TypeArguments="x:String, InArgument">
+                        <InArgument x:TypeArguments="x:String" x:Key="X-HTTP-Method">DELETE</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="If-Match">*</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="X-RequestDigest">
+                          <mca:CSharpValue x:TypeArguments="x:String">formDigest</mca:CSharpValue>
+                        </InArgument>
+                      </scg:Dictionary>
+                    </p:SetDynamicValueProperties>
+                  </InArgument>
+                </p:HttpSend.RequestHeaders>
+                <p:HttpSend.ResponseStatusCode>
+                  <OutArgument x:TypeArguments="sn:HttpStatusCode">
+                    <mca:CSharpReference x:TypeArguments="sn:HttpStatusCode">postResponseStatusCode</mca:CSharpReference>
+                  </OutArgument>
+                </p:HttpSend.ResponseStatusCode>
+                <p:HttpSend.Uri>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">string.Format("{0}/_api/Lists/getByTitle('TAR Requests')/items('{1}')", webUrl, tarId)</mca:CSharpValue>
+                  </InArgument>
+                </p:HttpSend.Uri>
+              </p:HttpSend>
+              <If DisplayName="If delete was not successful" sap2010:WorkflowViewState.IdRef="If_2">
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">postResponseStatusCode != HttpStatusCode.OK</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <p1:WriteToHistory sap2010:WorkflowViewState.IdRef="WriteToHistory_10">
+                    <p1:WriteToHistory.Message>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String">string.Format("TAR Archiving WF could not delete TAR Request with id: {0}", tarId);</mca:CSharpValue>
+                      </InArgument>
+                    </p1:WriteToHistory.Message>
+                  </p1:WriteToHistory>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Delete TAR associated Tasks" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="p:DynamicValue" Name="tasksRestResponse" />
+                      <Variable x:TypeArguments="x:Int32" Name="tasksCount" />
+                      <Variable x:TypeArguments="x:Int32" Name="tasksIndex" />
+                    </Sequence.Variables>
+                    <p:HttpSend DisplayName="Call REST to get associated Tasks" sap2010:WorkflowViewState.IdRef="HttpSend_6" Method="GET">
+                      <p:HttpSend.RequestHeaders>
+                        <InArgument x:TypeArguments="p:DynamicValue">
+                          <p:SetDynamicValueProperties>
+                            <scg:Dictionary x:TypeArguments="x:String, InArgument">
+                              <InArgument x:TypeArguments="x:String" x:Key="Accept">application/json;odata=verbose</InArgument>
+                            </scg:Dictionary>
+                          </p:SetDynamicValueProperties>
+                        </InArgument>
+                      </p:HttpSend.RequestHeaders>
+                      <p:HttpSend.ResponseContent>
+                        <OutArgument x:TypeArguments="p:DynamicValue">
+                          <mca:CSharpReference x:TypeArguments="p:DynamicValue">tasksRestResponse</mca:CSharpReference>
+                        </OutArgument>
+                      </p:HttpSend.ResponseContent>
+                      <p:HttpSend.Uri>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">string.Format("{0}_api/Lists/getByTitle('TAR Workflow Tasks')/items?$filter=((Status eq 'Completed') and (substringof('{1}',Title)))", webUrl, tarTitle);</mca:CSharpValue>
+                        </InArgument>
+                      </p:HttpSend.Uri>
+                    </p:HttpSend>
+                    <p:GetDynamicValueProperty x:TypeArguments="p:DynamicValue" DisplayName="Get d/results from REST response" sap2010:WorkflowViewState.IdRef="GetDynamicValueProperty`1_7" PropertyName="d/results">
+                      <p:GetDynamicValueProperty.Result>
+                        <OutArgument x:TypeArguments="p:DynamicValue">
+                          <mca:CSharpReference x:TypeArguments="p:DynamicValue">tasksRestResponse</mca:CSharpReference>
+                        </OutArgument>
+                      </p:GetDynamicValueProperty.Result>
+                      <p:GetDynamicValueProperty.Source>
+                        <InArgument x:TypeArguments="p:DynamicValue">
+                          <mca:CSharpValue x:TypeArguments="p:DynamicValue">tasksRestResponse</mca:CSharpValue>
+                        </InArgument>
+                      </p:GetDynamicValueProperty.Source>
+                    </p:GetDynamicValueProperty>
+                    <p:CountDynamicValueItems DisplayName="Count tasks" sap2010:WorkflowViewState.IdRef="CountDynamicValueItems_2">
+                      <p:CountDynamicValueItems.Result>
+                        <OutArgument x:TypeArguments="x:Int32">
+                          <mca:CSharpReference x:TypeArguments="x:Int32">tasksCount</mca:CSharpReference>
+                        </OutArgument>
+                      </p:CountDynamicValueItems.Result>
+                      <InArgument x:TypeArguments="p:DynamicValue">
+                        <mca:CSharpValue x:TypeArguments="p:DynamicValue">tasksRestResponse</mca:CSharpValue>
+                      </InArgument>
+                    </p:CountDynamicValueItems>
+                    <Assign DisplayName="Initialize index" sap2010:WorkflowViewState.IdRef="Assign_9">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">
+                          <mca:CSharpReference x:TypeArguments="x:Int32">tasksIndex</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">
+                          <mca:CSharpValue x:TypeArguments="x:Int32">0;</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <While DisplayName="Iterate over tasks" sap2010:WorkflowViewState.IdRef="While_2">
+                      <While.Condition>
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">tasksIndex &lt; tasksCount</mca:CSharpValue>
+                      </While.Condition>
+                      <Sequence DisplayName="Delete Task" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:Int32" Name="taskId" />
+                        </Sequence.Variables>
+                        <p:GetDynamicValueProperty x:TypeArguments="x:Int32" DisplayName="Get Task Id" sap2010:WorkflowViewState.IdRef="GetDynamicValueProperty`1_8">
+                          <p:GetDynamicValueProperty.PropertyName>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String">string.Format("({0})/Id", tasksIndex);</mca:CSharpValue>
+                            </InArgument>
+                          </p:GetDynamicValueProperty.PropertyName>
+                          <p:GetDynamicValueProperty.Result>
+                            <OutArgument x:TypeArguments="x:Int32">
+                              <mca:CSharpReference x:TypeArguments="x:Int32">taskId</mca:CSharpReference>
+                            </OutArgument>
+                          </p:GetDynamicValueProperty.Result>
+                          <p:GetDynamicValueProperty.Source>
+                            <InArgument x:TypeArguments="p:DynamicValue">
+                              <mca:CSharpValue x:TypeArguments="p:DynamicValue">tasksRestResponse</mca:CSharpValue>
+                            </InArgument>
+                          </p:GetDynamicValueProperty.Source>
+                        </p:GetDynamicValueProperty>
+                        <p:HttpSend DisplayName="Delete old TAR's task" sap2010:WorkflowViewState.IdRef="HttpSend_7" Method="POST">
+                          <p:HttpSend.RequestHeaders>
+                            <InArgument x:TypeArguments="p:DynamicValue">
+                              <p:SetDynamicValueProperties>
+                                <scg:Dictionary x:TypeArguments="x:String, InArgument">
+                                  <InArgument x:TypeArguments="x:String" x:Key="X-HTTP-Method">DELETE</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="If-Match">*</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="X-RequestDigest">
+                                    <mca:CSharpValue x:TypeArguments="x:String">formDigest</mca:CSharpValue>
+                                  </InArgument>
+                                </scg:Dictionary>
+                              </p:SetDynamicValueProperties>
+                            </InArgument>
+                          </p:HttpSend.RequestHeaders>
+                          <p:HttpSend.ResponseStatusCode>
+                            <OutArgument x:TypeArguments="sn:HttpStatusCode">
+                              <mca:CSharpReference x:TypeArguments="sn:HttpStatusCode">postResponseStatusCode</mca:CSharpReference>
+                            </OutArgument>
+                          </p:HttpSend.ResponseStatusCode>
+                          <p:HttpSend.Uri>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String">string.Format("{0}/_api/Lists/getByTitle('TAR Workflow Tasks')/items('{1}')", webUrl, taskId)</mca:CSharpValue>
+                            </InArgument>
+                          </p:HttpSend.Uri>
+                        </p:HttpSend>
+                        <If DisplayName="If could not delete task" sap2010:WorkflowViewState.IdRef="If_4">
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">postResponseStatusCode != HttpStatusCode.OK</mca:CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <p1:WriteToHistory sap2010:WorkflowViewState.IdRef="WriteToHistory_14">
+                              <p1:WriteToHistory.Message>
+                                <InArgument x:TypeArguments="x:String">
+                                  <mca:CSharpValue x:TypeArguments="x:String">string.Format("Could not delete TAR Task with Id: {0}", taskId);</mca:CSharpValue>
+                                </InArgument>
+                              </p1:WriteToHistory.Message>
+                            </p1:WriteToHistory>
+                          </If.Then>
+                        </If>
+                        <Assign DisplayName="Increment index" sap2010:WorkflowViewState.IdRef="Assign_10">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">
+                              <mca:CSharpReference x:TypeArguments="x:Int32">tasksIndex</mca:CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">
+                              <mca:CSharpValue x:TypeArguments="x:Int32">tasksIndex + 1;</mca:CSharpValue>
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </While>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </If.Then>
+        </If>
+        <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Int32">
+              <mca:CSharpReference x:TypeArguments="x:Int32">index</mca:CSharpReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Int32">
+              <mca:CSharpValue x:TypeArguments="x:Int32">index + 1;</mca:CSharpValue>
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+    </While>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="WebUri_1" sap:VirtualizedContainerService.HintSize="954,68" />
+      <sap2010:ViewStateData Id="LookupSPListItemId_1" sap:VirtualizedContainerService.HintSize="464,68">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
+              <msdad:ViewStateNameValue x:Key="ListId" DisplayName="TAR Settings" Value="Lists/TARSettings" />
+              <msdad:ViewStateNameValue x:Key="PropertyName" DisplayName="Title" Value="Title" />
+            </scg:Dictionary>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WriteToHistory_13" sap:VirtualizedContainerService.HintSize="200,68" />
+      <sap2010:ViewStateData Id="TerminateWorkflow_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="222,254">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,404">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LookupSPListItem_1" sap:VirtualizedContainerService.HintSize="464,89">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
+              <msdad:ViewStateNameValue x:Key="ListId" DisplayName="TAR Settings" Value="Lists/TARSettings" />
+            </scg:Dictionary>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetODataProperties_2" sap:VirtualizedContainerService.HintSize="464,92">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:String x:Key="Properties.SelectedEntityType">Lists/TARSettings</x:String>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="464,62" />
+      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="247,62" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="486,1101">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="954,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="HttpSend_1" sap:VirtualizedContainerService.HintSize="954,62" />
+      <sap2010:ViewStateData Id="GetDynamicValueProperty`1_1" sap:VirtualizedContainerService.HintSize="954,22" />
+      <sap2010:ViewStateData Id="CountDynamicValueItems_1" sap:VirtualizedContainerService.HintSize="954,22" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="954,62" />
+      <sap2010:ViewStateData Id="HttpSend_4" sap:VirtualizedContainerService.HintSize="906,62" />
+      <sap2010:ViewStateData Id="GetDynamicValueProperty`1_5" sap:VirtualizedContainerService.HintSize="906,22" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="906,62" />
+      <sap2010:ViewStateData Id="GetDynamicValueProperty`1_3" sap:VirtualizedContainerService.HintSize="906,22" />
+      <sap2010:ViewStateData Id="GetDynamicValueProperty`1_4" sap:VirtualizedContainerService.HintSize="906,22" />
+      <sap2010:ViewStateData Id="GetDynamicValueProperty`1_6" sap:VirtualizedContainerService.HintSize="906,22" />
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="906,62" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="906,62" />
+      <sap2010:ViewStateData Id="GetODataProperties_1" sap:VirtualizedContainerService.HintSize="247,92">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:String x:Key="Properties.SelectedEntityType">Lists/TARRequests</x:String>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="BuildDynamicValue_1" sap:VirtualizedContainerService.HintSize="247,92" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="906,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="HttpSend_3" sap:VirtualizedContainerService.HintSize="906,62" />
+      <sap2010:ViewStateData Id="HttpSend_5" sap:VirtualizedContainerService.HintSize="759,62" />
+      <sap2010:ViewStateData Id="WriteToHistory_10" sap:VirtualizedContainerService.HintSize="200,68" />
+      <sap2010:ViewStateData Id="HttpSend_6" sap:VirtualizedContainerService.HintSize="512,62" />
+      <sap2010:ViewStateData Id="GetDynamicValueProperty`1_7" sap:VirtualizedContainerService.HintSize="512,22" />
+      <sap2010:ViewStateData Id="CountDynamicValueItems_2" sap:VirtualizedContainerService.HintSize="512,22" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="512,62" />
+      <sap2010:ViewStateData Id="GetDynamicValueProperty`1_8" sap:VirtualizedContainerService.HintSize="464,22" />
+      <sap2010:ViewStateData Id="HttpSend_7" sap:VirtualizedContainerService.HintSize="464,62" />
+      <sap2010:ViewStateData Id="WriteToHistory_14" sap:VirtualizedContainerService.HintSize="200,68" />
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="464,218">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_10" sap:VirtualizedContainerService.HintSize="464,62" />
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="486,608">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="While_2" sap:VirtualizedContainerService.HintSize="512,768">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="534,1220">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="759,1370">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="781,1596">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="906,1746">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="858,62" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="928,2821">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="While_1" sap:VirtualizedContainerService.HintSize="954,2981">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="976,3632">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SCI.TAR.Workflows.TARArchivingWorkflow.Workflow_1" sap:VirtualizedContainerService.HintSize="1016,3712" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

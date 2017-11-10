@@ -1,0 +1,141 @@
+<accordion heading="{{'TAR_REQUEST_QUESTIONS' | translate | uppercase}}">
+    <div class="questions-section-padding">
+        <profile-default-questions ng-model="ctrl.model" are-required="true"></profile-default-questions>
+
+        <div layout-gt-sm="row">
+            <question ng-model="ctrl.model.visaRequired" options="ctrl.features.questionsOptions.visa"
+                      flex-gt-sm="20"></question>
+        </div>
+        <div layout-gt-sm="row" layout-margin layout-padding ng-if="ctrl.hasVisa()">
+            <md-input-container class="md-block" flex-gt-sm="30">
+                <label>{{'VISA_NUMBER' | translate}}</label>
+                <input type="text" name="visaNumber" ng-model="ctrl.model.visaNumber"
+                       required
+                       maxlength="255">
+                <div ng-messages="ctrl.form.visaNumber.$error" ng-if='ctrl.isFieldErrorVisible("visaNumber")'>
+                    <div ng-messages-include="error-messages"></div>
+                </div>
+            </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+            <question ng-model="ctrl.model.approvedByDirector"
+                      options="ctrl.features.questionsOptions.approvedByDirectorOptions"
+                      flex-gt-sm="30"></question>
+            <question ng-model="ctrl.model.readPDI" options="ctrl.features.questionsOptions.pdiOptions"
+                      flex-gt-sm="30"></question>
+            <question ng-model="ctrl.model.usaidFunds" options="ctrl.features.questionsOptions.usaidFundsOptions"
+                      flex-gt-sm="30"></question>
+        </div>
+        <div layout-gt-sm="row">
+            <question ng-model="ctrl.model.appropriateVaccination"
+                      options="ctrl.features.questionsOptions.appropriateVaccinationOptions"
+                      flex-gt-sm="30"></question>
+            <question ng-model="ctrl.model.appropriateEmergencyContacts"
+                      options="ctrl.features.questionsOptions.appropriateEmergencyOptions"
+                      flex-gt-sm="30"></question>
+            <question ng-model="ctrl.model.londonOfficeLocation"
+                      options="ctrl.features.questionsOptions.officeLocationOptions"
+                      flex-gt-sm="30"></question>
+        </div>
+    </div>
+</accordion>
+<accordion heading="{{'ADVANCE_REQUEST' | translate | uppercase}}" ng-if="ctrl.isTravelAdvanceAvailable()">
+    <list ng-model="ctrl.model.travelAdvances"
+          options="ctrl.features.listOptions.travelAdvanceListOptions"
+          layout-margin>
+    </list>
+</accordion>
+<accordion heading="{{'REQUEST_ITINERARY' | translate | uppercase}}">
+    <list ng-model="ctrl.model.destinations"
+          options="ctrl.features.listOptions.destinationsListOptions"
+          layout-margin>
+    </list>
+
+    <div layout-gt-sm="row" layout-padding layout-margin>
+        <md-input-container class="md-block" flex-gt-sm="30">
+            <label>{{'FLIGHT_COST_LABEL' | translate}}</label>
+            <input type="number" name="flightCost" ng-model="ctrl.model.budgetSession.flightCost"
+                   required
+                   min="0"
+                   max="990000000000">
+            <div ng-messages="ctrl.form.flightCost.$error" ng-if='ctrl.isFieldErrorVisible("flightCost")'>
+                <div ng-messages-include="error-messages"></div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <md-select ng-model="ctrl.model.budgetSession.currencyType"
+                       ng-model-options="{trackBy: '$value.title'}"
+                       name="currencyType" aria-label="currency"
+                       placeholder="{{'CURRENCY_LABEL' | translate}}"
+                       required>
+                <md-option ng-repeat="item in ctrl.currencies" ng-value="item">
+                    {{item.title}}
+                </md-option>
+            </md-select>
+            <div ng-messages="ctrl.form.currencyType.$error"
+                 ng-if="ctrl.isFieldErrorVisible('currencyType')">
+                <div ng-messages-include="error-messages"></div>
+            </div>
+        </md-input-container>
+    </div>
+    <div layout-gt-md="row" layout-padding layout-margin>
+        <md-input-container class="md-block" flex-gt-sm="50">
+            <label>{{'ADDITIONAL_INFORMATION_LABEL' | translate}}</label>
+            <textarea ng-model="ctrl.model.additionalInformation" name="additionalInfo" md-maxlength="512"></textarea>
+            <div ng-messages="ctrl.form.additionalInfo.$error"
+                 ng-if='ctrl.isFieldErrorVisible("additionalInfo")'>
+                <div ng-messages-include="error-messages"></div>
+            </div>
+        </md-input-container>
+    </div>
+    <div layout-gt-md="row" layout-padding layout-margin>
+        <people-picker ng-model="ctrl.model.travelCoordinator"
+                       model-ids="ctrl.model.travelCoordinatorId"
+                       options="ctrl.features.pickerOptions.travelCoordinatorPickerOptions"
+                       flex-gt-sm="50"></people-picker>
+        <people-picker ng-model="ctrl.model.budgetApprover"
+                       model-ids="ctrl.model.budgetApproverId"
+                       options="ctrl.features.pickerOptions.budgetApproverPickerOptions"
+                       flex-gt-sm="50"></people-picker>
+    </div>
+</accordion>
+<accordion heading="{{'OTHER_ESTIMATED_COSTS' | translate | uppercase}}">
+    <list ng-model="ctrl.model.otherEstimatedCosts"
+          options="ctrl.features.listOptions.estimatedCostsListOptions"
+          layout-margin>
+    </list>
+    <div layout="row" layout-align="end center">
+        <md-input-container class="md-block">
+            <label>{{'TOTAL_COSTS_WITH_TAXES' | translate}} :</label>
+            <input type="number" ng-model="ctrl.model.otherEstimatedCostsTotal"
+                   name="totalCosts" disabled>
+        </md-input-container>
+    </div>
+</accordion>
+<accordion heading="{{'TAR_REQUEST_BUDGET' | translate | uppercase}}">
+    <list ng-model="ctrl.model.budgetCodes"
+          options="ctrl.features.listOptions.budgetCodesListOptions"
+          layout-margin>
+    </list>
+    <div layout="row" layout-align="start center" layout-padding layout-margin>
+        <md-input-container class="md-block">
+            <label>{{'TOTAL_PERCENTAGE' | translate}} :</label>
+            <input type="number" ng-model="ctrl.model.totalBudgetCodesPercentage"
+                   name="totalPercentage" max="100" disabled>
+            <div ng-messages="ctrl.form.totalPercentage.$error"
+                 ng-if='ctrl.isFieldErrorVisible("totalPercentage")'>
+                <div ng-messages-include="error-messages"></div>
+            </div>
+        </md-input-container>
+    </div>
+</accordion>
+<accordion heading="{{'TAR_REQUEST_ATTACH' | translate | uppercase}}">
+    <div layout-gt-sm="row" layout-padding>
+        <file-upload ng-model="ctrl.model.uploadAttachments" unique-id="tar" flex="100"
+                     class="attachment-controls"></file-upload>
+    </div>
+    <div layout-gt-sm="row" layout-padding>
+        <attachments ng-model="ctrl.model.uploadedAttachments" options="ctrl.attachmentsOptions" flex="100"
+                     class="attachment-controls"></attachments>
+    </div>
+</accordion>

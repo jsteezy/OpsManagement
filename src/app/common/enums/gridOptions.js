@@ -192,39 +192,39 @@ export default class GridOptions {
                 showExpandButtonAlways: true
             },
 
-            // eifSearchAllOptions: {
-            //     enableSorting: true,
-            //     enableFiltering: true,
-            //     enableHorizontalScrollbar: 0,
-            //     enableVerticalScrollbar: 0,
-            //     enableRowSelection: true,
-            //     enableSelectAll: true,
-            //     multiSelect: true,
-            //     enableRowHeaderSelection: true,
-            //     columnDefs: [
-            //         { field: 'id', visible: false },
-            //         {
-            //             displayName: 'ID_GRID',
-            //             field: 'title',
-            //             enableSorting: false,
-            //             cellTemplate: '<md-button class="md-primary" ng-click="grid.appScope.openEif(row)">{{COL_FIELD}}</md-button>'
-            //         },
-            //         { displayName: 'GUESTTRAVELLER_GRID', field: 'guestTraveller', enableSorting: false },
-            //         { displayName: 'STAFF_RESPOSIBLE_GRID', field: 'staffResponsible', enableSorting: false },
-            //         { displayName: 'DESTINATIONS_GRID', field: 'destinations', enableSorting: true },
-            //         { displayName: 'RESTRICT_COUNTRIES_GRID', field: 'restrictedCountries', enableSorting: true  },
-            //         { displayName: 'DEPARTUREDATE_GRID', field: 'departureDate', enableSorting: true, cellFilter: "dateFormat" },
-            //         { displayName: 'RETURNDATE_GRID', field: 'returnDate', cellFilter: "dateFormat" },
-            //         {
-            //             displayName: 'TARID_GRID',
-            //             field: 'tarId',
-            //             enableSorting: false,
-            //             cellTemplate: '<md-button class="md-primary" ng-if="grid.appScope.hasTarAssociated(row)" ng-click="grid.appScope.openTar(row)">{{COL_FIELD}}</md-button>'
-            //         }
-            //     ],
-            //     showExpandButtonAlways: true,
-            //     hasCustomFilters: true
-            // },
+            eifSearchAllOptions: {
+                enableSorting: true,
+                enableFiltering: true,
+                enableHorizontalScrollbar: 0,
+                enableVerticalScrollbar: 0,
+                enableRowSelection: true,
+                enableSelectAll: true,
+                multiSelect: true,
+                enableRowHeaderSelection: true,
+                columnDefs: [
+                    { field: 'id', visible: false },
+                    {
+                        displayName: 'ID_GRID',
+                        field: 'title',
+                        enableSorting: false,
+                        cellTemplate: '<md-button class="md-primary" ng-click="grid.appScope.openEif(row)">{{COL_FIELD}}</md-button>'
+                    },
+                    { displayName: 'GUESTTRAVELLER_GRID', field: 'guestTraveller', enableSorting: false },
+                    { displayName: 'STAFF_RESPOSIBLE_GRID', field: 'staffResponsible', enableSorting: false },
+                    { displayName: 'DESTINATIONS_GRID', field: 'destinations', enableSorting: true },
+                    { displayName: 'RESTRICT_COUNTRIES_GRID', field: 'restrictedCountries', enableSorting: true  },
+                    { displayName: 'DEPARTUREDATE_GRID', field: 'departureDate', enableSorting: true, cellFilter: "dateFormat" },
+                    { displayName: 'RETURNDATE_GRID', field: 'returnDate', cellFilter: "dateFormat" },
+                    {
+                        displayName: 'TARID_GRID',
+                        field: 'tarId',
+                        enableSorting: false,
+                        cellTemplate: '<md-button class="md-primary" ng-if="grid.appScope.hasTarAssociated(row)" ng-click="grid.appScope.openTar(row)">{{COL_FIELD}}</md-button>'
+                    }
+                ],
+                showExpandButtonAlways: true,
+                hasCustomFilters: true
+            },
 
             profileForOthersOptions: {
                 enableSorting: true,
@@ -247,37 +247,37 @@ export default class GridOptions {
                     // { displayName: 'OFFICE_LOCATION_GRID', field: 'officeLocation', enableSorting: false },
                     // { displayName: 'DEPARTMENT_GRID', field: 'department', enableSorting: false }
                 ]
-            }
+            },
 
-            // tarHistoryOptions: {
-            //     enableSorting: true,
-            //     enableFiltering: true,
-            //     enableHorizontalScrollbar: 0,
-            //     enableVerticalScrollbar: 0,
-            //     columnDefs: [
-            //         { field: 'id', visible: false },
-            //         {
-            //             displayName: 'ID_GRID',
-            //             field: 'title',
-            //             enableSorting: false,
-            //             cellTemplate: '<md-button class="md-primary" ng-click="grid.appScope.openTar(row)">{{COL_FIELD}}</md-button>'
-            //         },
-            //         { displayName: 'TRAVELLER_GRID', field: 'traveller', enableSorting: true },
-            //         { displayName: 'REQUESTER_GRID', field: 'requester' },
-            //         { displayName: 'DESTINATIONS_GRID', field: 'destinations', enableSorting: true },
-            //         { displayName: 'CD_GRID', field: 'directors', enableFiltering: false },
-            //         { displayName: 'DEPARTUREDATE_GRID', field: 'departureDate', enableSorting: true, cellFilter: "dateFormat" },
-            //         { displayName: 'RETURNDATE_GRID', field: 'returnDate', cellFilter: "dateFormat" },
-            //         { displayName: 'BUDGETAPPROVER_GRID', field: 'budgetApprover' },
-            //         { displayName: 'BUDGETAPPROVERSTATUS_GRID', field: 'budgetApprovalStatus' },
-            //         { displayName: 'BUDGETAPPROVERTIMESTAMP_GRID', field: 'budgetApprovalTimestamp' },
-            //         { displayName: 'GSSAPPROVERSTATUS_GRID', field: 'gSSApprovalStatus' },
-            //         { displayName: 'GSSAPPROVERTIMESTAMP_GRID', field: 'gSSApprovalTimestamp' }
-            //     ],
+            tarHistoryOptions: {
+                enableSorting: true,
+                enableFiltering: true,
+                enableHorizontalScrollbar: 0,
+                enableVerticalScrollbar: 0,
+                columnDefs: [
+                    { field: 'id', visible: false },
+                    {
+                        displayName: 'ID_GRID',
+                        field: 'title',
+                        enableSorting: false,
+                        cellTemplate: '<md-button class="md-primary" ng-click="grid.appScope.openTar(row)">{{COL_FIELD}}</md-button>'
+                    },
+                    { displayName: 'TRAVELLER_GRID', field: 'traveller', enableSorting: true },
+                    { displayName: 'REQUESTER_GRID', field: 'requester' },
+                    { displayName: 'DESTINATIONS_GRID', field: 'destinations', enableSorting: true },
+                    { displayName: 'CD_GRID', field: 'directors', enableFiltering: false },
+                    { displayName: 'DEPARTUREDATE_GRID', field: 'departureDate', enableSorting: true, cellFilter: "dateFormat" },
+                    { displayName: 'RETURNDATE_GRID', field: 'returnDate', cellFilter: "dateFormat" },
+                    { displayName: 'BUDGETAPPROVER_GRID', field: 'budgetApprover' },
+                    { displayName: 'BUDGETAPPROVERSTATUS_GRID', field: 'budgetApprovalStatus' },
+                    { displayName: 'BUDGETAPPROVERTIMESTAMP_GRID', field: 'budgetApprovalTimestamp' },
+                    { displayName: 'GSSAPPROVERSTATUS_GRID', field: 'gSSApprovalStatus' },
+                    { displayName: 'GSSAPPROVERTIMESTAMP_GRID', field: 'gSSApprovalTimestamp' }
+                ],
                 
-            //     showExpandButtonAlways: true,
-            //     hasCustomFilters: true
-            // }
+                showExpandButtonAlways: true,
+                hasCustomFilters: true
+            }
         }
     }
 }

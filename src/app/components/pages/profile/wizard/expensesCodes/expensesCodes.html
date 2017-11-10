@@ -1,0 +1,68 @@
+<md-content md-theme="pageTheme" flex>
+    <ng-form name="form" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools" layout-align="space-between center">
+                <h2>{{'EXPENSES_CODES' | translate}}</h2>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <i class="material-icons">close</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content layout="column" class="md-padding md-dialog-content">
+            <div layout-gt-sm="row" layout-padding>
+                <md-input-container class="md-block" flex>
+                    <label class="md-primary">{{'NICKNAME' | translate}}</label>
+                    <input type="text" name="nickname" ng-model="ctrl.model.nickname" required />
+                    <div class="errors" ng-messages="form.nickname.$error" ng-if="ctrl.isFieldErrorVisible(form, 'nickname')">
+                        <div ng-messages-include="error-messages"></div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row" layout-padding>
+                <md-input-container class="md-block" flex>
+                    <label class="md-primary">{{'COST_CENTRE' | translate}}</label>
+                    <input type="text" name="costCentre" ng-model="ctrl.model.costCentre" pattern="\d{5}" required />
+                    <div class="errors" ng-messages="form.costCentre.$error" ng-if="ctrl.isFieldErrorVisible(form, 'costCentre')">
+                        <div ng-messages-include="error-messages"></div>
+                        <div ng-message="pattern">{{'COST_CENTRE_VALIDATION' | translate}}</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label class="md-primary">{{'PROJECT_CODE' | translate}}</label>
+                    <input type="text" name="projectCode" ng-model="ctrl.model.projectCode" pattern="\d{7}" required />
+                    <div class="errors" ng-messages="form.projectCode.$error" ng-if="ctrl.isFieldErrorVisible(form, 'projectCode')">
+                        <div ng-messages-include="error-messages"></div>
+                        <div ng-message="pattern">{{'PROJECT_CODE_VALIDATION' | translate}}</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row" layout-padding>
+                <md-input-container class="md-block" flex>
+                    <label class="md-primary">{{'SOURCE_OF_FUND' | translate}}</label>
+                    <input type="text" name="sourceOfFund" ng-model="ctrl.model.sourceOfFund" pattern="[a-zA-Z0-9]{8}" required />
+                    <div class="errors" ng-messages="form.sourceOfFund.$error" ng-if="ctrl.isFieldErrorVisible(form, 'sourceOfFund')">
+                        <div ng-messages-include="error-messages"></div>
+                        <div ng-message="pattern">{{'SOURCE_OF_FUND_VALIDATION' | translate}}</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row" layout-padding>
+                <md-input-container class="md-block" flex>
+                    <label class="md-primary">{{'DEA_CODE' | translate}}</label>
+                    <input type="text" name="deaCode" ng-model="ctrl.model.deaCode" pattern="\d{6}" />
+                    <div class="errors" ng-messages="form.deaCode.$error" ng-if="ctrl.isFieldErrorVisible(form, 'deaCode')">
+                        <div ng-messages-include="error-messages"></div>
+                        <div ng-message="pattern">{{'DEA_CODE_VALIDATION' | translate}}</div>
+                    </div>
+                </md-input-container>
+            </div>
+        </md-content>
+        <div layout="row" layout-align="end center">
+            <md-button class="md-raised md-primary" ng-click="ctrl.storeCodes(form)">
+                {{ctrl.pageMode.actionName | translate}}
+            </md-button>
+        </div>
+    </ng-form>
+</md-content>

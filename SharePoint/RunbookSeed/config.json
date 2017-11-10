@@ -1,0 +1,12 @@
+{
+    "tenantId": "scidev.onmicrosoft.com",
+    "fullSyncLastRun": "",
+    "groupIdsForSync": "",
+    "idmApp-ClientId": "",
+    "idmApp-ClientSecret": "",
+    "idmApp-GroupSync-DeltaLink": "",
+    "idmApp-UserSync-DeltaLink": "",
+    "idmApp-UserSyncQueue-Uri": "",
+    "idmApp-UserSyncQueue-AccessPolicy-Name": "",
+    "idmApp-UserSyncQueue-AccessPolicy-Key": ""
+}

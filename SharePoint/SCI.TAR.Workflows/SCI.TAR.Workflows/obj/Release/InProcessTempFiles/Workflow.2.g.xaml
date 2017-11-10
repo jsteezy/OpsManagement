@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<stwt:Workflow xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:p="wf://workflow.windows.net/$Activities" xmlns:p1="http://schemas.microsoft.com/workflow/2012/07/xaml/activities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:stwt="clr-namespace:SCI.TAR.Workflows.TARArchivingWorkflow;assembly=SCI.TAR.Workflows" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>Microsoft.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Activities.Design</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint.DesignTime.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint.DesignTime.Activities.Design</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint.Client.ServerRuntime</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Workflow.Runtime</AssemblyReference>
+      <AssemblyReference>SCI.TAR.Workflows</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <stwt:Workflow.Implementation>
+    <Sequence DisplayName="Main Sequence">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="webUrl" />
+        <Variable x:TypeArguments="p1:DynamicValue" Name="restResponse" />
+        <Variable x:TypeArguments="x:Int32" Name="currId" />
+      </Sequence.Variables>
+      <p:WriteToHistory Message="WF Started" />
+      <p:WebUri>
+        <p:WebUri.Result>
+          <OutArgument x:TypeArguments="x:String">
+            <mca:CSharpReference x:TypeArguments="x:String">webUrl</mca:CSharpReference>
+          </OutArgument>
+        </p:WebUri.Result>
+      </p:WebUri>
+      <p1:HttpSend Method="GET">
+        <p1:HttpSend.RequestHeaders>
+          <InArgument x:TypeArguments="p1:DynamicValue">
+            <p1:SetDynamicValueProperties>
+              <scg:Dictionary x:TypeArguments="x:String, InArgument">
+                <InArgument x:TypeArguments="x:String" x:Key="Accept">application/json;odata=verbose</InArgument>
+              </scg:Dictionary>
+            </p1:SetDynamicValueProperties>
+          </InArgument>
+        </p1:HttpSend.RequestHeaders>
+        <p1:HttpSend.ResponseContent>
+          <OutArgument x:TypeArguments="p1:DynamicValue">
+            <mca:CSharpReference x:TypeArguments="p1:DynamicValue">restResponse</mca:CSharpReference>
+          </OutArgument>
+        </p1:HttpSend.ResponseContent>
+        <p1:HttpSend.Uri>
+          <InArgument x:TypeArguments="x:String">
+            <mca:CSharpValue x:TypeArguments="x:String">string.Format("{0}/_api/Lists/getByTitle('Currencies')/items", webUrl);</mca:CSharpValue>
+          </InArgument>
+        </p1:HttpSend.Uri>
+      </p1:HttpSend>
+      <p:WriteToHistory>
+        <p:WriteToHistory.Message>
+          <InArgument x:TypeArguments="x:String">
+            <mca:CSharpValue x:TypeArguments="x:String">restResponse.ToString().Substring(0, 250);</mca:CSharpValue>
+          </InArgument>
+        </p:WriteToHistory.Message>
+      </p:WriteToHistory>
+      <p:WriteToHistory Message="WF Ended" />
+      <sads:DebugSymbol.Symbol>d2lEOlxQcm9qZWN0c1xTQ0kuVEFSXHRhclxTaGFyZVBvaW50XFNDSS5UQVIuV29ya2Zsb3dzXFNDSS5UQVIuV29ya2Zsb3dzXFRBUkFyY2hpdmluZ1dvcmtmbG93XFdvcmtmbG93LnhhbWwPLwNbDgIBATUFNWECARo2BTwQAgEVPQVREwIBCVIFWBgCAQRZBVlfAgECNVI1XgIBGzkLOVcCARZAC0QqAgETTgtOkAECAQ9JC0lkAgELPUY9SwIBClULVXMCAQVZUllcAgEDQkVCYwIBFA==</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </stwt:Workflow.Implementation>
+</stwt:Workflow>

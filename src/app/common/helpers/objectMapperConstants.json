@@ -1,5 +1,5 @@
 {
-    "prefix": "TAR_",
+    "prefix": "",
     "metadataFieldName": "__metadata",
     "groupsFieldName": "Groups",
     "etagPropertyName": "etag",

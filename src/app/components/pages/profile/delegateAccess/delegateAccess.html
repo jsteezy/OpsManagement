@@ -1,0 +1,30 @@
+<md-content md-theme="pageTheme" flex>
+    <ng-form name="form" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools" layout-align="space-between center">
+                <h2>{{'DELEGATE_PROFILE_ACCESS' | translate}}</h2>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <i class="material-icons">close</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div layout="column" layout-padding>
+            <people-picker ng-model="ctrl.model.profileOthersAccess"
+                           model-ids="ctrl.model.profileOthersAccessId"
+                           options="ctrl.pickerOptions.profileAccessToOthersOptions"
+                           flex-gt-sm="50"></people-picker>
+        </div>
+        <div layout="row" layout-align="end center">
+            <md-button class="md-raised md-primary" aria-label="save"
+                       ng-show="!ctrl.isRequestProcessing"
+                       ng-disabled="!form.$dirty"
+                       ng-click="ctrl.delegateAccess(form)">
+                {{ctrl.pageMode.actionName | translate}}
+            </md-button>
+            <md-progress-circular class="md-primary md-hue-3"
+                                  md-mode="indeterminate"
+                                  ng-show="ctrl.isRequestProcessing"
+                                  md-diameter="70"></md-progress-circular>
+        </div>
+    </ng-form>
+</md-content>

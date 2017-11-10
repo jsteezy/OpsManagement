@@ -1,0 +1,12 @@
+{
+    "EIFListName": "EIF Requests",
+    "EIFDraftsListName": "EIF Drafts",
+    "getAll": "/_api/Lists/getByTitle('{LIST_NAME}')/items",
+    "getItem": "/_api/Lists/getByTitle('{LIST_NAME}')/items?$filter=Title eq '{ID}'&$select=*,",
+    "expandUsers": "TAR_StaffResponsibleForGuest/Title,TAR_StaffResponsibleForGuest/Id,TAR_AdditionalStaffMember/Title,TAR_AdditionalStaffMember/Id&$expand=TAR_StaffResponsibleForGuest,TAR_AdditionalStaffMember",
+    "saveEif": "/_api/Lists/getByTitle('{LIST_NAME}')/items",
+    "delete": "/_api/Lists/getByTitle('{LIST_NAME}')/items('{ITEM_ID}')",
+    "update": "/_api/Lists/getByTitle('{LIST_NAME}')/items('{ITEM_ID}')",
+    "getEifDraftsForUser": "/_api/Lists/getByTitle('{LIST_NAME}')/items?$filter=TAR_Requester eq {USER_ID}&$select=Id,Title,TAR_Requester/Title,TAR_Destinations,TAR_FirstName,TAR_LastName,TAR_TarId&$expand=TAR_Requester",
+    "getEifSubmittedForUser": "/_api/Lists/getByTitle('{LIST_NAME}')/items?$filter=TAR_Requester eq {USER_ID}&$select=Id,Title,TAR_Requester/Title,TAR_Destinations,TAR_FirstName,TAR_LastName,TAR_TarId,{EXPAND_USERS},TAR_Requester"
+}

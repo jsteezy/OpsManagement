@@ -1,0 +1,7 @@
+Title,Value,UsedIn,Type
+AppRelativeUrl,ProjectLibrary/ApplicationSPALayout.aspx,Workflows,Setting
+Diversity_Inbox,sci@diversitytravel.co.uk,TAR,Setting
+Finance_Inbox,finance@placehoder.co.uk,TAR,Setting
+TAR_Admin_Inbox,admin@placeholder.co.uk,TAR,Setting
+EIF_StorageDays,30,TAR,Archiving
+TAR_StorageMonths,12,TAR,Archiving

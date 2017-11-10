@@ -1,0 +1,36 @@
+<md-content md-theme="pageTheme" flex>
+        <md-toolbar>
+            <div class="md-toolbar-tools" layout-align="space-between center">
+                <h2>{{'EMERGENCY_CONTACT_TITLE' | translate}}</h2>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <i class="material-icons">close</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content layout="column" class="md-padding md-dialog-content">
+            <div layout-gt-sm="row" layout-padding>
+                <md-input-container class="md-block" flex>
+                    <label class="md-primary">{{'EMERGENCY_CONTACTS_NAME' | translate}}</label>
+                    <input type="text" name="contactName" ng-model="ctrl.model.contactName" disabled>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row" layout-padding>
+                <md-input-container class="md-block" flex>
+                    <label>{{'EMERGENCY_CONTACTS_RELATION' | translate}}</label>
+                    <input type="text" name="relationship" ng-model="ctrl.model.relationship" disabled>
+                </md-input-container>
+            </div>
+            <div layout="row" ng-repeat="phone in ctrl.model.phoneNumbers" layout-margin layout-align="start center">
+                <div layout-gt-sm="row" layout="column">
+                    <md-input-container class="md-block" flex>
+                        <label>{{'EMERGENCY_CONTACTS_PHONE_TYPE' | translate}}</label>
+                        <input type="text" value="{{ctrl.model.phoneNumbers[$index].type | translate | uppercase}}" disabled>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex>
+                        <label>{{'EMERGENCY_CONTACTS_PHONE_NR' | translate}}</label>
+                        <input type="text" ng-model="ctrl.model.phoneNumbers[$index].number" disabled>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-content>
+</md-content>

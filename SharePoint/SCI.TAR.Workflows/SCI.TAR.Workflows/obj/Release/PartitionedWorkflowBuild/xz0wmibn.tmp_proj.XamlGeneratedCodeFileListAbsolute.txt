@@ -1,0 +1,13 @@
+obj\Release\PartitionedWorkflowBuild\_SCI.TAR.Workflows.g.cs
+obj\Release\PartitionedWorkflowBuild\Workflow.g.cs
+obj\Release\PartitionedWorkflowBuild\Workflow.1.g.cs
+obj\Release\PartitionedWorkflowBuild\Workflow.2.g.cs
+obj\Release\PartitionedWorkflowBuild\SCI.TAR.Workflows.BudgetApprovalWorkflow_Workflow_BeforeInitializeComponentHelper.cs
+obj\Release\PartitionedWorkflowBuild\_AssemblyInfo_c69a92de347c4cb9ae221fec8b2db0c3.g.cs
+obj\Release\PartitionedWorkflowBuild\SCI.TAR.Workflows.EIFWorkflow_Workflow_BeforeInitializeComponentHelper.cs
+obj\Release\PartitionedWorkflowBuild\_AssemblyInfo_fbcb910ef5a148e3b2867b88250342fd.g.cs
+obj\Release\PartitionedWorkflowBuild\SCI.TAR.Workflows.TARArchivingWorkflow_Workflow_BeforeInitializeComponentHelper.cs
+obj\Release\PartitionedWorkflowBuild\_AssemblyInfo_08f1e1612d5f4e2e8dc32c80676c3862.g.cs
+D:\Projects\SCI.TAR\tar\SharePoint\SCI.TAR.Workflows\SCI.TAR.Workflows\obj\Release\PartitionedWorkflowBuild\SCI.TAR.Workflows.BudgetApprovalWorkflow_Workflow_CompiledExpressionRoot.cs
+D:\Projects\SCI.TAR\tar\SharePoint\SCI.TAR.Workflows\SCI.TAR.Workflows\obj\Release\PartitionedWorkflowBuild\SCI.TAR.Workflows.EIFWorkflow_Workflow_CompiledExpressionRoot.cs
+D:\Projects\SCI.TAR\tar\SharePoint\SCI.TAR.Workflows\SCI.TAR.Workflows\obj\Release\PartitionedWorkflowBuild\SCI.TAR.Workflows.TARArchivingWorkflow_Workflow_CompiledExpressionRoot.cs

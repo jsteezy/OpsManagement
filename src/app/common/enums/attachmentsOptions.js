@@ -1,4 +1,4 @@
-/*export default class AttachmentsOptions {
+export default class AttachmentsOptions {
     static get empty(){
         return {
             listName: "",
@@ -41,4 +41,3 @@
         }
     }
 }
-*/

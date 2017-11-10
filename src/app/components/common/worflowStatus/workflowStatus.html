@@ -1,0 +1,21 @@
+<div layout-gt-sm="column" layout-padding layout-margin>
+    <div ng-repeat="item in ctrl.model">
+        <div layout="row">
+            <i class="material-icons md-icon-48"
+               ng-class="item.status.class"
+               ng-if="item.status.id != 4">
+                check_circle
+            </i>
+            <i class="material-icons md-icon-48"
+               ng-class="item.status.class"
+               ng-if="item.status.id == 4">
+                cancel
+            </i>
+            <span class="textPosition">{{item.name | translate}}</span>
+        </div>
+        <div layout="row">
+            <i class="material-icons md-icon-48" ng-hide="$last">arrow_downward</i>
+        </div>
+    </div>
+</div>
+

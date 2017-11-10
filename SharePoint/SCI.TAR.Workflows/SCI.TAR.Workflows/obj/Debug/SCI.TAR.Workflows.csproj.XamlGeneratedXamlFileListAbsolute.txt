@@ -1,0 +1,8 @@
+obj\Debug\Workflow.g.xaml
+obj\Debug\Workflow.1.g.xaml
+obj\Debug\Workflow.2.g.xaml
+obj\Debug\Workflow.3.g.xaml
+obj\Debug\SCI.TAR.Workflows.BudgetApprovalWorkflow_Workflow_BeforeInitializeComponentHelper.txt
+obj\Debug\SCI.TAR.Workflows.EIFWorkflow_Workflow_BeforeInitializeComponentHelper.txt
+obj\Debug\SCI.TAR.Workflows.TARArchivingWorkflow_Workflow_BeforeInitializeComponentHelper.txt
+obj\Debug\SCI.TAR.Workflows.EIFArchivingWorkflow_Workflow_BeforeInitializeComponentHelper.txt
