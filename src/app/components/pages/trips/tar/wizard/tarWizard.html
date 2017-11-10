@@ -6,48 +6,76 @@
 
         <toggle-accordion-section></toggle-accordion-section>
 
-        <accordion heading="{{'REQUEST_INFO' | translate | uppercase}}">
+        <accordion heading="Title 1">
             <div layout-gt-md="row" layout-padding>
-                <people-picker ng-model="ctrl.model.traveller"
-                                model-ids="ctrl.model.travellerId"
-                               options="ctrl.features.pickerOptions.travellerPickerOptions" flex-gt-sm="50"></people-picker>
+                <question ng-model="ctrl.model.regionalResponse" options="ctrl.features.questionsOptions.regionalResponse" flex-gt-sm="20"></question>
             </div>
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
-                    <label>{{'TRAVEL_PURPOSE_QUESTION' | translate}}</label>
-                    <textarea ng-model="ctrl.model.purposeOfTravel" name="purposeOfTravel" md-maxlength="255" required></textarea>
-                    <div ng-messages="form.purposeOfTravel.$error"
-                         ng-if='ctrl.isFieldErrorVisible(form, "purposeOfTravel")'>
-                        <div ng-messages-include="error-messages"></div>
-                    </div>
+                    <label>Parent Regional Response</label>
+                    <textarea ng-model="ctrl.model.parentRegionalResponse" name="parentRegionalResponse" md-maxlength="50"></textarea>
                 </md-input-container>
-                <people-picker ng-model="ctrl.model.selectedEmergencyContacts"
-                               options="ctrl.features.pickerOptions.emergencyPickerOptions" flex-gt-sm="50"></people-picker>
+
+                <div class="md-block" flex-gt-sm="50">
+                    <label>Sitrep date</label>
+                    <md-datepicker ng-model="ctrl.sitrepDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                </div>
+
             </div>
             <div layout-gt-md="row" layout-padding>
-                <people-picker ng-model="ctrl.model.lineManager"
-                               model-ids="ctrl.model.lineManagerId"
-                               options="ctrl.features.pickerOptions.lineManagerPickerOptions" flex-gt-sm="50"></people-picker>
-                <people-picker ng-model="ctrl.model.additionalStaffMember"
-                                model-ids="ctrl.model.additionalStaffMemberId"
-                                options="ctrl.features.pickerOptions.additionalStaffMemberOptions" flex-gt-sm="50"></people-picker>
+                <div class="md-block" flex-gt-sm="50">
+                    <label>Next sitrep date</label>
+                    <md-datepicker ng-model="ctrl.nextSitrepDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                </div>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>General Context</label>
+                    <textarea ng-model="ctrl.model.generalContext" name="generalContext" required></textarea>
+                </md-input-container>
             </div>
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Recent Context Development</label>
+                    <textarea ng-model="ctrl.model.recentContextDevelopment" name="recentContextDevelopment" required></textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Response update</label>
+                    <textarea ng-model="ctrl.model.responseUpdate" name="responseUpdate" required></textarea>
+                </md-input-container>
+            </div>
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Ops Backstop</label>
+                    <textarea ng-model="ctrl.model.opsBackstop" name="opsBackstop" required></textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Non SCI responses</label>
+                    <textarea ng-model="ctrl.model.responseUpdate" name="responseUpdate" required></textarea>
+                </md-input-container>
+            </div>
+
+            <div class="md-block" flex-gt-sm="50">
+                <label>Non SCI responses</label>
+                <md-checkbox ng-model="ctrl.model.responseUpdate">
+                    <!-- {{ ctrl.model.responseUpdate }} -->
+                </md-checkbox>
+            </div>
+
         </accordion>
 
         <tar-wizard-common ng-model="ctrl.model" currencies="ctrl.currencies"></tar-wizard-common>
 
         <accordion heading="{{'TERMS_AND_CONDITIONS' | translate | uppercase}}">
-            <div class="questions-section-padding">
-                <question ng-model="ctrl.model.informationRead.travelProcedures"
-                          options="ctrl.features.questionsOptions.travelProceduresOptions"></question>
-                <question ng-model="ctrl.model.informationRead.departureProcedures"
-                          options="ctrl.features.questionsOptions.departureProceduresOptions"></question>
+            <!-- <div class="questions-section-padding">
+                <question ng-model="ctrl.model.informationRead.travelProcedures" options="ctrl.features.questionsOptions.travelProceduresOptions"></question>
+                <question ng-model="ctrl.model.informationRead.departureProcedures" options="ctrl.features.questionsOptions.departureProceduresOptions"></question>
             </div>
             <md-subheader>
                 <md-checkbox ng-model="ctrl.model.formSubmitConfirmation" aria-label="submitConfirmation">
                     {{'TAR_SUBMIT_CONFIRMATION' | translate}}
                 </md-checkbox>
-            </md-subheader>
+            </md-subheader> -->
         </accordion>
     </ng-form>
 </md-content>

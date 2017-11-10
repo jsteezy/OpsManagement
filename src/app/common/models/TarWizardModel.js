@@ -1,43 +1,76 @@
 import ProfileCommonModel from "./ProfileCommonModel";
+import DateUtils from "../helpers/DateUtils";
 
 export default class TarWizardModel extends ProfileCommonModel {
     constructor() {
         super();
-        
-        this.uploadedAttachments = [];
-        this.uploadAttachments = [];
 
-        this.title = "";
-        this.requester = [];
-        this.requesterId = 0;
-        this.traveller = [];
-        this.travellerId = 0;
-        this.selectedEmergencyContacts = [];
-        this.additionalStaffMember = [];
-        this.additionalStaffMemberId = 0;
-        this.visaRequired = "";
-        this.visaNumber = "";
-        this.readPDI = "";
-        this.usaidFunds = "";
-        this.appropriateVaccination = "";
-        this.appropriateEmergencyContacts = "";
-        this.londonOfficeLocation = "";
-        this.travelAdvances = [];
-        this.purposeOfTravel = "";
-        this.approvedByDirector = "";
-        this.destinations = [];
-        this.requiresGssApproval = false;
-        this.budgetSession = {};
-        this.otherEstimatedCosts = [];
-        this.otherEstimatedCostsTotal = 0;
-        this.totalBudgetCodesPercentage = 0;
-        this.budgetCodes = [];
-        this.additionalInformation = "";
-        this.travelCoordinator = [];
-        this.travelCoordinatorId = 0;
-        this.budgetApprover = [];
-        this.budgetApproverId = 0;
-        this.informationRead = {};
+        this.regionalResponse = false;
+        this.parentRegionalResponse = "";
+        this.sitrepDate = DateUtils.today;
+        this.nextSitrepDate = DateUtils.today;
+        this.generalContext = "";
+        this.recentContextDevelopment = "";
+        this.responseUpdate = "";
+        this.opsBackstop = "";
+        this.nonSciResponses = false;
+
+        this.affectedPopulation = 0;
+        this.strategyTarget = "";
+        this.totalReachSinceStart = "";
+        this.totalReachSinceLastSitrep = "";
+        this.childrenReachedSinceStart = 0;
+        this.childrenReachedSinceLastSitrep = 0;
+
+        this.responseStratergyTarget = "";
+        this.seedFundsTarget = "";
+        this.seedFundsTargetDate = DateUtils.today;
+
+        this.assessment = "";
+        this.outline = "";
+        this.strategy = "";
+        this.plan = "";
+        this.operationsControlReview = "";
+        this.realTimeReview = "";
+        this.representationOnHCT = false;
+        this.educationCluster = false;
+        this.staffingEducationCluster = false;
+
+        this.childProtectionBackstop = "";
+        this.childProtectionSummary = "";
+        this.educationBackstop = "";
+        this.educationSummary = "";
+        this.FSLBackstop = "";
+        this.FSLSummary = "";
+        this.WASHBackstop = "";
+        this.WASHSummary = "";
+        this.shelterBackstop = "";
+        this.shelterSummary = "";
+        this.EHUUpdates = "";
+        this.EHUPresent = false;
+
+        this.nationalStaffNumber = 0;
+        this.internationalStaffNumber = 0;
+
+        this.securityLevel = "";
+        this.incidentSummary = "";
+        this.securityEvents = "";
+        this.securityContext = "";
+        this.securityChallenges = "";
+        this.securityManagement = "";
+
+        this.staffChildSafegaurding = 0;
+        this.safegaurdingFocalPoint = "";
+        this.safegaurdingRisks = "";
+
+        this.commsPack = "";
+        this.mediaCoverage = "";
+        this.spokespeople = "";
+
+        this.prepositionedStock = false;
+        this.forThisResponse = false;
+        this.plannedProcurement = 0;
+        this.procurementSpend = 0;
 
         super.excludeProperties(this.getExcludedProperties());
     }
@@ -52,7 +85,7 @@ export default class TarWizardModel extends ProfileCommonModel {
             }
         });
     }
-    
+
     getExcludedProperties() {
         return ["officeLocation",
             "emergencyContacts",
@@ -67,15 +100,17 @@ export default class TarWizardModel extends ProfileCommonModel {
             "budgetApprover",
             "otherEstimatedCostsTotal",
             "totalBudgetCodesPercentage",
-            "formSubmitConfirmation"];
+            "formSubmitConfirmation"
+        ];
     }
-    
+
     get peoplePickerProperties() {
-        return ["requester", 
+        return ["requester",
             "traveller",
             "lineManager",
             "travelCoordinator",
             "budgetApprover",
-            "additionalStaffMember"];
+            "additionalStaffMember"
+        ];
     }
 }

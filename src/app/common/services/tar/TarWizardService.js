@@ -31,8 +31,8 @@ export default class TarWizardService extends BaseTarService {
                     model.gSSTrainingDate = DateUtils.getDateOrEmpty(model.gSSTrainingDate, Language.language);
                 }
 
-                this.setDefaultTraveller(model);
-                this.setDefaultPeoplePickers(model);
+                //this.setDefaultTraveller(model);
+                //this.setDefaultPeoplePickers(model);
 
                 return model;
             });
@@ -47,8 +47,8 @@ export default class TarWizardService extends BaseTarService {
         if (data) {
             ObjectMapper.toObject(data, model);
             model.gSSTrainingDate = DateUtils.getDateOrEmpty(model.gSSTrainingDate, Language.language);
-            
-            this.setDefaultPeoplePickers(model);
+
+            //this.setDefaultPeoplePickers(model);
         }
 
         return model;
@@ -59,38 +59,38 @@ export default class TarWizardService extends BaseTarService {
 
         return this.profileDataAccessService.get(travellerId)
             .then(
-            (data) => {
-                ObjectMapper.toObject(data, model, ["id", "etag"]);
-                model.gSSTrainingDate = DateUtils.getDateOrEmpty(model.gSSTrainingDate, Language.language);
+                (data) => {
+                    ObjectMapper.toObject(data, model, ["id", "etag"]);
+                    model.gSSTrainingDate = DateUtils.getDateOrEmpty(model.gSSTrainingDate, Language.language);
 
-                return model;
-            },
-            () => {
-                return Promise.reject("Profile not found, please fill you profile");
-            });
+                    return model;
+                },
+                () => {
+                    return model //Promise.reject("Profile not found, please fill you profile");
+                });
     }
 
     loadDraft(identifier) {
         return this.tarDataAccessService.getDraft(identifier)
             .then(
-            (data) => {
-                return this.buildModel(data);
-            },
-            (errorData) => {
-                return Promise.reject(errorData)
-            });
+                (data) => {
+                    return this.buildModel(data);
+                },
+                (errorData) => {
+                    return Promise.reject(errorData)
+                });
     }
 
 
     loadBasicDraft(identifier) {
         return this.tarDataAccessService.getDraft(identifier)
             .then(
-            (data) => {
-                return this.buildBasicModel(data);
-            },
-            (errorData) => {
-                return Promise.reject(errorData)
-            });
+                (data) => {
+                    return this.buildBasicModel(data);
+                },
+                (errorData) => {
+                    return Promise.reject(errorData)
+                });
     }
 
     loadPageData() {
@@ -122,10 +122,10 @@ export default class TarWizardService extends BaseTarService {
 
         return this.tarDataAccessService.saveAsTar(model)
             .then(
-                ( data ) => {
+                (data) => {
                     return this.tarAttachmentsService.storeRequestAttachments(data.Id, model)
                 },
-                ( errorData ) => {
+                (errorData) => {
                     return Promise.reject(errorData);
                 })
             .then(
@@ -138,7 +138,7 @@ export default class TarWizardService extends BaseTarService {
 
                     return promises;
                 },
-                ( errorData ) => {
+                (errorData) => {
                     return Promise.reject(errorData);
                 });
     }
@@ -148,17 +148,17 @@ export default class TarWizardService extends BaseTarService {
 
         return this.tarDataAccessService[pageMode.tarDraftServiceAction](model)
             .then(
-            (data) => {
-                const modelId = ModelHelpers.getId(model, data);
+                (data) => {
+                    const modelId = ModelHelpers.getId(model, data);
 
-                return Promise.all([
-                    ModelHelpers.getTitle(model, data),
-                    this.tarAttachmentsService.storeDraftAttachments(modelId, model)
-                ]);
-            },
-            (errorData) => {
-                return Promise.reject(errorData);
-            });
+                    return Promise.all([
+                        ModelHelpers.getTitle(model, data),
+                        this.tarAttachmentsService.storeDraftAttachments(modelId, model)
+                    ]);
+                },
+                (errorData) => {
+                    return Promise.reject(errorData);
+                });
     }
 
     deleteDraft(model) {
@@ -202,4 +202,5 @@ TarWizardService.$inject = [
     "profileDataAccessService",
     "tarAttachmentsService",
     "commonDataService",
-    "cache"];
+    "cache"
+];

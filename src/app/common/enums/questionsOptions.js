@@ -59,10 +59,10 @@ export default class Options {
                 name: "medicalCard",
                 flex: 100
             },
-            visa: {
-                label: "VISA_QUESTION",
+            regionalResponse: {
+                label: "Regional response",
                 showWarning: false,
-                name: "visa",
+                name: "regionalResponse",
                 flex: 100,
                 required: true
             },
