@@ -5,6 +5,7 @@ export default class TarWizardModel extends ProfileCommonModel {
     constructor() {
         super();
 
+        //General info
         this.regionalResponse = false;
         this.parentRegionalResponse = "";
         this.sitrepDate = DateUtils.today;
@@ -13,45 +14,68 @@ export default class TarWizardModel extends ProfileCommonModel {
         this.recentContextDevelopment = "";
         this.responseUpdate = "";
         this.opsBackstop = "";
+
+        //Non SCI responses
         this.nonSciResponses = false;
 
-        this.affectedPopulation = 0;
+        //Reach figures
+        this.affectedPopulation = "";
         this.strategyTarget = "";
         this.totalReachSinceStart = "";
         this.totalReachSinceLastSitrep = "";
-        this.childrenReachedSinceStart = 0;
-        this.childrenReachedSinceLastSitrep = 0;
+        this.childrenReachedSinceStart = "";
+        this.childrenReachedSinceLastSitrep = "";
 
-        this.responseStratergyTarget = "";
+        //Income
+        this.responseStrategyTarget = "";
         this.seedFundsTarget = "";
-        this.seedFundsTargetDate = DateUtils.today;
+        this.seedFundsTargetDate = "";
 
+        //Deliverables
+        this.assessmentBool = false;
         this.assessment = "";
+        this.outlineBool = false;
         this.outline = "";
+        this.strategyBool = false;
         this.strategy = "";
+        this.planBool = false;
         this.plan = "";
+        this.operationsControlReviewBool = false;
         this.operationsControlReview = "";
+        this.realTimeReviewBool = false;
         this.realTimeReview = "";
         this.representationOnHCT = false;
         this.educationCluster = false;
         this.staffingEducationCluster = false;
 
+        //Sectors
+        this.childProtectionBool = false;
         this.childProtectionBackstop = "";
         this.childProtectionSummary = "";
+        this.educationBool = false;
         this.educationBackstop = "";
         this.educationSummary = "";
+        this.FSLBool = false;
         this.FSLBackstop = "";
         this.FSLSummary = "";
+        this.WASHBool = false;
         this.WASHBackstop = "";
         this.WASHSummary = "";
+        this.shelterBool = false;
         this.shelterBackstop = "";
         this.shelterSummary = "";
+        this.healthBool = false;
+        this.healthBackstop = "";
+        this.healthSummary = "";
+        this.EHUUpdatesBool = false;
         this.EHUUpdates = "";
         this.EHUPresent = false;
 
-        this.nationalStaffNumber = 0;
-        this.internationalStaffNumber = 0;
+        //HR
+        this.nationalStaffNumber = "";
+        this.internationalStaffNumber = "";
 
+        //Saftey and security
         this.securityLevel = "";
         this.incidentSummary = "";
         this.securityEvents = "";
@@ -59,18 +83,20 @@ export default class TarWizardModel extends ProfileCommonModel {
         this.securityChallenges = "";
         this.securityManagement = "";
 
-        this.staffChildSafegaurding = 0;
+        //Child safegaurding
+        this.staffChildSafegaurding = "";
         this.safegaurdingFocalPoint = "";
         this.safegaurdingRisks = "";
 
+        //Advanced Media and Comms
         this.commsPack = "";
         this.mediaCoverage = "";
         this.spokespeople = "";
 
         this.prepositionedStock = false;
         this.forThisResponse = false;
-        this.plannedProcurement = 0;
-        this.procurementSpend = 0;
+        this.plannedProcurement = "";
+        this.procurementSpend = "";
 
         super.excludeProperties(this.getExcludedProperties());
     }

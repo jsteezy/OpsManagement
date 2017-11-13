@@ -22,8 +22,6 @@ export default class TarWizardController extends BaseController {
 
         this.toastService = toastService;
 
-        this.title = "TAR_REQUEST";
-
         this.currencies = [];
 
         this.registerEvents();
@@ -149,4 +147,5 @@ export default class TarWizardController extends BaseController {
 TarWizardController.$inject = [
     "$injector",
     "tarWizardService",
-    "toastService"];
+    "toastService"
+];
