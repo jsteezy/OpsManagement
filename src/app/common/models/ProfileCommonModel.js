@@ -1,19 +1,14 @@
 import BaseModel from "./BaseModel";
+import DateUtils from "../helpers/DateUtils";
 
 export default class ProfileCommonModel extends BaseModel {
     constructor() {
         super();
 
-        // this.officeLocation = "";
-        // this.emergencyContacts = [];
-        // this.photoId = "";
-        // this.gSSTraining = "";
-        // this.medicalEmergencyCard = "";
-        // this.medicalProviderName = "";
-        // this.policyNumber = "";
-        // this.expensesCodes = [];
-        // this.gSSTrainingDate = null;
-        // this.lineManager = [];
-        // this.lineManagerId = 0;
+        this.code = "";
+        this.description = "";
+        this.startDate = DateUtils.today;
+        this.region = "";
+        this.country = "";
     }
 }

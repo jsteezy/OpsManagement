@@ -6,10 +6,11 @@ export default class ProfileModel extends ProfileCommonModel {
 
         //this.userId = "";
         //this.userEmail = "";
-        this.code = "";
-        this.description = "";
-        //this.startDate = "";
-        //this.region = "";
+        // this.code = "";
+        // this.description = "";
+        // this.startDate = DateUtils.today;
+        // this.region = "";
+        // this.country = "";
 
         // this.userLanguage = "";
         // this.profileHasAccess = {};

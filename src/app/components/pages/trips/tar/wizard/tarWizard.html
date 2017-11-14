@@ -199,7 +199,6 @@
                 <label>Education cluster or working group activated</label>
                 <md-checkbox ng-model="ctrl.model.educationCluster">
                 </md-checkbox>
-
                 <label>Staffing education cluster or working group</label>
                 <md-checkbox ng-model="ctrl.model.staffingEducationCluster">
                 </md-checkbox>
@@ -334,12 +333,117 @@
         </accordion>
 
         <accordion heading="Saftey and security">
+            <md-input-container class="md-block" flex-gt-sm="50">
+                <label>Overall security level in country</label>
+                <md-select ng-model="ctrl.model.securityLevel" placeholder="Select">
+                    <md-option ng-repeat="item in ctrl.securityLevels" ng-value="item">
+                        {{item}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Summary of incidents and impact on response</label>
+                    <textarea ng-model="ctrl.model.incidentSummary" name="incidentSummary" required></textarea>
+                </md-input-container>
+            </div>
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Events that may affect the security situation</label>
+                    <textarea ng-model="ctrl.model.securityEvents" name="securityEvents" required></textarea>
+                </md-input-container>
+            </div>
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Please provide an overview of the S&amp;S  context, 
+                                including details of security incidents,
+                                since the last SitRep</label>
+                    <textarea ng-model="ctrl.model.securityContext" name="securityContext" required></textarea>
+                </md-input-container>
+            </div>
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>What immediate S&amp;S challenges are predicted?</label>
+                    <textarea ng-model="ctrl.model.securityChallenges" name="securityChallenges" required></textarea>
+                </md-input-container>
+            </div>
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>How will those challenges be managed?</label>
+                    <textarea ng-model="ctrl.model.securityManagement" name="securityManagement" required></textarea>
+                </md-input-container>
+            </div>
+
         </accordion>
 
         <accordion heading="Child safegaurding">
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>% of staff with child safeguarding training</label>
+                    <textarea ng-model="ctrl.model.staffChildSafegaurding" name="staffChildSafegaurding" required></textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Child safeguarding focal point</label>
+                    <textarea ng-model="ctrl.model.safegaurdingFocalPoint" name="safegaurdingFocalPoint" required></textarea>
+                </md-input-container>
+            </div>
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Key safeguarding risks to children</label>
+                    <textarea ng-model="ctrl.model.safegaurdingRisks" name="safegaurdingRisks" required></textarea>
+                </md-input-container>
+            </div>
+
         </accordion>
 
         <accordion heading="Advanced Media and Comms">
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Communication Pack</label>
+                    <textarea ng-model="ctrl.model.commsPack" name="commsPack" required></textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Recent media coverage</label>
+                    <textarea ng-model="ctrl.model.mediaCoverage" name="mediaCoverage" required></textarea>
+                </md-input-container>
+            </div>
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Spokespeople</label>
+                    <textarea ng-model="ctrl.model.spokespeople" name="spokespeople" required></textarea>
+                </md-input-container>
+            </div>
+
+        </accordion>
+
+        <accordion heading="Emergency supply chain">
+            <div layout-gt-md="row" layout-padding>
+                <label>Do you have prepositioned stock in country?</label>
+                <md-checkbox ng-model="ctrl.model.prepositionedStock">
+                </md-checkbox>
+                <label>Are you planning to use it for this response?</label>
+                <md-checkbox ng-model="ctrl.model.forThisResponse">
+            </div>
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Planned procurement on this response (in USD)</label>
+                    <textarea ng-model="ctrl.model.plannedProcurement" name="plannedProcurement" md-maxlength="7"></textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Procurement spend to date (in USD)</label>
+                    <textarea ng-model="ctrl.model.procurementSpend" name="procurementSpend" md-maxlength="7"></textarea>
+                </md-input-container>
+            </div>
         </accordion>
 
     </ng-form>

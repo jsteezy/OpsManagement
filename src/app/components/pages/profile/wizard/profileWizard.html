@@ -4,21 +4,19 @@
             <div layout="row" layout-align="space-between center">
                 <h2>Create</h2>
             </div>
-
-
             <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Country</label>
-                <md-select ng-model="ctrl.countries" placeholder="Country">
-                    <md-option ng-repeat="item in ctrl.countries" ng-value="item">
-                        {{item}}
+                <md-select ng-model="ctrl.model.country" placeholder="Country">
+                    <md-option ng-repeat="item in ctrl.countries" ng-value="item.title">
+                        {{item.title}}
                     </md-option>
                 </md-select>
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Regions</label>
-                <md-select ng-model="ctrl.regions" placeholder="Regions">
-                    <md-option ng-repeat="item in ctrl.regions" ng-value="item">
-                        {{item}}
+                <md-select ng-model="ctrl.model.region" placeholder="Regions">
+                    <md-option ng-repeat="item in ctrl.regions" ng-value="item.title">
+                        {{item.title}}
                     </md-option>
                 </md-select>
             </md-input-container>

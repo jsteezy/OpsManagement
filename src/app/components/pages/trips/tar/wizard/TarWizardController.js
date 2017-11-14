@@ -4,6 +4,7 @@ import TarValidator from "../../../../../common/services/tar/TarValidator";
 import TarFeatures from "../../../../../common/services/tar/TarFeatures";
 import EventsTypes from "../../../../../common/enums/eventsTypes.json";
 import PageModes from "../../../../../common/enums/pageModes.json";
+import SecurityLevels from "../../../../../common/enums/securityLevels.json";
 
 
 export default class TarWizardController extends BaseController {
@@ -23,6 +24,7 @@ export default class TarWizardController extends BaseController {
         this.toastService = toastService;
 
         this.currencies = [];
+        this.securityLevels = SecurityLevels;
 
         this.registerEvents();
     }

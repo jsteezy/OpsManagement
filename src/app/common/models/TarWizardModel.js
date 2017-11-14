@@ -93,6 +93,7 @@ export default class TarWizardModel extends ProfileCommonModel {
         this.mediaCoverage = "";
         this.spokespeople = "";
 
+        //Emergency supply chain    
         this.prepositionedStock = false;
         this.forThisResponse = false;
         this.plannedProcurement = "";
