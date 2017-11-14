@@ -18,40 +18,40 @@ export default class ProfileModel extends ProfileCommonModel {
         // this.profileOthersAccess = [];
         // this.profileOthersAccessId = 0;
 
-        super.excludeProperties(this.getExcludedProperties());
+        //super.excludeProperties(this.getExcludedProperties());
     }
 
-    addNewUserWhoHasAccess(id) {
-        if (!this.profileHasAccessId || !this.profileHasAccessId.results) {
-            this.profileHasAccessId = { results: [] }
-        }
+    // addNewUserWhoHasAccess(id) {
+    //     if (!this.profileHasAccessId || !this.profileHasAccessId.results) {
+    //         this.profileHasAccessId = { results: [] }
+    //     }
 
-        this.profileHasAccessId.results.push(id);
-    }
+    //     this.profileHasAccessId.results.push(id);
+    // }
 
-    initPeoplePickers() {
-        this.peoplePickerProperties.forEach((prop) => {
-            if (this[prop] === undefined ||
-                this[prop].length === 0 ||
-                this[prop][0].Title == null) {
+    // initPeoplePickers() {
+    //     this.peoplePickerProperties.forEach((prop) => {
+    //         if (this[prop] === undefined ||
+    //             this[prop].length === 0 ||
+    //             this[prop][0].Title == null) {
 
-                this[prop] = [];
-            }
-        });
-    }
+    //             this[prop] = [];
+    //         }
+    //     });
+    // }
 
-    getExcludedProperties() {
-        return ["profileHasAccess",
-            "profileOthersAccess",
-            "lineManager"
-        ];
-    }
+    // getExcludedProperties() {
+    //     return ["profileHasAccess",
+    //         "profileOthersAccess",
+    //         "lineManager"
+    //     ];
+    // }
 
-    get peoplePickerProperties() {
-        return ["profileOthersAccess", "lineManager"];
-    }
+    // get peoplePickerProperties() {
+    //     return ["profileOthersAccess", "lineManager"];
+    // }
 
-    get multipleValuesProperties() {
-        return ["profileHasAccessId"];
-    }
+    // get multipleValuesProperties() {
+    //     return ["profileHasAccessId"];
+    // }
 }

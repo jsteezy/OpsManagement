@@ -5,7 +5,7 @@ import appMainComponent from "../components/root/root";
 import emptyPage from "../components/pages/emptyPage/emptyPage";
 import profileSearch from "../components/pages/profile/search/profileSearch";
 import profileWizard from "../components/pages/profile/wizard/profileWizard";
-import profileDelegateAccess from "../components/pages/profile/delegateAccess/delegateAccess";
+
 import tarSearch from "../components/pages/trips/tar/search/tarSearch";
 import tarWizardCommon from "../components/pages/trips/tar/wizard/tarWizardCommon/tarWizardCommon";
 import tarDetailsCommon from "../components/pages/trips/tar/details/tarDetailsCommon/tarDetailsCommon";
@@ -20,27 +20,13 @@ import countries from "../components/pages/administrator/countries/countries";
 import orgUnitTypes from "../components/pages/administrator/orgUnitTypes/orgUnitTypes";
 import orgUnits from "../components/pages/administrator/orgUnits/orgUnits";
 import archive from "../components/pages/administrator/archive/archive";
-import emergencyContact from "../components/pages/profile/wizard/emergencyContact/emergencyContact";
-import emergencyContactView from "../components/pages/trips/tar/details/emergencyContactView/emergencyContactView";
-import expensesCodes from "../components/pages/profile/wizard/expensesCodes/expensesCodes";
-import profileDefaultQuestions from "../components/pages/profile/wizard/profileDefaultQuestions/defaultQuestions";
-import destination from "../components/pages/trips/tar/wizard/destination/destination";
-import travelAdvance from "../components/pages/trips/tar/wizard/travelAdvance/travelAdvance";
-import estimatedCosts from "../components/pages/trips/tar/wizard/estimatedCosts/estimatedCosts";
-import budgetCodes from "../components/pages/trips/tar/wizard/budgetCodes/budgetCodes";
+
+
 import tarApproval from "../components/pages/approvals/tar/search/tarApproval";
 import tarApprovalWizard from "../components/pages/approvals/tar/wizard/tarApprovalWizard";
 import tarHistory from "../components/pages/history/tar/tarHistory";
 import tarHistoryDetails from "../components/pages/history/tar/details/tarHistoryDetails";
 
-import eifSearch from "../components/pages/trips/eif/search/eifSearch";
-import eifWizardCommon from "../components/pages/trips/eif/eifWizard/eifWizardCommon/eifWizardCommon";
-import eifWithFundsWizard from "../components/pages/trips/eif/eifWithFundsWizard/eifWithFundsWizard";
-import eifWizard from "../components/pages/trips/eif/eifWizard/eifWizard";
-import eifDetailsCommon from "../components/pages/trips/eif/eifDetails/eifDetailsCommon/eifDetailsCommon";
-import eifDetails from "../components/pages/trips/eif/eifDetails/eifDetails";
-import eifWithFundsDetails from "../components/pages/trips/eif/eifWithFundsDetails/eifWithFundsDetails";
-import eifSearchAll from "../components/pages/approvals/eif/search/eifSearch";
 
 import create from "../components/pages/administrator/create/create";
 
@@ -85,9 +71,8 @@ export default class Bootstrap {
         app.component("emptyPage", emptyPage);
         app.component("profileSearch", profileSearch);
         app.component("profileWizard", profileWizard);
-        app.component("profileDelegateAccess", profileDelegateAccess);
-        app.component("emergencyContact", emergencyContact);
-        app.component("emergencyContactView", emergencyContactView);
+
+
         app.component("tarSearch", tarSearch);
         app.component("tarWizardCommon", tarWizardCommon);
         app.component("tarWizard", tarWizard);
@@ -103,25 +88,12 @@ export default class Bootstrap {
         app.component("orgUnits", orgUnits);
         app.component("archive", archive);
         app.component("notification", notification);
-        app.component("expensesCodes", expensesCodes);
-        app.component("destination", destination);
-        app.component("travelAdvance", travelAdvance);
-        app.component("estimatedCosts", estimatedCosts);
-        app.component("budgetCodes", budgetCodes);
-        app.component("profileDefaultQuestions", profileDefaultQuestions);
         app.component("tarApproval", tarApproval);
         app.component("tarApprovalWizard", tarApprovalWizard);
         app.component('tarHistory', tarHistory);
         app.component("tarHistoryDetails", tarHistoryDetails);
 
-        app.component("eifSearch", eifSearch);
-        app.component("eifWizardCommon", eifWizardCommon);
-        app.component("eifWizard", eifWizard);
-        app.component("eifWithFundsWizard", eifWithFundsWizard);
-        app.component("eifDetailsCommon", eifDetailsCommon);
-        app.component("eifDetails", eifDetails);
-        app.component("eifWithFundsDetails", eifWithFundsDetails);
-        app.component("eifSearchAll", eifSearchAll);
+
 
         app.component("create", create);
 

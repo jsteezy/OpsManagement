@@ -58,6 +58,7 @@ export default class ProfileWizardController extends BaseController {
         super.IsSubmittedFormValid(form).then(() => {
 
             super.isRequestProcessing = true;
+            console.log(super.model);
 
             let storeProfilePromise = this.profileService.store(super.pageMode, super.model);
 
