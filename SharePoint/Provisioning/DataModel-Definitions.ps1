@@ -294,6 +294,7 @@ $global:FieldDefUserProfileHasAccess = New-FieldDefinition @'
     ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
+
 $global:CTDefUserProfile = New-ContentTypeDefinition -ID "0x0100C2DB3C6656AA48D89CA763E667C1FC37" -Name "User Profile" -Group $CTGroup -Description "TAR User Profile";
 
 $global:ListUserProfile = New-ListDefinition -ListTitle $global:UserProfileListTitle -ListUrl $global:UserProfileListName -Description "User Profile for TAR" -Template $CustomListTemplate -ContentTypes @($global:CTDefUserProfile.Name);
