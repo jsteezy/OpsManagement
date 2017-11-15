@@ -1,56 +1,72 @@
 import BaseController from "../../../common/BaseController";
-import Regions from "../../../../common/enums/regions.json";
-import Countries from "../../../../common/enums/countries.json";
-import ResponseModel from "../../../../common/models/ResponseModel";
-import ObjectMapper from "../../../../common/helpers/ObjectMapper";
+import PageModes from "../../../../common/enums/pageModes.json";
+import listOptions from "../../../../common/enums/listOptions";
+import peoplePickerOptions from "../../../../common/enums/peoplePickerOptions";
+import Languages from "../../../../common/enums/languages.json";
+import GlobalFeaturesCache from "../../../../common/services/GlobalFeaturesCache";
 
-
-export default class CreateController extends BaseController {
-    constructor($window, $injector, responseService) {
+export default class ProfileWizardController extends BaseController {
+    constructor($injector,
+        profileService,
+        toastService) {
         super($injector);
 
         super.router = this.$router;
 
+        this.title = "Create";
 
-        this.responseService = responseService;
-        this.$window = $window;
-        this.countries = Countries;
-        this.regions = Regions;
-        this.responseModel = ResponseModel;
+        this.profileService = profileService;
+
+        this.toastService = toastService;
+
+        this.languages = Languages.values;
+
+        this.overrideListOptions();
+        this.overridePickerOptions();
     }
 
     $routerOnActivate(next, current) {
-        super.permissions = [super.appPermissions.admin];
+        super.permissions = [super.appPermissions.everyone];
 
         let init = () => {
-            if (super.$routerOnActivate(next, current)) {
-                this.activate();
-            }
+            super.$routerOnActivate(next, current);
+            return this.activate(next.params.userId);
         };
 
         return super.initializePage(init);
     }
 
-    activate() {}
+    activate(userId) {
+        super.model = this.profileService.buildModel(undefined, userId);
+        super.pageMode = PageModes.add;
 
-    storeResponse(form) {
+        let pageData = this.profileService.loadPageData().then((data) => {
+            this.countries = data[0];
+        });
+
+        return super.initializePageData(pageData, this.loadExistingProfile(userId));
+    }
+
+    loadExistingProfile(userId) {
+        return this.profileService.loadProfile(userId).then((data) => {
+            super.model = this.profileService.buildModel(data, userId);
+            super.pageMode = PageModes.edit;
+        });
+    }
+
+    storeProfile(form) {
         super.IsSubmittedFormValid(form).then(() => {
 
             super.isRequestProcessing = true;
+            console.log(super.model);
 
-            let model = new ResponseModel();
+            let storeProfilePromise = this.profileService.store(super.pageMode, super.model);
 
-            // console.log(model, "model1");
-            ObjectMapper.toObject(form, model);
-
-            //alert(model);
-
-
-            let storeResponsePromise = this.responseService.store(model);
-
-            storeResponsePromise.then(
+            storeProfilePromise.then(
                 () => {
-                    this.toastService.showToast('Response created', 'app');
+                    this.toastService.showToast('PROFILE_SAVED_MSG', 'app');
+
+                    GlobalFeaturesCache.hasProfile = true;
 
                     super.redirectToHome();
                 },
@@ -60,33 +76,17 @@ export default class CreateController extends BaseController {
         });
     }
 
-    // if (data) {
-    //     ObjectMapper.toObject(data, model);
-    //     model.gSSTrainingDate = DateUtils.getFromString(model.gSSTrainingDate)
+    overrideListOptions() {
+        this.listOptions = listOptions.options;
+    }
 
-    //     model.initPeoplePickers();
-    // }
-
-    // buildModel(data, userId) {
-    //     let model = new ProfileModel();
-
-    //     if (data) {
-    //         ObjectMapper.toObject(data, model);
-    //         model.gSSTrainingDate = DateUtils.getFromString(model.gSSTrainingDate)
-
-    //         model.initPeoplePickers();
-    //     }
-
-    //     model.userId = this.getCurrentUserId(userId);
-
-    //     model.userEmail = this.getCurrentUserEmail(model);
-
-    //     return model;
-    // }
-
-    cancel() {
-        super.redirectToHome();
+    overridePickerOptions() {
+        this.pickerOptions = peoplePickerOptions.options;
     }
 }
 
-CreateController.$inject = ["$window", "$injector"];
+ProfileWizardController.$inject = [
+    "$injector",
+    "profileService",
+    "toastService"
+];

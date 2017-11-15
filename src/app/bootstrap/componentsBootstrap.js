@@ -4,7 +4,6 @@ import appMainComponent from "../components/root/root";
 //page components
 import emptyPage from "../components/pages/emptyPage/emptyPage";
 import profileSearch from "../components/pages/profile/search/profileSearch";
-import profileWizard from "../components/pages/profile/wizard/profileWizard";
 
 import tarSearch from "../components/pages/trips/tar/search/tarSearch";
 import tarWizardCommon from "../components/pages/trips/tar/wizard/tarWizardCommon/tarWizardCommon";
@@ -12,15 +11,13 @@ import tarDetailsCommon from "../components/pages/trips/tar/details/tarDetailsCo
 import tarWizard from "../components/pages/trips/tar/wizard/tarWizard";
 import tarDetails from "../components/pages/trips/tar/details/tarDetails";
 import home from "../components/pages/home/home";
-import members from "../components/pages/administrator/members/members";
+
 import regions from "../components/pages/administrator/regions/regions";
 import users from "../components/pages/administrator/users/users";
 import exportComponent from "../components/pages/administrator/export/export";
 import countries from "../components/pages/administrator/countries/countries";
-import orgUnitTypes from "../components/pages/administrator/orgUnitTypes/orgUnitTypes";
-import orgUnits from "../components/pages/administrator/orgUnits/orgUnits";
 import archive from "../components/pages/administrator/archive/archive";
-
+import profileWizard from "../components/pages/administrator/wizard/profileWizard";
 
 import tarApproval from "../components/pages/approvals/tar/search/tarApproval";
 import tarApprovalWizard from "../components/pages/approvals/tar/wizard/tarApprovalWizard";
@@ -79,13 +76,11 @@ export default class Bootstrap {
         app.component("tarDetailsCommon", tarDetailsCommon);
         app.component("tarDetails", tarDetails);
         app.component("home", home);
-        app.component("members", members);
+
         app.component("regions", regions);
         app.component("users", users);
         app.component("export", exportComponent);
         app.component("countries", countries);
-        app.component("orgUnitTypes", orgUnitTypes);
-        app.component("orgUnits", orgUnits);
         app.component("archive", archive);
         app.component("notification", notification);
         app.component("tarApproval", tarApproval);

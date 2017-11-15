@@ -1,27 +1,22 @@
-<md-content md-theme="pageTheme" flex>
-    <ng-form name="form" novalidate>
-        <div class="col-md-8" layout-align="center center">
-            <div class="md-no-sticky md-subheader _md md-pageTheme-theme">
-                <div class="md-subheader-inner">
-                    <div class="md-subheader-content">
-                        <h1>Create new response</h1>
-                    </div>
-                </div>
+<md-content ng-cloak>
+    <div class="col-md-10" layout-align="center center">
+        <ng-form name="form" novalidate>
+            <div layout="row" layout-align="space-between center">
+                <h2>Create</h2>
             </div>
-
             <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Country</label>
-                <md-select ng-model="ctrl.countries" placeholder="Country">
-                    <md-option ng-repeat="item in ctrl.countries" ng-value="item">
-                        {{item}}
+                <md-select ng-model="ctrl.model.country" placeholder="Country">
+                    <md-option ng-repeat="item in ctrl.countries" ng-value="item.title">
+                        {{item.title}}
                     </md-option>
                 </md-select>
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Regions</label>
-                <md-select ng-model="ctrl.regions" placeholder="Regions">
-                    <md-option ng-repeat="item in ctrl.regions" ng-value="item">
-                        {{item}}
+                <md-select ng-model="ctrl.model.region" placeholder="Regions">
+                    <md-option ng-repeat="item in ctrl.regions" ng-value="item.title">
+                        {{item.title}}
                     </md-option>
                 </md-select>
             </md-input-container>
@@ -46,10 +41,12 @@
             <div class="md-block" flex-gt-sm="50">
                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
                     <md-button class="md-raised md-primary" ng-click="ctrl.cancel()">Cancel</md-button>
-                    <md-button class="md-raised md-primary" aria-label="save" ng-show="!ctrl.isRequestProcessing" ng-disabled="!form.$dirty" ng-click="ctrl.storeResponse(form)">Create</md-button>
+                    <md-button class="md-raised md-primary" aria-label="save" ng-show="!ctrl.isRequestProcessing" ng-disabled="!form.$dirty" ng-click="ctrl.storeProfile(form)">
+                        {{ctrl.pageMode.actionName | translate}}
+                    </md-button>
+                    <md-progress-circular class="md-primary md-hue-3" md-mode="indeterminate" ng-show="ctrl.isRequestProcessing" md-diameter="70"></md-progress-circular>
                 </section>
             </div>
-
-        </div>
-    </ng-form>
+        </ng-form>
+    </div>
 </md-content>

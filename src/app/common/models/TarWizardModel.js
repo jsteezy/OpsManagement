@@ -99,45 +99,45 @@ export default class TarWizardModel extends ProfileCommonModel {
         this.plannedProcurement = "";
         this.procurementSpend = "";
 
-        super.excludeProperties(this.getExcludedProperties());
+        //super.excludeProperties(this.getExcludedProperties());
     }
 
-    initPeoplePickers() {
-        this.peoplePickerProperties.forEach((prop) => {
-            if (this[prop] === undefined ||
-                this[prop].length === 0 ||
-                this[prop][0].Title == null) {
+    // initPeoplePickers() {
+    //     this.peoplePickerProperties.forEach((prop) => {
+    //         if (this[prop] === undefined ||
+    //             this[prop].length === 0 ||
+    //             this[prop][0].Title == null) {
 
-                this[prop] = [];
-            }
-        });
-    }
+    //             this[prop] = [];
+    //         }
+    //     });
+    // }
 
-    getExcludedProperties() {
-        return ["officeLocation",
-            "emergencyContacts",
-            "expensesCodes",
-            "uploadAttachments",
-            "uploadedAttachments",
-            "traveller",
-            "requester",
-            "lineManager",
-            "additionalStaffMember",
-            "travelCoordinator",
-            "budgetApprover",
-            "otherEstimatedCostsTotal",
-            "totalBudgetCodesPercentage",
-            "formSubmitConfirmation"
-        ];
-    }
+    // getExcludedProperties() {
+    //     return ["officeLocation",
+    //         "emergencyContacts",
+    //         "expensesCodes",
+    //         "uploadAttachments",
+    //         "uploadedAttachments",
+    //         "traveller",
+    //         "requester",
+    //         "lineManager",
+    //         "additionalStaffMember",
+    //         "travelCoordinator",
+    //         "budgetApprover",
+    //         "otherEstimatedCostsTotal",
+    //         "totalBudgetCodesPercentage",
+    //         "formSubmitConfirmation"
+    //     ];
+    //}
 
-    get peoplePickerProperties() {
-        return ["requester",
-            "traveller",
-            "lineManager",
-            "travelCoordinator",
-            "budgetApprover",
-            "additionalStaffMember"
-        ];
-    }
+    // get peoplePickerProperties() {
+    //     return ["requester",
+    //         "traveller",
+    //         "lineManager",
+    //         "travelCoordinator",
+    //         "budgetApprover",
+    //         "additionalStaffMember"
+    //     ];
+    // }
 }

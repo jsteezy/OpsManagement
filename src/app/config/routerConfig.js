@@ -19,8 +19,8 @@ export default class StateConfig {
                 component: 'profileSearch'
             },
             {
-                path: '/profile-wizard',
-                name: 'ProfileWizard',
+                path: '/admin-profile-wizard',
+                name: 'Profile',
                 component: 'profileWizard'
             },
             {

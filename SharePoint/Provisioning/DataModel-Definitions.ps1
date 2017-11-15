@@ -2,6 +2,7 @@
 
 $global:TARManagementGroupName = "_TAR Management_";
 $global:TARSystemAdminGroupName = "_System Admin_";
+$global:OMTApproverGroupName = "Approver";
 $global:TARAllUsersGroupName = "_All TAR Users_";
 $global:TARBudgetApproversGroupName = "Budget Approvers";
 $global:TARBudgetApproversManagementGroupName = "TAR Budget Approvers Management";
@@ -16,6 +17,10 @@ $global:TARSecurityGroups = @{
             "description" = "TAR Application System Administrator"
             "role" = "Full Control" 
             }
+            $global:OMTApproverGroupName = @{ 
+                "description" = "OMT Approvers"
+                "role" = "Approve" 
+                }
         $global:TARManagementGroupName = @{ 
             "description" = "TAR Application Management"
             "role" = "Contribute"
