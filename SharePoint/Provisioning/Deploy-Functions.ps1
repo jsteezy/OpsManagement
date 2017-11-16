@@ -9,42 +9,14 @@ function EnsureStorage()
     )
     
     EnsureFeatures -web $web
-    
-    EnsureSolutionStorage -web $web -docLibraryName $global:solutionStorageDocLibraryName
-
-    EnsureUserProfile -web $web
 
     EnsureRegions -web $web
 
     EnsureCountries -web $web
 
-    EnsureOrgUnitTypesList -web $web
+    EnsureResponseCodes -web $web
 
-    EnsureOrgUnits -web $web
-
-    EnsureOrgUnitsCountries -web $web
-
-    EnsureCurrencies -web $web
-
-    EnsureMembers -web $web
-    
-    EnsureAccountCodes -web $web
-
-    EnsureTARRequests -web $web
-    
-    EnsureTARDrafts -web $web
-    
-    EnsureEIFRequests -web $web
-
-    EnsureEIFDrafts -web $web
-    
-    EnsureWorkflowHistory -web $web
-
-    EnsureWorkflowTasks -web $web
-    
-    EnsureEmailTemplates -web $web
-
-    EnsureTARSettings -web $web
+    EnsureOMTResponses -web $web
 }
 
 function EnsureFeatures() 
@@ -64,87 +36,6 @@ function EnsureFeatures()
             Enable-SPFeature -Url $web.Url -Identity $featureName -ErrorAction SilentlyContinue
         }
     }
-}
-
-function EnsureSolutionStorage()
-{
-    [CmdletBinding()]
-    Param(
-    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [Microsoft.SharePoint.SPWeb]$web,
-    [string]$docLibraryName
-    )
-
-    Start-SPAssignment -Global
-
-    $listCollection = $web.Lists;
-
-    $storageLibrary = $listCollection.TryGetList($docLibraryName);
-
-    if ($storageLibrary -ne $null) 
-    {
-        Log "Library $($docLibraryName) already exists" -Level Warning
-    }
-    else
-    {
-        Log "Creating library $($docLibraryName)" -Level Warning
-
-        $listCollection.Add($docLibraryName, "Dedicated document library for storing the TAR app solution.", [Microsoft.SharePoint.SPListTemplateType]::DocumentLibrary)
-
-        Log "Document library created..." -Level Success
-    }
-
-    $exportsLibrary = $listCollection.TryGetList($global:solutionExportDocLibraryName);
-    if ($exportsLibrary -ne $null)
-    {
-        Log "Library $($global:solutionExportDocLibraryName) already exists" -Level Warning
-    }
-    else 
-    {
-        Log "Creating library $($global:solutionExportDocLibraryName)" -Level Warning
-
-        $listCollection.Add($global:solutionExportDocLibraryName, "Dedicated document library for exporting TAR Requests", [Microsoft.SharePoint.SPListTemplateType]::DocumentLibrary)
-
-        Log "Document library created..." -Level Success
-    }
-
-    Stop-SPAssignment -Global
-}
-
-function EnsureUserProfile()
-{
-    [CmdletBinding()]
-    Param(
-    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [Microsoft.SharePoint.SPWeb]$web
-    )
-
-    $args = @()
-    $args += ("-StartIndex", 0)
-    $args += ("-Count", 13)
-    $cmd = "$PSScriptRoot\Generate-UserProfiles.ps1"
-
-    Invoke-Expression "$cmd $args"
-}
-
-function EnsureCurrencies()
-{
-    [CmdletBinding()]
-    Param(
-    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [Microsoft.SharePoint.SPWeb]$web
-    )
-
-    #region FIELDS
-
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefDescription -ListContext $global:CurrenciesList.Title -webContext $web.ID
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefCurrenciesNumber -ListContext $global:CurrenciesList.Title -webContext $web.ID
-
-    #endregion
-
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefCurrencies -FieldDefs $global:FieldDefDescription, $global:FieldDefCurrenciesNumber
-
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListCurrencies
 }
 
 function EnsureRegions()
@@ -171,58 +62,6 @@ function EnsureRegions()
         $global:FieldDefRegionsSecurityDirectorEmail.InternalName);
 
     Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListRegions
-}
-
-function EnsureOrgUnitTypesList()
-{
-    [CmdletBinding()]
-    Param(
-    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [Microsoft.SharePoint.SPWeb]$web
-    )
-
-    #region FIELDS
-
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefDescription -ListContext $global:ListOrgUnitType.Title -webContext $web.ID
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefOrgUnitTypeUsedByMembers -ListContext $global:ListOrgUnitType.Title -webContext $web.ID
-
-    #endregion
-
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefOrgUnitType -FieldDefs $global:FieldDefDescription, $global:FieldDefOrgUnitTypeUsedByMembers
-
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListOrgUnitType
-
-    #HideTitleField -Web $web -ListName $global:OrgUnitTypesListTitle
-}
-
-function EnsureOrgUnits()
-{
-    [CmdletBinding()]
-    Param(
-    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [Microsoft.SharePoint.SPWeb]$web
-    )
-
-    #region FIELDS
-
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefCode -ListContext $global:ListOrgUnits.Title -webContext $web.ID
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefState -ListContext $global:ListOrgUnits.Title -webContext $web.ID
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefDirector -ListContext $global:ListOrgUnits.Title -webContext $web.ID
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefOrgUnitsBudgetApprovers -ListContext $global:ListOrgUnits.Title -webContext $web.ID
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefOrgUnitsType -ListContext $global:ListOrgUnitType.Title -webContext $web.ID
-
-    #endregion
-
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefOrgUnits -FieldDefs $global:FieldDefCode, $global:FieldDefState,
-         $global:FieldDefDirector, $global:FieldDefOrgUnitsType, $global:FieldDefOrgUnitsBudgetApprovers
-
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListOrgUnits
-
-    #Ensure Lookup fields after the list has been created
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefOrgUnitsReportsTo -ListContext $global:ListOrgUnits.Title -webContext $web.ID
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefOrgUnitsManagedBy -ListContext $global:ListCountries.Title -webContext $web.ID
-
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefOrgUnits -FieldDefs $global:FieldDefOrgUnitsReportsTo, $global:FieldDefOrgUnitsManagedBy
 }
 
 function EnsureCountries()
@@ -252,383 +91,169 @@ function EnsureCountries()
     Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListCountries
 }
 
-function EnsureOrgUnitsCountries()
+#region Response Codes
+
+function EnsureResponseCodes ()
 {
+
     [CmdletBinding()]
     Param(
     [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
     [Microsoft.SharePoint.SPWeb]$web
     )
 
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefCountriesLookupMulti -ListContext $global:ListCountries.Title -webContext $web.ID
+#region FIELDS
+Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesCode -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesDescription -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesStartDate -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesRegion -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesCountry -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileId -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileEmail -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+#endregion
 
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefOrgUnits -FieldDefs $global:FieldDefCountriesLookupMulti
+#endregion
+Ensure-ContentType -Url $web.Url -CTDef $global:CTDefResponseCodes -FieldDefs $global:FieldDefResponseCodesCode, $global:FieldDefResponseCodesDescription, 
+$global:FieldDefResponseCodesStartDate, $global:FieldDefResponseCodesRegion, $global:FieldDefResponseCodesCountry, $global:FieldDefUserProfileId, 
+$global:FieldDefUserProfileEmail
+
+Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListResponseCodes
+
 }
+#region OMT Reports
 
-function EnsureMembers()
+function EnsureOMTResponses ()
 {
+
     [CmdletBinding()]
     Param(
     [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
     [Microsoft.SharePoint.SPWeb]$web
     )
 
-    #region FIELDS
+#region FIELDS
 
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefCode -ListContext $global:ListMembers.Title -webContext $web.ID
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefDescription -ListContext $global:ListMembers.Title -webContext $web.ID
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefState -ListContext $global:ListMembers.Title -webContext $web.ID
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefMembersProgramsThroughSCI -ListContext $global:ListMembers.Title -webContext $web.ID
+#General info
+Ensure-Field $web.Url -FieldDef $global:regionalResponse -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:parentRegionalResponse -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:sitrepDate -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:nextSitrepDate -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:generalContext -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:recentContextDevelopment -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:responseUpdate -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:opsBackstop -ListContext $global:ListOMTReports.Title -webContext $web.ID
 
-    #endregion
+#Non SCI responses
+Ensure-Field $web.Url -FieldDef $global:nonSciResponses -ListContext $global:ListOMTReports.Title -webContext $web.ID
 
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefMembers -FieldDefs $global:FieldDefCode, $global:FieldDefDescription, $global:FieldDefState, $global:FieldDefMembersProgramsThroughSCI
+#Reach figures
+Ensure-Field $web.Url -FieldDef $global:affectedPopulation -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:strategyTarget -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:totalReachSinceStart -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:totalReachSinceLastSitrep -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:childrenReachedSinceStart -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:childrenReachedSinceLastSitrep -ListContext $global:ListOMTReports.Title -webContext $web.ID
 
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListMembers
+#Income
+Ensure-Field $web.Url -FieldDef $global:responseStrategyTarget -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:seedFundsTarget -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:seedFundsTargetDate -ListContext $global:ListOMTReports.Title -webContext $web.ID
 
-    HideTitleField -Web $web -ListName $global:MembersListTitle
-}
+#Deliverables
+Ensure-Field $web.Url -FieldDef $global:assessmentBool -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:assessment -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:outlineBool -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:outline -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:strategyBool -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:strategy -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:planBool -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:plan -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:operationsControlReviewBool -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:operationsControlReview -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:realTimeReviewBool -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:realTimeReview -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:representationOnHCT -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:educationCluster -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:staffingEducationCluster -ListContext $global:ListOMTReports.Title -webContext $web.ID
 
-function EnsureAccountCodes()
-{
-    [CmdletBinding()]
-    Param(
-    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [Microsoft.SharePoint.SPWeb]$web
-    )
+#Sectors
+Ensure-Field $web.Url -FieldDef $global:childProtectionBool -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:childProtectionBackstop -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:childProtectionSummary -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:educationBool -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:educationBackstop -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:educationSummary -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FSLBool -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FSLBackstop -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FSLSummary -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:WASHBool -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:WASHBackstop -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:WASHSummary -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:shelterBool -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:shelterBackstop -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:shelterSummary -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:healthBool -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:healthBackstop -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:healthSummary -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:EHUUpdatesBool -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:EHUUpdates -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:EHUPresent -ListContext $global:ListOMTReports.Title -webContext $web.ID
 
-    #region FIELDS
+#HR
+Ensure-Field $web.Url -FieldDef $global:nationalStaffNumber -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:internationalStaffNumber -ListContext $global:ListOMTReports.Title -webContext $web.ID
 
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefAccountCode -ListContext $global:ListAccountCodes.Title -webContext $web.ID
+#Saftey and security
+Ensure-Field $web.Url -FieldDef $global:securityLevel -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:incidentSummary -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:securityEvents -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:securityContext -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:securityChallenges -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:securityManagement -ListContext $global:ListOMTReports.Title -webContext $web.ID
 
-    #endregion
+#Child safegaurding
+Ensure-Field $web.Url -FieldDef $global:staffChildSafegaurding -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:safegaurdingFocalPoint -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:safegaurdingRisks -ListContext $global:ListOMTReports.Title -webContext $web.ID
 
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefAccountCodes -FieldDefs $global:FieldDefAccountCode
+#Advanced Media and Comms
+Ensure-Field $web.Url -FieldDef $global:commsPack -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:mediaCoverage -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:spokespeople -ListContext $global:ListOMTReports.Title -webContext $web.ID
 
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListAccountCodes
-}
-
-function EnsureTARRequests() 
-{
-    [CmdletBinding()]
-    Param(
-    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [Microsoft.SharePoint.SPWeb]$web
-    )
-
-    #region FIELDS
-
-    Ensure-Field $web.Url -FieldDef $global:FieldDefRequester -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARTraveller -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefLineManager -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefSelectedEmergencyContacts -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARTypeOfTravel -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARVisaRequired -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARVisaNumber -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefPhotoID -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefMedicalEmergencyCard -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefMedicalProviderName -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefPolicyNumber -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARReadPDI -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARUsaidFunds -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARAppropriateVaccination -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARTravelAdvances -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefGSSTraining -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefGSSTrainingDate -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARPurposeOfTravel -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARApprovedByDirector -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARAppropriateEmergencyContacts -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefDestinations -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARBudgetSession -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTAROtherEstimatedCosts -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARBudgetCodes -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARAdditionalInformation -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARTravelCoordinator -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARBudgetApprover -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefInformationRead -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARLondonOfficeLocation -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefRequiresGssApproval -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefDepartureDate -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefReturnDate -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefBudgetApprovalStatus -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefBudgetApprovalTimeStamp -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefGSSAprovalStatus -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefGSSApprovalTimestamp -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefAdditionalStaffMember -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    #endregion
-
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefTARRequests -FieldDefs $global:FieldDefRequester, $global:FieldDefTARTraveller, $global:FieldDefLineManager,
-        $global:FieldDefSelectedEmergencyContacts, $global:FieldDefTARTypeOfTravel, $global:FieldDefTARVisaRequired, $global:FieldDefTARVisaNumber, $global:FieldDefPhotoID, 
-        $global:FieldDefMedicalEmergencyCard, $global:FieldDefMedicalProviderName, $global:FieldDefPolicyNumber,
-        $global:FieldDefTARReadPDI, $global:FieldDefTARUsaidFunds, $global:FieldDefTARAppropriateVaccination, $global:FieldDefTARTravelAdvances,
-        $global:FieldDefGSSTraining, $global:FieldDefGSSTrainingDate, $global:FieldDefTARPurposeOfTravel, $global:FieldDefTARApprovedByDirector, $global:FieldDefTARAppropriateEmergencyContacts,
-        $global:FieldDefDestinations, $global:FieldDefTARBudgetSession, $global:FieldDefTAROtherEstimatedCosts, $global:FieldDefTARBudgetCodes,
-        $global:FieldDefTARAdditionalInformation, $global:FieldDefTARTravelCoordinator, $global:FieldDefTARBudgetApprover, $global:FieldDefInformationRead, 
-        $global:FieldDefTARLondonOfficeLocation, $global:FieldDefRequiresGssApproval, $global:FieldDefDepartureDate, $global:FieldDefReturnDate,
-        $global:FieldDefBudgetApprovalStatus, $global:FieldDefBudgetApprovalTimeStamp, 
-        $global:FieldDefGSSAprovalStatus, $global:FieldDefGSSApprovalTimestamp, $global:FieldDefAdditionalStaffMember
-
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListTARRequests
-}
-
-function EnsureTARDrafts() 
-{
-    [CmdletBinding()]
-    Param(
-    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [Microsoft.SharePoint.SPWeb]$web
-    )
-
-    #region FIELDS
-
-    Ensure-Field $web.Url -FieldDef $global:FieldDefRequester -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARTraveller -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefLineManager -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefSelectedEmergencyContacts -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARTypeOfTravel -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARVisaRequired -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARVisaNumber -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefPhotoID -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefMedicalEmergencyCard -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefMedicalProviderName -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefPolicyNumber -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARReadPDI -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARUsaidFunds -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARAppropriateVaccination -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARTravelAdvances -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefGSSTraining -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefGSSTrainingDate -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARPurposeOfTravel -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARApprovedByDirector -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARAppropriateEmergencyContacts -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefDestinations -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARBudgetSession -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTAROtherEstimatedCosts -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARBudgetCodes -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARAdditionalInformation -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARTravelCoordinator -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARBudgetApprover -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefInformationRead -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARLondonOfficeLocation -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefRequiresGssApproval -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefAdditionalStaffMember -ListContext $global:ListTARDrafts.Title -webContext $web.ID
-
-    #endregion
-
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefTARDrafts -FieldDefs $global:FieldDefRequester, $global:FieldDefTARTraveller, $global:FieldDefLineManager,
-        $global:FieldDefSelectedEmergencyContacts, $global:FieldDefTARTypeOfTravel, $global:FieldDefTARVisaRequired, $global:FieldDefTARVisaNumber, $global:FieldDefPhotoID, 
-        $global:FieldDefMedicalEmergencyCard, $global:FieldDefMedicalProviderName, $global:FieldDefPolicyNumber,
-        $global:FieldDefTARReadPDI, $global:FieldDefTARUsaidFunds, $global:FieldDefTARAppropriateVaccination, $global:FieldDefTARTravelAdvances,
-        $global:FieldDefGSSTraining, $global:FieldDefGSSTrainingDate, $global:FieldDefTARPurposeOfTravel, $global:FieldDefTARApprovedByDirector, $global:FieldDefTARAppropriateEmergencyContacts,
-        $global:FieldDefDestinations, $global:FieldDefTARBudgetSession, $global:FieldDefTAROtherEstimatedCosts, $global:FieldDefTARBudgetCodes,
-        $global:FieldDefTARAdditionalInformation, $global:FieldDefTARTravelCoordinator, $global:FieldDefTARBudgetApprover, $global:FieldDefInformationRead, 
-        $global:FieldDefTARLondonOfficeLocation, $global:FieldDefRequiresGssApproval, $global:FieldDefAdditionalStaffMember
-
-    Configure-ContentTypeNonRequiredFields -Web $web -ContentTypeName $global:CTDefTARDrafts.Name -FieldNames @($global:FieldDefTARTraveller.InternalName, $global:FieldDefLineManager.InternalName, 
-        $global:FieldDefSelectedEmergencyContacts.InternalName, $global:FieldDefTARTypeOfTravel.InternalName, $global:FieldDefTARVisaRequired.InternalName, $global:FieldDefPhotoID.InternalName, 
-        $global:FieldDefMedicalEmergencyCard.InternalName, $global:FieldDefMedicalProviderName.InternalName, $global:FieldDefPolicyNumber.InternalName,
-        $global:FieldDefTARReadPDI.InternalName, $global:FieldDefTARAppropriateVaccination.InternalName, $global:FieldDefTARTravelAdvances.InternalName,
-        $global:FieldDefGSSTraining.InternalName, $global:FieldDefGSSTrainingDate.InternalName, $global:FieldDefTARPurposeOfTravel.InternalName, 
-        $global:FieldDefTARApprovedByDirector.InternalName, $global:FieldDefTARAppropriateEmergencyContacts.InternalName,
-        $global:FieldDefDestinations.InternalName, $global:FieldDefTARBudgetSession.InternalName, $global:FieldDefTAROtherEstimatedCosts.InternalName, $global:FieldDefTARBudgetCodes.InternalName,
-        $global:FieldDefTARAdditionalInformation.InternalName, $global:FieldDefTARTravelCoordinator.InternalName, $global:FieldDefTARBudgetApprover.InternalName, $global:FieldDefInformationRead.InternalName,
-        $global:FieldDefTARLondonOfficeLocation.InternalName, $global:FieldDefTARVisaNumber.InternalName, $global:FieldDefTARUsaidFunds.InternalName);
-
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListTARDrafts
-}
-
-function EnsureEIFRequests() 
-{
-    [CmdletBinding()]
-    Param(
-    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [Microsoft.SharePoint.SPWeb]$web
-    )
-
-    #region FIELDS
-
-    Ensure-Field $web.Url -FieldDef $global:FieldDefRequester -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFStaffResponsibleForGuest -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFFirstName -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFLastName -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFContactNumber -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFDateOfBirth -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFPassportNumber -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFPassportCountry -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFCountryOfOrigin -ListContext $global:ListEIFRequests.Title -webContext $web.ID 
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFVisaNumbers -ListContext $global:ListCountries.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFEmergencyContactName -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFEmergencyContactRelationship -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFEmergencyContactEmail -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFEmergencyContactHomePhone -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFEmergencyContactMobilePhone -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefDestinations -ListContext $global:ListEIFRequests.Title -webContext $web.ID 
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFTravelRouteDetails -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFMedicalConditions -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFBloodType -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFInsurancePolicyNumber -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFInsuranceCompany -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFInsuranceCompanyPhone -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFInsuranceContact -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFAdditionalComments -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefInformationRead -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefDepartureDate -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefReturnDate -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFTarId -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefAdditionalStaffMember -ListContext $global:ListEIFRequests.Title -webContext $web.ID
-
-    #endregion
-
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefEIFRequests -FieldDefs $global:FieldDefRequester, $global:FieldDefEIFStaffResponsibleForGuest, $global:FieldDefEIFFirstName, 
-        $global:FieldDefEIFLastName, $global:FieldDefEIFContactNumber, $global:FieldDefEIFDateOfBirth, $global:FieldDefEIFPassportNumber, 
-        $global:FieldDefEIFPassportCountry, $global:FieldDefEIFCountryOfOrigin, $global:FieldDefEIFVisaNumbers, $global:FieldDefDestinations, 
-        $global:FieldDefEIFEmergencyContactName, $global:FieldDefEIFEmergencyContactRelationship, $global:FieldDefEIFEmergencyContactEmail,
-        $global:FieldDefEIFEmergencyContactHomePhone, $global:FieldDefEIFEmergencyContactMobilePhone,
-        $global:FieldDefEIFTravelRouteDetails, $global:FieldDefEIFMedicalConditions, $global:FieldDefEIFBloodType, 
-        $global:FieldDefEIFInsurancePolicyNumber, $global:FieldDefEIFInsuranceCompany, $global:FieldDefEIFInsuranceCompanyPhone, $global:FieldDefEIFInsuranceContact,
-        $global:FieldDefEIFAdditionalComments, $global:FieldDefInformationRead, $global:FieldDefDepartureDate, $global:FieldDefReturnDate, $global:FieldDefEIFTarId,
-        $global:FieldDefAdditionalStaffMember
-
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListEIFRequests
-}
-
-function EnsureEIFDrafts()
-{
-    [CmdletBinding()]
-    Param(
-    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [Microsoft.SharePoint.SPWeb]$web
-    )
-
-    #region FIELDS
-
-    Ensure-Field $web.Url -FieldDef $global:FieldDefRequester -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFStaffResponsibleForGuest -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFFirstName -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFLastName -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFContactNumber -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFDateOfBirth -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFPassportNumber -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFPassportCountry -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFCountryOfOrigin -ListContext $global:ListEIFDrafts.Title -webContext $web.ID 
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFVisaNumbers -ListContext $global:ListCountries.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFEmergencyContactName -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFEmergencyContactRelationship -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFEmergencyContactEmail -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFEmergencyContactHomePhone -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFEmergencyContactMobilePhone -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefDestinations -ListContext $global:ListEIFDrafts.Title -webContext $web.ID 
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFTravelRouteDetails -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFMedicalConditions -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFBloodType -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFInsurancePolicyNumber -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFInsuranceCompany -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFInsuranceCompanyPhone -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFInsuranceContact -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFAdditionalComments -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefInformationRead -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefEIFTarId -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefAdditionalStaffMember -ListContext $global:ListEIFDrafts.Title -webContext $web.ID
-
-    #endregion
-
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefEIFDrafts -FieldDefs $global:FieldDefRequester, $global:FieldDefEIFStaffResponsibleForGuest, $global:FieldDefEIFFirstName, 
-        $global:FieldDefEIFLastName, $global:FieldDefEIFContactNumber, $global:FieldDefEIFDateOfBirth, $global:FieldDefEIFPassportNumber, 
-        $global:FieldDefEIFPassportCountry, $global:FieldDefEIFCountryOfOrigin, $global:FieldDefEIFVisaNumbers, $global:FieldDefDestinations, 
-        $global:FieldDefEIFEmergencyContactName, $global:FieldDefEIFEmergencyContactRelationship, $global:FieldDefEIFEmergencyContactEmail,
-        $global:FieldDefEIFEmergencyContactHomePhone, $global:FieldDefEIFEmergencyContactMobilePhone,
-        $global:FieldDefEIFTravelRouteDetails, $global:FieldDefEIFMedicalConditions, $global:FieldDefEIFBloodType, 
-        $global:FieldDefEIFInsurancePolicyNumber, $global:FieldDefEIFInsuranceCompany, $global:FieldDefEIFInsuranceCompanyPhone, $global:FieldDefEIFInsuranceContact,
-        $global:FieldDefEIFAdditionalComments, $global:FieldDefInformationRead, $global:FieldDefEIFTarId, $global:FieldDefAdditionalStaffMember
-
-    Configure-ContentTypeNonRequiredFields -Web $web -ContentTypeName $global:CTDefEIFDrafts.Name -FieldNames @($global:FieldDefEIFStaffResponsibleForGuest.InternalName, $global:FieldDefEIFFirstName.InternalName, 
-        $global:FieldDefEIFLastName.InternalName, $global:FieldDefEIFContactNumber.InternalName, $global:FieldDefEIFDateOfBirth.InternalName, $global:FieldDefEIFPassportNumber.InternalName, 
-        $global:FieldDefEIFPassportCountry.InternalName, $global:FieldDefEIFCountryOfOrigin.InternalName, $global:FieldDefEIFVisaNumbers.InternalName, $global:FieldDefDestinations.InternalName, 
-        $global:FieldDefEIFEmergencyContactName.InternalName, $global:FieldDefEIFEmergencyContactRelationship.InternalName, $global:FieldDefEIFEmergencyContactEmail.InternalName,
-        $global:FieldDefEIFEmergencyContactHomePhone.InternalName, $global:FieldDefEIFEmergencyContactMobilePhone.InternalName,
-        $global:FieldDefEIFTravelRouteDetails.InternalName, $global:FieldDefEIFMedicalConditions.InternalName, $global:FieldDefEIFBloodType.InternalName, 
-        $global:FieldDefEIFInsurancePolicyNumber.InternalName, $global:FieldDefEIFInsuranceCompany.InternalName, $global:FieldDefEIFInsuranceCompanyPhone.InternalName, 
-        $global:FieldDefEIFInsuranceContact.InternalName, $global:FieldDefEIFAdditionalComments.InternalName, 
-        $global:FieldDefInformationRead.InternalName, $global:FieldDefEIFTarId.InternalName, $global:FieldDefAdditionalStaffMember.InternalName);
-
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListEIFDrafts
-}
-
-function EnsureTARSettings()
-{
-    [CmdletBinding()]
-    Param(
-    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [Microsoft.SharePoint.SPWeb]$web
-    )
-
-    #region FIELDS
-
-    Ensure-Field $web.Url -FieldDef $global:FieldDefSettingValue -ListContext $global:ListTARSettings.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefSettingUsedIn -ListContext $global:ListTARSettings.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefSettingType -ListContext $global:ListTARSettings.Title -webContext $web.ID
-
-    #endregion
-
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefTARSettings -FieldDefs $global:FieldDefSettingValue, $global:FieldDefSettingUsedIn, $global:FieldDefSettingType
-
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListTARSettings
-}
+#Emergency supply chain 
+Ensure-Field $web.Url -FieldDef $global:prepositionedStock -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:forThisResponse -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:plannedProcurement -ListContext $global:ListOMTReports.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:procurementSpend -ListContext $global:ListOMTReports.Title -webContext $web.ID
 
 #endregion
 
-#region Workflows Storage
+Ensure-ContentType -Url $web.Url -CTDef $global:CTDefOMTReports -FieldDefs $global:regionalResponse, $global:parentRegionalResponse,
+$global:sitrepDate, $global:nextSitrepDate, $global:generalContext, $global:recentContextDevelopment, $global:responseUpdate, 
+$global:opsBackstop, $global:nonSciResponses, $global:affectedPopulation, $global:strategyTarget, $global:totalReachSinceStart, 
+$global:totalReachSinceLastSitrep, $global:childrenReachedSinceStart, $global:childrenReachedSinceLastSitrep, $global:responseStrategyTarget,
+ $global:seedFundsTarget, $global:seedFundsTargetDate, $global:assessmentBool, $global:assessment, $global:outlineBool, $global:outline,
+  $global:strategyBool, $global:strategy, $global:planBool, $global:plan, $global:operationsControlReviewBool, 
+  $global:operationsControlReview, $global:realTimeReviewBool, $global:realTimeReview, $global:representationOnHCT, $global:educationCluster, 
+  $global:staffingEducationCluster, $global:childProtectionBool, $global:childProtectionBackstop, $global:childProtectionSummary, 
+  $global:educationBool, $global:educationBackstop, $global:educationSummary, $global:FSLBool, $global:FSLBackstop, $global:FSLSummary, 
+  $global:WASHBool, $global:WASHBackstop, $global:WASHSummary, $global:shelterBool, $global:shelterBackstop, $global:shelterSummary, $global:healthBool, 
+  $global:healthBackstop, $global:healthSummary, $global:EHUUpdatesBool, $global:EHUUpdates, $global:EHUPresent, $global:nationalStaffNumber, 
+  $global:internationalStaffNumber, $global:securityLevel, $global:incidentSummary, $global:securityEvents, $global:securityContext, 
+  $global:securityChallenges, $global:securityManagement, $global:staffChildSafegaurding, $global:safegaurdingFocalPoint, $global:safegaurdingRisks, 
+  $global:commsPack, $global:mediaCoverage, $global:spokespeople, $global:prepositionedStock, $global:forThisResponse, $global:plannedProcurement, 
+  $global:procurementSpend
 
-function EnsureWorkflowTasks()
-{
-    [CmdletBinding()]
-    Param(
-    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [Microsoft.SharePoint.SPWeb]$web,
-    [string]$ListName,
-    [string]$Description
-    )
+Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListOMTReports
 
-    #$tasksTemplate = $web.ListTemplates | Where { $_.Name -eq $global:TasksListTemplate }
+# #Ensure Lookup fields after the list has been created
+# Ensure-Field -Url $web.Url -FieldDef $global:FieldDefOrgUnitsReportsTo -ListContext $global:ListOMTReports.Title -webContext $web.ID
+# Ensure-Field -Url $web.Url -FieldDef $global:FieldDefOrgUnitsManagedBy -ListContext $global:ListCountries.Title -webContext $web.ID
 
-    #$web.Lists.Add($ListName, $Description, $tasksTemplate);
+# Ensure-ContentType -Url $web.Url -CTDef $global:CTDefOrgUnits -FieldDefs $global:FieldDefOrgUnitsReportsTo, $global:FieldDefOrgUnitsManagedBy
 
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListWorkflowTasks
 }
-
-function EnsureWorkflowHistory()
-{
-    [CmdletBinding()]
-    Param(
-    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [Microsoft.SharePoint.SPWeb]$web
-    )
-
-    #Ensure-ContentType -Url $web.Url -CTDef $global:CTDefWorkflowHistory
-
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListWorkflowHistory
-}
-
-function EnsureEmailTemplates()
-{
-    [CmdletBinding()]
-    Param(
-    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [Microsoft.SharePoint.SPWeb]$web
-    )
-
-    #region FIELDS
-
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefEmailSubject -ListContext $global:ListTAREmailTemplates.Title -webContext $web.ID
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefEmailContent -ListContext $global:ListTAREmailTemplates.Title -webContext $web.ID
-
-    #endregion
-
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefEmailTemplates -FieldDefs $global:FieldDefEmailSubject, $global:FieldDefEmailContent
-
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListTAREmailTemplates
-}
-
 #endregion
 
 #region Authorization

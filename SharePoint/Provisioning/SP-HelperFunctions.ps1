@@ -80,10 +80,10 @@ function global:Hide-Fields
             $fieldColumn = $list.Fields[$fieldName]
             if ($fieldColumn -ne $null) 
             {
-                $fieldColumn.ShowInEditForm = $false;
-                $fieldColumn.ShowInDisplayForm = $false;
+                $fieldColumn.ShowInEditForm = $true;
+                $fieldColumn.ShowInDisplayForm = $true;
                 $fieldColumn.ShowInVersionHistory = $false;
-                $fieldColumn.ShowInViewForms = $false;
+                $fieldColumn.ShowInViewForms = $true;
 
                 $fieldColumn.Update();
             }

@@ -13,7 +13,7 @@ export default class ProfileWizardController extends BaseController {
 
         super.router = this.$router;
 
-        this.title = "Create";
+        this.title = "Create response code";
 
         this.profileService = profileService;
 
