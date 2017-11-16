@@ -22,14 +22,14 @@
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Code</label>
-                <input required name="code" ng-model="create.code">
+                <input required name="code" ng-model="ctrl.model.code">
                 <div ng-messages="createForm.code.$error">
                     <div ng-message="required">Please enter a code</div>
                 </div>
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Description</label>
-                <input required name="description" ng-model="create.description">
+                <input required name="description" ng-model="ctrl.model.description">
                 <div ng-messages="createForm.description.$error">
                     <div ng-message="required">Please enter a description</div>
                 </div>

@@ -64,7 +64,7 @@ export default class ProfileWizardController extends BaseController {
 
             storeProfilePromise.then(
                 () => {
-                    this.toastService.showToast('PROFILE_SAVED_MSG', 'app');
+                    this.toastService.showToast('Response code created', 'app');
 
                     GlobalFeaturesCache.hasProfile = true;
 

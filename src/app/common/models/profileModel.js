@@ -1,8 +1,15 @@
 import ProfileCommonModel from "./ProfileCommonModel";
+import DateUtils from "../helpers/DateUtils";
 
 export default class ProfileModel extends ProfileCommonModel {
     constructor() {
         super();
+
+        this.code = "";
+        this.description = "";
+        this.startDate = DateUtils.today;
+        this.region = "";
+        this.country = "";
 
         //this.userId = "";
         //this.userEmail = "";
@@ -11,6 +18,7 @@ export default class ProfileModel extends ProfileCommonModel {
         // this.startDate = DateUtils.today;
         // this.region = "";
         // this.country = "";
+
 
         // this.userLanguage = "";
         // this.profileHasAccess = {};
