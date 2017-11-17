@@ -35,7 +35,7 @@ function Get-SecurityGroupNames
 #region Lists Collection
 function Get-ListNames
 {
-    Write-Output @($global:RegionsListTitle, $global:CountriesListTitle, $global:ResponseCodesListTitle, $global:OMTReportsListTitle, $global:TARRequestsListTitle);
+    Write-Output @($global:RegionsListTitle, $global:CountriesListTitle, $global:ResponseCodesListTitle, $global:OMTReportsListTitle, $global:OMTResponsesListTitle);
 }
 
 #endregion
@@ -637,186 +637,20 @@ $global:ListOMTReports = New-ListDefinition -ListTitle $global:OMTReportsListTit
 
 
 
-#region TAR Requests
+#region OMT Responses
 
-$global:TARRequestsListTitle = "TAR Requests";
-$global:TARRequestsListName = "TARRequestsNew";
+$global:OMTResponsesListTitle = "OMT Responses";
+$global:OMTResponsesListName = "OMTResponses";
 
-$global:FieldDefTARTraveller = New-FieldDefinition @'
-    <Field ID="{09B73495-16A6-44AE-84C1-2A4B504C4C6D}" Type="User" UserSelectionMode="PeopleOnly" Name="TAR_Traveller" StaticName="TAR_Traveller" DisplayName="Traveller"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTARTypeOfTravel = New-FieldDefinition @'
-    <Field ID="{EFD13BA4-CDE3-4D03-B54F-B94C5A26930B}" Type="Text" MaxLength="255" Name="TAR_TypeOfTravel" StaticName="TAR_TypeOfTravel" DisplayName="Type of travel"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTARVisaRequired = New-FieldDefinition @'
-    <Field ID="{CA754B88-5F76-4DDB-A46D-8ECB890E06D6}" Type="Text" MaxLength="255" Name="TAR_VisaRequired" StaticName="TAR_VisaRequired" DisplayName="Visa required"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTARVisaNumber = New-FieldDefinition @'
-    <Field ID="{89020ED8-851C-44A5-8DD7-C820A4961A0B}" Type="Text" MaxLength="255" Name="TAR_VisaNumber" StaticName="TAR_VisaNumber" DisplayName="Visa number"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTARReadPDI = New-FieldDefinition @'
-    <Field ID="{27B3B9E8-9047-4747-A6BC-7CC2B8950BFB}" Type="Text" MaxLength="255" Name="TAR_ReadPDI" StaticName="TAR_ReadPDI" DisplayName="Read PDI procedure"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTARUsaidFunds = New-FieldDefinition @'
-    <Field ID="{B3DDD905-2FED-498B-8445-3D92D3068754}" Type="Text" MaxLength="255" Name="TAR_UsaidFunds" StaticName="TAR_UsaidFunds" DisplayName="USAID Funds"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTARAppropriateVaccination = New-FieldDefinition @'
-    <Field ID="{AF0DF072-5511-4833-A94D-9EC77FE508F8}" Type="Text" MaxLength="255" Name="TAR_AppropriateVaccination" StaticName="TAR_AppropriateVaccination" DisplayName="Appropriate vaccination received"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTARLondonOfficeLocation = New-FieldDefinition @'
-    <Field ID="" Type="Text" MaxLength="255" Name="TAR_LondonOfficeLocation" StaticName="TAR_LondonOfficeLocation" DisplayName="Located in London office" 
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTARTravelAdvances = New-FieldDefinition @'
-    <Field ID="{29DD6F5E-1300-40AE-A9D6-8D59CF91C39E}" Type="Note" Name="TAR_TravelAdvances" StaticName="TAR_TravelAdvances" DisplayName="Travel Advances"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTARPurposeOfTravel = New-FieldDefinition @'
-    <Field ID="{5BB207FF-C884-4193-A45F-3CE030C7AB2F}" Type="Note" Name="TAR_PurposeOfTravel" StaticName="TAR_PurposeOfTravel" DisplayName="Purpose of travel"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTARApprovedByDirector = New-FieldDefinition @'
-    <Field ID="{11021A0E-EC24-4084-85D1-2A5B95C3AC8B}" Type="Text" MaxLength="255" Name="TAR_ApprovedByDirector" StaticName="TAR_ApprovedByDirector" DisplayName="Approved by Director"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTARAppropriateEmergencyContacts = New-FieldDefinition @'
-    <Field ID="{205CECA7-DA6E-4967-97FD-9B6880DB1A71}" Type="Text" MaxLength="255" Name="TAR_AppropriateEmergencyContacts" StaticName="TAR_AppropriateEmergencyContacts" DisplayName="Has Appropriate Emergency Contacts"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTARBudgetSession = New-FieldDefinition @'
-    <Field ID="{567FF0B2-4F6D-4271-8DCA-DAAC60E7843C}" Type="Note" Name="TAR_BudgetSession" StaticName="TAR_BudgetSession" DisplayName="Budget Session"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTAROtherEstimatedCosts = New-FieldDefinition @'
-    <Field ID="{25A72C07-5A10-4982-B33F-69AF1F6BD87D}" Type="Note" Name="TAR_OtherEstimatedCosts" StaticName="TAR_OtherEstimatedCosts" DisplayName="Other estimated costs"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@; 
-
-$global:FieldDefTARBudgetCodes = New-FieldDefinition @'
-    <Field ID="{0CC51167-7407-43ED-83B7-B9EABCFA2905}" Type="Note" Name="TAR_BudgetCodes" StaticName="TAR_BudgetCodes" DisplayName="Budget Codes" 
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTARAdditionalInformation = New-FieldDefinition @'
-    <Field ID="{67D6C7CA-4164-49E7-8266-BDE26B3B405A}" Type="Note" Name="TAR_AdditionalInformation" StaticName="TAR_AdditionalInformation" DisplayName="Additional Information"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTARTravelCoordinator = New-FieldDefinition @'
-    <Field ID="{3BFCCEE2-3815-433C-82C0-176DC40068C3}" Type="User" UserSelectionMode="PeopleOnly" Name="TAR_TravelCoordinator" StaticName="TAR_TravelCoordinator" DisplayName="Travel Coordinator"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefTARBudgetApprover = New-FieldDefinition @'
-    <Field ID="{202757DA-F70D-4822-9378-A505A982932D}" Type="User" UserSelectionMode="PeopleOnly" Name="TAR_BudgetApprover" StaticName="TAR_BudgetApprover" DisplayName="Budget Approver"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefBudgetApprovalStatus = New-FieldDefinition @'
-    <Field ID="{C2CF53B1-E097-49F3-A08A-982D6B3FCF21}" Type="Choice" Name="TAR_BudgetApprovalStatus" StaticName="TAR_BudgetApprovalStatus" DisplayName="Budget Approval Status"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE">
-        <Default>None</Default>
-        <CHOICES>
-            <CHOICE>None</CHOICE>
-            <CHOICE>Pending</CHOICE>
-            <CHOICE>Approved</CHOICE>
-            <CHOICE>Rejected</CHOICE>
-        </CHOICES>
-    </Field>
-'@;
-
-$global:FieldDefBudgetApprovalTimeStamp = New-FieldDefinition @'
-    <Field ID="{36F9A76A-3C64-42C4-896E-8F658164D251}" Type="DateTime" Name="TAR_BudgetApprovalTimestamp" StaticName="TAR_BudgetApprovalTimestamp" DisplayName="Budget Approval Timestamp"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefGSSAprovalStatus = New-FieldDefinition @'
-    <Field ID="{D1B0A6C2-D77E-4C34-9216-5DE6BF5EC017}" Type="Choice" Name="TAR_GSSApprovalStatus" StaticName="TAR_GSSApprovalStatus" DisplayName="GSS Approval Status"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE">
-        <Default>None</Default>
-        <CHOICES>
-            <CHOICE>None</CHOICE>
-            <CHOICE>Pending</CHOICE>
-            <CHOICE>Approved</CHOICE>
-            <CHOICE>Rejected</CHOICE>
-        </CHOICES>
-    </Field>
-'@;
-
-$global:FieldDefGSSApprovalTimestamp = New-FieldDefinition @'
-    <Field ID="{F30379A9-2C08-42BC-A450-C3004A2234BF}" Type="DateTime" Name="TAR_GSSApprovalTimestamp" StaticName="TAR_GSSApprovalTimestamp" DisplayName="GSS Approval Timestamp"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefRequiresGssApproval = New-FieldDefinition @'
-    <Field ID="{18C91DAB-D4BD-4E6D-AB07-EF70AB7C1D32}" Type="Boolean" Name="TAR_RequiresGssApproval" StaticName="TAR_RequiresGssApproval" DisplayName="Requires GSS Approval"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefDepartureDate = New-FieldDefinition @'
-    <Field ID="{8C11EEA2-AEC8-46D9-B20D-5386F708D26D}" Type="DateTime" Name="TAR_DepartureDate" StaticName="TAR_DepartureDate" DisplayName="Departure Date"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefReturnDate = New-FieldDefinition @'
-    <Field ID="{2219C512-D705-43C4-9EE5-7300976A8B71}" Type="DateTime" Name="TAR_ReturnDate" StaticName="TAR_ReturnDate" DisplayName="Return Date 123"
-    Group="_TAR" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@
-
-$global:FieldDefProcurementSpend = New-FieldDefinition -FieldXml @'
+$global:FieldDefOMTResponsesProcurementSpend = New-FieldDefinition -FieldXml @'
 <Field ID="{7601c074-df56-45bf-ae2a-d11d2ebfeef0}" Type="Number" Decimals="0" Name="ProcurementSpend" StaticName="ProcurementSpend" DisplayName="Procurement Spend" 
-Group="_TAR" EnforceUniqueValues="TRUE" Indexed="TRUE" Required="TRUE"
+Group="_OMT" EnforceUniqueValues="TRUE" Indexed="TRUE" Required="TRUE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
-$global:CTDefTARRequests = New-ContentTypeDefinition -ID "0x0100750DED44DE8C448F9F59414BCE29DFB8" -Name "TAR Requests" -Group $CTGroup -Description "TAR Requests";
+$global:CTDefOMTResponses = New-ContentTypeDefinition -ID "0x0100750DED44DE8C448F9F59414BCE29DFBB" -Name "OMT Responses" -Group $CTGroup -Description "OMT Responses";
 
-$global:ListTARRequests = New-ListDefinition -ListTitle $global:TARRequestsListTitle -ListUrl $global:TARRequestsListName -Description "TAR Requests" -Template $CustomListTemplate -ContentTypes @($global:CTDefTARRequests.Name);
+$global:ListOMTResponses = New-ListDefinition -ListTitle $global:OMTResponsesListTitle -ListUrl $global:OMTResponsesListName -Description "OMT Responses" -Template $CustomListTemplate -ContentTypes @($global:CTDefOMTResponses.Name);
 
 #endregion
 

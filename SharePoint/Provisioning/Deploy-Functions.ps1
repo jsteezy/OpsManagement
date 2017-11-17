@@ -18,7 +18,7 @@ function EnsureStorage()
 
     EnsureOMTResponses -web $web
 
-    EnsureTARRequests -web $web
+    EnsureOMTResponses -web $web
 }
 
 function EnsureFeatures() 
@@ -343,7 +343,7 @@ function SetListPermissionsForGroups
 #endregion 
 
 
-function EnsureTARRequests() 
+function EnsureOMTResponses() 
 {
     [CmdletBinding()]
     Param(
@@ -353,58 +353,12 @@ function EnsureTARRequests()
 
     #region FIELDS
 
-    Ensure-Field $web.Url -FieldDef $global:FieldDefRequester -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARTraveller -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefLineManager -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefSelectedEmergencyContacts -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARTypeOfTravel -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARVisaRequired -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARVisaNumber -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefPhotoID -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefMedicalEmergencyCard -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefMedicalProviderName -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefPolicyNumber -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARReadPDI -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARUsaidFunds -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARAppropriateVaccination -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARTravelAdvances -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefGSSTraining -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefGSSTrainingDate -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARPurposeOfTravel -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARApprovedByDirector -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARAppropriateEmergencyContacts -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefDestinations -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARBudgetSession -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTAROtherEstimatedCosts -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARBudgetCodes -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARAdditionalInformation -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARTravelCoordinator -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARBudgetApprover -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefInformationRead -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefTARLondonOfficeLocation -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefRequiresGssApproval -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefDepartureDate -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefReturnDate -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefBudgetApprovalStatus -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefBudgetApprovalTimeStamp -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefGSSAprovalStatus -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefGSSApprovalTimestamp -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefAdditionalStaffMember -ListContext $global:ListTARRequests.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefProcurementSpend -ListContext $global:ListTARRequests.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesProcurementSpend -ListContext $global:ListOMTResponses.Title -webContext $web.ID
     
     
     #endregion
 
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefTARRequests -FieldDefs $global:FieldDefRequester, $global:FieldDefTARTraveller, $global:FieldDefLineManager,
-        $global:FieldDefSelectedEmergencyContacts, $global:FieldDefTARTypeOfTravel, $global:FieldDefTARVisaRequired, $global:FieldDefTARVisaNumber, $global:FieldDefPhotoID, 
-        $global:FieldDefMedicalEmergencyCard, $global:FieldDefMedicalProviderName, $global:FieldDefPolicyNumber,
-        $global:FieldDefTARReadPDI, $global:FieldDefTARUsaidFunds, $global:FieldDefTARAppropriateVaccination, $global:FieldDefTARTravelAdvances,
-        $global:FieldDefGSSTraining, $global:FieldDefGSSTrainingDate, $global:FieldDefTARPurposeOfTravel, $global:FieldDefTARApprovedByDirector, $global:FieldDefTARAppropriateEmergencyContacts,
-        $global:FieldDefDestinations, $global:FieldDefTARBudgetSession, $global:FieldDefTAROtherEstimatedCosts, $global:FieldDefTARBudgetCodes,
-        $global:FieldDefTARAdditionalInformation, $global:FieldDefTARTravelCoordinator, $global:FieldDefTARBudgetApprover, $global:FieldDefInformationRead, 
-        $global:FieldDefTARLondonOfficeLocation, $global:FieldDefRequiresGssApproval, $global:FieldDefDepartureDate, $global:FieldDefReturnDate,
-        $global:FieldDefBudgetApprovalStatus, $global:FieldDefBudgetApprovalTimeStamp, 
-        $global:FieldDefGSSAprovalStatus, $global:FieldDefGSSApprovalTimestamp, $global:FieldDefAdditionalStaffMember, $global:FieldDefProcurementSpend
+    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefOMTResponses -FieldDefs $global:FieldDefProcurementSpend
 
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListTARRequests
+    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListOMTResponses
 }
