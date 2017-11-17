@@ -13,7 +13,7 @@ export default class ProfileDataAccessService extends BaseDataAccessService {
     }
 
     get(id) {
-        let listName = "ResponseCodes";
+        let listName = "Response Codes";
 
         let replacements = {
             "{ID}": id,
@@ -33,7 +33,7 @@ export default class ProfileDataAccessService extends BaseDataAccessService {
     }
 
     save(data) {
-        let listName = "ResponseCodes";
+        let listName = "Response Codes";
 
         let replacements = {
             "{LIST_NAME}": listName
@@ -55,7 +55,7 @@ export default class ProfileDataAccessService extends BaseDataAccessService {
     }
 
     update(data) {
-        let listName = "ResponseCodes";
+        let listName = "Response Codes";
 
         let replacements = {
             "{ID}": data.id,

@@ -103,7 +103,7 @@ function EnsureResponseCodes ()
     )
 
 #region FIELDS
-Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesCode -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesCode -ListContext $global:ListResponseCodes.InternalName -webContext $web.ID
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesDescription -ListContext $global:ListResponseCodes.Title -webContext $web.ID
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesStartDate -ListContext $global:ListResponseCodes.Title -webContext $web.ID
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesRegion -ListContext $global:ListResponseCodes.Title -webContext $web.ID
@@ -130,6 +130,8 @@ function EnsureOMTResponses ()
     [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
     [Microsoft.SharePoint.SPWeb]$web
     )
+
+    write "webID $($web.ID)" 
 
 #region FIELDS
 
