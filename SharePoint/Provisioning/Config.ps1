@@ -1,21 +1,25 @@
-﻿$siteURL = "https://amsdev.savethechildren.net";
+﻿$global:spWebAppUrl = "https://amsdev.savethechildren.net";
 $global:spSiteUrl = "$($global:spWebAppUrl)/sites/OMT";
 
+$global:solutionPath = "D:\srcJohn\OMT\dist";
+$global:solutionStorageDocLibraryName = "ProjectLibrary";
+$global:documentLibraryFolder = "OMT";
+$global:solutionExportDocLibraryName = "OMT Exports";
 
-$web = Get-SPWeb $siteURL + $global:spSiteUrl
-$ct = $web.ContentTypes[$contentType]
+$global:masterPageFileName = "Application.master";
+$global:spaPageLayoutFileName = "ApplicationSPALayout.aspx";
+$global:masterPageCssFileName = "omt-master.css";
 
-if ($ct) {
-$ctusage = [Microsoft.SharePoint.SPContentTypeUsage]::GetUsages($ct)
-      foreach ($ctuse in $ctusage) {
-        $list = $web.GetList($ctuse.Url)
-        $contentTypeCollection = $list.ContentTypes;
-        $contentTypeCollection.Delete($contentTypeCollection[$ContentType].Id);
-        Write-host "Deleted $contentType content type from $ctuse.Url"
-        }
-$ct.Delete()
-Write-host "Deleted $contentType from site."
+$global:pageLayoutContentType = "Page Layout";
+$global:masterPageContentType = "ASP NET Master Page";
+$global:designContentType = "Design";
 
-} else { Write-host "Nothing to delete." }
+$global:featuresToEnable = @("TeamCollab", "WorkflowAppOnlyPolicyManager", "PublishingSite", "PublishingWeb");
 
-$web.Dispose()
+$location = $PSScriptRoot
+$parentLocation = (Get-Item $location).parent.FullName
+
+$global:TARApprovalWorkflowProperties = @{"Name" = "TAR Approval Workflow"; "Description" = "TAR Approval Workflow"; "XAMLPath" = "$($parentLocation)\Workflows\TARWorkflow.xaml"; "HistoryList" = "TAR Workflow History"; "TasksList" = "TAR Workflow Tasks"; "Events" = "ItemAdded,WorkflowStart"};
+$global:EIFSubmittedWorkflowProperties = @{"Name" = "EIF Submitted Workflow"; "Description" = "EIF Submitted Workflow"; "XAMLPath" = "$($parentLocation)\Workflows\EIFWorkflow.xaml"; "HistoryList" = "TAR Workflow History"; "TasksList" = "TAR Workflow Tasks"; "Events" = "ItemAdded,WorkflowStart"};
+$global:TARArchivingWorkflowProperties = @{"Name" = "TAR Archiving Workflow"; "Description" = "TAR Archiving Workflow"; "XAMLPath" = "$($parentLocation)\Workflows\TARArchivingWorkflow.xaml"; "HistoryList" = "TAR Workflow History"; "TasksList" = "TAR Workflow Tasks"; "Events" = "WorkflowStart"};
+$global:EIFArchivingWorkflowProperties = @{"Name" = "EIF Archiving Workflow"; "Description" = "EIF Archiving Workflow"; "XAMLPath" = "$($parentLocation)\Workflows\EIFArchivingWorkflow.xaml"; "HistoryList" = "TAR Workflow History"; "TasksList" = "TAR Workflow Tasks"; "Events" = "WorkflowStart"};
