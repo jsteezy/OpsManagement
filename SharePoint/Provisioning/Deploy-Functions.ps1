@@ -10,6 +10,8 @@ function EnsureStorage()
     
     EnsureFeatures -web $web
 
+    EnsureSolutionStorage -web $web -docLibraryName $global:solutionStorageDocLibraryName    
+
     EnsureRegions -web $web
 
     EnsureCountries -web $web
@@ -152,7 +154,7 @@ function EnsureGroups()
 
     foreach ($groupName in $GroupNames)
     {
-        $groupNameEnum = $global:TARSecurityGroups[$groupName];
+        $groupNameEnum = $global:OMTSecurityGroups[$groupName];
         
         $groupDescription = $groupNameEnum["description"];
         $groupRole = $groupNameEnum["role"];

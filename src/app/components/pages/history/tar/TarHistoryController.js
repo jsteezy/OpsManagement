@@ -2,12 +2,12 @@ import BaseController from "../../../common/BaseController";
 import GridOptions from "../../../../common/enums/gridOptions";
 
 export default class TarHistoryController extends BaseController {
-    constructor( $injector, tarHistoryService, modalService ) {
+    constructor($injector, tarHistoryService, modalService) {
         super($injector);
 
         super.router = this.$router;
 
-        this.title = "TAR_HISTORY_TITLE";
+        this.title = "OMT Responses";
 
         this.tarHistoryService = tarHistoryService;
         this.modalService = modalService;
@@ -17,7 +17,7 @@ export default class TarHistoryController extends BaseController {
         this.initFilters();
     }
 
-    $routerOnActivate( next, current ) {
+    $routerOnActivate(next, current) {
         super.permissions = [super.appPermissions.everyone];
 
         let init = () => {
@@ -37,7 +37,7 @@ export default class TarHistoryController extends BaseController {
 
         return this.tarHistoryService.getTars(this.tarHistoryFilters)
             .then(
-                ( data ) => {
+                (data) => {
                     this.tarHistoryOptions.data = data;
 
                     super.isRequestProcessing = false;
@@ -56,13 +56,13 @@ export default class TarHistoryController extends BaseController {
         this.tarHistoryFilters.reset();
     }
 
-    openTar( row ) {
+    openTar(row) {
         let tar = this.tarHistoryOptions.data.find(x => x.id == row.entity.id);
 
         this.modalService.showWizardModal(
-                `<tar-history-details ng-model="ctrl.entityModel"></tar-history-details>`,
-                null,
-                this.tarHistoryService.getDetailsModel(tar.detailsViewData));
+            `<tar-history-details ng-model="ctrl.entityModel"></tar-history-details>`,
+            null,
+            this.tarHistoryService.getDetailsModel(tar.detailsViewData));
     }
 
     setHistoryGridOptions() {

@@ -3,7 +3,7 @@ import Permissions from "../../../common/enums/permissions.json";
 export default class MenuFeatures {
     static get menuItems() {
         return [{
-                "name": "HOME_SIDE_NAV",
+                "name": "OMT Responses",
                 "type": "link",
                 "icon": "home",
                 "state": "Home",
@@ -16,13 +16,13 @@ export default class MenuFeatures {
                 "state": "TarApproval",
                 "permissions": [Permissions.approvers, Permissions.admin]
             },
-            {
-                "name": "HISTORY",
-                "type": "link",
-                "icon": "history",
-                "state": "TarHistory",
-                "permissions": [Permissions.everyone]
-            },
+            // {
+            //     "name": "HISTORY",
+            //     "type": "link",
+            //     "icon": "history",
+            //     "state": "TarHistory",
+            //     "permissions": [Permissions.everyone]
+            // },
             {
                 "name": "Admin",
                 "state": "Dashboard",

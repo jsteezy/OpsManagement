@@ -140,7 +140,7 @@ export default class BaseController extends BaseComponentController {
     }
 
     isBudgetApprover() {
-        return this.hasPermissions([super.appPermissions.budgetApprovers]);
+        return this.hasPermissions([super.appPermissions.approvers]);
     }
 
     isSuperBudgetApprover() {

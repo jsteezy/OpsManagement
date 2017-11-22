@@ -5,7 +5,7 @@ $global:OMTApproverGroupName = "Approver";
 $global:OMTEditorsGroupName = "Editors";
 $global:OMTAllUsersGroupName = "_All OMT Users_";
 
-$global:TARSecurityGroups = @{
+$global:OMTSecurityGroups = @{
         $global:OMTSystemAdminGroupName = @{ 
             "description" = "OMT Application System Administrator"
             "role" = "Full Control" 
@@ -20,7 +20,7 @@ $global:TARSecurityGroups = @{
                     }
         $global:OMTAllUsersGroupName = @{ 
             "description" = "OMT Application All Users"
-            "role" = "Read"
+            "role" = "Read"`
             }
     }; 
 
@@ -31,6 +31,7 @@ function Get-SecurityGroupNames
 }
 
 #endregion 
+
 
 #region Lists Collection
 function Get-ListNames

@@ -1,9 +1,7 @@
 {
     "everyone": "everyone",
-    "tarMembers": "TAR Members",
+    "omtMembers": "_All OMT Users_",
     "approvers": "Approvers",
-    "budgetApprovers": "Budget Approvers",
-    "superBudgetApprovers": "Super Budget Approvers",
-    "gssApprovers": "GSS Approvers",
+    "editors": "Editors",
     "admin": "_System Admin_"
 }
