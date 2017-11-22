@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="dbd0cb00-9fb0-43da-ae99-1e61c6609d12" solutionId="dbd0cb00-9fb0-43da-ae99-1e61c6609d12" resetWebServer="false" sharePointProductVersion="15.0" name="SCI.TAR.Workflows" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
-  <features>
-    <featureReference itemId="a193cfbb-5539-4dd6-be72-ec034b4937db" />
-  </features>
-</package>
