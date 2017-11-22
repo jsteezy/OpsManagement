@@ -8,6 +8,5 @@
     "expandUsers": "TAR_Requester/Title,TAR_Requester/Id,TAR_Traveller/Title,TAR_Traveller/Id,TAR_LineManager/Title,TAR_LineManager/Id,TAR_TravelCoordinator/Title,TAR_TravelCoordinator/Id,TAR_BudgetApprover/Title,TAR_BudgetApprover/Id,TAR_AdditionalStaffMember/Title,TAR_AdditionalStaffMember/Id&$expand=TAR_Requester,TAR_Traveller,TAR_LineManager,TAR_TravelCoordinator,TAR_BudgetApprover,TAR_AdditionalStaffMember",
     "update": "/_api/Lists/getByTitle('{LIST_NAME}')/items('{ITEM_ID}')",
     "saveTar": "/_api/Lists/getByTitle('{LIST_NAME}')/items",
-    "delete": "/_api/Lists/getByTitle('{LIST_NAME}')/items('{ITEM_ID}')",
-    "getResponses": "/_api/Lists/getByTitle('Response Codes')/items" //this is now for OMT  
+    "delete": "/_api/Lists/getByTitle('{LIST_NAME}')/items('{ITEM_ID}')"
 }
