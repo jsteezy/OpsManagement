@@ -42,7 +42,6 @@ import logo from "../components/layout/logo/logo";
 import scrollToTop from "../components/layout/scrollToTop/scrollToTop";
 
 import notificationArrow from "../components/common/notificationArrow/notificationArrow";
-import requestsFloatingButton from "../components/layout/requestsFloatingButton/floatingBtn";
 import grid from "../components/common/grid/grid";
 import gridDateFilter from "../components/common/gridFilters/date/dateFilter";
 import accordion from "../components/common/accordion/accordion";
@@ -102,7 +101,6 @@ export default class Bootstrap {
         app.component("footer", footer);
         app.component("loading", loading);
         app.component("wizardHeader", wizardHeader);
-        app.component("requestsFloatingButton", requestsFloatingButton);
         app.component("logo", logo);
         app.component("scrollToTop", scrollToTop);
 

@@ -42,7 +42,7 @@ DEPLOYMENT
 
 2. Open a command prompt and navigate to the folder where the solution is stored and execute a "gulp" command.
 
-3. Navigate to <SITE_URL>/_catalogs/masterpage/ , create a folder named "TAR" and inside the this folder create a folder named "css". 
+3. Navigate to <SITE_URL>/_catalogs/masterpage/ , create a folder named "OMT" and inside the this folder create a folder named "css". 
 
 4. Open the folder "SharePoint\Provisioning\" and open the file "Config.ps1".
 
