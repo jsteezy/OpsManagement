@@ -13,5 +13,16 @@
         <md-button aria-label="Create new response" ng-hide="!ctrl.isAdmin()" class="md-primary md-raised md-mini" ng-link="['Profile']">
             <span>Create new response</span>
         </md-button>
+        <md-content>
+            <md-subheader></md-subheader>
+
+            <md-list-item ng-repeat="item in ctrl.responseCodeOptions.data" ng-click="ctrl.listItemClick(item.Id)">
+                <span>
+                   {{item.Code}} {{item.Description}} {{item.StartDate}} {{item.Country}}{{item.Region}}{{item.Id}}
+                </span>
+        </md-list-item>
+
+            </div>
+        </md-content>
     </div>
 </md-content>

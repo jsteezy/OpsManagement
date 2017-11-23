@@ -1,4 +1,5 @@
 import BaseController from "../../common/BaseController";
+import GridOptions from "../../../common/enums/gridOptions";
 
 export default class HomeController extends BaseController {
     constructor($window, $injector, responseService) {
@@ -8,6 +9,9 @@ export default class HomeController extends BaseController {
         this.responseService = responseService;
         
         this.$window = $window;
+
+        this.setResponseGridOptions();
+        //this.initFilters();        
     }
 
     $routerOnActivate(next, current) {
@@ -29,13 +33,12 @@ export default class HomeController extends BaseController {
     getAllResponses() {
         super.isRequestProcessing = true;
 
-        console.log(this.responseService);
-
         return this.responseService.getAllResponses()
             .then(
                 (data) => {
-                    console.log(data);
                     this.responseCodeOptions.data = data;
+                    console.log(this.responseCodeOptions);
+                    
 
                     super.isRequestProcessing = false;
 
@@ -48,6 +51,17 @@ export default class HomeController extends BaseController {
                     return Promise.resolve(false);
                 });
     }
+
+    setResponseGridOptions() {
+        this.responseCodeOptions = GridOptions.options.responseCodeOptions;
+        this.responseCodeOptions.appScopeProvider = this;
+        this.responseCodeOptions.isGridReady = true;
+        this.responseCodeOptions.data = [];
+    }
+
+    // initFilters() {
+    //     this.tarHistoryFilters = this.tarHistoryService.historyFilters;
+    // }
 }
 
 HomeController.$inject = ["$window", "$injector", "responseService"];
