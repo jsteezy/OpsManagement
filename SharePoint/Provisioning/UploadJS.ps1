@@ -7,7 +7,7 @@ $folderName = 'OMT';
 $subFolderName = 'js';
 
 $ScriptDirectory = Split-Path $MyInvocation.MyCommand.Path
-$diskFolderPathRel = '../../dist/js';
+$diskFolderPathRel = '../../../dist/js';
 $diskFolderPath = Join-Path $ScriptDirectory $diskFolderPathRel
 
 $web = Get-SPWeb $global:spSiteUrl

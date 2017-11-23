@@ -16,23 +16,25 @@ export default class ResponseService {
         if (data) {
             ObjectMapper.toObject(data, model);
             model.startDate = DateUtils.getFromString(model.startDate)
-
-            //model.initPeoplePickers();
         }
 
         model.userId = this.getCurrentUserId(userId);
-
-        //model.userEmail = this.getCurrentUserEmail(model);
+        model.userEmail = this.getCurrentUserEmail(model);
 
         return model;
     }
 
     loadPageData() {
-        return Promise.all([this.commonDataService.loadCountries()]);
+        return Promise.all([this.commonDataService.loadCountries(), this.commonDataService.loadRegions()]);
     }
 
-    store(model) {
-        return this.responseCodeDataAccessService.save(model);
+
+    store(pageMode, model) {
+        return this.responseCodeDataAccessService[pageMode.serviceAction](model);
+    }
+
+    getAllResponses() {
+        return this.responseCodeDataAccessService.getAllResponses();
     }
 
     getCurrentUserId(userId) {

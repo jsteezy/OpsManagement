@@ -1,11 +1,15 @@
-import DateUtils from "../helpers/DateUtils";
 
-export default class ResponseModel {
+import DateUtils from "../helpers/DateUtils";
+import BaseModel from "./BaseModel";
+
+export default class ResponseModel extends BaseModel {
     constructor() {
-        this.country = null;
+        super();
+
+        this.code = "";
+        this.description = "";
         this.startDate = DateUtils.today;
-        this.region = null;
-        this.description = null;
-        this.code = null;
+        this.region = "";
+        this.country = "";
     }
 }

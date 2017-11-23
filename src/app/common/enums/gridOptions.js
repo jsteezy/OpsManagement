@@ -277,6 +277,29 @@ export default class GridOptions {
                 
                 showExpandButtonAlways: true,
                 hasCustomFilters: true
+            },
+
+            responseCodeOptions: {
+                enableSorting: true,
+                enableFiltering: true,
+                enableHorizontalScrollbar: 0,
+                enableVerticalScrollbar: 0,
+                columnDefs: [
+                    { field: 'id', visible: false },
+                    {
+                        displayName: 'ID_GRID',
+                        field: 'title',
+                        enableSorting: false,
+                        cellTemplate: '<md-button class="md-primary" ng-click="grid.appScope.openResponse(row)">{{COL_FIELD}}</md-button>'
+                    },
+                    { displayName: 'Response Code', field: 'code' },
+                    { displayName: 'Description', field: 'description' },
+                    { displayName: 'Start Date', field: 'startDate', enableSorting: true, cellFilter: "dateFormat" },
+                    { displayName: 'Country', field: 'country', enableSorting: true },
+                    { displayName: 'Region', field: 'region', enableFiltering: true, enableSorting: true }                 
+                ],                
+                showExpandButtonAlways: true,
+                hasCustomFilters: true
             }
         }
     }

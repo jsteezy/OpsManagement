@@ -1,11 +1,12 @@
 import BaseController from "../../common/BaseController";
 
 export default class HomeController extends BaseController {
-    constructor($window, $injector) {
+    constructor($window, $injector, responseService) {
         super($injector);
 
         super.router = this.$router;
-
+        this.responseService = responseService;
+        
         this.$window = $window;
     }
 
@@ -22,16 +23,19 @@ export default class HomeController extends BaseController {
     }
 
     activate() {
-        //return super.initializePageData(this.getResponses());
+        return super.initializePageData(this.getAllResponses());
     }
 
-    getResponses() {
+    getAllResponses() {
         super.isRequestProcessing = true;
 
-        return this.responseCodeDataAccessService.getAllResponses()
+        console.log(this.responseService);
+
+        return this.responseService.getAllResponses()
             .then(
                 (data) => {
-                    this.tarHistoryOptions.data = data;
+                    console.log(data);
+                    this.responseCodeOptions.data = data;
 
                     super.isRequestProcessing = false;
 
@@ -39,11 +43,11 @@ export default class HomeController extends BaseController {
                 },
                 () => {
                     super.isRequestProcessing = false;
-                    this.tarHistoryOptions.data = [];
+                    this.responseCodeOptions.data = [];
 
                     return Promise.resolve(false);
                 });
     }
 }
 
-HomeController.$inject = ["$window", "$injector"];
+HomeController.$inject = ["$window", "$injector", "responseService"];
