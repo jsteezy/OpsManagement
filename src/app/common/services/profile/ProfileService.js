@@ -33,7 +33,7 @@ export default class ProfileService {
     }
 
     loadPageData() {
-        return Promise.all([this.commonDataService.loadCountries()]);
+        return Promise.all([this.commonDataService.loadCountries(), this.commonDataService.loadRegions()]);
     }
 
     store(pageMode, model) {

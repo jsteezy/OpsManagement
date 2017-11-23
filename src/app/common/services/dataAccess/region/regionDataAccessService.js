@@ -1,7 +1,7 @@
-import dataAccessConfig from "./currencyDataAccessConfig.json";
+import dataAccessConfig from "./regionDataAccessConfig.json";
 import helper from "../../../helpers/AppHelpers";
 
-export default class CurrencyDataAccessService {
+export default class RegionDataAccessService {
     constructor($http) {
         this.$http = $http;
     }

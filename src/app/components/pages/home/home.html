@@ -7,8 +7,11 @@
                 </div>
             </div>            
         </div>
-        <md-button aria-label="Add response" class="md-primary md-raised md-mini" ng-link="['TarWizardAdd']">
-            <span>Add response</span>
+        <md-button aria-label="Add report" class="md-primary md-raised md-mini" ng-link="['TarWizardAdd']">
+            <span>Add report</span>
+        </md-button>
+        <md-button aria-label="Create new response" ng-hide="!ctrl.isAdmin()" class="md-primary md-raised md-mini" ng-link="['Profile']">
+            <span>Create new response</span>
         </md-button>
     </div>
 </md-content>

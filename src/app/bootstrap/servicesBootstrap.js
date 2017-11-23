@@ -9,8 +9,10 @@ import navigationService from "../common/services/NavigationService";
 
 import userService from "../common/services/user/UserService";
 import profileDataAccessService from "../common/services/dataAccess/profile/ProfileDataAccessService";
-import currencyDataAccessService from "../common/services/dataAccess/currency/CurrencyDataAccessService";
+//keep
 import countryDataAccessService from "../common/services/dataAccess/country/CountryDataAccessService";
+import regionDataAccessService from "../common/services/dataAccess/region/RegionDataAccessService";
+
 import peoplePickerService from "../common/services/peoplePicker/PeoplePickerService";
 import attachmentsDataAccessService from "../common/services/dataAccess/attachments/AttachmentsDataAccessService";
 import tarDataAccessService from "../common/services/dataAccess/tar/TarDataAccessService";
@@ -32,7 +34,9 @@ import tarApprovalWizardService from "../common/services/tar/TarApprovalWizardSe
 import tarHistoryDataAccessService from "../common/services/dataAccess/history/TarHistoryDataAccessService";
 import tarHistoryService from "../common/services/tar/TarHistoryService";
 
-
+//keep
+import responseService from "../common/services/response/ResponseService";
+import responseCodeDataAccessService from "../common/services/dataAccess/responseCode/ResponseCodeDataAccessService";
 
 import appHttpInterceptor from "../common/interceptors/AppHttpInterceptor";
 
@@ -53,8 +57,10 @@ export default class Bootstrap {
 
         app.service("userService", userService);
         app.service("profileDataAccessService", profileDataAccessService);
-        app.service("currencyDataAccessService", currencyDataAccessService);
+        //keep
         app.service("countryDataAccessService", countryDataAccessService);
+        app.service("regionDataAccessService", regionDataAccessService);
+
         app.service("attachmentsDataAccessService", attachmentsDataAccessService);
         app.service("peoplePickerService", peoplePickerService);
         app.service("tarDataAccessService", tarDataAccessService);
@@ -71,6 +77,11 @@ export default class Bootstrap {
         app.service("tarDetailsService", tarDetailsService);
         app.service("profileService", profileService);
         app.service("profileSearchService", profileSearchService);
+
+        //keep
+        app.service("responseService", responseService);
+        app.service("responseCodeDataAccessService", responseCodeDataAccessService);
+        
 
         app.service("tarApprovalService", tarApprovalService);
         app.service("tarApprovalWizardService", tarApprovalWizardService);

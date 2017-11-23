@@ -4,9 +4,9 @@ import ObjectMapper from "../../helpers/ObjectMapper";
 import ResponseModel from "../../models/ResponseModel";
 
 export default class ResponseService {
-    constructor(user, responseDataAccessService, commonDataService) {
+    constructor(user, responseCodeDataAccessService, commonDataService) {
         this.user = user;
-        this.responseDataAccessService = responseDataAccessService;
+        this.responseCodeDataAccessService = responseCodeDataAccessService;
         this.commonDataService = commonDataService;
     }
 
@@ -32,7 +32,7 @@ export default class ResponseService {
     }
 
     store(model) {
-        return this.responseDataAccessService.save(model);
+        return this.responseCodeDataAccessService.save(model);
     }
 
     getCurrentUserId(userId) {
@@ -44,4 +44,4 @@ export default class ResponseService {
     }
 }
 
-ResponseService.$inject = ["user", "responseDataAccessService", "commonDataService"];
+ResponseService.$inject = ["user", "responseCodeDataAccessService", "commonDataService"];

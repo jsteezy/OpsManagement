@@ -50,8 +50,6 @@ $global:CTGroup = "_OMT";
 
 $CustomListTemplate = "Custom List";
 
-
-
 #endregion
 
 
@@ -60,23 +58,11 @@ $CustomListTemplate = "Custom List";
 $global:RegionsListTitle = "Regions";
 $global:RegionsListName = "Regions";
 
-# $global:FieldDefRegionsSecurityDirectorName = New-FieldDefinition @'
-#     <Field ID="{DC36311B-C563-43C9-AA16-C1989008720B}" Type="Text" MaxLength="255" Name="TAR_SecurityDirectorName" StaticName="TAR_SecurityDirectorName" DisplayName="Security Director Name"
-#     Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-#     ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-# '@;
-
-# $global:FieldDefRegionsSecurityDirectorAccount = New-FieldDefinition @'
-#     <Field ID="{9EF95FFD-407A-4C39-AD66-AA95E08A5A01}" Type="User" UserSelectionMode="PeopleOnly" Name="TAR_SecurityDirectorAccount" StaticName="TAR_SecurityDirectorAccount" DisplayName="Security Director Account"
-#     Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-#     ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-# '@;
-
-# $global:FieldDefRegionsSecurityDirectorEmail = New-FieldDefinition @'
-#     <Field ID="{2D88B0C4-E45F-4008-850A-B4BED585D7D6}" Type="Text" MaxLength="255" Name="TAR_SecurityDirectorEmail" StaticName="TAR_SecurityDirectorEmail" DisplayName="Security Director Email"
-#     Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-#     ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-# '@;
+$global:FieldDefRegionsName = New-FieldDefinition @'
+    <Field ID="{DC36311B-C563-43C9-AA16-C198900873SB}" Type="Text" MaxLength="255" Name="Name" StaticName="Name" DisplayName="Name"
+    Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
 
 $global:CTDefRegions = New-ContentTypeDefinition -ID "0x0100DFA3462A212A4D6E9B058DEBF1EC7875" -Name "Regions" -Group $CTGroup -Description "OMT Regions";
 
@@ -102,7 +88,7 @@ $global:ListCountries = New-ListDefinition -ListTitle $global:CountriesListTitle
 
 #endregion
 
-#region Response Codes
+#region Responses
 
 $global:ResponseCodesListTitle = "Response Codes";
 $global:ResponseCodesListName = "ResponseCodes";
@@ -494,78 +480,57 @@ $global:ListResponseCodes = New-ListDefinition -ListTitle $global:ResponseCodesL
 
 
 
-#region OMT Responses
+#region Response Codes
 
-$global:OMTResponsesListTitle = "OMT Responses";
-$global:OMTResponsesListName = "OMTResponses";
+$global:ResponseCodesListTitle = "Response Codes";
+$global:ResponseCodesListName = "ResponseCodes";
 
-$global:FieldDefOMTResponsesRegionalResponse = New-FieldDefinition -FieldXml @'
-<Field ID="{a341e8a0-95c5-4512-a2ba-27645ee377d4}" Type="Boolean" Name="RegionalResponse" StaticName="RegionalResponse" DisplayName="Regional Response" 
+$global:FieldDefResponseCodesCode = New-FieldDefinition -FieldXml @'
+<Field ID="{a5a350ae-3186-463e-82c8-00b75ed87a76}" Type="Text" MaxLength="255" Name="Code" StaticName="Code" DisplayName="Code" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
-$global:FieldDefOMTResponsesParentRegionalResponse = New-FieldDefinition -FieldXml @'
-<Field ID="{d0096bff-1f3f-43cc-a7f5-74f1cd4bd212}" Type="Text" MaxLength="255" Name="ParentRegionalResponse" StaticName="ParentRegionalResponse" DisplayName="Parent Regional Response" 
+$global:FieldDefResponseCodesDescription = New-FieldDefinition -FieldXml @'
+<Field ID="{86efff91-fb96-4b4b-9a63-04f39887ae5f}" Type="Text" MaxLength="255" Name="Description" StaticName="Description" DisplayName="Description" 
+Group="_OMT" EnforceUniqueValues="TRUE" Indexed="FALSE" Required="TRUE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefResponseCodesStartDate = New-FieldDefinition -FieldXml @'
+<Field ID="{d9b4c1d6-f184-4a65-9c00-493bf9a34b93}" Type="DateTime" Name="StartDate" StaticName="StartDate" DisplayName="Start Date" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
-$global:FieldDefOMTResponsesSitrepDate = New-FieldDefinition -FieldXml @'
-<Field ID="{D7CC926E-5702-48A3-A133-5F971E78FBA7}" Type="DateTime" Name="SitrepDate" StaticName="SitrepDate" DisplayName="Sitrep Date" 
+$global:FieldDefResponseCodesRegion = New-FieldDefinition -FieldXml @'
+<Field ID="{2bb7fbac-be0a-4387-82e5-5a43a5d81e28}" Type="Text" MaxLength="255" Name="Region" StaticName="Region" DisplayName="Region" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
-$global:FieldDefOMTResponsesNextSitrepDate = New-FieldDefinition -FieldXml @'
-<Field ID="{147fbb97-8264-485b-bdfd-8fd7e4244105}" Type="DateTime" Name="NextSitrepDate" StaticName="NextSitrepDate" DisplayName="Next Sitrep Date" 
+$global:FieldDefResponseCodesCountry = New-FieldDefinition -FieldXml @'
+<Field ID="{47ae60a7-9a97-4e42-abb7-01a2bb7fdf44}" Type="Text" MaxLength="255" Name="Country" StaticName="Country" DisplayName="Country" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
-$global:FieldDefOMTResponsesGeneralContext = New-FieldDefinition -FieldXml @'
-<Field ID="{c4043b00-0f1a-4de8-a2fe-35a39ffff505}" Type="Text" MaxLength="255" Name="GeneralContext" StaticName="GeneralContext" DisplayName="General Context" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
+# $global:FieldDefUserProfileId = New-FieldDefinition -FieldXml @'
+# <Field ID="{2e82382f-31f6-4044-9cc6-677ea1c6e9ff}" Type="Number" Decimals="0" Name="UserId" StaticName="UserId" DisplayName="User ID" 
+# Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="TRUE"
+# ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+# '@;
 
-$global:FieldDefOMTResponsesRecentContextDevelopment = New-FieldDefinition -FieldXml @'
-<Field ID="{fd42f03a-1d7b-45a5-99d2-1e35c761c861}" Type="Text" MaxLength="255" Name="RecentContextDevelopment" StaticName="RecentContextDevelopment" DisplayName="Recent Context Development" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
+# $global:FieldDefUserProfileEmail = New-FieldDefinition -FieldXml @'
+# <Field ID="{13f3d91e-7790-4f42-942f-50276c784d15}" Type="Text" MaxLength="255" Name="UserEmail" StaticName="UserEmail" DisplayName="User Email" 
+# Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
+# ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+# '@;
 
-$global:FieldDefOMTResponsesResponseUpdate = New-FieldDefinition -FieldXml @'
-<Field ID="{b1f0815a-c44e-4e90-b46d-547b38621313}" Type="Text" MaxLength="255" Name="ResponseUpdate" StaticName="ResponseUpdate" DisplayName="Response Update" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
 
-$global:FieldDefOMTResponsesOpsBackstop = New-FieldDefinition -FieldXml @'
-<Field ID="{0a221a2d-5ce1-476b-84e8-bd01dfcde530}" Type="Text" MaxLength="255" Name="OpsBackstop" StaticName="OpsBackstop" DisplayName="Ops Backstop" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
+$global:CTDefResponseCodes = New-ContentTypeDefinition -ID "0x0100C2DB3C6656AA48D89CA763E667C1FC48" -Name "Response Codes" -Group $CTGroup -Description "Response Codes";
 
-#### Non SCI responses
-
-$global:FieldDefOMTResponsesNonSciResponses = New-FieldDefinition -FieldXml @'
-<Field ID="{a83a4e96-fff3-44f9-a3cb-cec1d6037d7d}" Type="Boolean" Name="NonSciResponses" StaticName="NonSciResponses" DisplayName="Non SCI Responses" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-####### Reach figures
-
-$global:FieldDefOMTResponsesAffectedPopulation = New-FieldDefinition -FieldXml @'
-<Field ID="{e9bbc06d-3fdf-4f9a-a252-577d18764da2}" Type="Number" Decimals="0" Name="AffectedPopulation" StaticName="AffectedPopulation" DisplayName="Affected Population" 
-Group="_OMT" EnforceUniqueValues="TRUE" Indexed="TRUE" Required="TRUE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:CTDefOMTResponses = New-ContentTypeDefinition -ID "0x0100750DED44DE8C448F9F59414BCE29DFB7" -Name "OMT Responses" -Group $CTGroup -Description "OMT Responses";
-
-$global:ListOMTResponses = New-ListDefinition -ListTitle $global:OMTResponsesListTitle -ListUrl $global:OMTResponsesListName -Description "OMT Responses" -Template $CustomListTemplate -ContentTypes @($global:CTDefOMTResponses.Name);
+$global:ListResponseCodes = New-ListDefinition -ListTitle $global:ResponseCodesListTitle -ListUrl $global:ResponseCodesListName -Description "Response Codes" -Template $CustomListTemplate -ContentTypes @($global:CTDefResponseCodes.Name);
 
 #endregion
 

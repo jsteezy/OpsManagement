@@ -52,18 +52,11 @@ function EnsureRegions()
 
     #region FIELDS
 
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefRegionsSecurityDirectorName -ListContext $global:ListRegions.Title -webContext $web.ID
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefRegionsSecurityDirectorAccount -ListContext $global:ListRegions.Title -webContext $web.ID
-    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefRegionsSecurityDirectorEmail -ListContext $global:ListRegions.Title -webContext $web.ID
+    Ensure-Field -Url $web.Url -FieldDef $global:FieldDefRegionsName -ListContext $global:ListRegions.Title -webContext $web.ID
 
     #endregion
 
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefRegions -FieldDefs $global:FieldDefRegionsSecurityDirectorName, $global:FieldDefRegionsSecurityDirectorAccount,
-        $global:FieldDefRegionsSecurityDirectorEmail
-
-    Configure-ContentTypeNonRequiredFields -Web $web -ContentTypeName $global:CTDefRegions.Name -FieldNames @($global:FieldDefRegionsSecurityDirectorName.InternalName, 
-        $global:FieldDefRegionsSecurityDirectorAccount.InternalName,
-        $global:FieldDefRegionsSecurityDirectorEmail.InternalName);
+    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefRegions -FieldDefs $global:FieldDefRegionsName
 
     Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListRegions
 }
@@ -112,14 +105,15 @@ Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesDescription -ListCo
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesStartDate -ListContext $global:ListResponseCodes.Title -webContext $web.ID
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesRegion -ListContext $global:ListResponseCodes.Title -webContext $web.ID
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesCountry -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileId -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileEmail -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+# Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileId -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+# Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileEmail -ListContext $global:ListResponseCodes.Title -webContext $web.ID
 #endregion
 
 #endregion
 Ensure-ContentType -Url $web.Url -CTDef $global:CTDefResponseCodes -FieldDefs $global:FieldDefResponseCodesCode, $global:FieldDefResponseCodesDescription, 
-$global:FieldDefResponseCodesStartDate, $global:FieldDefResponseCodesRegion, $global:FieldDefResponseCodesCountry, $global:FieldDefUserProfileId, 
-$global:FieldDefUserProfileEmail
+$global:FieldDefResponseCodesStartDate, $global:FieldDefResponseCodesRegion, $global:FieldDefResponseCodesCountry
+# , $global:FieldDefUserProfileId, 
+# $global:FieldDefUserProfileEmail
 
 Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListResponseCodes
 

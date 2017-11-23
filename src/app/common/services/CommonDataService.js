@@ -1,10 +1,9 @@
 import ObjectMapper from "../helpers/ObjectMapper";
 
 export default class CommonDataService {
-    constructor(countryDataAccessService, currencyDataAccessService, accountCodesDataAccessService) {
+    constructor(countryDataAccessService, regionDataAccessService) {
         this.countryDataAccessService = countryDataAccessService;
-        this.currencyDataAccessService = currencyDataAccessService;
-        this.accountCodesDataAccessService = accountCodesDataAccessService;
+        this.regionDataAccessService = regionDataAccessService;
     }
 
     loadCountries() {
@@ -13,17 +12,11 @@ export default class CommonDataService {
         })
     }
 
-    loadCurrencies() {
-        return this.currencyDataAccessService.getAll().then((data) => {
+    loadRegions() {
+        return this.regionDataAccessService.getAll().then((data) => {
             return ObjectMapper.toAnonymous(data);
         })
     }
-
-    loadAccountCodes(){
-        return this.accountCodesDataAccessService.getAll().then((data) =>{
-            return ObjectMapper.toAnonymous(data);
-        });
-    }
 }
 
-CommonDataService.$inject = ["countryDataAccessService", "currencyDataAccessService", "accountCodesDataAccessService"];
+CommonDataService.$inject = ["countryDataAccessService", "regionDataAccessService"];

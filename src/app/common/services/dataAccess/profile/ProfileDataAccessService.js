@@ -53,34 +53,6 @@ export default class ProfileDataAccessService extends BaseDataAccessService {
 
         return this.$http.post(requestUrl, data, config);
     }
-
-    update(data) {
-        let listName = "Response Codes";
-
-        let replacements = {
-            "{ID}": data.id,
-            "{LIST_NAME}": listName
-        };
-
-        let requestUrl = helper.replaceData(dataAccessConfig.updateProfile, replacements);
-
-        let config = {
-            headers: {
-                "X-HTTP-Method": "MERGE",
-                "If-Match": data.etag
-            }
-        };
-
-        super.addDigestProperty(config);
-
-        data = mapper.toJson(data);
-
-        data = super.appendListItemTypeToRequestData(data, listName);
-
-        data = JSON.stringify(data);
-
-        return this.$http.post(requestUrl, data, config);
-    }
 }
 
 ProfileDataAccessService.$inject = ["$http"];

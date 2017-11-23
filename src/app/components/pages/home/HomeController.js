@@ -21,7 +21,29 @@ export default class HomeController extends BaseController {
         return super.initializePage(init);
     }
 
-    activate() {}
+    activate() {
+        //return super.initializePageData(this.getResponses());
+    }
+
+    getResponses() {
+        super.isRequestProcessing = true;
+
+        return this.responseCodeDataAccessService.getAllResponses()
+            .then(
+                (data) => {
+                    this.tarHistoryOptions.data = data;
+
+                    super.isRequestProcessing = false;
+
+                    return Promise.resolve(true);
+                },
+                () => {
+                    super.isRequestProcessing = false;
+                    this.tarHistoryOptions.data = [];
+
+                    return Promise.resolve(false);
+                });
+    }
 }
 
 HomeController.$inject = ["$window", "$injector"];
