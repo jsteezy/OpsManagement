@@ -5,7 +5,7 @@ var gulp = require('gulp'),
 
 
 gulp.task('copyJs', function(callback) {
-    child = spawn("powershell.exe", ["D://srcJohn/OMT/SharePoint/Provisioning/UploadJS.ps1"]);
+    child = spawn("powershell.exe", ["D://OMT/SharePoint/Provisioning/UploadJS.ps1"]);
     child.stdout.on("data", function(data) {
         console.log("Powershell Data: " + data);
     });
