@@ -1,6 +1,6 @@
 {
-    "getAllResponses": "/_api/Lists/getByTitle('{LIST_NAME}')/items",
-    "getResponse": "/_api/Lists/getByTitle('{LIST_NAME}')/items({ID})",    
-    "addResponse": "/_api/Lists/getByTitle('{LIST_NAME}')/items",
-    "updateResponse": "/_api/Lists/getByTitle('{LIST_NAME}')/items({ID})"
+    "getAllResponses": "/_api/Lists/getByTitle('Response Codes')/items",
+    "getResponse": "/_api/Lists/getByTitle('Response Codes')/items({ID})",    
+    "addResponse": "/_api/Lists/getByTitle('Response Codes')/items",
+    "updateResponse": "/_api/Lists/getByTitle('Response Codes')/items({ID})"
 }
