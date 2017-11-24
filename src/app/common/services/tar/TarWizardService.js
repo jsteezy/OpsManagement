@@ -94,7 +94,7 @@ export default class TarWizardService extends BaseTarService {
     }
 
     loadPageData() {
-        return Promise.all([this.commonDataService.loadCurrencies()]);
+        return Promise.all();
     }
 
     getTravellerId(data) {

@@ -30,6 +30,10 @@ export default class HomeController extends BaseController {
         return super.initializePageData(this.getAllResponses());
     }
 
+    openResponse(responseId) {
+        super.redirectTo(["Reports", { id: responseId }])
+    }
+
     getAllResponses() {
         super.isRequestProcessing = true;
 

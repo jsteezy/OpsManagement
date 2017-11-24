@@ -10,7 +10,12 @@ import tarWizardCommon from "../components/pages/trips/tar/wizard/tarWizardCommo
 import tarDetailsCommon from "../components/pages/trips/tar/details/tarDetailsCommon/tarDetailsCommon";
 import tarWizard from "../components/pages/trips/tar/wizard/tarWizard";
 import tarDetails from "../components/pages/trips/tar/details/tarDetails";
+
+//keep
 import home from "../components/pages/home/home";
+import reports from "../components/pages/reports/reports";
+import create from "../components/pages/administrator/create/create";
+
 
 import regions from "../components/pages/administrator/regions/regions";
 import users from "../components/pages/administrator/users/users";
@@ -25,7 +30,6 @@ import tarHistory from "../components/pages/history/tar/tarHistory";
 import tarHistoryDetails from "../components/pages/history/tar/details/tarHistoryDetails";
 
 
-import create from "../components/pages/administrator/create/create";
 
 import accessDenied from "../components/pages/accessDenied/accessDenied";
 
@@ -74,7 +78,10 @@ export default class Bootstrap {
         app.component("tarWizard", tarWizard);
         app.component("tarDetailsCommon", tarDetailsCommon);
         app.component("tarDetails", tarDetails);
+
         app.component("home", home);
+        app.component("reports", reports);
+        
 
         app.component("regions", regions);
         app.component("users", users);

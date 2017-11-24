@@ -115,6 +115,11 @@ export default class StateConfig {
                 component: 'home'
             },
             {
+                path: "/reports",
+                name: "Reports",
+                component: 'reports'
+            },
+            {
                 path: '/admin-members',
                 name: 'Members',
                 component: 'members'
