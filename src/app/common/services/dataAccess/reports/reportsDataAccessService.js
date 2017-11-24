@@ -1,10 +1,10 @@
-import dataAccessConfig from "./responseCodeDataAccessConfig.json";
+import dataAccessConfig from "./reportsDataAccessConfig.json";
 import helper from "../../../helpers/AppHelpers";
 import mapper from "../../../helpers/ObjectMapper";
 import BaseDataAccessService from "../BaseDataAccessService";
 import QueryBuilder from "../../../queryUtils/QueryBuilder";
 
-export default class ReportDataAccessService extends BaseDataAccessService {
+export default class ReportsDataAccessService extends BaseDataAccessService {
     constructor($http) {
         super();
         this.$http = $http;
@@ -12,20 +12,20 @@ export default class ReportDataAccessService extends BaseDataAccessService {
         this.queryBuilder = new QueryBuilder();
     }
     
-    getReports(id) {
+    getReport(id) {
         return this.get(dataAccessConfig.getReports, id);
     }    
     
 
-    getAllReportss() {
+    getAllReports() {
 
-        let requestUrl = dataAccessConfig.getAllReportss;
+        let requestUrl = dataAccessConfig.getAllReports;
 
         return this.$http.get(requestUrl);
     }
     
     save(data) {
-        let listName = "Reports Codes";
+        let listName = "Reports";
 
         let replacements = {
             "{LIST_NAME}": listName
@@ -47,4 +47,4 @@ export default class ReportDataAccessService extends BaseDataAccessService {
     }
 }
 
-ReportsCodeDataAccessService.$inject = ["$http"];
+ReportsDataAccessService.$inject = ["$http"];

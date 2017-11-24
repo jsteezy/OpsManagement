@@ -1,12 +1,12 @@
-import DateUtils from "../../helpers/DateUtils";
+//import DateUtils from "../../helpers/DateUtils";
 import StringHelpers from "../../helpers/StringHelpers";
 import ObjectMapper from "../../helpers/ObjectMapper";
 import ReportsModel from "../../models/ReportsModel";
 
 export default class ReportsService {
-    constructor(user, reportsCodeDataAccessService, commonDataService) {
+    constructor(user, reportsDataAccessService, commonDataService) {
         this.user = user;
-        this.reportsCodeDataAccessService = reportsCodeDataAccessService;
+        this.reportsDataAccessService = reportsDataAccessService;
         this.commonDataService = commonDataService;
     }
 
@@ -30,15 +30,15 @@ export default class ReportsService {
 
 
     store(pageMode, model) {
-        return this.reportsCodeDataAccessService[pageMode.serviceAction](model);
+        return this.reportsDataAccessService[pageMode.serviceAction](model);
     }
 
     getAllReports() {
-        return this.reportsCodeDataAccessService.getAllReports();
+        return this.reportsDataAccessService.getAllReports();
     }
 
     getReport(reportId) {
-        return this.reportsCodeDataAccessService.getReport(reportId);
+        return this.reportsDataAccessService.getReport(reportId);
     }
 
     getCurrentUserId(userId) {
@@ -50,4 +50,4 @@ export default class ReportsService {
     }
 }
 
-ReportsService.$inject = ["user", "reportsCodeDataAccessService", "commonDataService"];
+ReportsService.$inject = ["user", "reportsDataAccessService", "commonDataService"];
