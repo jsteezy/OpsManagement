@@ -18,9 +18,38 @@ function EnsureStorage()
 
     EnsureResponseCodes -web $web
 
-    #EnsureOMTResponses -web $web
+    EnsureReports -web $web
+}
 
-    EnsureOMTResponses -web $web
+function EnsureSolutionStorage()
+{
+    [CmdletBinding()]
+    Param(
+    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
+    [Microsoft.SharePoint.SPWeb]$web,
+    [string]$docLibraryName
+    )
+
+    Start-SPAssignment -Global
+
+    $listCollection = $web.Lists;
+
+    $storageLibrary = $listCollection.TryGetList($docLibraryName);
+
+    if ($storageLibrary -ne $null) 
+    {
+        Log "Library $($docLibraryName) already exists" -Level Warning
+    }
+    else
+    {
+        Log "Creating library $($docLibraryName)" -Level Warning
+
+        $listCollection.Add($docLibraryName, "Dedicated document library for storing the OMT app solution.", [Microsoft.SharePoint.SPListTemplateType]::DocumentLibrary)
+
+        Log "Document library created..." -Level Success
+    }
+
+    Stop-SPAssignment -Global
 }
 
 function EnsureFeatures() 
@@ -100,7 +129,7 @@ function EnsureResponseCodes ()
     )
 
 #region FIELDS
-Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesCode -ListContext $global:ListResponseCodes.InternalName -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesCode -ListContext $global:ListResponseCodes.Title -webContext $web.ID
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesDescription -ListContext $global:ListResponseCodes.Title -webContext $web.ID
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesStartDate -ListContext $global:ListResponseCodes.Title -webContext $web.ID
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesRegion -ListContext $global:ListResponseCodes.Title -webContext $web.ID
@@ -211,7 +240,7 @@ function SetListPermissionsForGroups
 #endregion 
 
 
-function EnsureOMTResponses() 
+function EnsureReports() 
 {
     [CmdletBinding()]
     Param(
@@ -221,128 +250,128 @@ function EnsureOMTResponses()
 
     #region FIELDS
 
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesRegionalResponse -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesParentRegionalResponse -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesSitrepDate -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesNextSitrepDate -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesGeneralContext -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesRecentContextDevelopment -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesResponseUpdate -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesOpsBackstop -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesNonSciResponses -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesAffectedPopulation -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesStrategyTarget -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesTotalReachSinceStart -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesTotalReachSinceLastSitrep -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesChildrenReachedSinceStart -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesChildrenReachedSinceLastSitrep -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesResponseStrategyTarget -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesSeedFundsTarget -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesSeedFundsTargetDate -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesAssessment -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesOutline -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesStrategy -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesPlan -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesOperationsControlReview -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesRealTimeReview -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesRepresentationOnHCT -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesEducationCluster -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesStaffingEducationCluster -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesChildProtectionBackstop -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesChildProtectionSummary -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesEducationBackstop -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesEducationSummary -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesFSLBackstop -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesFSLSummary -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesWASHBackstop -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesWASHSummary -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesShelterBackstop -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesShelterSummary -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesHealthBackstop -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesHealthSummary  -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesEHUUpdates -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesEHUPresent -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesNationalStaffNumber -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesInternationalStaffNumber -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesSecurityLevel -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesIncidentSummary -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesSecurityEvents -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesSecurityContext -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesSecurityChallenges -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesSecurityManagement -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesStaffChildSafegaurding -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesSafegaurdingFocalPoint -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesSafegaurdingRisks -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesCommsPack -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesMediaCoverage -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesSpokespeople -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesPrepositionedStock -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesForThisResponse -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesPlannedProcurement -ListContext $global:ListOMTResponses.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefOMTResponsesProcurementSpend -ListContext $global:ListOMTResponses.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsRegionalResponse -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsParentRegionalResponse -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSitrepDate -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsNextSitrepDate -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsGeneralContext -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsRecentContextDevelopment -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsResponseUpdate -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsOpsBackstop -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsNonSciResponses -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsAffectedPopulation -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsStrategyTarget -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsTotalReachSinceStart -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsTotalReachSinceLastSitrep -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsChildrenReachedSinceStart -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsChildrenReachedSinceLastSitrep -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsResponseStrategyTarget -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSeedFundsTarget -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSeedFundsTargetDate -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsAssessment -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsOutline -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsStrategy -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsPlan -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsOperationsControlReview -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsRealTimeReview -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsRepresentationOnHCT -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsEducationCluster -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsStaffingEducationCluster -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsChildProtectionBackstop -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsChildProtectionSummary -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsEducationBackstop -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsEducationSummary -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsFSLBackstop -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsFSLSummary -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsWASHBackstop -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsWASHSummary -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsShelterBackstop -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsShelterSummary -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsHealthBackstop -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsHealthSummary  -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsEHUUpdates -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsEHUPresent -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsNationalStaffNumber -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsInternationalStaffNumber -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSecurityLevel -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsIncidentSummary -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSecurityEvents -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSecurityContext -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSecurityChallenges -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSecurityManagement -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsStaffChildSafegaurding -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSafegaurdingFocalPoint -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSafegaurdingRisks -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsCommsPack -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsMediaCoverage -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSpokespeople -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsPrepositionedStock -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsForThisResponse -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsPlannedProcurement -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsProcurementSpend -ListContext $global:ListReports.Title -webContext $web.ID
     
     
     #endregion
 
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefOMTResponses -FieldDefs $global:FieldDefOMTResponsesRegionalResponse, 
-    $global:FieldDefOMTResponsesParentRegionalResponse, 
-    $global:FieldDefOMTResponsesSitrepDate, 
-    $global:FieldDefOMTResponsesNextSitrepDate, 
-    $global:FieldDefOMTResponsesGeneralContext, 
-    $global:FieldDefOMTResponsesRecentContextDevelopment, 
-    $global:FieldDefOMTResponsesResponseUpdate, 
-    $global:FieldDefOMTResponsesOpsBackstop, 
-    $global:FieldDefOMTResponsesNonSciResponses, 
-    $global:FieldDefOMTResponsesAffectedPopulation, 
-    $global:FieldDefOMTResponsesStrategyTarget, 
-    $global:FieldDefOMTResponsesTotalReachSinceStart, 
-    $global:FieldDefOMTResponsesTotalReachSinceLastSitrep, 
-    $global:FieldDefOMTResponsesChildrenReachedSinceStart, 
-    $global:FieldDefOMTResponsesChildrenReachedSinceLastSitrep, 
-    $global:FieldDefOMTResponsesResponseStrategyTarget, 
-    $global:FieldDefOMTResponsesSeedFundsTarget, 
-    $global:FieldDefOMTResponsesSeedFundsTargetDate, 
-    $global:FieldDefOMTResponsesAssessment, 
-    $global:FieldDefOMTResponsesOutline, 
-    $global:FieldDefOMTResponsesStrategy,
-    $global:FieldDefOMTResponsesPlan, 
-    $global:FieldDefOMTResponsesOperationsControlReview, 
-    $global:FieldDefOMTResponsesRealTimeReview, 
-    $global:FieldDefOMTResponsesRepresentationOnHCT, 
-    $global:FieldDefOMTResponsesEducationCluster, 
-    $global:FieldDefOMTResponsesStaffingEducationCluster, 
-    $global:FieldDefOMTResponsesChildProtectionBackstop, 
-    $global:FieldDefOMTResponsesChildProtectionSummary, 
-    $global:FieldDefOMTResponsesEducationBackstop, 
-    $global:FieldDefOMTResponsesEducationSummary, 
-    $global:FieldDefOMTResponsesFSLBackstop, 
-    $global:FieldDefOMTResponsesFSLSummary, 
-    $global:FieldDefOMTResponsesWASHBackstop, 
-    $global:FieldDefOMTResponsesWASHSummary, 
-    $global:FieldDefOMTResponsesShelterBackstop, 
-    $global:FieldDefOMTResponsesShelterSummary, 
-    $global:FieldDefOMTResponsesHealthBackstop, 
-    $global:FieldDefOMTResponsesHealthSummary , 
-    $global:FieldDefOMTResponsesEHUUpdates, 
-    $global:FieldDefOMTResponsesEHUPresent, 
-    $global:FieldDefOMTResponsesNationalStaffNumber, 
-    $global:FieldDefOMTResponsesInternationalStaffNumber, 
-    $global:FieldDefOMTResponsesSecurityLevel, 
-    $global:FieldDefOMTResponsesIncidentSummary, 
-    $global:FieldDefOMTResponsesSecurityEvents, 
-    $global:FieldDefOMTResponsesSecurityContext, 
-    $global:FieldDefOMTResponsesSecurityChallenges, 
-    $global:FieldDefOMTResponsesSecurityManagement, 
-    $global:FieldDefOMTResponsesStaffChildSafegaurding, 
-    $global:FieldDefOMTResponsesSafegaurdingFocalPoint, 
-    $global:FieldDefOMTResponsesSafegaurdingRisks, 
-    $global:FieldDefOMTResponsesCommsPack, 
-    $global:FieldDefOMTResponsesMediaCoverage, 
-    $global:FieldDefOMTResponsesSpokespeople, 
-    $global:FieldDefOMTResponsesPrepositionedStock, 
-    $global:FieldDefOMTResponsesForThisResponse, 
-    $global:FieldDefOMTResponsesPlannedProcurement, 
-    $global:FieldDefOMTResponsesProcurementSpend
+    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefReports -FieldDefs $global:FieldDefReportsRegionalResponse, 
+    $global:FieldDefReportsParentRegionalResponse, 
+    $global:FieldDefReportsSitrepDate, 
+    $global:FieldDefReportsNextSitrepDate, 
+    $global:FieldDefReportsGeneralContext, 
+    $global:FieldDefReportsRecentContextDevelopment, 
+    $global:FieldDefReportsResponseUpdate, 
+    $global:FieldDefReportsOpsBackstop, 
+    $global:FieldDefReportsNonSciResponses, 
+    $global:FieldDefReportsAffectedPopulation, 
+    $global:FieldDefReportsStrategyTarget, 
+    $global:FieldDefReportsTotalReachSinceStart, 
+    $global:FieldDefReportsTotalReachSinceLastSitrep, 
+    $global:FieldDefReportsChildrenReachedSinceStart, 
+    $global:FieldDefReportsChildrenReachedSinceLastSitrep, 
+    $global:FieldDefReportsResponseStrategyTarget, 
+    $global:FieldDefReportsSeedFundsTarget, 
+    $global:FieldDefReportsSeedFundsTargetDate, 
+    $global:FieldDefReportsAssessment, 
+    $global:FieldDefReportsOutline, 
+    $global:FieldDefReportsStrategy,
+    $global:FieldDefReportsPlan, 
+    $global:FieldDefReportsOperationsControlReview, 
+    $global:FieldDefReportsRealTimeReview, 
+    $global:FieldDefReportsRepresentationOnHCT, 
+    $global:FieldDefReportsEducationCluster, 
+    $global:FieldDefReportsStaffingEducationCluster, 
+    $global:FieldDefReportsChildProtectionBackstop, 
+    $global:FieldDefReportsChildProtectionSummary, 
+    $global:FieldDefReportsEducationBackstop, 
+    $global:FieldDefReportsEducationSummary, 
+    $global:FieldDefReportsFSLBackstop, 
+    $global:FieldDefReportsFSLSummary, 
+    $global:FieldDefReportsWASHBackstop, 
+    $global:FieldDefReportsWASHSummary, 
+    $global:FieldDefReportsShelterBackstop, 
+    $global:FieldDefReportsShelterSummary, 
+    $global:FieldDefReportsHealthBackstop, 
+    $global:FieldDefReportsHealthSummary , 
+    $global:FieldDefReportsEHUUpdates, 
+    $global:FieldDefReportsEHUPresent, 
+    $global:FieldDefReportsNationalStaffNumber, 
+    $global:FieldDefReportsInternationalStaffNumber, 
+    $global:FieldDefReportsSecurityLevel, 
+    $global:FieldDefReportsIncidentSummary, 
+    $global:FieldDefReportsSecurityEvents, 
+    $global:FieldDefReportsSecurityContext, 
+    $global:FieldDefReportsSecurityChallenges, 
+    $global:FieldDefReportsSecurityManagement, 
+    $global:FieldDefReportsStaffChildSafegaurding, 
+    $global:FieldDefReportsSafegaurdingFocalPoint, 
+    $global:FieldDefReportsSafegaurdingRisks, 
+    $global:FieldDefReportsCommsPack, 
+    $global:FieldDefReportsMediaCoverage, 
+    $global:FieldDefReportsSpokespeople, 
+    $global:FieldDefReportsPrepositionedStock, 
+    $global:FieldDefReportsForThisResponse, 
+    $global:FieldDefReportsPlannedProcurement, 
+    $global:FieldDefReportsProcurementSpend
 
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListOMTResponses
+    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListReports
 }

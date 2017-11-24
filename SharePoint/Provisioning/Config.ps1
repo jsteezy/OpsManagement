@@ -1,7 +1,7 @@
 ﻿$global:spWebAppUrl = "https://onenet-staging.savethechildren.net";
 $global:spSiteUrl = "$($global:spWebAppUrl)/sites/OMT-uat";
 
-$global:solutionPath = "D:\OMT\dist";
+$global:solutionPath = "D:\dist";
 $global:solutionStorageDocLibraryName = "ProjectLibrary";
 $global:documentLibraryFolder = "OMT";
 $global:solutionExportDocLibraryName = "OMT Exports";
