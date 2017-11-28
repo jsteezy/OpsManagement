@@ -15,11 +15,11 @@ export default class ResponseService {
 
         if (data) {
             ObjectMapper.toObject(data, model);
-            model.startDate = DateUtils.getFromString(model.startDate)
+            //model.startDate = DateUtils.getFromString(model.startDate)
         }
 
-        model.userId = this.getCurrentUserId(userId);
-        model.userEmail = this.getCurrentUserEmail(model);
+        //model.userId = this.getCurrentUserId(userId);
+        //model.userEmail = this.getCurrentUserEmail(model);
 
         return model;
     }
@@ -28,9 +28,8 @@ export default class ResponseService {
         return Promise.all([this.commonDataService.loadCountries(), this.commonDataService.loadRegions()]);
     }
 
-
     store(pageMode, model) {
-        return this.responseCodeDataAccessService[pageMode.serviceAction](model);
+        return this.responseCodeDataAccessService.save(model);
     }
 
     getAllResponses() {

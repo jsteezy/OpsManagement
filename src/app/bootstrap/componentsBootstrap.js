@@ -14,7 +14,8 @@ import tarDetails from "../components/pages/trips/tar/details/tarDetails";
 //keep
 import home from "../components/pages/home/home";
 import reports from "../components/pages/reports/reports";
-import create from "../components/pages/administrator/create/create";
+import response from "../components/pages/response/response";
+
 
 
 import regions from "../components/pages/administrator/regions/regions";
@@ -81,6 +82,7 @@ export default class Bootstrap {
 
         app.component("home", home);
         app.component("reports", reports);
+        app.component("response", response);
         
 
         app.component("regions", regions);
@@ -93,10 +95,6 @@ export default class Bootstrap {
         app.component("tarApprovalWizard", tarApprovalWizard);
         app.component('tarHistory', tarHistory);
         app.component("tarHistoryDetails", tarHistoryDetails);
-
-
-
-        app.component("create", create);
 
         app.component("accessDenied", accessDenied);
 

@@ -22,27 +22,27 @@
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Code</label>
-                <input required name="code" ng-model="create.code">
+                <input required name="code" ng-model="ctrl.model.code">
                 <div ng-messages="createForm.code.$error">
                     <div ng-message="required">Please enter a code</div>
                 </div>
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Description</label>
-                <input required name="description" ng-model="create.description">
+                <input required name="description" ng-model="ctrl.model.description">
                 <div ng-messages="createForm.description.$error">
                     <div ng-message="required">Please enter a description</div>
                 </div>
             </md-input-container>
             <div class="md-block" flex-gt-sm="50">
                 <label>Start date</label>
-                <md-datepicker ng-model="ctrl.startDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                <md-datepicker ng-model="ctrl.model.startDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
             </div>
             <div class="md-block" flex-gt-sm="50">
                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                    <md-button class="md-raised md-primary" ng-click="ctrl.cancel()">Cancel</md-button>
-                    <md-button class="md-raised md-primary" aria-label="save" ng-show="!ctrl.isRequestProcessing" ng-disabled="!form.$dirty" ng-click="ctrl.storeProfile(form)">
-                        {{ctrl.pageMode.actionName | translate}}
+                    <md-button class="md-raised md-primary" ng-click="ctrl.redirectToHome()">Cancel</md-button>
+                    <md-button class="md-raised md-primary" aria-label="save" ng-show="!ctrl.isRequestProcessing" ng-disabled="!form.$dirty" ng-click="ctrl.storeResponse(form)">
+                        Save
                     </md-button>
                     <md-progress-circular class="md-primary md-hue-3" md-mode="indeterminate" ng-show="ctrl.isRequestProcessing" md-diameter="70"></md-progress-circular>
                 </section>

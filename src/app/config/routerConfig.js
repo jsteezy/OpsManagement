@@ -24,9 +24,9 @@ export default class StateConfig {
                 component: 'profileWizard'
             },
             {
-                path: '/others-profile-wizard/:userId',
-                name: 'OthersProfileWizard',
-                component: 'profileWizard'
+                path: '/response',
+                name: 'Response',
+                component: 'response'
             },
             {
                 path: '/tar-search',
