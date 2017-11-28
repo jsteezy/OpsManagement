@@ -38,6 +38,7 @@ import tarHistoryService from "../common/services/tar/TarHistoryService";
 import responseService from "../common/services/response/ResponseService";
 import responseCodeDataAccessService from "../common/services/dataAccess/responseCode/ResponseCodeDataAccessService";
 import reportsService from "../common/services/reports/ReportsService";
+import reportsDataAccessService from "../common/services/dataAccess/reports/reportsDataAccessService";
 
 
 import appHttpInterceptor from "../common/interceptors/AppHttpInterceptor";
@@ -83,7 +84,9 @@ export default class Bootstrap {
         //keep
         app.service("responseService", responseService);
         app.service("responseCodeDataAccessService", responseCodeDataAccessService);
-        app.service("reportsService", reportsService);        
+        app.service("reportsService", reportsService);  
+        app.service("reportsDataAccessService", reportsDataAccessService);
+        
         
 
         app.service("tarApprovalService", tarApprovalService);

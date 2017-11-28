@@ -41,8 +41,7 @@ export default class HomeController extends BaseController {
             .then(
                 (data) => {
                     this.responseCodeOptions.data = data;
-                    console.log(this.responseCodeOptions);
-                    
+                      
 
                     super.isRequestProcessing = false;
 

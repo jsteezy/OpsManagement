@@ -300,6 +300,35 @@ export default class GridOptions {
                 ],                
                 showExpandButtonAlways: true,
                 hasCustomFilters: true
+            },
+
+            reportOptions: {
+                enableSorting: true,
+                enableFiltering: true,
+                enableHorizontalScrollbar: 0,
+                enableVerticalScrollbar: 0,
+                columnDefs: [
+                    { field: 'id', visible: false },
+                    {
+                        displayName: 'ID_GRID',
+                        field: 'title',
+                        enableSorting: false,
+                        cellTemplate: '<md-button class="md-primary" ng-click="grid.appScope.openReport(row)">{{COL_FIELD}}</md-button>'
+                    },
+                    // { displayName: 'Response Code', field: 'code' },
+                    // { displayName: 'Description', field: 'description' },
+                    // { displayName: 'Start Date', field: 'startDate', enableSorting: true, cellFilter: "dateFormat" },
+                    // { displayName: 'Country', field: 'country', enableSorting: true },
+                    // { displayName: 'Region', field: 'region', enableFiltering: true, enableSorting: true },      
+
+                    { displayName: 'Regional Response', field: 'regionalResponse' },
+                    { displayName: 'Parent Regional Response', field: 'parentRegionalResponse' },
+                    { displayName: 'Sitrep Date', field: 'sitrepDate', enableSorting: true, cellFilter: "dateFormat" },
+                    { displayName: 'Next Sitrep Date', field: 'nextSitrepDate', cellFilter: "dateFormat" },
+                    { displayName: 'General Context', field: 'generalContext' }                 
+                ],                
+                showExpandButtonAlways: true,
+                hasCustomFilters: true
             }
         }
     }

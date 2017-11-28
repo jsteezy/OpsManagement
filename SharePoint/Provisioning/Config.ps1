@@ -1,5 +1,5 @@
 ﻿$global:spWebAppUrl = "https://onenet-staging.savethechildren.net";
-$global:spSiteUrl = "$($global:spWebAppUrl)/sites/OMT-uat";
+$global:spSiteUrl = "$($global:spWebAppUrl)/sites/OMT";
 
 $global:solutionPath = "D:\dist";
 $global:solutionStorageDocLibraryName = "ProjectLibrary";
