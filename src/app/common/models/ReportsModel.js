@@ -1,7 +1,7 @@
-import ProfileCommonModel from "./ProfileCommonModel";
+import ResponseModel from "./ResponseModel";
 import DateUtils from "../helpers/DateUtils";
 
-export default class ReportsModel extends ProfileCommonModel {
+export default class ReportsModel extends ResponseModel {
     constructor() {
         super();
 

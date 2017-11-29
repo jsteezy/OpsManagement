@@ -12,9 +12,23 @@ export default class ReportsDataAccessService extends BaseDataAccessService {
         this.queryBuilder = new QueryBuilder();
     }
     
-    getReport(id) {
-        return this.get(dataAccessConfig.getReports, id);
-    }    
+    getResponse(id) {
+        let listName = "Response Codes";
+
+        let replacements = {
+            "{ID}": id,
+            "{LIST_NAME}": listName
+        };
+
+        let requestUrl = helper.replaceData(dataAccessConfig.getResponse, replacements);
+
+        let url = this.queryBuilder
+            .queryValue(requestUrl)
+            .selectAll()
+            .build();
+
+        return this.$http.get(url);
+    } 
     
 
     getAllReports() {

@@ -1,6 +1,6 @@
 {
     "getAllResponses": "/_api/Lists/getByTitle('Response Codes')/items",
-    "getResponse": "/_api/Lists/getByTitle('Response Codes')/items({ID})",    
+    "getResponse":"/_api/Lists/getByTitle('{LIST_NAME}')/items?$filter=ID eq {ID}",        
     "addResponse": "/_api/Lists/getByTitle('Response Codes')/items",
     "updateResponse": "/_api/Lists/getByTitle('Response Codes')/items({ID})"
 }

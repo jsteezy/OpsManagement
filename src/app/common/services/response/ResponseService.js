@@ -33,6 +33,9 @@ export default class ResponseService {
         return this.responseCodeDataAccessService.getAllResponses();
     }
 
+    getResponse(id) {
+        return this.responseCodeDataAccessService.getResponse(id);
+    }
     getCurrentUserId(userId) {
         return userId ? userId : this.user.id;
     }

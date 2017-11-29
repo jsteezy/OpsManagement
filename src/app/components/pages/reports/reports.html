@@ -3,11 +3,12 @@
         <div class="md-no-sticky md-subheader _md md-pageTheme-theme">
             <div class="md-subheader-inner">
                 <div class="md-subheader-content">
-                    <h1>{{ctrl.reportOptions.data.code}}</h1>
+                    <h1>{{ctrl.responseCodeOptions.data[0].Code}}</h1>
+                    
                 </div>
             </div>            
         </div>
-        <md-button aria-label="Add report" class="md-primary md-raised md-mini" ng-click="ctrl.createReport(item.Id)">
+        <md-button aria-label="Add report" class="md-primary md-raised md-mini" ng-click="ctrl.createReport(ctrl.responseCodeOptions.data[0].Id)">
             <span>Add report</span>
         </md-button>
         <md-content>
@@ -18,9 +19,6 @@
                    {{item.Code}} {{item.Description}} {{item.StartDate}} {{item.Country}}{{item.Region}}{{item.Id}}
                 </span>
         </md-list-item>
-<script>
-console.log(ctrl.reportOptions)
-</script>
             </div>
         </md-content>
     </div>

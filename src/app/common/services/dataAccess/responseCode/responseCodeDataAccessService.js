@@ -11,30 +11,24 @@ export default class ResponseCodeDataAccessService extends BaseDataAccessService
 
         this.queryBuilder = new QueryBuilder();
     }
-    
+   
     getResponse(id) {
-        return this.get(dataAccessConfig.getResponse, id);
+        let listName = "Response Codes";
+
+        let replacements = {
+            "{ID}": id,
+            "{LIST_NAME}": listName
+        };
+
+        let requestUrl = helper.replaceData(dataAccessConfig.getResponse, replacements);
+
+        let url = this.queryBuilder
+            .queryValue(requestUrl)
+            .selectAll()
+            .build();
+
+        return this.$http.get(url);
     }
-    
-    // get(id) {
-    //     let listName = "Response Codes";
-
-    //     let replacements = {
-    //         "{ID}": id,
-    //         "{LIST_NAME}": listName
-    //     };
-
-    //     let requestUrl = helper.replaceData(dataAccessConfig.getProfile, replacements);
-
-    //     let url = this.queryBuilder
-    //         .queryValue(requestUrl)
-    //         .selectAll()
-    //         .comma()
-    //         .queryValue(dataAccessConfig.expandUsers)
-    //         .build();
-
-    //     return this.$http.get(url);
-    // }
     
 
     getAllResponses() {

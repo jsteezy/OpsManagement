@@ -1,4 +1,3 @@
-//import DateUtils from "../../helpers/DateUtils";
 import StringHelpers from "../../helpers/StringHelpers";
 import ObjectMapper from "../../helpers/ObjectMapper";
 import ReportsModel from "../../models/ReportsModel";
@@ -10,12 +9,14 @@ export default class ReportsService {
         this.commonDataService = commonDataService;
     }
 
-    buildModel(data) {
+    buildModel(data, responseId) {
         let model = new ReportsModel();
-
+        this.responseService.getResponse(responseId)
+        
         if (data) {
             ObjectMapper.toObject(data, model);
         }
+        model.responseId = responseId;
 
         return model;
     }

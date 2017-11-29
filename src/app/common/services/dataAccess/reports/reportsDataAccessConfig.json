@@ -1,6 +1,6 @@
 {
     "getAllReports": "/_api/Lists/getByTitle('Reports')/items",
-    "getReport": "/_api/Lists/getByTitle('Reports')/items({ID})",    
+    "getReport": "/_api/Lists/getByTitle('Reports')/items?$filter=ID eq {ID}",    
     "addReport": "/_api/Lists/getByTitle('Reports')/items",
     "updateReport": "/_api/Lists/getByTitle('Reports')/items({ID})"
 }

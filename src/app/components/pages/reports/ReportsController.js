@@ -2,14 +2,15 @@ import BaseController from "../../common/BaseController";
 import GridOptions from "../../../common/enums/gridOptions";
 
 export default class ReportsController extends BaseController {
-    constructor($window, $injector, reportsService) {
+    constructor($window, $injector, reportsService, responseService) {
         super($injector);
 
         super.router = this.$router;
+        this.responseService = responseService;
         this.reportsService = reportsService;
         
         this.$window = $window;
-
+        this.setResponseGridOptions();        
         this.setReportsGridOptions();
         //this.initFilters();        
     }
@@ -31,26 +32,39 @@ export default class ReportsController extends BaseController {
     }
 
     loadAllReports(id) {
-        return this.reportsService.getAllReports()
+        this.responseService.getResponse(id)
         .then(
             (data) => {
-                this.reportOptions.data = data;
-                  
-
-                super.isRequestProcessing = false;
-
-                return Promise.resolve(true);
+                this.responseCodeOptions.data = data;
+                return this.reportsService.getAllReports()
+                .then(
+                    (data) => {
+                        this.reportOptions.data = data;
+                        this.reportOptions.responseId = id;
+                        
+                        super.isRequestProcessing = false;
+        
+                        return Promise.resolve(true);
+                    },
+                    () => {
+                        super.isRequestProcessing = false;
+                        this.reportOptions.data = [];
+                        this.reportOptions.responseId = id;
+        
+                        return Promise.resolve(false);
+                    });
             },
             () => {
                 super.isRequestProcessing = false;
                 this.reportOptions.data = [];
+                this.reportOptions.responseId = id;
 
                 return Promise.resolve(false);
-            });
+            });     
     }
 
-    createReport(undefined, responseId) {
-        return this.reportService.buildModel()
+    createReport(responseId) {
+        return this.reportsService.buildModel(undefined, responseId)
         .then(
             (data) => {
                 super.model = data;
@@ -72,6 +86,13 @@ export default class ReportsController extends BaseController {
     //             });
     // }
 
+    setResponseGridOptions() {
+        this.responseCodeOptions = GridOptions.options.responseCodeOptions;
+        this.responseCodeOptions.appScopeProvider = this;
+        this.responseCodeOptions.isGridReady = true;
+        this.responseCodeOptions.data = [];
+    }
+
     setReportsGridOptions() {
         this.reportOptions = GridOptions.options.reportOptions;
         this.reportOptions.appScopeProvider = this;
@@ -80,4 +101,4 @@ export default class ReportsController extends BaseController {
     }
 }
 
-ReportsController.$inject = ["$window", "$injector", "reportsService"];
+ReportsController.$inject = ["$window", "$injector", "reportsService", "responseService"];
