@@ -1,4 +1,4 @@
-import DateUtils from "../../helpers/DateUtils";
+//import DateUtils from "../../helpers/DateUtils";
 import StringHelpers from "../../helpers/StringHelpers";
 import ObjectMapper from "../../helpers/ObjectMapper";
 import ResponseModel from "../../models/ResponseModel";
@@ -10,16 +10,13 @@ export default class ResponseService {
         this.commonDataService = commonDataService;
     }
 
-    buildModel(data, userId) {
+    buildModel(data) {
         let model = new ResponseModel();
 
         if (data) {
             ObjectMapper.toObject(data, model);
             //model.startDate = DateUtils.getFromString(model.startDate)
         }
-
-        //model.userId = this.getCurrentUserId(userId);
-        //model.userEmail = this.getCurrentUserEmail(model);
 
         return model;
     }

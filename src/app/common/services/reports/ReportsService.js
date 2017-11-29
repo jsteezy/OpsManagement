@@ -10,16 +10,12 @@ export default class ReportsService {
         this.commonDataService = commonDataService;
     }
 
-    buildModel(data, userId) {
+    buildModel(data) {
         let model = new ReportsModel();
 
         if (data) {
             ObjectMapper.toObject(data, model);
-            //model.startDate = DateUtils.getFromString(model.startDate)
         }
-
-        model.userId = this.getCurrentUserId(userId);
-        model.userEmail = this.getCurrentUserEmail(model);
 
         return model;
     }

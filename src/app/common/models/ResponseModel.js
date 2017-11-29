@@ -8,7 +8,7 @@ export default class ResponseModel extends BaseModel {
 
         this.code = "";
         this.description = "";
-        this.startDate = DateUtils.today;
+        this.startDate = DateUtils.getDateWithoutTime(DateUtils.today);
         this.region = "";
         this.country = "";
     }

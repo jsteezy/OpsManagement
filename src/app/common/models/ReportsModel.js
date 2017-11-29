@@ -5,6 +5,7 @@ export default class ReportsModel extends ProfileCommonModel {
     constructor() {
         super();
 
+        this.responseId = "";
         //General info
         this.regionalResponse = false;
         this.parentRegionalResponse = "";

@@ -49,16 +49,35 @@ export default class ReportsController extends BaseController {
             });
     }
 
+    createReport(undefined, responseId) {
+        return this.reportService.buildModel()
+        .then(
+            (data) => {
+                super.model = data;
+                
+            },
+            (errorData) => {
+                super.serverRequestErrors = errorData;
+            });
+    }
+
+    // loadEmptyModel() {
+    //     return this.tarWizardService.buildModel()
+    //         .then(
+    //             (data) => {
+    //                 super.model = data;
+    //             },
+    //             (errorData) => {
+    //                 super.serverRequestErrors = errorData;
+    //             });
+    // }
+
     setReportsGridOptions() {
         this.reportOptions = GridOptions.options.reportOptions;
         this.reportOptions.appScopeProvider = this;
         this.reportOptions.isGridReady = true;
         this.reportOptions.data = [];
     }
-
-    // initFilters() {
-    //     this.tarHistoryFilters = this.tarHistoryService.historyFilters;
-    // }
 }
 
 ReportsController.$inject = ["$window", "$injector", "reportsService"];

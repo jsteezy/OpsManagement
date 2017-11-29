@@ -27,6 +27,8 @@ export default class ResponseController extends BaseController {
     }
 
     activate() {
+        super.model = this.responseService.buildModel(undefined);
+        
         let pageData = this.responseService.loadPageData().then((data) => {
             this.countries = data[0];
             this.regions = data[1];
