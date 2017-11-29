@@ -15,7 +15,7 @@ import tarDetails from "../components/pages/trips/tar/details/tarDetails";
 import home from "../components/pages/home/home";
 import reports from "../components/pages/reports/reports";
 import response from "../components/pages/response/response";
-
+import addReport from "../components/pages/addReport/addReport";
 
 
 import regions from "../components/pages/administrator/regions/regions";
@@ -83,6 +83,7 @@ export default class Bootstrap {
         app.component("home", home);
         app.component("reports", reports);
         app.component("response", response);
+        app.component("addReport", addReport);
         
 
         app.component("regions", regions);

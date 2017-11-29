@@ -63,16 +63,20 @@ export default class ReportsController extends BaseController {
             });     
     }
 
-    createReport(responseId) {
-        return this.reportsService.buildModel(undefined, responseId)
-        .then(
-            (data) => {
-                super.model = data;
+    // createReport(responseId) {
+    //     return this.reportsService.buildModel(undefined, responseId)
+    //     .then(
+    //         (data) => {
+    //             super.model = data;
                 
-            },
-            (errorData) => {
-                super.serverRequestErrors = errorData;
-            });
+    //         },
+    //         (errorData) => {
+    //             super.serverRequestErrors = errorData;
+    //         });
+    // }
+
+    createReport(responseId) {
+        super.redirectTo(["addReport", { id: responseId }])
     }
 
     // loadEmptyModel() {

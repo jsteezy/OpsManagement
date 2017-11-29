@@ -1,4 +1,3 @@
-//import DateUtils from "../../helpers/DateUtils";
 import StringHelpers from "../../helpers/StringHelpers";
 import ObjectMapper from "../../helpers/ObjectMapper";
 import ResponseModel from "../../models/ResponseModel";
@@ -15,7 +14,6 @@ export default class ResponseService {
 
         if (data) {
             ObjectMapper.toObject(data, model);
-            //model.startDate = DateUtils.getFromString(model.startDate)
         }
 
         return model;
