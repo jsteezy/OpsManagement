@@ -1,4 +1,4 @@
 {
   "getItemCount": "/_api/Lists/getByTitle('Countries')/ItemCount",
-  "getAll": "/_api/Lists/getByTitle('Countries')/items?$top={ITEM_COUNT}&$orderby=Title asc&$select=Title,TAR_IsoCode,TAR_TravelRestrictions,TAR_Director/Id,TAR_Director/Title&$expand=TAR_Director"
+  "getAll": "/_api/Lists/getByTitle('Countries')/items"
 }

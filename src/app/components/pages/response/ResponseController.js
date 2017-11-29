@@ -20,13 +20,13 @@ export default class ResponseController extends BaseController {
 
         let init = () => {
             super.$routerOnActivate(next, current);
-            return this.activate(next.params.userId);
+            return this.activate();
         };
 
         return super.initializePage(init);
     }
 
-    activate(userId) {
+    activate() {
         let pageData = this.responseService.loadPageData().then((data) => {
             this.countries = data[0];
             this.regions = data[1];
