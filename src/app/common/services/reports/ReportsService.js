@@ -10,18 +10,14 @@ export default class ReportsService {
         this.responseService = responseService;
     }
 
-    buildModel(data, responseId) {
+    buildModel(data) {
         let model = new ReportsModel();
-        
-        this.responseService.getResponse(responseId)
-        .then(
-            (data) => {
-                ObjectMapper.toObject(data, model);
-                return model;
-            },
-            () => {
-                return Promise.resolve(false);
-            });     
+
+        if (data) {
+            ObjectMapper.toObject(data, model);
+        }
+
+        return model;
     }
 
     loadPageData() {
