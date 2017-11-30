@@ -12,6 +12,8 @@ import profileDataAccessService from "../common/services/dataAccess/profile/Prof
 //keep
 import countryDataAccessService from "../common/services/dataAccess/country/CountryDataAccessService";
 import regionDataAccessService from "../common/services/dataAccess/region/RegionDataAccessService";
+import ngTable from "../common/services/ngTable/ng-table.min.js";
+
 
 import peoplePickerService from "../common/services/peoplePicker/PeoplePickerService";
 import attachmentsDataAccessService from "../common/services/dataAccess/attachments/AttachmentsDataAccessService";
@@ -63,6 +65,8 @@ export default class Bootstrap {
         //keep
         app.service("countryDataAccessService", countryDataAccessService);
         app.service("regionDataAccessService", regionDataAccessService);
+        app.service("ngTable", ngTable);
+        
 
         app.service("attachmentsDataAccessService", attachmentsDataAccessService);
         app.service("peoplePickerService", peoplePickerService);
