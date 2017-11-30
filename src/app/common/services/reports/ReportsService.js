@@ -3,22 +3,25 @@ import ObjectMapper from "../../helpers/ObjectMapper";
 import ReportsModel from "../../models/ReportsModel";
 
 export default class ReportsService {
-    constructor(user, reportsDataAccessService, commonDataService) {
+    constructor(user, reportsDataAccessService, commonDataService, responseService) {
         this.user = user;
         this.reportsDataAccessService = reportsDataAccessService;
         this.commonDataService = commonDataService;
+        this.responseService = responseService;
     }
 
     buildModel(data, responseId) {
         let model = new ReportsModel();
-        this.responseService.getResponse(responseId)
         
-        if (data) {
-            ObjectMapper.toObject(data, model);
-        }
-        model.responseId = responseId;
-
-        return model;
+        this.responseService.getResponse(responseId)
+        .then(
+            (data) => {
+                ObjectMapper.toObject(data, model);
+                return model;
+            },
+            () => {
+                return Promise.resolve(false);
+            });     
     }
 
     loadPageData() {
@@ -47,4 +50,4 @@ export default class ReportsService {
     }
 }
 
-ReportsService.$inject = ["user", "reportsDataAccessService", "commonDataService"];
+ReportsService.$inject = ["user", "reportsDataAccessService", "commonDataService", "responseService"];

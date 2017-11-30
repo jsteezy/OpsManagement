@@ -2,12 +2,12 @@ import BaseController from "../../common/BaseController";
 import GridOptions from "../../../common/enums/gridOptions";
 
 export default class AddReportController extends BaseController {
-    constructor($window, $injector, responseService) {
+    constructor($window, $injector, responseService, reportsService) {
         super($injector);
 
         super.router = this.$router;
         this.responseService = responseService;
-        
+        this.reportsService = reportsService;
         this.$window = $window;
 
         this.setResponseGridOptions();
@@ -32,14 +32,8 @@ export default class AddReportController extends BaseController {
     }
 
     loadResponseDetails(responseId) {
+
         return this.reportsService.buildModel(undefined, responseId)
-        .then(
-            (data) => {
-                super.model = data;                
-            },
-            (errorData) => {
-                super.serverRequestErrors = errorData;
-            });
     }
 
     // openResponse(responseId) {
@@ -54,4 +48,4 @@ export default class AddReportController extends BaseController {
     }
 }
 
-AddReportController.$inject = ["$window", "$injector", "responseService"];
+AddReportController.$inject = ["$window", "$injector", "responseService", "reportsService"];

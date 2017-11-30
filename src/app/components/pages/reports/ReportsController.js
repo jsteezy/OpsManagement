@@ -76,7 +76,7 @@ export default class ReportsController extends BaseController {
     // }
 
     createReport(responseId) {
-        super.redirectTo(["addReport", { id: responseId }])
+        super.redirectTo(["AddReport", { id: responseId }])
     }
 
     // loadEmptyModel() {
