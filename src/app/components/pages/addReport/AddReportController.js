@@ -11,7 +11,6 @@ export default class AddReportController extends BaseController {
         this.$window = $window;
 
         this.setResponseGridOptions();
-        //this.initFilters();        
     }
 
     $routerOnActivate(next, current) {
@@ -32,13 +31,9 @@ export default class AddReportController extends BaseController {
     }
 
     loadResponseDetails(responseId) {
-
-        return this.reportsService.buildModel(undefined, responseId)
+var i =this.reportsService.buildModel(undefined, responseId);
+        return i;
     }
-
-    // openResponse(responseId) {
-    //     super.redirectTo(["Reports", { id: responseId }])
-    // }
 
     setResponseGridOptions() {
         this.responseCodeOptions = GridOptions.options.responseCodeOptions;

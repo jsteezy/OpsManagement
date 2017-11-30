@@ -7,7 +7,6 @@ export default class HomeController extends BaseController {
 
         super.router = this.$router;
         this.responseService = responseService;
-        
         this.$window = $window;
 
         this.setResponseGridOptions();
@@ -34,6 +33,7 @@ export default class HomeController extends BaseController {
         super.redirectTo(["Reports", { id: responseId }])
     }
 
+
     getAllResponses() {
         super.isRequestProcessing = true;
 
@@ -41,8 +41,10 @@ export default class HomeController extends BaseController {
             .then(
                 (data) => {
                     this.responseCodeOptions.data = data;
-                      
-
+                    
+                    // var data = this.responseCodeOptions.data;
+                    // this.tableParams = new NgTableParams({}, { dataset: data});
+                    
                     super.isRequestProcessing = false;
 
                     return Promise.resolve(true);

@@ -1,6 +1,23 @@
 <md-content ng-cloak class="md-inline-form">
         <ng-form name="form" novalidate>
-            <wizard-header main="ctrl"></wizard-header>
+                <div layout-gt-sm="row" layout-align="space-between center">
+                        <h2>{{ctrl.model.Code}}</h2>
+                        <div layout="row">
+                            <md-button class="md-raised md-primary" aria-label="save"
+                                       ng-hide="ctrl.main.isRequestProcessing"
+                                       ng-click="ctrl.main.storeAsDraft()">
+                                Save Draft
+                            </md-button>
+                            <md-button class="md-raised md-primary" aria-label="save"
+                                       ng-hide="ctrl.main.isRequestProcessing"
+                                       ng-click="ctrl.main.storeAsRequest(ctrl.form)">
+                                       <!-- ng-disabled="!ctrl.main.isReadyToSubmit()"> -->
+                                Submit
+                            </md-button>
+                            <md-progress-circular md-mode="indeterminate" class="md-primary md-hue-3" ng-show="ctrl.main.isRequestProcessing"
+                                                  md-diameter="70"></md-progress-circular>
+                        </div>
+                    </div>
     
             <toggle-accordion-section></toggle-accordion-section>
     
@@ -303,7 +320,7 @@
                 </div>
     
                 <div layout-gt-md="row" layout-padding>
-                    <label style="width: 128px">EHU Depolyed</label>
+                    <label style="width: 128px">EHU Deployed</label>
                     <md-checkbox ng-model="ctrl.model.EHUUpdatesBool">
                     </md-checkbox>
                     <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.EHUUpdatesBool">
@@ -381,7 +398,7 @@
     
             </accordion>
     
-            <accordion heading="Child safegaurding">
+            <accordion heading="Child Safeguarding">
     
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
@@ -403,7 +420,7 @@
     
             </accordion>
     
-            <accordion heading="Advanced Media and Comms">
+            <accordion heading="Advocacy, Media and Comms">
     
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
