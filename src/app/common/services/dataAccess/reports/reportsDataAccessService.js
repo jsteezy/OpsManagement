@@ -45,7 +45,7 @@ export default class ReportsDataAccessService extends BaseDataAccessService {
             "{LIST_NAME}": listName
         };
 
-        let requestUrl = helper.replaceData(dataAccessConfig.addReports, replacements);
+        let requestUrl = helper.replaceData(dataAccessConfig.addReport, replacements);
 
         data = mapper.toJson(data);
 
