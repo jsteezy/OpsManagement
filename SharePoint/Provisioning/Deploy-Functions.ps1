@@ -249,7 +249,7 @@ function EnsureReports()
     )
 
     #region FIELDS
-
+    Ensure-Field $web.Url -FieldDef $global:FieldDefResponseId -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsRegionalResponse -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsParentRegionalResponse -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSitrepDate -ListContext $global:ListReports.Title -webContext $web.ID
@@ -313,7 +313,8 @@ function EnsureReports()
     
     #endregion
 
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefReports -FieldDefs $global:FieldDefReportsRegionalResponse, 
+    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefReports -FieldDefs $global:FieldDefResponseId,
+    $global:FieldDefReportsRegionalResponse, 
     $global:FieldDefReportsParentRegionalResponse, 
     $global:FieldDefReportsSitrepDate, 
     $global:FieldDefReportsNextSitrepDate, 
