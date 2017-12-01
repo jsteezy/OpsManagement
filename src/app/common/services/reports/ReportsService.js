@@ -25,8 +25,8 @@ export default class ReportsService {
     }
 
 
-    store(pageMode, model) {
-        return this.reportsDataAccessService[pageMode.serviceAction](model);
+    store(model) {
+        return this.reportsDataAccessService.save(model);
     }
 
     getAllReports() {

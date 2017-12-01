@@ -1,16 +1,16 @@
 <md-content ng-cloak class="md-inline-form">
         <ng-form name="form" novalidate>
                 <div layout-gt-sm="row" layout-align="space-between center">
-                        <h2>{{ctrl.model.code}}</h2>
+                        <h2>{{ctrl.responseModel.code}}</h2>
                         <div layout="row">
                             <md-button class="md-raised md-primary" aria-label="save"
                                        ng-hide="ctrl.main.isRequestProcessing"
-                                       ng-click="ctrl.main.storeAsDraft()">
+                                       ng-click="ctrl.main.storeAsDraft(form)">
                                 Save Draft
                             </md-button>
                             <md-button class="md-raised md-primary" aria-label="save"
                                        ng-hide="ctrl.main.isRequestProcessing"
-                                       ng-click="ctrl.submitReport(ctrl.reportId)">
+                                       ng-click="ctrl.submitReport(form)">
                                        <!-- ng-disabled="!ctrl.main.isReadyToSubmit()"> -->
                                 Submit
                             </md-button>
@@ -48,27 +48,27 @@
     
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>General Context</label>
-                        <textarea ng-model="ctrl.model.generalContext" name="generalContext" required></textarea>
+                        <textarea ng-model="ctrl.model.generalContext" name="generalContext" ></textarea>
                     </md-input-container>
                 </div>
     
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Recent Context Development</label>
-                        <textarea ng-model="ctrl.model.recentContextDevelopment" name="recentContextDevelopment" required></textarea>
+                        <textarea ng-model="ctrl.model.recentContextDevelopment" name="recentContextDevelopment" ></textarea>
                     </md-input-container>
                 </div>
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Response update</label>
-                        <textarea ng-model="ctrl.model.responseUpdate" name="responseUpdate" required></textarea>
+                        <textarea ng-model="ctrl.model.responseUpdate" name="responseUpdate" ></textarea>
                     </md-input-container>
                 </div>
     
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Ops Backstop</label>
-                        <textarea ng-model="ctrl.model.opsBackstop" name="opsBackstop" required></textarea>
+                        <textarea ng-model="ctrl.model.opsBackstop" name="opsBackstop" ></textarea>
                     </md-input-container>
     
                 </div>
@@ -362,14 +362,14 @@
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Summary of incidents and impact on response</label>
-                        <textarea ng-model="ctrl.model.incidentSummary" name="incidentSummary" required></textarea>
+                        <textarea ng-model="ctrl.model.incidentSummary" name="incidentSummary" ></textarea>
                     </md-input-container>
                 </div>
     
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Events that may affect the security situation</label>
-                        <textarea ng-model="ctrl.model.securityEvents" name="securityEvents" required></textarea>
+                        <textarea ng-model="ctrl.model.securityEvents" name="securityEvents" ></textarea>
                     </md-input-container>
                 </div>
     
@@ -378,21 +378,21 @@
                         <label>Please provide an overview of the S&amp;S  context, 
                                     including details of security incidents,
                                     since the last SitRep</label>
-                        <textarea ng-model="ctrl.model.securityContext" name="securityContext" required></textarea>
+                        <textarea ng-model="ctrl.model.securityContext" name="securityContext" ></textarea>
                     </md-input-container>
                 </div>
     
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>What immediate S&amp;S challenges are predicted?</label>
-                        <textarea ng-model="ctrl.model.securityChallenges" name="securityChallenges" required></textarea>
+                        <textarea ng-model="ctrl.model.securityChallenges" name="securityChallenges" ></textarea>
                     </md-input-container>
                 </div>
     
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>How will those challenges be managed?</label>
-                        <textarea ng-model="ctrl.model.securityManagement" name="securityManagement" required></textarea>
+                        <textarea ng-model="ctrl.model.securityManagement" name="securityManagement" ></textarea>
                     </md-input-container>
                 </div>
     
@@ -403,18 +403,18 @@
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>% of staff with child safeguarding training</label>
-                        <textarea ng-model="ctrl.model.staffChildSafegaurding" name="staffChildSafegaurding" required></textarea>
+                        <textarea ng-model="ctrl.model.staffChildSafegaurding" name="staffChildSafegaurding" ></textarea>
                     </md-input-container>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Child safeguarding focal point</label>
-                        <textarea ng-model="ctrl.model.safegaurdingFocalPoint" name="safegaurdingFocalPoint" required></textarea>
+                        <textarea ng-model="ctrl.model.safegaurdingFocalPoint" name="safegaurdingFocalPoint" ></textarea>
                     </md-input-container>
                 </div>
     
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Key safeguarding risks to children</label>
-                        <textarea ng-model="ctrl.model.safegaurdingRisks" name="safegaurdingRisks" required></textarea>
+                        <textarea ng-model="ctrl.model.safegaurdingRisks" name="safegaurdingRisks" ></textarea>
                     </md-input-container>
                 </div>
     
@@ -425,18 +425,18 @@
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Communication Pack</label>
-                        <textarea ng-model="ctrl.model.commsPack" name="commsPack" required></textarea>
+                        <textarea ng-model="ctrl.model.commsPack" name="commsPack" ></textarea>
                     </md-input-container>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Recent media coverage</label>
-                        <textarea ng-model="ctrl.model.mediaCoverage" name="mediaCoverage" required></textarea>
+                        <textarea ng-model="ctrl.model.mediaCoverage" name="mediaCoverage" ></textarea>
                     </md-input-container>
                 </div>
     
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Spokespeople</label>
-                        <textarea ng-model="ctrl.model.spokespeople" name="spokespeople" required></textarea>
+                        <textarea ng-model="ctrl.model.spokespeople" name="spokespeople" ></textarea>
                     </md-input-container>
                 </div>
     

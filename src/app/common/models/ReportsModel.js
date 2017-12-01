@@ -1,11 +1,11 @@
-import ResponseModel from "./ResponseModel";
+import BaseModel from "./BaseModel";
 import DateUtils from "../helpers/DateUtils";
 
-export default class ReportsModel extends ResponseModel {
+export default class ReportsModel extends BaseModel {
     constructor() {
         super();
 
-        this.responseId = "";
+        //this.responseId = "";
         //General info
         this.regionalResponse = false;
         this.parentRegionalResponse = "";
@@ -16,7 +16,7 @@ export default class ReportsModel extends ResponseModel {
         this.responseUpdate = "";
         this.opsBackstop = "";
 
-        //Non SCI responses
+        // //Non SCI responses
         this.nonSciResponses = false;
 
         //Reach figures
@@ -27,48 +27,48 @@ export default class ReportsModel extends ResponseModel {
         this.childrenReachedSinceStart = "";
         this.childrenReachedSinceLastSitrep = "";
 
-        //Income
+        // //Income
         this.responseStrategyTarget = "";
         this.seedFundsTarget = "";
-        this.seedFundsTargetDate = "";
+        this.seedFundsTargetDate = DateUtils.today;
 
         //Deliverables
-        this.assessmentBool = false;
+        //this.assessmentBool = false;
         this.assessment = "";
-        this.outlineBool = false;
+        //this.outlineBool = false;
         this.outline = "";
-        this.strategyBool = false;
+        //this.strategyBool = false;
         this.strategy = "";
-        this.planBool = false;
+        //this.planBool = false;
         this.plan = "";
-        this.operationsControlReviewBool = false;
+        //this.operationsControlReviewBool = false;
         this.operationsControlReview = "";
-        this.realTimeReviewBool = false;
+        //this.realTimeReviewBool = false;
         this.realTimeReview = "";
         this.representationOnHCT = false;
         this.educationCluster = false;
         this.staffingEducationCluster = false;
 
         //Sectors
-        this.childProtectionBool = false;
+        //this.childProtectionBool = false;
         this.childProtectionBackstop = "";
         this.childProtectionSummary = "";
-        this.educationBool = false;
+        //this.educationBool = false;
         this.educationBackstop = "";
         this.educationSummary = "";
-        this.FSLBool = false;
+        //this.FSLBool = false;
         this.FSLBackstop = "";
         this.FSLSummary = "";
-        this.WASHBool = false;
+        //this.WASHBool = false;
         this.WASHBackstop = "";
         this.WASHSummary = "";
-        this.shelterBool = false;
+        //this.shelterBool = false;
         this.shelterBackstop = "";
         this.shelterSummary = "";
-        this.healthBool = false;
+        //this.healthBool = false;
         this.healthBackstop = "";
         this.healthSummary = "";
-        this.EHUUpdatesBool = false;
+        //this.EHUUpdatesBool = false;
         this.EHUUpdates = "";
         this.EHUPresent = false;
 
@@ -77,7 +77,7 @@ export default class ReportsModel extends ResponseModel {
         this.internationalStaffNumber = "";
 
         //Saftey and security
-        this.securityLevel = "";
+        //this.securityLevel = "";
         this.incidentSummary = "";
         this.securityEvents = "";
         this.securityContext = "";
