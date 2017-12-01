@@ -8,6 +8,7 @@ export default class HomeController extends BaseController {
         super.router = this.$router;
         this.responseService = responseService;
         this.$window = $window;
+        //this.NgTableParams = NgTableParams;
 
         this.setResponseGridOptions();
         //this.initFilters();        
@@ -41,10 +42,7 @@ export default class HomeController extends BaseController {
             .then(
                 (data) => {
                     this.responseCodeOptions.data = data;
-                    
-                    // var data = this.responseCodeOptions.data;
-                    // this.tableParams = new NgTableParams({}, { dataset: data});
-                    
+                                        
                     super.isRequestProcessing = false;
 
                     return Promise.resolve(true);
@@ -57,16 +55,17 @@ export default class HomeController extends BaseController {
                 });
     }
 
+    // ShowDetails(_obj)
+    // {
+    //    console.log(_obj);
+    // }
+
     setResponseGridOptions() {
         this.responseCodeOptions = GridOptions.options.responseCodeOptions;
         this.responseCodeOptions.appScopeProvider = this;
         this.responseCodeOptions.isGridReady = true;
         this.responseCodeOptions.data = [];
     }
-
-    // initFilters() {
-    //     this.tarHistoryFilters = this.tarHistoryService.historyFilters;
-    // }
 }
 
 HomeController.$inject = ["$window", "$injector", "responseService"];

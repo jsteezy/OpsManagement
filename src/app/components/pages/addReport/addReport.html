@@ -1,9 +1,7 @@
 <md-content ng-cloak class="md-inline-form">
         <ng-form name="form" novalidate>
                 <div layout-gt-sm="row" layout-align="space-between center">
-                        <h2>{{ctrl.model.Code}}</h2>
-                        <h2>{{ctrl.responseCodeOptions.data.Code}}</h2>
-                        {{ctrl.responseCodeOptions.data[0].Code}}
+                        <h2>{{ctrl.model.code}}</h2>
                         <div layout="row">
                             <md-button class="md-raised md-primary" aria-label="save"
                                        ng-hide="ctrl.main.isRequestProcessing"
@@ -12,7 +10,7 @@
                             </md-button>
                             <md-button class="md-raised md-primary" aria-label="save"
                                        ng-hide="ctrl.main.isRequestProcessing"
-                                       ng-click="ctrl.main.storeAsRequest(ctrl.form)">
+                                       ng-click="ctrl.submitReport(ctrl.reportId)">
                                        <!-- ng-disabled="!ctrl.main.isReadyToSubmit()"> -->
                                 Submit
                             </md-button>
