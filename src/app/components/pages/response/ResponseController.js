@@ -42,7 +42,7 @@ export default class ResponseController extends BaseController {
         super.IsSubmittedFormValid(form).then(() => {
 
             super.isRequestProcessing = true;
-            console.log(super.model);
+            //console.log(super.model);
 
             let storeResponsePromise = this.responseService.store(super.pageMode, super.model);
 

@@ -5,7 +5,7 @@ export default class ReportsModel extends BaseModel {
     constructor() {
         super();
 
-        //this.responseId = "";
+        this.responseId = "";
         //General info
         this.regionalResponse = false;
         this.parentRegionalResponse = "";

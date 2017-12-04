@@ -12,66 +12,8 @@
         </md-button>
         <md-content>
         <md-subheader></md-subheader>
-        <!-- <table class="table table-striped">                       
-        <thead>
-                <tr>
-                  <th>Code</th>
-                  <th>Description</th>
-                  <th>Start Date</th>
-                  <th>Country</th>
-                  <th>Region</th>
-                </tr>
-              </thead>
-              <tbody>
-                    
-                <tr ng-repeat="item in ctrl.responseCodeOptions.data" ng-click="ctrl.openResponse(item.Id)">
-                        <td>{{item.Code}}</td>
-                        <td>{{item.Description}}</td>
-                        <td>{{item.StartDate}}</td>
-                        <td>{{item.Country}}</td>
-                        <td>{{item.Region}}</td>
-                      </tr>
-    </tbody>
-    </table>                 -->
-
-
             <grid options="ctrl.responseCodeOptions"></grid>
             </div>
         </md-content>
     </div>
 </md-content>
-
-<!-- <table ng-table="vm.tableParams" class="table" show-filter="true">
-        <tr ng-repeat="item in ctrl.responseCodeOptions.data">
-            <td title="'Code'" filter="{ Code: 'text'}" sortable="'Code'">
-                </td>
-            <td title="'Description'" filter="{ Description: 'text'}" sortable="'Description'">
-                </td>
-        </tr>
-    </table> -->
-
-
-<!-- <div class="container">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Code</th>
-              <th>Description</th>
-              <th>Start Date</th>
-              <th>Country</th>
-              <th>Region</th>
-            </tr>
-          </thead>
-          <tbody>
-                <md-list-item ng-repeat="item in ctrl.responseCodeOptions.data" ng-click="ctrl.openResponse(item.Id)">                        
-            <tr>
-              <td>{{item.Code}}</td>
-              <td>{{item.Description}}</td>
-              <td>{{item.StartDate}}</td>
-              <td>{{item.Country}}</td>
-              <td>{{item.Region}}</td>
-            </tr>
-        </md-list-item>        
-          </tbody>
-        </table>
-      </div> -->

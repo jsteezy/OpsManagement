@@ -31,25 +31,26 @@ export default class ReportsController extends BaseController {
         return super.initializePageData(this.loadAllReports(responseId));
     }
 
-    loadAllReports(id) {
-        this.responseService.getResponse(id)
+    loadAllReports(responseId) {
+        this.responseService.getResponse(responseId)
         .then(
             (data) => {
-                this.responseCodeOptions.data = data;
-                return this.reportsService.getAllReports()
+                var responseModel = this.responseService.buildModel(data);
+                return this.reportsService.getAllReports(responseId)
                 .then(
                     (data) => {
                         this.reportOptions.data = data;
-                        this.reportOptions.responseId = id;
+                        this.reportOptions.responseId = responseId;
                         
                         super.isRequestProcessing = false;
-        
-                        return Promise.resolve(true);
+                        return [this.reportOptions.data, responseModel];
+                        
+                        //return Promise.resolve(true);
                     },
                     () => {
                         super.isRequestProcessing = false;
                         this.reportOptions.data = [];
-                        this.reportOptions.responseId = id;
+                        this.reportOptions.responseId = responseId;
         
                         return Promise.resolve(false);
                     });
@@ -57,7 +58,7 @@ export default class ReportsController extends BaseController {
             () => {
                 super.isRequestProcessing = false;
                 this.reportOptions.data = [];
-                this.reportOptions.responseId = id;
+                this.reportOptions.responseId = responseId;
 
                 return Promise.resolve(false);
             });     

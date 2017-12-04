@@ -1,5 +1,4 @@
 import BaseController from "../../../common/BaseController";
-import GridOptions from "../../../../common/enums/gridOptions";
 
 export default class ProfileController extends BaseController {
     constructor( $injector,
@@ -12,7 +11,7 @@ export default class ProfileController extends BaseController {
 
         this.profileSearchService = profileSearchService;
 
-        this.setProfileGridOptions();
+        //this.setProfileGridOptions();
     }
 
     $routerOnActivate( next, current ) {
@@ -31,25 +30,25 @@ export default class ProfileController extends BaseController {
     }
 
     loadData() {
-        return this.profileSearchService.buildModel()
-            .then(
-                ( data ) => {
-                    this.profileForOthersOptions.data = data;
-                    this.profileForOthersOptions.isGridReady = true;
-                },
-                ( errorData ) => {
-                    super.serverRequestErrors = errorData;
-                });
+        // return this.profileSearchService.buildModel()
+        //     .then(
+        //         ( data ) => {
+        //             this.profileForOthersOptions.data = data;
+        //             this.profileForOthersOptions.isGridReady = true;
+        //         },
+        //         ( errorData ) => {
+        //             super.serverRequestErrors = errorData;
+        //         });
     }
 
     openProfile( row ) {
         super.redirectTo(["OthersProfileWizard", { userId: row.entity.id }])
     }
 
-    setProfileGridOptions() {
-        this.profileForOthersOptions = GridOptions.options.profileForOthersOptions;
-        this.profileForOthersOptions.appScopeProvider = this;
-    }
+    // setProfileGridOptions() {
+    //     this.profileForOthersOptions = GridOptions.options.profileForOthersOptions;
+    //     this.profileForOthersOptions.appScopeProvider = this;
+    // }
 }
 
 ProfileController.$inject = [

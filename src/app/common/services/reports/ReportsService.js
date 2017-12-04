@@ -29,8 +29,8 @@ export default class ReportsService {
         return this.reportsDataAccessService.save(model);
     }
 
-    getAllReports() {
-        return this.reportsDataAccessService.getAllReports();
+    getAllReports(responseId) {
+        return this.reportsDataAccessService.getAllReports(responseId);
     }
 
     getReport(reportId) {

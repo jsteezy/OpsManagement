@@ -3,8 +3,7 @@
         <div class="md-no-sticky md-subheader _md md-pageTheme-theme">
             <div class="md-subheader-inner">
                 <div class="md-subheader-content">
-                    <h1>{{ctrl.responseCodeOptions.data[0].Code}}</h1>
-                    <!-- <h3>{{ctrl.responseCodeOptions.data[0].Code}} - {{ctrl.responseCodeOptions.data[0].Code}} - {{ctrl.responseCodeOptions.data[0].Code}} - {{ctrl.responseCodeOptions.data[0].Code}}</h3> -->
+                    <h1>{{ctrl.model.Code}}</h1>
                 </div>
             </div>            
         </div>
@@ -13,12 +12,7 @@
         </md-button>
         <md-content>
         <md-subheader></md-subheader>
-
-        <md-list-item ng-repeat="item in ctrl.reportOptions.data" ng-click="ctrl.openReport(item.Id)">
-                <span>
-                   {{item.Code}} {{item.Description}} {{item.StartDate}} {{item.Country}}{{item.Region}}{{item.Id}}
-                </span>
-        </md-list-item>
+        <grid options="ctrl.reportOptions"></grid>
             </div>
         </md-content>
     </div>

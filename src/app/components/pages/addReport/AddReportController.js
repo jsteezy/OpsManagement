@@ -33,7 +33,8 @@ export default class AddReportController extends BaseController {
         .then(
             (data) => {
                 super.model = this.reportsService.buildModel(data)
-                        super.isRequestProcessing = false;
+                super.isRequestProcessing = false;
+                super.model = responseId;
                        // console.log(super.model, "model");
 
                 var responseModel = this.responseService.buildModel(data);
