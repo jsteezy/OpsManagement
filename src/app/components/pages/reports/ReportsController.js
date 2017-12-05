@@ -10,7 +10,6 @@ export default class ReportsController extends BaseController {
         this.reportsService = reportsService;
         
         this.$window = $window;
-        this.setResponseGridOptions();        
         this.setReportsGridOptions();
         //this.initFilters();        
     }
@@ -42,7 +41,10 @@ export default class ReportsController extends BaseController {
                         this.reportOptions.data = data;
                         this.reportOptions.responseId = responseId;
                         console.log(responseModel, "responseModel");
+                        
                         super.isRequestProcessing = false;
+                        console.log(this.reportOptions, "reportOptions");
+                        
                         return [this.reportOptions.data, responseModel];
                         
                         //return Promise.resolve(true);
@@ -64,50 +66,12 @@ export default class ReportsController extends BaseController {
             });     
     }
 
-    // createReport(responseId) {
-    //     return this.reportsService.buildModel(undefined, responseId)
-    //     .then(
-    //         (data) => {
-    //             super.model = data;
-                
-    //         },
-    //         (errorData) => {
-    //             super.serverRequestErrors = errorData;
-    //         });
-    // }
-
-    // createReport(responseId) {
-    //     super.redirectTo(["AddReport", { id: responseId }])
-    // }
-
-    // editReport(responseId, reportId) {
-    //     super.redirectTo(["EditReport", { id: responseId, reportId: reportId  }])
-    // }
-
     openReport(responseId, reportId) {
         super.redirectTo(["AddReport", { id: responseId, reportId: reportId  }])
     }
 
     createReport(responseId) {
         super.redirectTo(["CreateReport", { id: responseId}])
-    }
-
-    // loadEmptyModel() {
-    //     return this.tarWizardService.buildModel()
-    //         .then(
-    //             (data) => {
-    //                 super.model = data;
-    //             },
-    //             (errorData) => {
-    //                 super.serverRequestErrors = errorData;
-    //             });
-    // }
-
-    setResponseGridOptions() {
-        this.responseCodeOptions = GridOptions.options.responseCodeOptions;
-        this.responseCodeOptions.appScopeProvider = this;
-        this.responseCodeOptions.isGridReady = true;
-        this.responseCodeOptions.data = [];
     }
 
     setReportsGridOptions() {
