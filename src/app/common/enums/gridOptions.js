@@ -306,7 +306,7 @@ export default class GridOptions {
                 columnDefs: [
                     { field: 'id', visible: false },
                     { displayName: 'Regional Response', field: 'RegionalResponse',
-                    cellTemplate: '<md-button class="md-primary" ng-click="grid.appScope.openReport(row.entity.Id)">{{COL_FIELD}}</md-button>'
+                    cellTemplate: '<md-button class="md-primary" ng-click="grid.appScope.openReport(row.entity.ResponseId, row.entity.Id)">{{COL_FIELD}}</md-button>'
                 },
                     { displayName: 'Parent Regional Response', field: 'ParentRegionalResponse' },
                     { displayName: 'Sitrep Date', field: 'SitrepDate', enableSorting: true, cellFilter: "dateFormat" },
@@ -339,7 +339,6 @@ export default class GridOptions {
                     { displayName: 'Child Protection Summary', field: 'ChildProtectionSummary' },
                     { displayName: 'Education Backstop', field: 'EducationBackstop' },
                     { displayName: 'Education Summary', field: 'EducationSummary' },
-
                     { displayName: 'FSL Backstop', field: 'FSL Backstop' },
                     { displayName: 'FSL Summary', field: 'FSLSummary' },
                     { displayName: 'WASH Backstop', field: 'WASHBackstop' },

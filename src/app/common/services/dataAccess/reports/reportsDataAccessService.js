@@ -12,7 +12,7 @@ export default class ReportsDataAccessService extends BaseDataAccessService {
         this.queryBuilder = new QueryBuilder();
     }
     
-    getReports(id) {
+    getReport(id) {
         let listName = "Reports";
 
         let replacements = {

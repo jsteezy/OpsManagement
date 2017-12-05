@@ -24,8 +24,13 @@ export default class StateConfig {
                 component: 'profileWizard'
             },
             {
-                path: '/addReport',
+                path: '/addReport/:id/:reportId',
                 name: 'AddReport',
+                component: 'addReport'
+            },            
+            {
+                path: '/addReport/:id',
+                name: 'CreateReport',
                 component: 'addReport'
             },
             {

@@ -1,6 +1,8 @@
 import StringHelpers from "../../helpers/StringHelpers";
 import ObjectMapper from "../../helpers/ObjectMapper";
 import ReportsModel from "../../models/ReportsModel";
+import DateUtils from "../../helpers/DateUtils";
+
 
 export default class ReportsService {
     constructor(user, reportsDataAccessService, commonDataService, responseService) {
@@ -15,8 +17,10 @@ export default class ReportsService {
 
         if (data) {
             ObjectMapper.toObject(data, model);
+            model.sitrepDate = DateUtils.getFromString(model.sitrepDate);
+            model.nextSitrepDate = DateUtils.getFromString(model.nextSitrepDate);
+            model.seedFundsTargetDate = DateUtils.getFromString(model.seedFundsTargetDate);          
         }
-
         return model;
     }
 

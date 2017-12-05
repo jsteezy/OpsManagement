@@ -72,10 +72,10 @@ export default class ObjectMapper {
             }
         }
 
-        if (sourceObject.hasOwnProperty(constants.metadataFieldName) &&
-            (!ArrayUtils.contains(ignoreProperties, 'etag'))) {
-            destinationObject.etag = sourceObject[constants.metadataFieldName].etag;
-        }
+        // if (sourceObject.hasOwnProperty(constants.metadataFieldName) &&
+        //     (!ArrayUtils.contains(ignoreProperties, 'etag'))) {
+        //     destinationObject.etag = sourceObject[constants.metadataFieldName].etag;
+        // }
 
         return destinationObject;
     }

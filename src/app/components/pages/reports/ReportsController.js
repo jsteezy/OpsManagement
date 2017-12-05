@@ -41,7 +41,7 @@ export default class ReportsController extends BaseController {
                     (data) => {
                         this.reportOptions.data = data;
                         this.reportOptions.responseId = responseId;
-                        
+                        console.log(responseModel, "responseModel");
                         super.isRequestProcessing = false;
                         return [this.reportOptions.data, responseModel];
                         
@@ -76,8 +76,20 @@ export default class ReportsController extends BaseController {
     //         });
     // }
 
+    // createReport(responseId) {
+    //     super.redirectTo(["AddReport", { id: responseId }])
+    // }
+
+    // editReport(responseId, reportId) {
+    //     super.redirectTo(["EditReport", { id: responseId, reportId: reportId  }])
+    // }
+
+    openReport(responseId, reportId) {
+        super.redirectTo(["AddReport", { id: responseId, reportId: reportId  }])
+    }
+
     createReport(responseId) {
-        super.redirectTo(["AddReport", { id: responseId }])
+        super.redirectTo(["CreateReport", { id: responseId}])
     }
 
     // loadEmptyModel() {

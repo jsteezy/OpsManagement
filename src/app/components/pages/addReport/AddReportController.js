@@ -16,31 +16,45 @@ export default class AddReportController extends BaseController {
 
         let init = () => {
             if (super.$routerOnActivate(next, current)) {
-                this.activate(next.params.id);
+                //console.log(next.params, "next.params");
+                this.activate(next.params.id, next.params.reportId);
             }
         };
 
         return super.initializePage(init);
     }
 
-    activate(responseId) {
+    activate(responseId, reportId) {
 
-        return super.initializePageData(this.loadResponseDetails(responseId));
+        return super.initializePageData(this.loadResponseDetails(responseId, reportId));
     }
 
-    loadResponseDetails(responseId) {
+    loadResponseDetails(responseId, reportId) {
+        super.isRequestProcessing = true;
+        
         this.responseService.getResponse(responseId)
         .then(
-            (data) => {
-                super.model = this.reportsService.buildModel(data)
-                super.isRequestProcessing = false;
-                super.model = responseId;
-                       // console.log(super.model, "model");
-
-                var responseModel = this.responseService.buildModel(data);
-                //console.log(responseModel, "responseModel");
+            (responseData) => {
+                var responseModel = this.responseService.buildModel(responseData);
                 
-                        return [super.model, responseModel];
+                if(reportId != null)
+                {
+                this.reportsService.getReport(reportId)
+                .then(
+                    (reportData) => {
+                        super.model = this.reportsService.buildModel(reportData)      
+                        super.model.responseId = responseId;
+                },)
+            }
+            else {
+                super.model = this.reportsService.buildModel(responseData)                
+            }
+                super.isRequestProcessing = false;
+                console.log(super.model, "reportModel");
+
+                console.log(responseModel, "responseModel");
+
+                return [super.model, responseModel];
                     },
             () => {
                 super.isRequestProcessing = false;
@@ -54,7 +68,7 @@ export default class AddReportController extends BaseController {
             super.isRequestProcessing = true;
 
             var model = this.reportsService.buildModel(super.model);
-
+           // model.responseId 
             let storeResponsePromise = this.reportsService.store(model);
             console.log(model, "model");
             

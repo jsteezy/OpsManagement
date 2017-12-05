@@ -49,7 +49,7 @@ export default class ReportsModel extends BaseModel {
         this.educationCluster = false;
         this.staffingEducationCluster = false;
 
-        //Sectors
+        // //Sectors
         //this.childProtectionBool = false;
         this.childProtectionBackstop = "";
         this.childProtectionSummary = "";
@@ -77,7 +77,7 @@ export default class ReportsModel extends BaseModel {
         this.internationalStaffNumber = "";
 
         //Saftey and security
-        //this.securityLevel = "";
+        this.securityLevel = "";
         this.incidentSummary = "";
         this.securityEvents = "";
         this.securityContext = "";
@@ -94,7 +94,7 @@ export default class ReportsModel extends BaseModel {
         this.mediaCoverage = "";
         this.spokespeople = "";
 
-        //Emergency supply chain    
+        // //Emergency supply chain    
         this.prepositionedStock = false;
         this.forThisResponse = false;
         this.plannedProcurement = "";

@@ -117,7 +117,7 @@ export default class GridController extends BaseComponentController{
         this.showAll = !this.showAll;
 
         this.overflowContent = this.showAll ? {"overflow-x": "scroll"} : "";
-        this.minWidthContent = this.showAll ? {"min-width": this.options.columnDefs.length * 250 + "px"} : "";
+        this.minWidthContent = this.showAll ? {"min-width": this.options.columnDefs.length * 150 + "px"} : "";
     }
 }
 
