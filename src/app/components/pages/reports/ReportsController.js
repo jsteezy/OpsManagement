@@ -1,5 +1,7 @@
 import BaseController from "../../common/BaseController";
 import GridOptions from "../../../common/enums/gridOptions";
+import SecurityLevels from "../../../common/enums/securityLevels.json";
+
 
 export default class ReportsController extends BaseController {
     constructor($window, $injector, reportsService, responseService) {
@@ -8,6 +10,9 @@ export default class ReportsController extends BaseController {
         super.router = this.$router;
         this.responseService = responseService;
         this.reportsService = reportsService;
+
+        this.securityLevels = SecurityLevels;
+        
         
         this.$window = $window;
         this.setReportsGridOptions();
@@ -31,6 +36,8 @@ export default class ReportsController extends BaseController {
     }
 
     loadAllReports(responseId) {
+        super.isRequestProcessing = true;
+        
         this.responseService.getResponse(responseId)
         .then(
             (data) => {
@@ -40,14 +47,12 @@ export default class ReportsController extends BaseController {
                     (data) => {
                         this.reportOptions.data = data;
                         this.reportOptions.responseId = responseId;
-                        console.log(responseModel, "responseModel");
+                        console.log(this.securityLevels, "this.securityLevels");
                         
                         super.isRequestProcessing = false;
-                        console.log(this.reportOptions, "reportOptions");
+                        //console.log(this.reportOptions, "reportOptions");
                         
-                        return [this.reportOptions.data, responseModel];
-                        
-                        //return Promise.resolve(true);
+                        return [this.reportOptions.data, responseModel, this.securityLevels];                        
                     },
                     () => {
                         super.isRequestProcessing = false;

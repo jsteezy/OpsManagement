@@ -1,11 +1,13 @@
 import BaseModel from "./BaseModel";
 import DateUtils from "../helpers/DateUtils";
+import ApprovalStatuses from "../enums/approvalStatuses.json";
 
 export default class ReportsModel extends BaseModel {
     constructor() {
         super();
 
         this.responseId = "";
+        this.status = ApprovalStatuses.none;
         //General info
         this.regionalResponse = false;
         this.parentRegionalResponse = "";

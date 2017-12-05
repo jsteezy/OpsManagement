@@ -1,8 +1,9 @@
 {
     "none": "None",
-    "pending": "Pending",
+    "draft": "Draft",
+    "submitted": "Submitted",    
     "approved": "Approved",
     "rejected": "Rejected",
     "completed": "Completed",
-    "all": ["None", "Pending", "Approved", "Rejected", "Completed"]
+    "all": ["None", "Draft", "Submitted", "Approved", "Rejected", "Completed"]
 }

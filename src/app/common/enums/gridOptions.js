@@ -305,14 +305,13 @@ export default class GridOptions {
                 enableVerticalScrollbar: 0,
                 columnDefs: [
                     { field: 'id', visible: false },
-                    { displayName: 'Regional Response', field: 'RegionalResponse',
-                    cellTemplate: '<md-button class="md-primary" ng-click="grid.appScope.openReport(row.entity.ResponseId, row.entity.Id)">{{COL_FIELD}}</md-button>'
-                },
+                    { displayName: 'Status', field: 'Status',
+                    cellTemplate: '<md-button class="md-primary" ng-click="grid.appScope.openReport(row.entity.ResponseId, row.entity.Id)">{{COL_FIELD}}</md-button>' },
+                    { displayName: 'Regional Response', field: 'RegionalResponse' },
                     { displayName: 'Parent Regional Response', field: 'ParentRegionalResponse' },
                     { displayName: 'Sitrep Date', field: 'SitrepDate', enableSorting: true, cellFilter: "dateFormat" },
                     { displayName: 'Next Sitrep Date', field: 'NextSitrepDate', cellFilter: "dateFormat" },
                     { displayName: 'General Context', field: 'GeneralContext' },
-
                     { displayName: 'Recent Context Development', field: 'RecentContextDevelopment' },
                     { displayName: 'Response Update', field: 'ResponseUpdate' },
                     { displayName: 'opsBackstop', field: 'OpsBackstop', enableSorting: true },
