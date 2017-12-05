@@ -106,6 +106,26 @@ export default class AddReportController extends BaseController {
                         });
                 
             }
+
+            approveReport(form) {     
+                
+                            super.isRequestProcessing = true;                
+                            var model = this.reportsService.buildModel(super.model);
+                            model.status = ApprovalStatuses.approved;                    
+                            let storeResponsePromise = this.reportsService.store(model);
+                            console.log(model, "model");
+                            
+                            storeResponsePromise.then(
+                                () => {
+                                    this.toastService.showToast('Report submitted for approval', 'app');
+                
+                                    super.redirectToHome();
+                                },
+                                (errorData) => {
+                                    super.serverRequestErrors = errorData;
+                                });
+                        
+                    }
 }
 
 AddReportController.$inject = ["$window", "$injector", "responseService", "reportsService", "toastService"];
