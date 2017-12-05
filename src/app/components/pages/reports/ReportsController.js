@@ -52,7 +52,7 @@ export default class ReportsController extends BaseController {
                         super.isRequestProcessing = false;
                         //console.log(this.reportOptions, "reportOptions");
                         
-                        return [this.reportOptions.data, responseModel, this.securityLevels];                        
+                        return [this.reportOptions.data, responseModel];                        
                     },
                     () => {
                         super.isRequestProcessing = false;

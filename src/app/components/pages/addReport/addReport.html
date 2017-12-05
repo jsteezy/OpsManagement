@@ -23,10 +23,13 @@
     
             <accordion heading="General Info">
                 <div layout-gt-md="row" layout-padding>
-                    <label>Regional Response</label>
+                    <label>Regional Response
+                            <md-tooltip md-direction="right">This is a test tooltip for Regional Response</md-tooltip>                            
+                    </label>
                     <md-checkbox ng-model="ctrl.model.regionalResponse">
                     </md-checkbox>
                     <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.regionalResponse">
+                            <md-tooltip  md-direction="right">This is a test tooltip for Parent Regional Response</md-tooltip>                            
                         <label>Parent Regional Response</label>
                         <textarea ng-model="ctrl.model.parentRegionalResponse" name="parentRegionalResponse" md-maxlength="50"></textarea>
                     </md-input-container>
@@ -35,6 +38,7 @@
                 <div layout-gt-md="row" layout-padding>
                     <div class="md-block" flex-gt-sm="30">
                         <label>Sitrep date</label>
+                        <md-tooltip  md-direction="right">This is a test tooltip for Sitrep date</md-tooltip>                                                    
                         <md-datepicker ng-model="ctrl.model.sitrepDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
                     </div>
     
