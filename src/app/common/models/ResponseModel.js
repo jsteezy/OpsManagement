@@ -10,5 +10,6 @@ export default class ResponseModel extends BaseModel {
         this.startDate = DateUtils.getDateWithoutTime(DateUtils.today);
         this.region = "";
         this.country = "";
+        this.responseStatus = "";
     }
 }

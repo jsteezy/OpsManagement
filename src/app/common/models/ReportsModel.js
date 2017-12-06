@@ -13,13 +13,22 @@ export default class ReportsModel extends BaseModel {
         this.parentRegionalResponse = "";
         this.sitrepDate = DateUtils.today;
         this.nextSitrepDate = DateUtils.today;
-        this.generalContext = "";
         this.recentContextDevelopment = "";
-        this.responseUpdate = "";
         this.opsBackstop = "";
 
+        this.responseStatus = "";
+        this.category = "";
+        this.phase = "";
+        this.SCIImplemented = false;
+        this.sitrepNumber = "";
+        this.generalContextInternal = "";
+        this.generalContextExternal = "";   
+        this.responseUpdateInternal = "";
+        this.responseUpdateExternal = "";
+        this.challengesInternal = "";
+                
         // //Non SCI responses
-        this.nonSciResponses = false;
+       // this.nonSciResponses = false;
 
         //Reach figures
         this.affectedPopulation = "";
@@ -29,27 +38,31 @@ export default class ReportsModel extends BaseModel {
         this.childrenReachedSinceStart = "";
         this.childrenReachedSinceLastSitrep = "";
 
+        this.strategyTargetChildren = "";
+
         // //Income
         this.responseStrategyTarget = "";
         this.seedFundsTarget = "";
         this.seedFundsTargetDate = DateUtils.today;
 
+        this.crisisModifiers = "";
+
         //Deliverables
-        //this.assessmentBool = false;
-        this.assessment = "";
-        //this.outlineBool = false;
-        this.outline = "";
-        //this.strategyBool = false;
-        this.strategy = "";
-        //this.planBool = false;
-        this.plan = "";
-        //this.operationsControlReviewBool = false;
-        this.operationsControlReview = "";
-        //this.realTimeReviewBool = false;
-        this.realTimeReview = "";
-        this.representationOnHCT = false;
-        this.educationCluster = false;
-        this.staffingEducationCluster = false;
+        this.assessmentBool = false;
+        //this.assessment = "";
+        this.outlineBool = false;
+        //this.outline = "";
+        this.strategyBool = false;
+        //this.strategy = "";
+        this.planBool = false;
+        //this.plan = "";
+        this.operationsControlReviewBool = false;
+        //this.operationsControlReview = "";
+        this.realTimeReviewBool = false;
+        //this.realTimeReview = "";
+        this.representationOnHCTBool = false;
+        this.educationClusterBool = false;
+        this.staffingEducationClusterBool = false;
 
         // //Sectors
         //this.childProtectionBool = false;
@@ -70,18 +83,27 @@ export default class ReportsModel extends BaseModel {
         //this.healthBool = false;
         this.healthBackstop = "";
         this.healthSummary = "";
+
+
+
+
         //this.EHUUpdatesBool = false;
-        this.EHUUpdates = "";
-        this.EHUPresent = false;
+        //this.EHUUpdates = "";
+        this.EHUDeployed = false;
+        this.EHUDeployedDate = DateUtils.today;
+        this.outputTracker = "";
+        this.nutritionSummary = "";
 
         //HR
         this.nationalStaffNumber = "";
         this.internationalStaffNumber = "";
 
+        this.deploymentTrackerLink = "";
+
         //Saftey and security
-        this.securityLevel = "";
-        this.incidentSummary = "";
-        this.securityEvents = "";
+        //this.securityLevel = "";
+        //this.incidentSummary = "";
+        //this.securityEvents = "";
         this.securityContext = "";
         this.securityChallenges = "";
         this.securityManagement = "";
@@ -95,6 +117,8 @@ export default class ReportsModel extends BaseModel {
         this.commsPack = "";
         this.mediaCoverage = "";
         this.spokespeople = "";
+
+        this.advocacyActions = "";        
 
         // //Emergency supply chain    
         this.prepositionedStock = false;
