@@ -1,5 +1,7 @@
 export default class BaseModel{
     constructor(){
+        this.id = "";
+        this.etag = "";
     }
     
     excludeProperties(properties) {

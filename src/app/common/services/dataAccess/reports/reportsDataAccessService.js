@@ -71,6 +71,34 @@ export default class ReportsDataAccessService extends BaseDataAccessService {
 
         return this.$http.post(requestUrl, data, config);
     }
+
+    update(data){
+        let listName = "Reports";
+        
+                let replacements = {
+                    "{ID}": data.id,
+                    "{LIST_NAME}": listName
+                };
+
+        let requestUrl = helper.replaceData(dataAccessConfig.updateReport, replacements);
+        
+        let config = {
+            headers: {
+                "X-HTTP-Method": "MERGE",
+                "If-Match": data.etag
+            }
+        };
+        
+        super.addDigestProperty(config);
+        
+        data = mapper.toJson(data);
+
+        data = super.appendListItemTypeToRequestData(data, listName);
+
+        data = JSON.stringify(data);
+
+        return this.$http.post(requestUrl, data, config);
+    }
 }
 
 ReportsDataAccessService.$inject = ["$http"];

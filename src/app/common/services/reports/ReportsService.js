@@ -33,6 +33,10 @@ export default class ReportsService {
         return this.reportsDataAccessService.save(model);
     }
 
+    update(model){
+        return this.reportsDataAccessService.update(model);
+    }
+
     getAllReports(responseId) {
         return this.reportsDataAccessService.getAllReports(responseId);
     }

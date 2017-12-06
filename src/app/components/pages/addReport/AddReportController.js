@@ -1,5 +1,6 @@
 import BaseController from "../../common/BaseController";
 import ApprovalStatuses from "../../../common/enums/approvalStatuses.json";
+import SecurityLevels from "../../../common/enums/securityLevels.json";
 
 export default class AddReportController extends BaseController {
     constructor($window, $injector, responseService, reportsService, toastService) {
@@ -9,6 +10,8 @@ export default class AddReportController extends BaseController {
         this.responseService = responseService;
         this.reportsService = reportsService;
         this.ApprovalStatuses = ApprovalStatuses;
+        this.securityLevels = SecurityLevels;
+        
         this.toastService = toastService;
         this.$window = $window;
     }
@@ -18,7 +21,6 @@ export default class AddReportController extends BaseController {
 
         let init = () => {
             if (super.$routerOnActivate(next, current)) {
-                //console.log(next.params, "next.params");
                 this.activate(next.params.id, next.params.reportId);
             }
         };
@@ -71,18 +73,31 @@ export default class AddReportController extends BaseController {
 
             var model = this.reportsService.buildModel(super.model);
             model.status = ApprovalStatuses.draft;
-            let storeResponsePromise = this.reportsService.store(model);
-            console.log(model, "model - store as draft");
-            
-            storeResponsePromise.then(
-                () => {
-                    this.toastService.showToast('Report draft saved', 'app');
+            if(model.etag != null){
+                let storeResponsePromise = this.reportsService.update(model);
+                storeResponsePromise.then(
+                    () => {
+                        this.toastService.showToast('Report draft updated', 'app');
+    
+                        super.redirectToHome();
+                    },
+                    (errorData) => {
+                        super.serverRequestErrors = errorData;
+                    });  
 
-                    super.redirectToHome();
-                },
-                (errorData) => {
-                    super.serverRequestErrors = errorData;
-                });
+            }else{
+                let storeResponsePromise = this.reportsService.store(model);            
+                storeResponsePromise.then(
+                    () => {
+                        this.toastService.showToast('Report draft created', 'app');
+    
+                        super.redirectToHome();
+                    },
+                    (errorData) => {
+                        super.serverRequestErrors = errorData;
+                    });                    
+            }
+            
         
     }
 
@@ -92,9 +107,19 @@ export default class AddReportController extends BaseController {
         
                     var model = this.reportsService.buildModel(super.model);
                     model.status = ApprovalStatuses.submitted;                    
-                    let storeResponsePromise = this.reportsService.store(model);
-                    console.log(model, "model");
-                    
+                    if(model.etag != null){
+                        let storeResponsePromise = this.reportsService.update(model);    
+                        storeResponsePromise.then(
+                            () => {
+                                this.toastService.showToast('Report submitted for approval', 'app');
+            
+                                super.redirectToHome();
+                            },
+                            (errorData) => {
+                                super.serverRequestErrors = errorData;
+                            });                            
+                    }else{
+                        let storeResponsePromise = this.reportsService.store(model);                               
                     storeResponsePromise.then(
                         () => {
                             this.toastService.showToast('Report submitted for approval', 'app');
@@ -104,17 +129,16 @@ export default class AddReportController extends BaseController {
                         (errorData) => {
                             super.serverRequestErrors = errorData;
                         });
+                    }
                 
             }
 
-            approveReport(form) {     
-                
+            approveReport(form) {  
                             super.isRequestProcessing = true;                
                             var model = this.reportsService.buildModel(super.model);
-                            model.status = ApprovalStatuses.approved;                    
-                            let storeResponsePromise = this.reportsService.store(model);
-                            console.log(model, "model");
-                            
+                            model.status = ApprovalStatuses.approved;
+
+                            let storeResponsePromise = this.reportsService.update(model);                           
                             storeResponsePromise.then(
                                 () => {
                                     this.toastService.showToast('Report submitted for approval', 'app');
@@ -123,8 +147,7 @@ export default class AddReportController extends BaseController {
                                 },
                                 (errorData) => {
                                     super.serverRequestErrors = errorData;
-                                });
-                        
+                                });                        
                     }
 }
 
