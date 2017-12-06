@@ -94,7 +94,7 @@ $global:ReportsListTitle = "Reports";
 $global:ReportsListName = "Reports";
 
 $global:FieldDefReportsStatus = New-FieldDefinition -FieldXml @'
-<Field ID="{8fce5c51-6200-428f-82sc-ee76268de67b}" Type="Text" MaxLength="255" Name="Status" StaticName="Status" DisplayName="Status" 
+<Field ID="{8fce5c51-6200-428f-82sc-ee76268de67b}" Type="Text" MaxLength="25" Name="Status" StaticName="Status" DisplayName="Status" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
@@ -107,17 +107,17 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 
 ###### General questions
 
-$global:FieldDefReportsRegionalResponse = New-FieldDefinition -FieldXml @'
-<Field ID="{a341e8a0-95c5-4512-a2ba-27645ee377d4}" Type="Boolean" Name="RegionalResponse" StaticName="RegionalResponse" DisplayName="Regional Response" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
+# $global:FieldDefReportsRegionalResponse = New-FieldDefinition -FieldXml @'
+# <Field ID="{a341e8a0-95c5-4512-a2ba-27645ee377d4}" Type="Boolean" Name="RegionalResponse" StaticName="RegionalResponse" DisplayName="Regional Response" 
+# Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+# ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+# '@;
 
-$global:FieldDefReportsParentRegionalResponse = New-FieldDefinition -FieldXml @'
-<Field ID="{d0096bff-1f3f-43cc-a7f5-74f1cd4bd212}" Type="Text" MaxLength="255" Name="ParentRegionalResponse" StaticName="ParentRegionalResponse" DisplayName="Parent Regional Response" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
+# $global:FieldDefReportsParentRegionalResponse = New-FieldDefinition -FieldXml @'
+# <Field ID="{d0096bff-1f3f-43cc-a7f5-74f1cd4bd212}" Type="Text" MaxLength="200" Name="ParentRegionalResponse" StaticName="ParentRegionalResponse" DisplayName="Parent Regional Response" 
+# Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+# ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+# '@;
 
 $global:FieldDefReportsSitrepDate = New-FieldDefinition -FieldXml @'
 <Field ID="{D7CC926E-5702-48A3-A133-5F971E78FBA7}" Type="DateTime" Name="SitrepDate" StaticName="SitrepDate" DisplayName="Sitrep Date" 
@@ -131,11 +131,11 @@ Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
-$global:FieldDefReportsRecentContextDevelopment = New-FieldDefinition -FieldXml @'
-<Field ID="{fd42f03a-1d7b-45a5-99d2-1e35c761c861}" Type="Text" MaxLength="255" Name="RecentContextDevelopment" StaticName="RecentContextDevelopment" DisplayName="Recent Context Development" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
+# $global:FieldDefReportsRecentContextDevelopment = New-FieldDefinition -FieldXml @'
+# <Field ID="{fd42f03a-1d7b-45a5-99d2-1e35c761c861}" Type="Text" MaxLength="255" Name="RecentContextDevelopment" StaticName="RecentContextDevelopment" DisplayName="Recent Context Development" 
+# Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+# ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+# '@;
 
 $global:FieldDefReportsOpsBackstop = New-FieldDefinition -FieldXml @'
 <Field ID="{0a221a2d-5ce1-476b-84e8-bd01dfcde530}" Type="Text" MaxLength="255" Name="OpsBackstop" StaticName="OpsBackstop" DisplayName="Ops Backstop" 
@@ -177,31 +177,31 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 '@;
 
 $global:FieldDefReportsGeneralContextInternal = New-FieldDefinition -FieldXml @'
-<Field ID="{42fe4bc1-e68e-4364-b271-e64018c0298d}" Type="Text" MaxLength="255" Name="GeneralContextInternal" StaticName="GeneralContextInternal" DisplayName="General Context Internal" 
+<Field ID="{42fe4bc1-e68e-4364-b271-e64018c0298d}" Type="Text" MaxLength="1500" Name="GeneralContextInternal" StaticName="GeneralContextInternal" DisplayName="General Context Internal" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsGeneralContextExternal = New-FieldDefinition -FieldXml @'
-<Field ID="{adb6e9c4-28c3-484c-934d-c42d7cf4e6a3}" Type="Text" MaxLength="255" Name="GeneralContextExternal" StaticName="GeneralContextExternal" DisplayName="General Context External" 
+<Field ID="{adb6e9c4-28c3-484c-934d-c42d7cf4e6a3}" Type="Text" MaxLength="1200" Name="GeneralContextExternal" StaticName="GeneralContextExternal" DisplayName="General Context External" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsResponseUpdateInternal = New-FieldDefinition -FieldXml @'
-<Field ID="{16223800-3900-43de-951f-3e0981fc96bc}" Type="Text" MaxLength="255" Name="ResponseUpdateInternal" StaticName="ResponseUpdateInternal" DisplayName="Response Update Internal" 
+<Field ID="{16223800-3900-43de-951f-3e0981fc96bc}" Type="Text" MaxLength="750" Name="ResponseUpdateInternal" StaticName="ResponseUpdateInternal" DisplayName="Response Update Internal" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsResponseUpdateExternal = New-FieldDefinition -FieldXml @'
-<Field ID="{6c6b3f17-a6f9-421f-b621-821819cca378}" Type="Text" MaxLength="255" Name="ResponseUpdateExternal" StaticName="ResponseUpdateExternal" DisplayName="Response Update External" 
+<Field ID="{6c6b3f17-a6f9-421f-b621-821819cca378}" Type="Text" MaxLength="750" Name="ResponseUpdateExternal" StaticName="ResponseUpdateExternal" DisplayName="Response Update External" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsChallengesInternal = New-FieldDefinition -FieldXml @'
-<Field ID="{db473747-226d-455b-b9e0-9db487ec92ac}" Type="Text" MaxLength="255" Name="ChallengesInternal" StaticName="ChallengesInternal" DisplayName="Challenges Internal" 
+<Field ID="{db473747-226d-455b-b9e0-9db487ec92ac}" Type="Text" MaxLength="1500" Name="ChallengesInternal" StaticName="ChallengesInternal" DisplayName="Challenges Internal" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
@@ -346,73 +346,73 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 ######## Sectors
 
 $global:FieldDefReportsChildProtectionBackstop = New-FieldDefinition -FieldXml @'
-<Field ID="{c9a67cc2-1639-40d1-b7d2-63d56a61122b}" Type="Text" MaxLength="255" Name="ChildProtectionBackstop" StaticName="ChildProtectionBackstop" DisplayName="Child Protection Backstop" 
+<Field ID="{c9a67cc2-1639-40d1-b7d2-63d56a61122b}" Type="Text" MaxLength="300" Name="ChildProtectionBackstop" StaticName="ChildProtectionBackstop" DisplayName="Child Protection Backstop" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsChildProtectionSummary = New-FieldDefinition -FieldXml @'
-<Field ID="{c3322733-d64f-4efd-b2d8-39e5d669221a}" Type="Text" MaxLength="255" Name="ChildProtectionSummary" StaticName="ChildProtectionSummary" DisplayName="Child Protection Summary" 
+<Field ID="{c3322733-d64f-4efd-b2d8-39e5d669221a}" Type="Text" MaxLength="300" Name="ChildProtectionSummary" StaticName="ChildProtectionSummary" DisplayName="Child Protection Summary" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsEducationBackstop = New-FieldDefinition -FieldXml @'
-<Field ID="{9601b433-f14e-40bf-8cf5-23fb06da38f9}" Type="Text" MaxLength="255" Name="EducationBackstop" StaticName="EducationBackstop" DisplayName="Education Backstop" 
+<Field ID="{9601b433-f14e-40bf-8cf5-23fb06da38f9}" Type="Text" MaxLength="300" Name="EducationBackstop" StaticName="EducationBackstop" DisplayName="Education Backstop" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsEducationSummary = New-FieldDefinition -FieldXml @'
-<Field ID="{857f978b-7c99-4129-913f-91e82ac54cff}" Type="Text" MaxLength="255" Name="EducationSummary" StaticName="EducationSummary" DisplayName="Education Summary" 
+<Field ID="{857f978b-7c99-4129-913f-91e82ac54cff}" Type="Text" MaxLength="300" Name="EducationSummary" StaticName="EducationSummary" DisplayName="Education Summary" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsFSLBackstop = New-FieldDefinition -FieldXml @'
-<Field ID="{8e746a10-2ffb-40dd-9ffb-9ac7ec552058}" Type="Text" MaxLength="255" Name="FSLBackstop" StaticName="FSLBackstop" DisplayName="FSL Backstop" 
+<Field ID="{8e746a10-2ffb-40dd-9ffb-9ac7ec552058}" Type="Text" MaxLength="300" Name="FSLBackstop" StaticName="FSLBackstop" DisplayName="FSL Backstop" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsFSLSummary = New-FieldDefinition -FieldXml @'
-<Field ID="{15c04826-6588-405c-b2a5-a2c922fbac78}" Type="Text" MaxLength="255" Name="FSLSummary" StaticName="FSLSummary" DisplayName="FSL Summary" 
+<Field ID="{15c04826-6588-405c-b2a5-a2c922fbac78}" Type="Text" MaxLength="300" Name="FSLSummary" StaticName="FSLSummary" DisplayName="FSL Summary" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsWASHBackstop = New-FieldDefinition -FieldXml @'
-<Field ID="{4ac9067f-ec6b-4456-b64e-9d17ef436d7f}" Type="Text" MaxLength="255" Name="WASHBackstop" StaticName="WASHBackstop" DisplayName="WASH Backstop" 
+<Field ID="{4ac9067f-ec6b-4456-b64e-9d17ef436d7f}" Type="Text" MaxLength="300" Name="WASHBackstop" StaticName="WASHBackstop" DisplayName="WASH Backstop" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsWASHSummary = New-FieldDefinition -FieldXml @'
-<Field ID="{b6a35264-5bab-42d2-ad29-f676e077525c}" Type="Text" MaxLength="255" Name="WASHSummary" StaticName="WASHSummary" DisplayName="WASH Summary" 
+<Field ID="{b6a35264-5bab-42d2-ad29-f676e077525c}" Type="Text" MaxLength="300" Name="WASHSummary" StaticName="WASHSummary" DisplayName="WASH Summary" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsShelterBackstop = New-FieldDefinition -FieldXml @'
-<Field ID="{afa0740e-4d04-4aa7-95fb-b1474882681c}" Type="Text" MaxLength="255" Name="ShelterBackstop" StaticName="ShelterBackstop" DisplayName="Shelter Backstop" 
+<Field ID="{afa0740e-4d04-4aa7-95fb-b1474882681c}" Type="Text" MaxLength="300" Name="ShelterBackstop" StaticName="ShelterBackstop" DisplayName="Shelter Backstop" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsShelterSummary = New-FieldDefinition -FieldXml @'
-<Field ID="{b840cd52-087f-4d75-9087-93ef3f902f58}" Type="Text" MaxLength="255" Name="ShelterSummary" StaticName="ShelterSummary" DisplayName="Shelter Summary" 
+<Field ID="{b840cd52-087f-4d75-9087-93ef3f902f58}" Type="Text" MaxLength="300" Name="ShelterSummary" StaticName="ShelterSummary" DisplayName="Shelter Summary" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsHealthBackstop = New-FieldDefinition -FieldXml @'
-<Field ID="{de48a28f-7efb-4646-86a0-f823a983758b}" Type="Text" MaxLength="255" Name="HealthBackstop" StaticName="HealthBackstop" DisplayName="Health Backstop" 
+<Field ID="{de48a28f-7efb-4646-86a0-f823a983758b}" Type="Text" MaxLength="300" Name="HealthBackstop" StaticName="HealthBackstop" DisplayName="Health Backstop" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsHealthSummary = New-FieldDefinition -FieldXml @'
-<Field ID="{d4c41cc1-29c4-4c99-8b70-c14b81b945de}" Type="Text" MaxLength="255" Name="HealthSummary" StaticName="HealthSummary" DisplayName="Health Summary" 
+<Field ID="{d4c41cc1-29c4-4c99-8b70-c14b81b945de}" Type="Text" MaxLength="300" Name="HealthSummary" StaticName="HealthSummary" DisplayName="Health Summary" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
@@ -431,13 +431,13 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 '@;
 
 $global:FieldDefReportsOutputTracker = New-FieldDefinition -FieldXml @'
-<Field ID="{4ad1461f-cdfd-45a8-b60e-33c8ce0201fa}" Type="Text" MaxLength="255" Name="OutputTracker" StaticName="OutputTracker" DisplayName="OutputTracker" 
+<Field ID="{4ad1461f-cdfd-45a8-b60e-33c8ce0201fa}" Type="Text" MaxLength="300" Name="OutputTracker" StaticName="OutputTracker" DisplayName="OutputTracker" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsNutritionSummary = New-FieldDefinition -FieldXml @'
-<Field ID="{fbc8919c-c259-4b90-adba-3ac1c38bd1a8}" Type="Text" MaxLength="255" Name="NutritionSummary" StaticName="NutritionSummary" DisplayName="NutritionSummary" 
+<Field ID="{fbc8919c-c259-4b90-adba-3ac1c38bd1a8}" Type="Text" MaxLength="300" Name="NutritionSummary" StaticName="NutritionSummary" DisplayName="NutritionSummary" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
@@ -465,19 +465,19 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 #### S and S
 
 $global:FieldDefReportsSecurityContext = New-FieldDefinition -FieldXml @'
-<Field ID="{dfb22f7f-1721-4166-9b37-607d8dedea5d}" Type="Text" MaxLength="255" Name="SecurityContext" StaticName="SecurityContext" DisplayName="Security Context" 
+<Field ID="{dfb22f7f-1721-4166-9b37-607d8dedea5d}" Type="Text" MaxLength="300" Name="SecurityContext" StaticName="SecurityContext" DisplayName="Security Context" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsSecurityChallenges = New-FieldDefinition -FieldXml @'
-<Field ID="{ed3c44a0-9827-411b-9f43-f7b7135d3241}" Type="Text" MaxLength="255" Name="SecurityChallenges" StaticName="SecurityChallenges" DisplayName="Security Challenges" 
+<Field ID="{ed3c44a0-9827-411b-9f43-f7b7135d3241}" Type="Text" MaxLength="300" Name="SecurityChallenges" StaticName="SecurityChallenges" DisplayName="Security Challenges" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsSecurityManagement = New-FieldDefinition -FieldXml @'
-<Field ID="{01fb4146-2e2a-4e09-8f5d-7ca20e47c047}" Type="Text" MaxLength="255" Name="SecurityManagement" StaticName="SecurityManagement" DisplayName="Security Management" 
+<Field ID="{01fb4146-2e2a-4e09-8f5d-7ca20e47c047}" Type="Text" MaxLength="300" Name="SecurityManagement" StaticName="SecurityManagement" DisplayName="Security Management" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
@@ -491,13 +491,13 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 '@;
 
 $global:FieldDefReportsSafegaurdingFocalPoint = New-FieldDefinition -FieldXml @'
-<Field ID="{f8e55de2-80d3-4653-ad24-fd8fadfd6365}" Type="Text" MaxLength="255" Name="SafegaurdingFocalPoint" StaticName="SafegaurdingFocalPoint" DisplayName="Safegaurding Focal Point" 
+<Field ID="{f8e55de2-80d3-4653-ad24-fd8fadfd6365}" Type="Text" MaxLength="300" Name="SafegaurdingFocalPoint" StaticName="SafegaurdingFocalPoint" DisplayName="Safegaurding Focal Point" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsSafegaurdingRisks = New-FieldDefinition -FieldXml @'
-<Field ID="{d37de8e6-bd1b-4905-89e6-2a376b03ef56}" Type="Text" MaxLength="255" Name="SafegaurdingRisks" StaticName="SafegaurdingRisks" DisplayName="Safegaurding Risks" 
+<Field ID="{d37de8e6-bd1b-4905-89e6-2a376b03ef56}" Type="Text" MaxLength="300" Name="SafegaurdingRisks" StaticName="SafegaurdingRisks" DisplayName="Safegaurding Risks" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
@@ -505,25 +505,25 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 ##### Adv comms and media
 
 $global:FieldDefReportsCommsPack = New-FieldDefinition -FieldXml @'
-<Field ID="{6d4850d3-6da6-48b3-bfbd-853473270f0d}" Type="Text" MaxLength="255" Name="CommsPack" StaticName="CommsPack" DisplayName="Comms Pack" 
+<Field ID="{6d4850d3-6da6-48b3-bfbd-853473270f0d}" Type="Text" MaxLength="300" Name="CommsPack" StaticName="CommsPack" DisplayName="Comms Pack" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsMediaCoverage = New-FieldDefinition -FieldXml @'
-<Field ID="{04d1b173-dc44-4d44-aa51-d86a1cb2ea79}" Type="Text" MaxLength="255" Name="MediaCoverage" StaticName="MediaCoverage" DisplayName="Media Coverage" 
+<Field ID="{04d1b173-dc44-4d44-aa51-d86a1cb2ea79}" Type="Text" MaxLength="300" Name="MediaCoverage" StaticName="MediaCoverage" DisplayName="Media Coverage" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsSpokespeople = New-FieldDefinition -FieldXml @'
-<Field ID="{8450ac34-ce81-4754-9220-5e1a4c831d28}" Type="Text" MaxLength="255" Name="Spokespeople" StaticName="Spokespeople" DisplayName="Spokespeople" 
+<Field ID="{8450ac34-ce81-4754-9220-5e1a4c831d28}" Type="Text" MaxLength="300" Name="Spokespeople" StaticName="Spokespeople" DisplayName="Spokespeople" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsAdvocacyActions = New-FieldDefinition -FieldXml @'
-<Field ID="{5fe8f97f-af63-4dfa-ba30-5c2a1908b224}" Type="Text" MaxLength="255" Name="AdvocacyActions" StaticName="AdvocacyActions" DisplayName="Advocacy Actions" 
+<Field ID="{5fe8f97f-af63-4dfa-ba30-5c2a1908b224}" Type="Text" MaxLength="300" Name="AdvocacyActions" StaticName="AdvocacyActions" DisplayName="Advocacy Actions" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;

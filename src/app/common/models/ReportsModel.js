@@ -9,11 +9,11 @@ export default class ReportsModel extends BaseModel {
         this.responseId = "";
         this.status = ApprovalStatuses.none;
         //General info
-        this.regionalResponse = false;
-        this.parentRegionalResponse = "";
+        // this.regionalResponse = false;
+        // this.parentRegionalResponse = "";
         this.sitrepDate = DateUtils.today;
         this.nextSitrepDate = DateUtils.today;
-        this.recentContextDevelopment = "";
+        // this.recentContextDevelopment = "";
         this.opsBackstop = "";
 
         this.responseStatus = "";
