@@ -6,7 +6,7 @@
                             <md-button class="md-raised md-primary" aria-label="save"
                                        ng-hide="ctrl.main.isRequestProcessing"
                                        ng-click="ctrl.storeAsDraft(form)"
-                                       ng-hide="!ctrl.isApprover()">
+                                       ng-hide="ctrl.isApprover()">
                                 Save Draft
                             </md-button>
                             <md-button class="md-raised md-primary" aria-label="save"
@@ -31,7 +31,7 @@
             <toggle-accordion-section></toggle-accordion-section>
     
             <accordion heading="General Info">
-                <div layout-gt-md="row" layout-padding>
+                <!-- <div layout-gt-md="row" layout-padding>
                     <label>Regional Response
                             <md-tooltip md-direction="right">This is a test tooltip for Regional Response</md-tooltip>                            
                     </label>
@@ -42,53 +42,102 @@
                         <label>Parent Regional Response</label>
                         <textarea ng-model="ctrl.model.parentRegionalResponse" name="parentRegionalResponse" md-maxlength="50"></textarea>
                     </md-input-container>
-                </div>
+                </div> -->
     
                 <div layout-gt-md="row" layout-padding>
                     <div class="md-block" flex-gt-sm="30">
                         <label>Sitrep date</label>
-                        <md-tooltip  md-direction="right">This is a test tooltip for Sitrep date</md-tooltip>                                                    
+                        <md-tooltip  md-direction="bottom">This is a test tooltip for Sitrep date</md-tooltip>                                                    
                         <md-datepicker ng-model="ctrl.model.sitrepDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
-                    </div>
-    
+                    </div>    
                     <div class="md-block" flex-gt-sm="30">
                         <label>Next sitrep date</label>
+                        <md-tooltip  md-direction="bottom">This is a test tooltip for next Sitrep date</md-tooltip>                                                                            
                         <md-datepicker ng-model="ctrl.model.nextSitrepDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
                     </div>
+                    <div class="md-block" flex-gt-sm="50">
+                            <label>SCI Implemented</label>
+                            <md-checkbox ng-model="ctrl.model.SCIImplemented">
+                            </md-checkbox>
+                        </div>
                 </div>
-    
-                <div layout-gt-md="row" layout-padding>
-    
+
+                <div layout-gt-md="row" layout-padding>    
                     <md-input-container class="md-block" flex-gt-sm="50">
-                        <label>General Context</label>
-                        <textarea ng-model="ctrl.model.generalContext" name="generalContext" ></textarea>
+                        <label>Response Status</label>
+                        <textarea ng-model="ctrl.model.responseStatus" name="responseStatus" md-maxlength="7"></textarea>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm="50">
+                        <label>Category</label>
+                        <textarea ng-model="ctrl.model.category" name="category" md-maxlength="2"></textarea>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-md="row" layout-padding>    
+                    <md-input-container class="md-block" flex-gt-sm="50">
+                        <label>Phase</label>
+                        <textarea ng-model="ctrl.model.phase" name="phase" md-maxlength="7"></textarea>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm="50">
+                        <label>Sitrep Number</label>
+                        <textarea ng-model="ctrl.model.sitrepNumber" name="sitrepNumber" md-maxlength="3"></textarea>
                     </md-input-container>
                 </div>
     
-                <div layout-gt-md="row" layout-padding>
+                <div layout-gt-md="row" layout-padding>    
+                    <md-input-container class="md-block" flex-gt-sm="100">
+                        <label>General Context Internal</label>
+                        <textarea ng-model="ctrl.model.generalContextInternal" name="generalContextInternal" md-maxlength="1500"></textarea>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-md="row" layout-padding>    
+                    <md-input-container class="md-block" flex-gt-sm="100">
+                        <label>General Context External</label>
+                        <textarea ng-model="ctrl.model.generalContextExternal" name="generalContextExternal" md-maxlength="1200"></textarea>
+                    </md-input-container>
+                </div>
+    
+                <!-- <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Recent Context Development</label>
                         <textarea ng-model="ctrl.model.recentContextDevelopment" name="recentContextDevelopment" ></textarea>
                     </md-input-container>
-                </div>
+                </div> -->
                 <div layout-gt-md="row" layout-padding>
-                    <md-input-container class="md-block" flex-gt-sm="50">
-                        <label>Response update</label>
-                        <textarea ng-model="ctrl.model.responseUpdate" name="responseUpdate" ></textarea>
+                    <md-input-container class="md-block" flex-gt-sm="100">
+                        <label>Response Update Internal</label>
+                        <textarea ng-model="ctrl.model.responseUpdateInternal" name="responseUpdateInternal" md-maxlength="1200"></textarea>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-md="row" layout-padding>
+                    <md-input-container class="md-block" flex-gt-sm="100">
+                        <label>Response Update External</label>
+                        <textarea ng-model="ctrl.model.responseUpdateExternal" name="responseUpdateExternal" md-maxlength="1200"></textarea>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-md="row" layout-padding>
+                    <md-input-container class="md-block" flex-gt-sm="100">
+                        <label>Challenges Internal</label>
+                        <textarea ng-model="ctrl.model.challengesInternal" name="challengesInternal" md-maxlength="1200"></textarea>
                     </md-input-container>
                 </div>
     
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Ops Backstop</label>
-                        <textarea ng-model="ctrl.model.opsBackstop" name="opsBackstop" ></textarea>
+                        <textarea ng-model="ctrl.model.opsBackstop" name="opsBackstop" md-maxlength="50"></textarea>
                     </md-input-container>
     
                 </div>
     
             </accordion>
+
+            <!-- done up to here -->
     
-            <accordion heading="Non SCI responses">
+            <!-- <accordion heading="Non SCI responses">
                 <div class="md-block" flex-gt-sm="50">
                     <label>Non SCI responses</label>
                     <md-checkbox ng-model="ctrl.model.nonSciResponses">
@@ -97,7 +146,7 @@
                 <div ng-hide="!ctrl.model.nonSciResponses">
                     Need to define non-sci responses questions. This will only show when checkbox above is true and questions will go here
                 </div>
-            </accordion>
+            </accordion> -->
     
             <accordion heading="Reach figures">
                 <div layout-gt-md="row" layout-padding>
@@ -114,7 +163,7 @@
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Strategy target (children)</label>
-                        <textarea ng-model="ctrl.model.strategyTarget" name="strategyTarget" md-maxlength="7"></textarea>
+                        <textarea ng-model="ctrl.model.strategyTargetChildren" name="strategyTargetChildren" md-maxlength="7"></textarea>
                     </md-input-container>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Total reach since start date</label>
@@ -158,6 +207,10 @@
                         <label>Seed funds target date set</label>
                         <md-datepicker ng-model="ctrl.model.seedFundsTargetDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
                     </div>
+                    <md-input-container class="md-block" flex-gt-sm="50">
+                        <label>Crisis Modifiers</label>
+                        <textarea ng-model="ctrl.model.crisisModifiers" name="crisisModifiers" md-maxlength="7"></textarea>
+                    </md-input-container>
                 </div>
             </accordion>
     
@@ -166,71 +219,35 @@
                     <label style="width: 128px">Assessment</label>
                     <md-checkbox ng-model="ctrl.model.assessmentBool">
                     </md-checkbox>
-                    <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.assessmentBool">
-                        <label>Address of OneNet document</label>
-                        <textarea ng-model="ctrl.model.assessment" name="assessment"></textarea>
-                    </md-input-container>
-                </div>
-    
-                <div layout-gt-md="row" layout-padding>
                     <label style="width: 128px">Outline</label>
                     <md-checkbox ng-model="ctrl.model.outlineBool">
                     </md-checkbox>
-                    <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.outlineBool">
-                        <label>Address of OneNet document</label>
-                        <textarea ng-model="ctrl.model.outline" name="outline"></textarea>
-                    </md-input-container>
-                </div>
-    
-                <div layout-gt-md="row" layout-padding>
                     <label style="width: 128px">Strategy</label>
                     <md-checkbox ng-model="ctrl.model.strategyBool">
                     </md-checkbox>
-                    <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.strategyBool">
-                        <label>Address of OneNet document</label>
-                        <textarea ng-model="ctrl.model.strategy" name="strategy"></textarea>
-                    </md-input-container>
                 </div>
     
                 <div layout-gt-md="row" layout-padding>
                     <label style="width: 128px">Plan</label>
                     <md-checkbox ng-model="ctrl.model.planBool">
                     </md-checkbox>
-                    <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.planBool">
-                        <label>Address of OneNet document</label>
-                        <textarea ng-model="ctrl.model.plan" name="plan"></textarea>
-                    </md-input-container>
-                </div>
-    
-                <div layout-gt-md="row" layout-padding>
                     <label style="width: 128px">Operations Control review</label>
                     <md-checkbox ng-model="ctrl.model.operationsControlReviewBool">
                     </md-checkbox>
-                    <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.operationsControlReviewBool">
-                        <label>Address of OneNet document</label>
-                        <textarea ng-model="ctrl.model.operationsControlReview" name="operationsControlReview"></textarea>
-                    </md-input-container>
-                </div>
-    
-                <div layout-gt-md="row" layout-padding>
                     <label style="width: 128px">Real-time review</label>
                     <md-checkbox ng-model="ctrl.model.realTimeReviewBool">
                     </md-checkbox>
-                    <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.realTimeReviewBool">
-                        <label>Address of OneNet document</label>
-                        <textarea ng-model="ctrl.model.realTimeReview" name="realTimeReview"></textarea>
-                    </md-input-container>
                 </div>
     
                 <div layout-gt-md="row" layout-padding>
                     <label>Represetation on Humanitarian Country Team (HCT)</label>
-                    <md-checkbox ng-model="ctrl.model.representationOnHCT">
+                    <md-checkbox ng-model="ctrl.model.representationOnHCTBool">
                     </md-checkbox>
                     <label>Education cluster or working group activated</label>
-                    <md-checkbox ng-model="ctrl.model.educationCluster">
+                    <md-checkbox ng-model="ctrl.model.educationClusterBool">
                     </md-checkbox>
                     <label>Staffing education cluster or working group</label>
-                    <md-checkbox ng-model="ctrl.model.staffingEducationCluster">
+                    <md-checkbox ng-model="ctrl.model.staffingEducationClusterBool">
                     </md-checkbox>
                 </div>
             </accordion>
@@ -334,19 +351,28 @@
     
                 <div layout-gt-md="row" layout-padding>
                     <label style="width: 128px">EHU Deployed</label>
-                    <md-checkbox ng-model="ctrl.model.EHUUpdatesBool">
+                    <md-checkbox ng-model="ctrl.model.EHUDeployed">
                     </md-checkbox>
-                    <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.EHUUpdatesBool">
-                        <label>Link to EHU updates</label>
-                        <textarea ng-model="ctrl.model.EHUUpdates" name="EHUUpdates"></textarea>
+                    <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.EHUDeployed">
+                    <div class="md-block" flex-gt-sm="25">
+                        <label>EHU Deployed Date</label>
+                        <md-datepicker ng-model="ctrl.model.EHUDeployedDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                    </div>
                     </md-input-container>
                 </div>
-                <div layout-gt-md="row" layout-padding>
-                    <label style="width: 128px">EHU Present</label>
-                    <md-checkbox ng-model="ctrl.model.EHUPresent">
-                    </md-checkbox>
-                </div>
-    
+
+                <div layout-gt-md="row" layout-padding>    
+                        <md-input-container class="md-block" flex-gt-sm="50">
+                            <label>Output tracker</label>
+                            <textarea ng-model="ctrl.model.outputTracker" name="outputTracker" md-maxlength="300"></textarea>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm="50">
+                            <label>Nutrition summary</label>
+                            <textarea ng-model="ctrl.model.nutritionSummary" name="nutritionSummary" md-maxlength="300"></textarea>
+                        </md-input-container>
+                    </div>
+                
+                
             </accordion>
     
             <accordion heading="HR">
@@ -360,19 +386,25 @@
                         <textarea ng-model="ctrl.model.internationalStaffNumber" name="internationalStaffNumber" md-maxlength="7"></textarea>
                     </md-input-container>
                 </div>
+                <div layout-gt-md="row" layout-padding>
+                        <md-input-container class="md-block" flex-gt-sm="50">
+                            <label>Deployment tracker link</label>
+                            <textarea ng-model="ctrl.model.deploymentTrackerLink" name="deploymentTrackerLink" md-maxlength="100"></textarea>
+                        </md-input-container>
+                    </div>
             </accordion>
     
             <accordion heading="Saftey and security">
-                <md-input-container class="md-block" flex-gt-sm="50">
+                <!-- <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Overall security level in country</label>
                     <md-select ng-model="ctrl.model.securityLevel" placeholder="Select">
                         <md-option ng-repeat="item in ctrl.securityLevels" ng-value="item">
                             {{item}}
                         </md-option>
                     </md-select>
-                </md-input-container>
+                </md-input-container> -->
     
-                <div layout-gt-md="row" layout-padding>
+                <!-- <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Summary of incidents and impact on response</label>
                         <textarea ng-model="ctrl.model.incidentSummary" name="incidentSummary" ></textarea>
@@ -384,28 +416,28 @@
                         <label>Events that may affect the security situation</label>
                         <textarea ng-model="ctrl.model.securityEvents" name="securityEvents" ></textarea>
                     </md-input-container>
-                </div>
+                </div> -->
     
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Please provide an overview of the S&amp;S  context, 
                                     including details of security incidents,
                                     since the last SitRep</label>
-                        <textarea ng-model="ctrl.model.securityContext" name="securityContext" ></textarea>
+                        <textarea ng-model="ctrl.model.securityContext" name="securityContext" md-maxlength="300"></textarea>
                     </md-input-container>
                 </div>
     
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>What immediate S&amp;S challenges are predicted?</label>
-                        <textarea ng-model="ctrl.model.securityChallenges" name="securityChallenges" ></textarea>
+                        <textarea ng-model="ctrl.model.securityChallenges" name="securityChallenges"  md-maxlength="300"></textarea>
                     </md-input-container>
                 </div>
     
                 <div layout-gt-md="row" layout-padding>
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>How will those challenges be managed?</label>
-                        <textarea ng-model="ctrl.model.securityManagement" name="securityManagement" ></textarea>
+                        <textarea ng-model="ctrl.model.securityManagement" name="securityManagement"  md-maxlength="300"></textarea>
                     </md-input-container>
                 </div>
     
@@ -451,6 +483,10 @@
                         <label>Spokespeople</label>
                         <textarea ng-model="ctrl.model.spokespeople" name="spokespeople" ></textarea>
                     </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm="50">
+                            <label>Advocacy actions</label>
+                            <textarea ng-model="ctrl.model.advocacyActions" name="advocacyActions" ></textarea>
+                        </md-input-container>
                 </div>
     
             </accordion>

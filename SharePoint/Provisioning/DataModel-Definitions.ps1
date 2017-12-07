@@ -320,7 +320,7 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 '@;
 
 $global:FieldDefReportsRealTimeReviewBool = New-FieldDefinition -FieldXml @'
-<Field ID="{9ac93ca0-1977-42ec-b173-e58a8d8e8462}" Type="Boolean" Name="RealTimeReview" StaticName="RealTimeReview" DisplayName="Real Time Review" 
+<Field ID="{9ac93ca0-1977-42ec-b173-e58a8d8e8462}" Type="Boolean" Name="RealTimeReviewBool" StaticName="RealTimeReviewBool" DisplayName="Real Time Review" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
@@ -332,7 +332,7 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 '@;
 
 $global:FieldDefReportsEducationClusterBool = New-FieldDefinition -FieldXml @'
-<Field ID="{d191ff67-9957-4d1f-b2e9-ffc52f059dc0}" Type="Boolean" Name="EducationCluster" StaticName="EducationClusterBool" DisplayName="Education Cluster" 
+<Field ID="{d191ff67-9957-4d1f-b2e9-ffc52f059dc0}" Type="Boolean" Name="EducationClusterBool" StaticName="EducationClusterBool" DisplayName="Education Cluster" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
