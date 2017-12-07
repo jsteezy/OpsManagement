@@ -14,27 +14,15 @@ export default class MenuFeatures {
                 "type": "link",
                 "icon": "check_box",
                 "state": "TarApproval",
-                "permissions": [Permissions.approvers, Permissions.admin]
+                "permissions": [Permissions.approvers]
             },
-            // {
-            //     "name": "HISTORY",
-            //     "type": "link",
-            //     "icon": "history",
-            //     "state": "TarHistory",
-            //     "permissions": [Permissions.everyone]
-            // },
             {
                 "name": "Admin",
                 "state": "Dashboard",
                 "type": "toggle",
                 "icon": "supervisor_account",
                 "permissions": [Permissions.admin],
-                "pages": [{
-                        "name": "Create",
-                        "state": "Profile",
-                        "type": "link",
-                        "permissions": [Permissions.admin]
-                    },
+                "pages": [
                     {
                         "name": "USERS_SIDE_NAV",
                         "state": "Users",
