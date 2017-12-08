@@ -1,7 +1,7 @@
 #region Authorization
 
 $global:OMTSystemAdminGroupName = "_System Admin_";
-$global:OMTApproverGroupName = "Approver";
+$global:OMTApproverGroupName = "Approvers";
 $global:OMTEditorsGroupName = "Editors";
 $global:OMTAllUsersGroupName = "_All OMT Users_";
 
@@ -594,6 +594,12 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 
 $global:FieldDefResponseCodesCountry = New-FieldDefinition -FieldXml @'
 <Field ID="{47ae60a7-9a97-4e42-abb7-01a2bb7fdf44}" Type="Text" MaxLength="255" Name="Country" StaticName="Country" DisplayName="Country" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefResponseCodesResponseStatus = New-FieldDefinition -FieldXml @'
+<Field ID="{2d43bfad-f137-40ce-aaf1-f7b00c8b7582}" Type="Text" MaxLength="255" Name="ResponseStatus" StaticName="ResponseStatus" DisplayName="Response Status" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;

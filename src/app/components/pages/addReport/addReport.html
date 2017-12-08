@@ -63,10 +63,10 @@
                 </div>
 
                 <div layout-gt-md="row" layout-padding>    
-                    <md-input-container class="md-block" flex-gt-sm="50">
+                    <!-- <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Response Status</label>
                         <textarea ng-model="ctrl.model.responseStatus" name="responseStatus" md-maxlength="7"></textarea>
-                    </md-input-container>
+                    </md-input-container> -->
                     <md-input-container class="md-block" flex-gt-sm="50">
                         <label>Category</label>
                         <textarea ng-model="ctrl.model.category" name="category" md-maxlength="2"></textarea>
@@ -353,12 +353,10 @@
                     <label style="width: 128px">EHU Deployed</label>
                     <md-checkbox ng-model="ctrl.model.EHUDeployed">
                     </md-checkbox>
-                    <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.EHUDeployed">
-                    <div class="md-block" flex-gt-sm="25">
+                    <div class="md-block" flex-gt-sm="25" ng-hide="!ctrl.model.EHUDeployed">
                         <label>EHU Deployed Date</label>
                         <md-datepicker ng-model="ctrl.model.EHUDeployedDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
                     </div>
-                    </md-input-container>
                 </div>
 
                 <div layout-gt-md="row" layout-padding>    

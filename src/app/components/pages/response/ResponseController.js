@@ -1,4 +1,6 @@
 import BaseController from "../../common/BaseController";
+import ResponseStatus from "../../../common/enums/responseStatus.json";
+
 
 export default class ResponseController extends BaseController {
     constructor($injector,
@@ -11,7 +13,7 @@ export default class ResponseController extends BaseController {
         this.title = "Create";
 
         this.responseService = responseService;
-
+        this.responseStatus = ResponseStatus
         this.toastService = toastService;
     }
 

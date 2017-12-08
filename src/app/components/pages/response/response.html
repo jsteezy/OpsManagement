@@ -1,3 +1,5 @@
+<md-content>
+        <div class="col-md-12">
 <md-content ng-cloak>
     <div class="col-md-10" layout-align="center center">
         <ng-form name="form" novalidate>
@@ -34,6 +36,14 @@
                     <div ng-message="required">Please enter a description</div>
                 </div>
             </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Response status</label>
+                    <md-select ng-model="ctrl.model.responseStatus" placeholder="Select">
+                        <md-option ng-repeat="item in ctrl.responseStatus" ng-value="item">
+                            {{item}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
             <div class="md-block" flex-gt-sm="50">
                 <label>Start date</label>
                 <md-datepicker ng-model="ctrl.model.startDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
@@ -49,4 +59,6 @@
             </div>
         </ng-form>
     </div>
+</md-content>
+</div>
 </md-content>

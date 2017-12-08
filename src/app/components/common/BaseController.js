@@ -135,17 +135,17 @@ export default class BaseController extends BaseComponentController {
         return this.hasPermissions([super.appPermissions.admin]);
     }
 
-    isGssApprover() {
-        return this.hasPermissions([super.appPermissions.gssApprovers]);
-    }
-
-    isBudgetApprover() {
+    isApprover() {
         return this.hasPermissions([super.appPermissions.approvers]);
     }
 
-    isSuperBudgetApprover() {
-        return this.hasPermissions([super.appPermissions.superBudgetApprovers]);
-    }
+    // isBudgetApprover() {
+    //     return this.hasPermissions([super.appPermissions.approvers]);
+    // }
+
+    // isSuperBudgetApprover() {
+    //     return this.hasPermissions([super.appPermissions.superBudgetApprovers]);
+    // }
 
     isUser() {
         return this.hasPermissions([super.appPermissions.everyone]);

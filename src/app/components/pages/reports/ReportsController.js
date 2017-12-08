@@ -1,6 +1,5 @@
 import BaseController from "../../common/BaseController";
 import GridOptions from "../../../common/enums/gridOptions";
-import SecurityLevels from "../../../common/enums/securityLevels.json";
 
 
 export default class ReportsController extends BaseController {
@@ -9,10 +8,7 @@ export default class ReportsController extends BaseController {
 
         super.router = this.$router;
         this.responseService = responseService;
-        this.reportsService = reportsService;
-
-        this.securityLevels = SecurityLevels;
-        
+        this.reportsService = reportsService;        
         
         this.$window = $window;
         this.setReportsGridOptions();
@@ -47,10 +43,9 @@ export default class ReportsController extends BaseController {
                     (data) => {
                         this.reportOptions.data = data;
                         this.reportOptions.responseId = responseId;
-                        console.log(this.securityLevels, "this.securityLevels");
                         
                         super.isRequestProcessing = false;
-                        //console.log(this.reportOptions, "reportOptions");
+                        console.log(responseModel, "responseModel");
                         
                         return [this.reportOptions.data, responseModel];                        
                     },
