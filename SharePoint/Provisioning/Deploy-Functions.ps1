@@ -135,14 +135,15 @@ Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesStartDate -ListCont
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesRegion -ListContext $global:ListResponseCodes.Title -webContext $web.ID
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesCountry -ListContext $global:ListResponseCodes.Title -webContext $web.ID
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesResponseStatus -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-# Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileEmail -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileId -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileEmail -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+
 #endregion
 
 #endregion
 Ensure-ContentType -Url $web.Url -CTDef $global:CTDefResponseCodes -FieldDefs $global:FieldDefResponseCodesCode, $global:FieldDefResponseCodesDescription, 
 $global:FieldDefResponseCodesStartDate, $global:FieldDefResponseCodesRegion, $global:FieldDefResponseCodesCountry, $global:FieldDefResponseCodesResponseStatus
-# , $global:FieldDefUserProfileId, 
-# $global:FieldDefUserProfileEmail
+ , $global:FieldDefUserProfileId,  $global:FieldDefUserProfileEmail
 
 Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListResponseCodes
 
@@ -342,6 +343,9 @@ function EnsureReports()
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsForThisResponse -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsPlannedProcurement -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsProcurementSpend -ListContext $global:ListReports.Title -webContext $web.ID
+
+    Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileId -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileEmail -ListContext $global:ListResponseCodes.Title -webContext $web.ID
     
     
     #endregion
@@ -434,6 +438,9 @@ function EnsureReports()
     $global:FieldDefReportsForThisResponse,
     $global:FieldDefReportsPlannedProcurement,
     $global:FieldDefReportsProcurementSpend,
+    $global:FieldDefUserProfileId, 
+    $global:FieldDefUserProfileEmail
+    
 
     Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListReports
 }

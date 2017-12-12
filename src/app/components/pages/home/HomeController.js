@@ -55,11 +55,6 @@ export default class HomeController extends BaseController {
                 });
     }
 
-    // ShowDetails(_obj)
-    // {
-    //    console.log(_obj);
-    // }
-
     setResponseGridOptions() {
         this.responseCodeOptions = GridOptions.options.responseCodeOptions;
         this.responseCodeOptions.appScopeProvider = this;

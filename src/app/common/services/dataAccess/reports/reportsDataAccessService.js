@@ -85,7 +85,7 @@ export default class ReportsDataAccessService extends BaseDataAccessService {
         let config = {
             headers: {
                 "X-HTTP-Method": "MERGE",
-                "If-Match": data.etag
+                "If-Match": "*"
             }
         };
         

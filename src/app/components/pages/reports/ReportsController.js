@@ -38,23 +38,29 @@ export default class ReportsController extends BaseController {
         .then(
             (data) => {
                 var responseModel = this.responseService.buildModel(data);
+
+                this.reportOptions.responseId = responseId;
+                this.reportOptions.code = responseModel.code;
+                this.reportOptions.description = responseModel.description;
+                this.reportOptions.region = responseModel.region;
+                this.reportOptions.responseStatus = responseModel.responseStatus;
+                this.reportOptions.country = responseModel.country;     
+
                 return this.reportsService.getAllReports(responseId)
                 .then(
                     (data) => {
-                        this.reportOptions.data = data;
-                        this.reportOptions.responseId = responseId;
-                        
+                        this.reportOptions.data = data;                
                         super.isRequestProcessing = false;
-                        console.log(responseModel, "responseModel");
+                        //console.log(responseModel, "responseModel on reports 1");
                         
-                        return [this.reportOptions.data, responseModel];                        
+                        return this.reportOptions.data;                        
                     },
                     () => {
                         super.isRequestProcessing = false;
                         this.reportOptions.data = [];
-                        this.reportOptions.responseId = responseId;
-        
-                        return Promise.resolve(false);
+
+                        //console.log(responseModel, "responseModel on reports 2");
+                        return responseModel;                        
                     });
             },
             () => {

@@ -4,13 +4,14 @@
             <div class="md-subheader-inner">
                 <div class="md-subheader-content">
                     <h1>{{ctrl.reportOptions.code}}  - {{ctrl.reportOptions.responseStatus}} - {{ctrl.reportOptions.country}} - {{ctrl.reportOptions.region}}</h1>
-                    <h3>{{ctrl.reportOptions.description}}</h3> 
+                    <h3>{{ctrl.reportOptions.description}}
+                            <md-button aria-label="Add report" class="md-primary md-raised md-mini" style="float:right; margin-top: -10px" ng-click="ctrl.createReport(ctrl.reportOptions.responseId)">
+                                    <span>Add report</span>
+                                </md-button>
+                    </h3> 
                 </div>               
             </div>  
         </div>
-        <md-button aria-label="Add report" class="md-primary md-raised md-mini" ng-click="ctrl.createReport(ctrl.reportOptions.responseId)">
-            <span>Add report</span>
-        </md-button>
         <grid options="ctrl.reportOptions"></grid>
     </div>
 </md-content>

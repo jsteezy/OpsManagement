@@ -48,19 +48,50 @@ export default class AddReportController extends BaseController {
                     (reportData) => {
                         super.model = this.reportsService.buildModel(reportData)      
                         super.model.responseId = responseId;
-                },)
-            }
+
+                        switch(super.model.status) {
+                            case ApprovalStatuses.draft:
+                                if(this.hasPermissions([super.appPermissions.admin])){
+                                    //admin has all actions, non-read only                                                  
+                                }
+                                else if(this.hasPermissions([super.appPermissions.approver])){
+                                    //approver view read only                    
+                                }
+                                else{
+                                    //normal user can edit a draft
+                                }
+                                break;
+                            case ApprovalStatuses.submitted:
+                                if(this.hasPermissions([super.appPermissions.admin])){
+                                    //admin has all actions, non-read only               
+                                }
+                                else if(this.hasPermissions([super.appPermissions.approver])){
+                                    //approver can review read only and reject or approve                                  
+                                }
+                                else{
+                                    //normal user view read only
+                                }
+                                break;
+                            case ApprovalStatuses.approved:
+                                if(super.model.status === ApprovalStatuses.approved) {
+                                    //read only for all
+                                }
+                                break;
+                            default:              
+                                this.toastService.showToast('The status of this report is unrecognised, please contact a system administrator', 'app');                    
+                                super.redirectTo(["Reports", { id: responseId }])
+                        }
+            },)}
             else {
                 super.model = this.reportsService.buildModel(responseData)
                 super.model.responseId = responseId;                
             }
-                super.isRequestProcessing = false;
-                console.log(super.model, "reportModel");
 
-                console.log(responseModel, "responseModel");
+            //console.log(super.appPermissions, "appPermissions");
 
+                super.isRequestProcessing = false;                
                 return [super.model, responseModel];
-                    },
+            },
             () => {
                 super.isRequestProcessing = false;
                 return Promise.resolve(false);

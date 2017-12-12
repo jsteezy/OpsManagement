@@ -1,18 +1,19 @@
 <md-content ng-cloak class="md-inline-form">
         <ng-form name="form" novalidate>
                 <div layout-gt-sm="row" layout-align="space-between center">
-                        <h2>{{ctrl.ResponseModel.code}}</h2>
+                        <h2>{{ctrl.model.code}}</h2>
                         <div layout="row">
                             <md-button class="md-raised md-primary" aria-label="save"
                                        ng-hide="ctrl.main.isRequestProcessing"
                                        ng-click="ctrl.storeAsDraft(form)"
-                                       ng-hide="ctrl.isApprover()">
+                                       ng-hide="ctrl.isAdmin()">
                                 Save Draft
                             </md-button>
                             <md-button class="md-raised md-primary" aria-label="save"
                                        ng-hide="ctrl.main.isRequestProcessing"
                                        ng-click="ctrl.submitReport(form)"
-                                       ng-hide="ctrl.isApprover()">
+                                       ng-hide="!ctrl.isAdmin">
+                                       <!-- has-permissions="[ctrl.appPermissions.admin]"> -->
                                        <!-- ng-disabled="!ctrl.main.isReadyToSubmit()"> -->
                                 Submit
                             </md-button>

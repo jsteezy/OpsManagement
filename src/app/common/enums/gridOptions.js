@@ -307,13 +307,12 @@ export default class GridOptions {
                 columnDefs: [
                     { field: 'id', visible: false },
                     { displayName: 'Status', field: 'Status',
-                   cellTemplate: '<div ng-if="row.entity.Status == Draft"> <md-button class="md-primary" ng-click="grid.appScope.openReport(row.entity.ResponseId, row.entity.Id)">Draft</md-button></div>     <div ng-if="row.entity.Status == Approved"> <md-button class="md-primary" ng-click="grid.appScope.openReport(row.entity.ResponseId, row.entity.Id)">Approved</md-button></div>              <div ng-if="row.entity.Status == Submitted"> <md-button class="md-primary" ng-click="grid.appScope.openReport(row.entity.ResponseId, row.entity.Id)">Submitted</md-button></div>'},
-                    
+                   cellTemplate: '<md-button class="md-primary" ng-click="grid.appScope.openReport(row.entity.ResponseId, row.entity.Id)">{{COL_FIELD}}</md-button>'},                    
                     //cellTemplate: '<md-button class="md-primary" ng-if="row.entity.Status == Draft>(ng-click="grid.appScope.openReport(row.entity.ResponseId, row.entity.Id))"">Draft</md-button>                    <md-button class="md-primary" ng-if="row.entity.Status == "Submitted"(ng-click="grid.appScope.openReport(row.entity.ResponseId, row.entity.Id))"">Submitted</md-button>                    <md-button class="md-primary" ng-if="row.entity.Status == "Approved"(ng-click="grid.appScope.openReport(row.entity.ResponseId, row.entity.Id))"">Approved</md-button>' },
 
                     { displayName: 'Sitrep Date', field: 'SitrepDate', enableSorting: true, cellFilter: "dateFormat" },
                     { displayName: 'Next Sitrep Date', field: 'NextSitrepDate', cellFilter: "dateFormat" },
-                    { displayName: 'Last modified by', field: 'Modified', enableFiltering: true, enableSorting: true }
+                    { displayName: 'Last modified by', field: 'Editor', enableFiltering: true, enableSorting: true }
                     
                     // { displayName: 'General Context', field: 'GeneralContext' },
                     // { displayName: 'Recent Context Development', field: 'RecentContextDevelopment' },

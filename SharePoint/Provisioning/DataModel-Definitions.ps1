@@ -604,17 +604,17 @@ Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
-# $global:FieldDefUserProfileId = New-FieldDefinition -FieldXml @'
-# <Field ID="{2e82382f-31f6-4044-9cc6-677ea1c6e9ff}" Type="Number" Decimals="0" Name="UserId" StaticName="UserId" DisplayName="User ID" 
-# Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
-# ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-# '@;
+$global:FieldDefUserProfileId = New-FieldDefinition -FieldXml @'
+<Field ID="{b64dc956-494e-4e90-8a6d-c2e28859d9f0}" Type="Number" Decimals="0" Name="UserId" StaticName="UserId" DisplayName="User ID" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
 
-# $global:FieldDefUserProfileEmail = New-FieldDefinition -FieldXml @'
-# <Field ID="{13f3d91e-7790-4f42-942f-50276c784d15}" Type="Text" MaxLength="255" Name="UserEmail" StaticName="UserEmail" DisplayName="User Email" 
-# Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-# ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-# '@;
+$global:FieldDefUserProfileEmail = New-FieldDefinition -FieldXml @'
+<Field ID="{eba2c774-6436-4fbc-b025-3a9827c19dae}" Type="Text" MaxLength="255" Name="UserEmail" StaticName="UserEmail" DisplayName="User Email" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
 
 
 $global:CTDefResponseCodes = New-ContentTypeDefinition -ID "0x0100C2DB3C6656AA48D89CA763E657C1FC48" -Name "Response Codes" -Group $CTGroup -Description "Response Codes";
