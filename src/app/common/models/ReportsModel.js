@@ -6,6 +6,7 @@ export default class ReportsModel extends BaseModel {
     constructor() {
         super();
 
+        //this.editor = "";
         this.responseId = "";
         this.status = ApprovalStatuses.none;
         //General info
@@ -16,7 +17,6 @@ export default class ReportsModel extends BaseModel {
         // this.recentContextDevelopment = "";
         this.opsBackstop = "";
 
-        this.responseStatus = "";
         this.category = "";
         this.phase = "";
         this.SCIImplemented = false;

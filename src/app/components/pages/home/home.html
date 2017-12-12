@@ -2,18 +2,14 @@
     <div class="col-md-12">
         <div class="md-no-sticky md-subheader _md md-pageTheme-theme">
             <div class="md-subheader-inner">
-                <div class="md-subheader-content">
+                <div class="md-subheader-content" layout-gt-md="row" >
                     <h1>OMT Responses</h1>
+                    <md-button aria-label="Create new response" ng-hide="!ctrl.isAdmin()" class="md-primary md-raised md-mini" style="float: right" ng-link="['Response']">
+                            <span>Create new response</span>
+                        </md-button>
                 </div>
             </div>            
         </div>
-        <md-button aria-label="Create new response" ng-hide="!ctrl.isAdmin()" class="md-primary md-raised md-mini" ng-link="['Response']">
-            <span>Create new response</span>
-        </md-button>
-        <md-content>
-        <md-subheader></md-subheader>
             <grid options="ctrl.responseCodeOptions"></grid>
-            </div>
-        </md-content>
     </div>
 </md-content>

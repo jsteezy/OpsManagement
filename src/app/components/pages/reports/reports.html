@@ -3,23 +3,14 @@
         <div class="md-no-sticky md-subheader _md md-pageTheme-theme">
             <div class="md-subheader-inner">
                 <div class="md-subheader-content">
-                    <h1>{{ctrl.ResponseModel.code}}</h1>
-                </div>
-
-                <h1>{{ctrl.responseModel.code}}</h1>
-                <h1>{{ctrl.responseModel.Code}}</h1>
-                
-                
-            </div>   
-            
+                    <h1>{{ctrl.reportOptions.code}}  - {{ctrl.reportOptions.responseStatus}} - {{ctrl.reportOptions.country}} - {{ctrl.reportOptions.region}}</h1>
+                    <h3>{{ctrl.reportOptions.description}}</h3> 
+                </div>               
+            </div>  
         </div>
         <md-button aria-label="Add report" class="md-primary md-raised md-mini" ng-click="ctrl.createReport(ctrl.reportOptions.responseId)">
             <span>Add report</span>
         </md-button>
-        <md-content>
-        <md-subheader></md-subheader>
         <grid options="ctrl.reportOptions"></grid>
-            </div>
-        </md-content>
     </div>
 </md-content>
