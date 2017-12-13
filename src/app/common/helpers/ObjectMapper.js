@@ -2,7 +2,6 @@ import constants from "./objectMapperConstants.json";
 import helper from "./AppHelpers";
 import UserModel from "../models/UserModel";
 import BaseModel from "../models/BaseModel";
-import ProfileModel from "../models/ProfileModel";
 import ArrayUtils from "./ArrayUtils";
 
 export default class ObjectMapper {
@@ -129,16 +128,6 @@ export default class ObjectMapper {
         }
 
         return userModels;
-    }
-
-    static
-    userModelToProfileModel(object) {
-        let profileModel = new ProfileModel();
-
-        profileModel.userId = object.id;
-        profileModel.userEmail = object.email;
-
-        return profileModel;
     }
 
     static

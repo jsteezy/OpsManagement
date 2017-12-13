@@ -1,5 +1,3 @@
-import PageModes from "../../common/enums/pageModes.json";
-import RouteHelpers from "../../common/helpers/RouteHelpers";
 import EventsTypes from "../../common/enums/eventsTypes.json";
 import ErrorHelpers from "../../common/helpers/ErrorHelpers";
 
@@ -12,7 +10,6 @@ export default class BaseController extends BaseComponentController {
         this._router = null;
 
         this._model = null;
-        this._pageMode = null;
         this._isRequestProcessing = false;
         this._permissions = null;
         this._serverErrors = [];
@@ -89,9 +86,6 @@ export default class BaseController extends BaseComponentController {
         toastService.showServerErrors(serverErrormessage);
     }
 
-    get isPageModeApproval() {
-        return this.pageMode == PageModes.approval;
-    }
 
     getNavService() {
         if (this.$injector) {
@@ -102,22 +96,6 @@ export default class BaseController extends BaseComponentController {
     }
 
     $routerOnActivate(next, previous) {
-        if (RouteHelpers.isAdd(next)) {
-            this.pageMode = PageModes.add;
-        }
-
-        if (RouteHelpers.isEdit(next)) {
-            this.pageMode = PageModes.edit;
-        }
-
-        if (RouteHelpers.isApproval(next)) {
-            this.pageMode = PageModes.approval;
-        }
-
-        if (RouteHelpers.isDetails(next)) {
-            this.pageMode = PageModes.details;
-        }
-
         if (!this.$injector) return;
 
         const userService = this.$injector.get("userService");
@@ -138,14 +116,6 @@ export default class BaseController extends BaseComponentController {
     isApprover() {
         return this.hasPermissions([super.appPermissions.approver]);
     }
-
-    // isBudgetApprover() {
-    //     return this.hasPermissions([super.appPermissions.approvers]);
-    // }
-
-    // isSuperBudgetApprover() {
-    //     return this.hasPermissions([super.appPermissions.superBudgetApprovers]);
-    // }
 
     isUser() {
         return this.hasPermissions([super.appPermissions.everyone]);

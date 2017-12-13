@@ -1,6 +1,0 @@
-{
-    "getProfile": "/_api/Lists/getByTitle('{LIST_NAME}')/items?$filter=TAR_UserId eq {ID}",
-    "addProfile": "/_api/Lists/getByTitle('{LIST_NAME}')/items",
-    "updateProfile": "/_api/Lists/getByTitle('{LIST_NAME}')/items({ID})",
-    "expandUsers": "TAR_LineManager/Title,TAR_LineManager/Id,TAR_ProfileOthersAccess/Title,TAR_ProfileOthersAccess/Id,TAR_ProfileHasAccess/Title,TAR_ProfileHasAccess/Id&$expand=TAR_LineManager,TAR_ProfileOthersAccess,TAR_ProfileHasAccess"
-}

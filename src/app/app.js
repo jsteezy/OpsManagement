@@ -23,7 +23,6 @@ import services from "./bootstrap/servicesBootstrap";
 import filters from "./bootstrap/filtersBootstrap";
 
 import dateTimeConfig from "./config/dateTimeConfig";
-import translateProviderConfig from "./config/translateProviderConfig";
 import routerConfig from "./config/routerConfig";
 import appConfig from "./config/appConfig";
 import interceptorConfig from "./config/interceptorConfig";
@@ -59,7 +58,6 @@ errorMessagesConfig.config();
 interceptorConfig.config();
 grid.config();
 dateTimeConfig.config();
-translateProviderConfig.config();
 routerConfig.config();
 appConfig.config();
 
