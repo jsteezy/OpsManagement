@@ -11,7 +11,7 @@ export default class ReportsDataAccessService extends BaseDataAccessService {
 
         this.queryBuilder = new QueryBuilder();
     }
-    
+
     getReport(id) {
         let listName = "Reports";
 
@@ -28,28 +28,28 @@ export default class ReportsDataAccessService extends BaseDataAccessService {
             .build();
 
         return this.$http.get(url);
-    } 
-    
+    }
+
 
     getAllReports(responseId) {
 
         let listName = "Reports";
-        
-                let replacements = {
-                    "{ID}": responseId,
-                    "{LIST_NAME}": listName
-                };
-        
-                let requestUrl = helper.replaceData(dataAccessConfig.getAllReports, replacements);
-        
-                let url = this.queryBuilder
-                    .queryValue(requestUrl)
-                    .selectAll()
-                    .build();
-        
-                return this.$http.get(url);
+
+        let replacements = {
+            "{ID}": responseId,
+            "{LIST_NAME}": listName
+        };
+
+        let requestUrl = helper.replaceData(dataAccessConfig.getAllReports, replacements);
+
+        let url = this.queryBuilder
+            .queryValue(requestUrl)
+            .selectAll()
+            .build();
+
+        return this.$http.get(url);
     }
-    
+
     save(data) {
         let listName = "Reports";
 
@@ -72,25 +72,25 @@ export default class ReportsDataAccessService extends BaseDataAccessService {
         return this.$http.post(requestUrl, data, config);
     }
 
-    update(data){
+    update(data) {
         let listName = "Reports";
-        
-                let replacements = {
-                    "{ID}": data.id,
-                    "{LIST_NAME}": listName
-                };
+
+        let replacements = {
+            "{ID}": data.id,
+            "{LIST_NAME}": listName
+        };
 
         let requestUrl = helper.replaceData(dataAccessConfig.updateReport, replacements);
-        
+
         let config = {
             headers: {
                 "X-HTTP-Method": "MERGE",
                 "If-Match": "*"
             }
         };
-        
+
         super.addDigestProperty(config);
-        
+
         data = mapper.toJson(data);
 
         data = super.appendListItemTypeToRequestData(data, listName);

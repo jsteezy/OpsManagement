@@ -270,7 +270,7 @@ function EnsureReports()
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsResponseUpdateExternal -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsChallengesInternal -ListContext $global:ListReports.Title -webContext $web.ID
    
-    # Ensure-Field $web.Url -FieldDef $global:FieldDefReportsNonSciResponses -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsNonSciResponses -ListContext $global:ListReports.Title -webContext $web.ID
 
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsAffectedPopulation -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsStrategyTarget -ListContext $global:ListReports.Title -webContext $web.ID
@@ -288,12 +288,12 @@ function EnsureReports()
 
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsCrisisModifiers -ListContext $global:ListReports.Title -webContext $web.ID    
 
-    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsAssessmentBool -ListContext $global:ListReports.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsOutlineBool -ListContext $global:ListReports.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsStrategyBool -ListContext $global:ListReports.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsPlanBool -ListContext $global:ListReports.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsOperationsControlReviewBool -ListContext $global:ListReports.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsRealTimeReviewBool -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsAssessment -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsOutline -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsStrategy -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsPlan -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsOperationsControlReview -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsRealTimeReview -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsRepresentationOnHCTBool -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsEducationClusterBool -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsStaffingEducationClusterBool -ListContext $global:ListReports.Title -webContext $web.ID
@@ -321,10 +321,6 @@ function EnsureReports()
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsInternationalStaffNumber -ListContext $global:ListReports.Title -webContext $web.ID
 
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsDeploymentTrackerLink -ListContext $global:ListReports.Title -webContext $web.ID    
-    
-    # Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSecurityLevel -ListContext $global:ListReports.Title -webContext $web.ID
-    # Ensure-Field $web.Url -FieldDef $global:FieldDefReportsIncidentSummary -ListContext $global:ListReports.Title -webContext $web.ID
-    # Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSecurityEvents -ListContext $global:ListReports.Title -webContext $web.ID
 
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSecurityContext -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSecurityChallenges -ListContext $global:ListReports.Title -webContext $web.ID
@@ -370,7 +366,7 @@ function EnsureReports()
     $global:FieldDefReportsResponseUpdateExternal,
     $global:FieldDefReportsChallengesInternal,
        
-   ## $global:FieldDefReportsNonSciResponses,
+    $global:FieldDefReportsNonSciResponses,
     
     $global:FieldDefReportsAffectedPopulation,
     $global:FieldDefReportsStrategyTarget,
@@ -387,12 +383,12 @@ function EnsureReports()
     
     $global:FieldDefReportsCrisisModifiers,    
     
-    $global:FieldDefReportsAssessmentBool,
-    $global:FieldDefReportsOutlineBool,
-    $global:FieldDefReportsStrategyBool,
-    $global:FieldDefReportsPlanBool,
-    $global:FieldDefReportsOperationsControlReviewBool,
-    $global:FieldDefReportsRealTimeReviewBool,
+    $global:FieldDefReportsAssessment,
+    $global:FieldDefReportsOutline,
+    $global:FieldDefReportsStrategy,
+    $global:FieldDefReportsPlan,
+    $global:FieldDefReportsOperationsControlReview,
+    $global:FieldDefReportsRealTimeReview,
     $global:FieldDefReportsRepresentationOnHCTBool,
     $global:FieldDefReportsEducationClusterBool,
     $global:FieldDefReportsStaffingEducationClusterBool,

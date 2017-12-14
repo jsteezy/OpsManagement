@@ -209,11 +209,11 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 
 #### Non SCI responses
 
-# $global:FieldDefReportsNonSciResponses = New-FieldDefinition -FieldXml @'
-# <Field ID="{a83a4e96-fff3-44f9-a3cb-cec1d6037d7d}" Type="Boolean" Name="NonSciResponses" StaticName="NonSciResponses" DisplayName="Non SCI Responses" 
-# Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-# ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-# '@;
+$global:FieldDefReportsNonSciResponses = New-FieldDefinition -FieldXml @'
+<Field ID="{a83a4e96-fff3-44f9-a3cb-cec1d6037d7d}" Type="Boolean" Name="NonSciResponses" StaticName="NonSciResponses" DisplayName="Non SCI Responses" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
 
 ####### Reach figures
 
@@ -286,42 +286,39 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 '@;
 
 ######### Deliverables
-
-
-
-$global:FieldDefReportsAssessmentBool = New-FieldDefinition -FieldXml @'
-<Field ID="{8516b83e-ec7a-4fed-b93b-09b666c4149c}" Type="Boolean" Name="AssessmentBool" StaticName="AssessmentBool" DisplayName="Assessment" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+$global:FieldDefReportsAssessment = New-FieldDefinition -FieldXml @'
+<Field ID="{8e956619-ca49-4a90-80d2-c3476cd988c0}" Type="Text" MaxLength="255" Name="Assessment" StaticName="Assessment" DisplayName="Assessment" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
-$global:FieldDefReportsOutlineBool = New-FieldDefinition -FieldXml @'
-<Field ID="{2ef02805-2c3c-447c-a671-85232171926d}" Type="Boolean" Name="OutlineBool" StaticName="OutlineBool" DisplayName="Outline" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+$global:FieldDefReportsOutline = New-FieldDefinition -FieldXml @'
+<Field ID="{7b564c2c-5c14-4c57-9ff9-90c9e377aa45}" Type="Text" MaxLength="255" Name="Outline" StaticName="Outline" DisplayName="Outline" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
-$global:FieldDefReportsStrategyBool = New-FieldDefinition -FieldXml @'
-<Field ID="{15738dd8-9fb0-4e6b-8b09-e027a67cfe7c}" Type="Boolean" Name="StrategyBool" StaticName="StrategyBool" DisplayName="Strategy" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+$global:FieldDefReportsStrategy = New-FieldDefinition -FieldXml @'
+<Field ID="{401cc658-c74a-496a-9025-d8af54ca59d2}" Type="Text" MaxLength="255" Name="Strategy" StaticName="Strategy" DisplayName="Strategy" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
-$global:FieldDefReportsPlanBool = New-FieldDefinition -FieldXml @'
-<Field ID="{e32bb9d2-df92-46a2-825d-1c81fd098f62}" Type="Boolean" Name="PlanBool" StaticName="PlanBool" DisplayName="Plan" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+$global:FieldDefReportsPlan = New-FieldDefinition -FieldXml @'
+<Field ID="{0045c801-8ad0-42e3-ac00-d1896570b506}" Type="Text" MaxLength="255" Name="Plan" StaticName="Plan" DisplayName="Plan" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
-$global:FieldDefReportsOperationsControlReviewBool = New-FieldDefinition -FieldXml @'
-<Field ID="{4527d034-d944-4b3e-80ca-1ac0f93c58b0}" Type="Boolean" Name="OperationsControlReviewBool" StaticName="OperationsControlReviewBool" DisplayName="Operations Control Review" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+$global:FieldDefReportsOperationsControlReview = New-FieldDefinition -FieldXml @'
+<Field ID="{e546ed78-fbf6-4e5b-8bdb-374b0eab61dd}" Type="Text" MaxLength="255" Name="OperationsControlReview" StaticName="OperationsControlReview" DisplayName="Operations Control Review" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
-$global:FieldDefReportsRealTimeReviewBool = New-FieldDefinition -FieldXml @'
-<Field ID="{9ac93ca0-1977-42ec-b173-e58a8d8e8462}" Type="Boolean" Name="RealTimeReviewBool" StaticName="RealTimeReviewBool" DisplayName="Real Time Review" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+$global:FieldDefReportsRealTimeReview = New-FieldDefinition -FieldXml @'
+<Field ID="{ed99878b-3ce2-4638-98e6-6461b7c3c209}" Type="Text" MaxLength="255" Name="RealTimeReview" StaticName="RealTimeReview" DisplayName="Real Time Review" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
@@ -342,6 +339,7 @@ $global:FieldDefReportsStaffingEducationClusterBool = New-FieldDefinition -Field
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
+
 
 ######## Sectors
 
@@ -437,7 +435,7 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 '@;
 
 $global:FieldDefReportsNutritionSummary = New-FieldDefinition -FieldXml @'
-<Field ID="{fbc8919c-c259-4b90-adba-3ac1c38bd1a8}" Type="Text" MaxLength="300" Name="NutritionSummary" StaticName="NutritionSummary" DisplayName="NutritionSummary" 
+<Field ID="{58710994-c248-49c5-accf-b9ef5a526ed0}" Type="Text" MaxLength="300" Name="NutritionSummary" StaticName="NutritionSummary" DisplayName="NutritionSummary" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;

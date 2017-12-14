@@ -28,7 +28,7 @@ export default class ReportsModel extends BaseModel {
         this.challengesInternal = "";
                 
         // //Non SCI responses
-       // this.nonSciResponses = false;
+        this.nonSciResponses = false;
 
         //Reach figures
         this.affectedPopulation = "";
@@ -48,18 +48,18 @@ export default class ReportsModel extends BaseModel {
         this.crisisModifiers = "";
 
         //Deliverables
-        this.assessmentBool = false;
-        //this.assessment = "";
-        this.outlineBool = false;
-        //this.outline = "";
-        this.strategyBool = false;
-        //this.strategy = "";
-        this.planBool = false;
-        //this.plan = "";
-        this.operationsControlReviewBool = false;
-        //this.operationsControlReview = "";
-        this.realTimeReviewBool = false;
-        //this.realTimeReview = "";
+        //this.assessmentBool = false;
+        this.assessment = "";
+        //this.outlineBool = false;
+        this.outline = "";
+        //this.strategyBool = false;
+        this.strategy = "";
+        //this.planBool = false;
+        this.plan = "";
+        //this.operationsControlReviewBool = false;
+        this.operationsControlReview = "";
+        //this.realTimeReviewBool = false;
+        this.realTimeReview = "";
         this.representationOnHCTBool = false;
         this.educationClusterBool = false;
         this.staffingEducationClusterBool = false;
@@ -83,10 +83,6 @@ export default class ReportsModel extends BaseModel {
         //this.healthBool = false;
         this.healthBackstop = "";
         this.healthSummary = "";
-
-
-
-
         //this.EHUUpdatesBool = false;
         //this.EHUUpdates = "";
         this.EHUDeployed = false;
