@@ -3,18 +3,16 @@ import appMainComponent from "../components/root/root";
 
 //page components
 import emptyPage from "../components/pages/emptyPage/emptyPage";
-
-//keep
 import home from "../components/pages/home/home";
 import reports from "../components/pages/reports/reports";
 import response from "../components/pages/response/response";
 import addReport from "../components/pages/addReport/addReport";
-
-
 import regions from "../components/pages/administrator/regions/regions";
 import users from "../components/pages/administrator/users/users";
 import countries from "../components/pages/administrator/countries/countries";
 import accessDenied from "../components/pages/accessDenied/accessDenied";
+import responseCodesList from "../components/pages/administrator/responseCodesList/responseCodesList";
+import reportsList from "../components/pages/administrator/reportsList/reportsList";
 
 //layout components
 import menuLink from "../components/layout/menu/menuLink/menuLink";
@@ -28,7 +26,6 @@ import wizardHeader from "../components/layout/wizardHeader/wizardHeader";
 import logo from "../components/layout/logo/logo";
 import scrollToTop from "../components/layout/scrollToTop/scrollToTop";
 
-//import notificationArrow from "../components/common/notificationArrow/notificationArrow";
 import grid from "../components/common/grid/grid";
 import gridDateFilter from "../components/common/gridFilters/date/dateFilter";
 import accordion from "../components/common/accordion/accordion";
@@ -52,13 +49,14 @@ export default class Bootstrap {
         app.component("reports", reports);
         app.component("response", response);
         app.component("addReport", addReport);
-        
-
         app.component("regions", regions);
         app.component("users", users);
         app.component("countries", countries);
         app.component("notification", notification);
         app.component("accessDenied", accessDenied);
+        app.component("responseCodesList", responseCodesList);
+        app.component("reportsList", reportsList);
+        
 
         //layout components
         app.component("menuLink", menuLink);

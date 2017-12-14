@@ -10,13 +10,6 @@ export default class MenuFeatures {
                 "permissions": [Permissions.everyone]
             },
             {
-                "name": "Approvals",
-                "type": "link",
-                "icon": "check_box",
-                "state": "TarApproval",
-                "permissions": [Permissions.approvers]
-            },
-            {
                 "name": "Admin",
                 "state": "Dashboard",
                 "type": "toggle",
@@ -24,20 +17,32 @@ export default class MenuFeatures {
                 "permissions": [Permissions.admin],
                 "pages": [
                     {
-                        "name": "USERS_SIDE_NAV",
+                        "name": "Users",
                         "state": "Users",
                         "type": "link",
                         "permissions": [Permissions.admin]
                     },
                     {
-                        "name": "REGIONS_SIDE_NAV",
+                        "name": "Regions",
                         "state": "Regions",
                         "type": "link",
                         "permissions": [Permissions.admin]
                     },
                     {
-                        "name": "COUNTRIES_SIDE_NAV",
+                        "name": "Countries",
                         "state": "Countries",
+                        "type": "link",
+                        "permissions": [Permissions.admin]
+                    },
+                    {
+                        "name": "Reports",
+                        "state": "ReportsList",
+                        "type": "link",
+                        "permissions": [Permissions.admin]
+                    },
+                    {
+                        "name": "Response Codes",
+                        "state": "ResponseCodesList",
                         "type": "link",
                         "permissions": [Permissions.admin]
                     }

@@ -14,20 +14,10 @@ export default class StateConfig {
 
     static getPaths() {
         return [{
-                path: '/profile-search',
-                name: 'ProfileSearch',
-                component: 'profileSearch'
-            },
-            {
-                path: '/admin-profile-wizard',
-                name: 'Profile',
-                component: 'profileWizard'
-            },
-            {
                 path: '/addReport/:id/:reportId',
                 name: 'AddReport',
                 component: 'addReport'
-            },            
+            },
             {
                 path: '/addReport/:id',
                 name: 'CreateReport',
@@ -37,82 +27,6 @@ export default class StateConfig {
                 path: '/response',
                 name: 'Response',
                 component: 'response'
-            },
-            {
-                path: '/tar-search',
-                name: 'TarSearch',
-                component: 'tarSearch',
-                useAsDefault: true
-            },
-            {
-                path: '/add/tar-wizard',
-                name: 'TarWizardAdd',
-                component: 'tarWizard'
-            },
-            {
-                path: '/edit/draft/tar-wizard/:id',
-                name: 'TarWizardDraftEdit',
-                component: 'tarWizard'
-            },
-            {
-                path: '/details/tar-details/:id',
-                name: 'TarDetails',
-                component: 'tarDetails'
-            },
-            {
-                path: '/approval/tar',
-                name: 'TarApproval',
-                component: 'tarApproval'
-            },
-            {
-                path: '/approval/tar/:id/...',
-                name: 'TarApprovalWizard',
-                component: 'tarApprovalWizard'
-            },
-            {
-                path: '/history/tar',
-                name: 'TarHistory',
-                component: 'tarHistory'
-            },
-            {
-                path: '/eif-search',
-                name: 'EifSearch',
-                component: 'eifSearch'
-            },
-            {
-                path: '/add/eif-wizard',
-                name: 'EifWizardAdd',
-                component: 'eifWizard'
-            },
-            {
-                path: '/edit/draft/eif-wizard/:id',
-                name: 'EifWizardDraftEdit',
-                component: 'eifWizard'
-            },
-            {
-                path: '/add/eif-funds-wizard',
-                name: 'EifWithFundsWizardAdd',
-                component: 'eifWithFundsWizard'
-            },
-            {
-                path: '/edit/eif-funds-wizard/:eifId/:tarId',
-                name: 'EifWithFundsWizardEdit',
-                component: 'eifWithFundsWizard'
-            },
-            {
-                path: '/details/eif-details/:id',
-                name: 'EifDetails',
-                component: 'eifDetails'
-            },
-            {
-                path: '/details/eif-funds-details/:eifId/:tarId',
-                name: 'EifWithFundsDetails',
-                component: 'eifWithFundsDetails'
-            },
-            {
-                path: '/eif-search-all',
-                name: 'EifSearchAll',
-                component: 'eifSearchAll'
             },
             {
                 path: '/access-denied',
@@ -130,11 +44,6 @@ export default class StateConfig {
                 component: 'reports'
             },
             {
-                path: '/admin-members',
-                name: 'Members',
-                component: 'members'
-            },
-            {
                 path: '/admin-regions',
                 name: 'Regions',
                 component: 'regions'
@@ -145,29 +54,19 @@ export default class StateConfig {
                 component: 'countries'
             },
             {
-                path: '/admin-org-unit-types',
-                name: 'OrgUnitTypes',
-                component: 'orgUnitTypes'
+                path: '/admin-reportsList',
+                name: 'ReportsList',
+                component: 'reportsList'
             },
             {
-                path: '/admin-org-units',
-                name: 'OrgUnits',
-                component: 'orgUnits'
+                path: '/admin-responseCodesList',
+                name: 'ResponseCodesList',
+                component: 'responseCodesList'
             },
             {
                 path: '/admin-users',
                 name: 'Users',
                 component: 'users'
-            },
-            {
-                path: '/admin-export',
-                name: 'Export',
-                component: 'export'
-            },
-            {
-                path: '/admin-archive',
-                name: 'Archive',
-                component: 'archive'
             },
             {
                 path: '/*otherwise',
