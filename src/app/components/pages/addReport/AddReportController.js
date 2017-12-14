@@ -11,7 +11,7 @@ export default class AddReportController extends BaseController {
         this.reportsService = reportsService;
         this.ApprovalStatuses = ApprovalStatuses;
         this.securityLevels = SecurityLevels;
-        
+
         this.toastService = toastService;
         this.$window = $window;
     }
@@ -35,151 +35,199 @@ export default class AddReportController extends BaseController {
 
     loadResponseDetails(responseId, reportId) {
         super.isRequestProcessing = true;
-        
+
         this.responseService.getResponse(responseId)
-        .then(
-            (responseData) => {
-                var responseModel = this.responseService.buildModel(responseData);
-                
-                if(reportId != null)
-                {
-                this.reportsService.getReport(reportId)
-                .then(
-                    (reportData) => {
-                        super.model = this.reportsService.buildModel(reportData)      
+            .then(
+                (responseData) => {
+                    var responseModel = this.responseService.buildModel(responseData);
+
+                    if (reportId != null) {
+                        this.reportsService.getReport(reportId)
+                            .then(
+                                (reportData) => {
+                                    super.model = this.reportsService.buildModel(reportData)
+                                    super.model.responseId = responseId;
+
+                                    super.model = this.updateBools(super.model);
+
+                                    switch (super.model.status) {
+                                        case ApprovalStatuses.draft:
+                                            if (this.hasPermissions([super.appPermissions.admin])) {
+                                                //admin has all actions, non-read only                                                  
+                                            } else if (this.hasPermissions([super.appPermissions.approver])) {
+                                                //cannot view                    
+                                            } else {
+                                                //normal user can edit a draft
+                                            }
+                                            break;
+                                        case ApprovalStatuses.submitted:
+                                            if (this.hasPermissions([super.appPermissions.admin])) {
+                                                //admin has all actions, non-read only               
+                                            } else if (this.hasPermissions([super.appPermissions.approver])) {
+                                                //approver can review read only and reject or approve                                  
+                                            } else {
+                                                //normal user view read only
+                                            }
+                                            break;
+                                        case ApprovalStatuses.approved:
+                                            if (super.model.status === ApprovalStatuses.approved) {
+                                                //read only for all
+                                            }
+                                            break;
+                                        default:
+                                            this.toastService.showToast('The status of this report is unrecognised, please contact a system administrator', 'app');
+                                            super.redirectTo(["Reports", {
+                                                id: responseId
+                                            }])
+                                    }
+                                }, )
+                    } else {
+                        super.model = this.reportsService.buildModel(responseData)
                         super.model.responseId = responseId;
+                    }
 
-                        switch(super.model.status) {
-                            case ApprovalStatuses.draft:
-                                if(this.hasPermissions([super.appPermissions.admin])){
-                                    //admin has all actions, non-read only                                                  
-                                }
-                                else if(this.hasPermissions([super.appPermissions.approver])){
-                                    //cannot view                    
-                                }
-                                else{
-                                    //normal user can edit a draft
-                                }
-                                break;
-                            case ApprovalStatuses.submitted:
-                                if(this.hasPermissions([super.appPermissions.admin])){
-                                    //admin has all actions, non-read only               
-                                }
-                                else if(this.hasPermissions([super.appPermissions.approver])){
-                                    //approver can review read only and reject or approve                                  
-                                }
-                                else{
-                                    //normal user view read only
-                                }
-                                break;
-                            case ApprovalStatuses.approved:
-                                if(super.model.status === ApprovalStatuses.approved) {
-                                    //read only for all
-                                }
-                                break;
-                            default:              
-                                this.toastService.showToast('The status of this report is unrecognised, please contact a system administrator', 'app');                    
-                                super.redirectTo(["Reports", { id: responseId }])
-                        }
-            },)}
-            else {
-                super.model = this.reportsService.buildModel(responseData)
-                super.model.responseId = responseId;                
+                    //console.log(super.appPermissions, "appPermissions");
+
+                    super.isRequestProcessing = false;
+                    return [super.model, responseModel];
+                },
+                () => {
+                    super.isRequestProcessing = false;
+                    return Promise.resolve(false);
+                });
+    }
+
+    updateBools(model) {
+        if (model.assessment != null) {
+            model.assessmentBool = true;
+        }
+        if (model.outline != null) {
+            model.outlineBool = true;
+        }
+        if (model.strategy != null) {
+            model.strategyBool = true;
+        }
+        if (model.plan != null) {
+            model.planBool = true;
+        }
+        if (model.operationsControlReview != null) {
+            model.operationsControlReviewBool = true;
+        }
+        if (model.realTimeReview != null) {
+            model.realTimeReviewBool = true;
+        }
+
+        if (model.childProtectionBackstop != null || model.childProtectionSummary != null) {
+            model.childProtectionBool = true;
+        }
+        if (model.educationBackstop != null || model.educationSummary != null) {
+            model.educationBool = true;
+        }
+        if (model.FSLBackstop != null || model.FSLSummary != null) {
+            if (model.FSLBackstop != "" || model.FSLSummary != "") {                
+            model.FSLBool = true;
             }
+        }
+        if (model.WASHBackstop != null || model.WASHSummary != null) {
+            if (model.WASHBackstop != "" || model.WASHSummary != "") {                
+            model.WASHBool = true;
+            }
+        }
+        if (model.shelterBackstop != null || model.shelterSummary != null) {
+            model.shelterBool = true;
+        }
+        if (model.healthBackstop != null || model.healthSummary != null) {
+            model.healthBool = true;
+        }
+        if (model.nutritionSummary != null) {
+            model.nutritionBool = true;
+        }
+        return model;
 
-            //console.log(super.appPermissions, "appPermissions");
+    }
 
-                super.isRequestProcessing = false;                
-                return [super.model, responseModel];
-            },
+    storeAsDraft(form) {
+
+        super.isRequestProcessing = true;
+
+        var model = this.reportsService.buildModel(super.model);
+        model.status = ApprovalStatuses.draft;
+        if (model.etag != null) {
+            let storeResponsePromise = this.reportsService.update(model);
+            storeResponsePromise.then(
+                () => {
+                    this.toastService.showToast('Report draft updated', 'app');
+
+                    super.redirectToHome();
+                },
+                (errorData) => {
+                    super.serverRequestErrors = errorData;
+                });
+
+        } else {
+            let storeResponsePromise = this.reportsService.store(model);
+            storeResponsePromise.then(
+                () => {
+                    this.toastService.showToast('Report draft created', 'app');
+
+                    super.redirectToHome();
+                },
+                (errorData) => {
+                    super.serverRequestErrors = errorData;
+                });
+        }
+
+
+    }
+
+    submitReport(form) {
+
+        super.isRequestProcessing = true;
+
+        var model = this.reportsService.buildModel(super.model);
+        model.status = ApprovalStatuses.submitted;
+        if (model.etag != null) {
+            let storeResponsePromise = this.reportsService.update(model);
+            storeResponsePromise.then(
+                () => {
+                    this.toastService.showToast('Report submitted for approval', 'app');
+
+                    super.redirectToHome();
+                },
+                (errorData) => {
+                    super.serverRequestErrors = errorData;
+                });
+        } else {
+            let storeResponsePromise = this.reportsService.store(model);
+            storeResponsePromise.then(
+                () => {
+                    this.toastService.showToast('Report submitted for approval', 'app');
+
+                    super.redirectToHome();
+                },
+                (errorData) => {
+                    super.serverRequestErrors = errorData;
+                });
+        }
+
+    }
+
+    approveReport(form) {
+        super.isRequestProcessing = true;
+        var model = this.reportsService.buildModel(super.model);
+        model.status = ApprovalStatuses.approved;
+
+        let storeResponsePromise = this.reportsService.update(model);
+        storeResponsePromise.then(
             () => {
-                super.isRequestProcessing = false;
-                return Promise.resolve(false);
-            });    
+                this.toastService.showToast('Report submitted for approval', 'app');
+
+                super.redirectToHome();
+            },
+            (errorData) => {
+                super.serverRequestErrors = errorData;
+            });
     }
-
-    storeAsDraft(form) {      
-
-            super.isRequestProcessing = true;
-
-            var model = this.reportsService.buildModel(super.model);
-            model.status = ApprovalStatuses.draft;
-            if(model.etag != null){
-                let storeResponsePromise = this.reportsService.update(model);
-                storeResponsePromise.then(
-                    () => {
-                        this.toastService.showToast('Report draft updated', 'app');
-    
-                        super.redirectToHome();
-                    },
-                    (errorData) => {
-                        super.serverRequestErrors = errorData;
-                    });  
-
-            }else{
-                let storeResponsePromise = this.reportsService.store(model);            
-                storeResponsePromise.then(
-                    () => {
-                        this.toastService.showToast('Report draft created', 'app');
-    
-                        super.redirectToHome();
-                    },
-                    (errorData) => {
-                        super.serverRequestErrors = errorData;
-                    });                    
-            }
-            
-        
-    }
-
-    submitReport(form) {      
-        
-                    super.isRequestProcessing = true;
-        
-                    var model = this.reportsService.buildModel(super.model);
-                    model.status = ApprovalStatuses.submitted;                    
-                    if(model.etag != null){
-                        let storeResponsePromise = this.reportsService.update(model);    
-                        storeResponsePromise.then(
-                            () => {
-                                this.toastService.showToast('Report submitted for approval', 'app');
-            
-                                super.redirectToHome();
-                            },
-                            (errorData) => {
-                                super.serverRequestErrors = errorData;
-                            });                            
-                    }else{
-                        let storeResponsePromise = this.reportsService.store(model);                               
-                    storeResponsePromise.then(
-                        () => {
-                            this.toastService.showToast('Report submitted for approval', 'app');
-        
-                            super.redirectToHome();
-                        },
-                        (errorData) => {
-                            super.serverRequestErrors = errorData;
-                        });
-                    }
-                
-            }
-
-            approveReport(form) {  
-                            super.isRequestProcessing = true;                
-                            var model = this.reportsService.buildModel(super.model);
-                            model.status = ApprovalStatuses.approved;
-
-                            let storeResponsePromise = this.reportsService.update(model);                           
-                            storeResponsePromise.then(
-                                () => {
-                                    this.toastService.showToast('Report submitted for approval', 'app');
-                
-                                    super.redirectToHome();
-                                },
-                                (errorData) => {
-                                    super.serverRequestErrors = errorData;
-                                });                        
-                    }
 }
 
 AddReportController.$inject = ["$window", "$injector", "responseService", "reportsService", "toastService"];
