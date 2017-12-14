@@ -1,6 +1,6 @@
 import BaseController from "../../common/BaseController";
 import ApprovalStatuses from "../../../common/enums/approvalStatuses.json";
-import SecurityLevels from "../../../common/enums/securityLevels.json";
+import Phase from "../../../common/enums/phase.json";
 
 export default class AddReportController extends BaseController {
     constructor($window, $injector, responseService, reportsService, toastService) {
@@ -10,10 +10,17 @@ export default class AddReportController extends BaseController {
         this.responseService = responseService;
         this.reportsService = reportsService;
         this.ApprovalStatuses = ApprovalStatuses;
-        this.securityLevels = SecurityLevels;
+        this.phase = Phase;
 
         this.toastService = toastService;
         this.$window = $window;
+
+        this.readOnly = true;
+        this.approve = false;
+        this.reject = false;
+        this.submit = false;
+        this.saveDraft = false;
+        this.convertToDraft = false;
     }
 
     $routerOnActivate(next, current) {
@@ -53,25 +60,63 @@ export default class AddReportController extends BaseController {
                                     switch (super.model.status) {
                                         case ApprovalStatuses.draft:
                                             if (this.hasPermissions([super.appPermissions.admin])) {
-                                                //admin has all actions, non-read only                                                  
+                                                //admin has all actions, non-read only
+                                                this.readOnly = false;
+                                                this.approve = false;
+                                                this.reject = false;
+                                                this.submit = true;
+                                                this.saveDraft = true;
+                                                this.convertToDraft = false;                                                
                                             } else if (this.hasPermissions([super.appPermissions.approver])) {
-                                                //cannot view                    
+                                                //cannot view
+                                                this.router.forceNavigate(['AccessDenied']);
+
                                             } else {
                                                 //normal user can edit a draft
+                                                this.readOnly = false;
+                                                this.approve = false;
+                                                this.reject = false;
+                                                this.submit = true;
+                                                this.saveDraft = true;
+                                                this.convertToDraft = false;
                                             }
                                             break;
                                         case ApprovalStatuses.submitted:
                                             if (this.hasPermissions([super.appPermissions.admin])) {
-                                                //admin has all actions, non-read only               
+                                                //admin has all actions, non-read only and can change back to draft
+                                                this.readOnly = true;
+                                                this.approve = false;
+                                                this.reject = false;
+                                                this.submit = false;
+                                                this.saveDraft = false;
+                                                this.convertToDraft = true;
                                             } else if (this.hasPermissions([super.appPermissions.approver])) {
-                                                //approver can review read only and reject or approve                                  
+                                                //approver can review read only and reject or approve
+                                                this.readOnly = true;
+                                                this.approve = true;
+                                                this.reject = true;
+                                                this.submit = false;
+                                                this.saveDraft = false;
+                                                this.convertToDraft = false;
                                             } else {
                                                 //normal user view read only
+                                                this.readOnly = true;
+                                                this.approve = false;
+                                                this.reject = false;
+                                                this.submit = false;
+                                                this.saveDraft = false;
+                                                this.convertToDraft = false;
                                             }
                                             break;
                                         case ApprovalStatuses.approved:
                                             if (super.model.status === ApprovalStatuses.approved) {
                                                 //read only for all
+                                                this.readOnly = true;
+                                                this.approve = false;
+                                                this.reject = false;
+                                                this.submit = false;
+                                                this.saveDraft = false;
+                                                this.convertToDraft = false;
                                             }
                                             break;
                                         default:
@@ -124,13 +169,13 @@ export default class AddReportController extends BaseController {
             model.educationBool = true;
         }
         if (model.FSLBackstop != null || model.FSLSummary != null) {
-            if (model.FSLBackstop != "" || model.FSLSummary != "") {                
-            model.FSLBool = true;
+            if (model.FSLBackstop != "" || model.FSLSummary != "") {
+                model.FSLBool = true;
             }
         }
         if (model.WASHBackstop != null || model.WASHSummary != null) {
-            if (model.WASHBackstop != "" || model.WASHSummary != "") {                
-            model.WASHBool = true;
+            if (model.WASHBackstop != "" || model.WASHSummary != "") {
+                model.WASHBool = true;
             }
         }
         if (model.shelterBackstop != null || model.shelterSummary != null) {

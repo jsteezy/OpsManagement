@@ -1,24 +1,34 @@
-<md-content ng-cloak class="md-inline-form">
+<div ng-if="ctrl.readOnly === true">
+    <view-report main="ctrl"></view-report>   
+    <!-- {{ctrl.reject}} reject
+    {{ctrl.convertToDraft}} convertToDraft    
+    {{ctrl.saveDraft}} save Draft
+    {{ctrl.submit}} submit 
+    {{ctrl.approve}} approve
+    {{ctrl.saveDraft}} save Draft
+    {{ctrl.submit}} submit
+    {{ctrl.approve}} approve -->
+</div>
+<md-content ng-cloak class="md-inline-form" ng-if="ctrl.readOnly === false">
     <ng-form name="form" novalidate>
         <div layout-gt-sm="row" layout-align="space-between center">
             <h2>{{ctrl.model.code}}</h2>
             <div layout="row">
-                <md-button class="md-raised md-primary" aria-label="save" ng-hide="ctrl.main.isRequestProcessing" ng-click="ctrl.storeAsDraft(form)" ng-hide="ctrl.isAdmin()">
+                <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.saveDraft" ng-hide="ctrl.main.isRequestProcessing" ng-click="ctrl.storeAsDraft(form)">
                     Save Draft
                 </md-button>
-                <md-button class="md-raised md-primary" aria-label="save" ng-hide="ctrl.main.isRequestProcessing" ng-click="ctrl.submitReport(form)" ng-hide="!ctrl.isAdmin">
+                <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.submit === true" ng-hide="ctrl.main.isRequestProcessing" ng-click="ctrl.submitReport(form)">
                     <!-- has-permissions="[ctrl.appPermissions.admin]"> -->
                     <!-- ng-disabled="!ctrl.main.isReadyToSubmit()"> -->
                     Submit
                 </md-button>
-                <md-button class="md-raised md-primary" aria-label="save" ng-hide="ctrl.main.isRequestProcessing" ng-click="ctrl.approveReport(form)" ng-hide="!ctrl.isApprover()">
+                <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.approve === true" ng-hide="ctrl.main.isRequestProcessing " ng-click="ctrl.approveReport(form)">
                     <!-- ng-disabled="!ctrl.main.isReadyToSubmit()"> -->
                     Approve
                 </md-button>
                 <md-progress-circular md-mode="indeterminate" class="md-primary md-hue-3" ng-show="ctrl.main.isRequestProcessing" md-diameter="70"></md-progress-circular>
             </div>
-        </div>
-
+        </div>        
         <toggle-accordion-section></toggle-accordion-section>
         <div layout-gt-md="row" layout-padding>
             <div class="md-block" flex-gt-sm="50">
@@ -55,9 +65,13 @@
 
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
-                    <label>Phase</label>
-                    <textarea ng-model="ctrl.model.phase" name="phase"></textarea>
-                </md-input-container>
+                        <label>Phase</label>
+                        <md-select ng-model="ctrl.model.phase" placeholder="Phase">
+                            <md-option ng-repeat="item in ctrl.phase" ng-value="item">
+                                {{item}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Category</label>
                     <textarea ng-model="ctrl.model.category" name="category" md-maxlength="2"></textarea>

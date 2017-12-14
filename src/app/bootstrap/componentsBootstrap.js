@@ -7,6 +7,7 @@ import home from "../components/pages/home/home";
 import reports from "../components/pages/reports/reports";
 import response from "../components/pages/response/response";
 import addReport from "../components/pages/addReport/addReport";
+import viewReport from "../components/pages/viewReport/viewReport";
 import regions from "../components/pages/administrator/regions/regions";
 import users from "../components/pages/administrator/users/users";
 import countries from "../components/pages/administrator/countries/countries";
@@ -22,7 +23,6 @@ import sidenav from "../components/layout/sidenav/sidenav";
 import footer from "../components/layout/footer/footer";
 import notification from "../components/layout/toolbar/notification/notification";
 import loading from "../components/common/loading/loading";
-import wizardHeader from "../components/layout/wizardHeader/wizardHeader";
 import logo from "../components/layout/logo/logo";
 import scrollToTop from "../components/layout/scrollToTop/scrollToTop";
 
@@ -33,7 +33,6 @@ import toggleAccordionSection from "../components/common/accordion/toggleSection
 import languagePicker from "../components/common/languagePicker/languagePicker";
 import question from "../components/common/question/question";
 import list from "../components/common/list/list";
-import bottomSheetList from "../components/common/bottomSheetList/bottomSheetList";
 
 import angular from "angular";
 
@@ -49,6 +48,7 @@ export default class Bootstrap {
         app.component("reports", reports);
         app.component("response", response);
         app.component("addReport", addReport);
+        app.component("viewReport", viewReport);        
         app.component("regions", regions);
         app.component("users", users);
         app.component("countries", countries);
@@ -65,7 +65,6 @@ export default class Bootstrap {
         app.component("sidenav", sidenav);
         app.component("footer", footer);
         app.component("loading", loading);
-        app.component("wizardHeader", wizardHeader);
         app.component("logo", logo);
         app.component("scrollToTop", scrollToTop);
 
@@ -76,6 +75,5 @@ export default class Bootstrap {
         app.component("languagePicker", languagePicker);
         app.component("question", question);
         app.component("list", list);
-        app.component("bottomSheetList", bottomSheetList);
     }
 }

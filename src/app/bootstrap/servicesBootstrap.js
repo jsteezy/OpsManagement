@@ -1,7 +1,6 @@
 import sideNavService from "../common/services/sideNav/SideNavService";
 import modalService from "../common/services/materialElements/ModalDialogService";
 import toastService from "../common/services/materialElements/ToastService";
-import sheetService from "../common/services/materialElements/BottomSheetService";
 import cacheService from "../common/services/Cache";
 import navigationService from "../common/services/NavigationService";
 import userService from "../common/services/user/UserService";
@@ -12,8 +11,6 @@ import responseService from "../common/services/response/ResponseService";
 import responseCodeDataAccessService from "../common/services/dataAccess/responseCode/ResponseCodeDataAccessService";
 import reportsService from "../common/services/reports/ReportsService";
 import reportsDataAccessService from "../common/services/dataAccess/reports/reportsDataAccessService";
-
-
 import appHttpInterceptor from "../common/interceptors/AppHttpInterceptor";
 
 import angular from "angular";
@@ -25,11 +22,9 @@ export default class Bootstrap {
         app.service("sideNavService", sideNavService);
         app.service("modalService", modalService);
         app.service("toastService", toastService);
-        app.service("bottomSheetService", sheetService);
         app.service("cache", cacheService);
         app.service("navigationService", navigationService);
         app.service("userService", userService);
-        //keep
         app.service("countryDataAccessService", countryDataAccessService);
         app.service("regionDataAccessService", regionDataAccessService);
         app.service("commonDataService", commonDataService);
