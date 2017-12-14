@@ -1,0 +1,9 @@
+{
+    "none": "alert/pre-categorized early action",
+    "draft": "newly categorized response",
+    "submitted": "continued response",    
+    "approved": "recovery and rehabilitation",
+    "rejected": "chronic humanitarian",
+    "completed": "context/protracted response",
+    "all": ["alert/pre-categorized early action", "newly categorized response", "continued response", "recovery and rehabilitation", "chronic humanitarian", "context/protracted response"]
+}

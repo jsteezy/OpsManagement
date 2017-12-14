@@ -55,7 +55,7 @@ export default class AddReportController extends BaseController {
                                     //admin has all actions, non-read only                                                  
                                 }
                                 else if(this.hasPermissions([super.appPermissions.approver])){
-                                    //approver view read only                    
+                                    //cannot view                    
                                 }
                                 else{
                                     //normal user can edit a draft
