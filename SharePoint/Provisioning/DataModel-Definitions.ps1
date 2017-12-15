@@ -621,3 +621,92 @@ $global:ListResponseCodes = New-ListDefinition -ListTitle $global:ResponseCodesL
 
 #endregion
 
+#region Non sci responses
+
+$global:NonSCIListTitle = "Non SCI managed";
+$global:NonSCIListName = "NonSCIManaged";
+
+$global:FieldDefNonSCISecuredIncome = New-FieldDefinition -FieldXml @'
+<Field ID="{8c966f1c-8c5e-42ed-86b8-6d668926b77e}" Type="Number" Decimals="0" Name="SecuredIncome" StaticName="SecuredIncome" DisplayName="Secured Income" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefNonSCINewAwards = New-FieldDefinition -FieldXml @'
+<Field ID="{53069a36-4d85-4f64-94dc-c3900afd11db}" Type="Number" Decimals="0" Name="NewAwards" StaticName="NewAwards" DisplayName="New Awards" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefNonSCIResponsePipeline = New-FieldDefinition -FieldXml @'
+<Field ID="{024fd032-b524-4055-9127-d0694cc785e0}" Type="Number" Decimals="0" Name="ResponsePipeline" StaticName="ResponsePipeline" DisplayName="Response Pipeline" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefNonSCIResponsePipelineAppeal = New-FieldDefinition -FieldXml @'
+<Field ID="{b2e96b4c-1455-4aa9-8806-b5f4cb37d58f}" Type="Number" Decimals="0" Name="ResponsePipelineAppeal" StaticName="ResponsePipelineAppeal" DisplayName="Response Pipeline Appeal" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefNonSCISeedFundsSecured = New-FieldDefinition -FieldXml @'
+<Field ID="{2a4a533a-7f85-4044-b232-b66288079b9b}" Type="Number" Decimals="0" Name="SeedFundsSecured" StaticName="SeedFundsSecured" DisplayName="Seed Funds Secured" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefNonSCISeedFundsSecuredYearly = New-FieldDefinition -FieldXml @'
+<Field ID="{5e20371c-e940-4d44-b372-c91564f25935}" Type="Number" Decimals="0" Name="SeedFundsSecuredYearly" StaticName="SeedFundsSecuredYearly" DisplayName="Seed Funds Secured Yearly" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefNonSCICSF = New-FieldDefinition -FieldXml @'
+<Field ID="{45bdc06f-a9c2-40bb-a2d3-279be60cf913}" Type="Number" Decimals="0" Name="CSF" StaticName="CSF" DisplayName="CSF" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefNonSCIResponseTotalSpend = New-FieldDefinition -FieldXml @'
+<Field ID="{8c13ae84-42c1-4f7e-9289-a4a4f1657908}" Type="Number" Decimals="0" Name="ResponseTotalSpend" StaticName="ResponseTotalSpend" DisplayName="Response Total Spend" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefNonSCITotalSpendAgainstCSF = New-FieldDefinition -FieldXml @'
+<Field ID="{16c80487-d2c9-4cac-a91f-dc12e2b8bd33}" Type="Number" Decimals="0" Name="TotalSpendAgainstCSF" StaticName="TotalSpendAgainstCSF" DisplayName="Total Spend Against CSF" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefNonSCITotalSpendThroughPartners = New-FieldDefinition -FieldXml @'
+<Field ID="{65e63a9c-3ba6-403a-bb06-6cbdc7ceb849}" Type="Number" Decimals="0" Name="TotalSpendThroughPartners" StaticName="TotalSpendThroughPartners" DisplayName="Total Spend Through Partners" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefNonSCITotalSpendThroughCTP = New-FieldDefinition -FieldXml @'
+<Field ID="{d6e758bb-d38f-4c5f-8a08-f7e8e0d1d713}" Type="Number" Decimals="0" Name="TotalSpendThroughCTP" StaticName="TotalSpendThroughCTP" DisplayName="Total Spend Through CTP" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefNonSCITotalSpendEducation = New-FieldDefinition -FieldXml @'
+<Field ID="{05cd5685-c679-4923-bf29-2b6b85bdec93}" Type="Number" Decimals="0" Name="TotalSpendEducation" StaticName="TotalSpendEducation" DisplayName="Total Spend Education" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefReportId = New-FieldDefinition -FieldXml @'
+<Field ID="{107bb03f-8443-4dd9-8018-2d4bb42026e3}" Type="Number" Decimals="0" Name="ReportId" StaticName="ReportId" DisplayName="Report Id" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:CTDefNonSCI = New-ContentTypeDefinition -ID "0x0100C2DB3C6656AA48D89CB763E667C1FC30" -Name "NonSCIManaged" -Group $CTGroup -Description "Additional fields for non SCI managed responses";
+
+$global:ListNonSCI = New-ListDefinition -ListTitle $global:NonSCIListTitle -ListUrl $global:NonSCIListName -Description "Additional fields for non SCI managed resposes" -Template $CustomListTemplate -ContentTypes @($global:CTDefNonSCI.Name);
+
+
+#endregion

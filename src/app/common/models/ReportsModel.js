@@ -6,120 +6,123 @@ export default class ReportsModel extends BaseModel {
     constructor() {
         super();
 
-        //this.editor = "";
-        this.responseId = "";
+        this.userId = null;
+        this.userEmail = null;
+        this.responseId = null;
         this.status = ApprovalStatuses.none;
         //General info
         // this.regionalResponse = false;
-        // this.parentRegionalResponse = "";
+        // this.parentRegionalResponse = null;
         this.sitrepDate = DateUtils.today;
         this.nextSitrepDate = DateUtils.today;
-        // this.recentContextDevelopment = "";
-        this.opsBackstop = "";
+        // this.recentContextDevelopment = null;
+        this.opsBackstop = null;
 
-        this.category = "";
-        this.phase = "";
+        this.category = null;
+        this.phase = null;
         this.SCIImplemented = false;
-        this.sitrepNumber = "";
-        this.generalContextInternal = "";
-        this.generalContextExternal = "";   
-        this.responseUpdateInternal = "";
-        this.responseUpdateExternal = "";
-        this.challengesInternal = "";
+        this.sitrepNumber = null;
+        this.generalContextInternal = null;
+        this.generalContextExternal = null;   
+        this.responseUpdateInternal = null;
+        this.responseUpdateExternal = null;
+        this.challengesInternal = null;
                 
         // //Non SCI responses
         this.nonSciResponses = false;
 
         //Reach figures
-        this.affectedPopulation = "";
-        this.strategyTarget = "";
-        this.totalReachSinceStart = "";
-        this.totalReachSinceLastSitrep = "";
-        this.childrenReachedSinceStart = "";
-        this.childrenReachedSinceLastSitrep = "";
+        this.affectedPopulation = null;
+        this.strategyTarget = null;
+        this.totalReachSinceStart = null;
+        this.totalReachSinceLastSitrep = null;
+        this.childrenReachedSinceStart = null;
+        this.childrenReachedSinceLastSitrep = null;
 
-        this.strategyTargetChildren = "";
+        this.strategyTargetChildren = null;
 
         // //Income
-        this.responseStrategyTarget = "";
-        this.seedFundsTarget = "";
+        this.responseStrategyTarget = null;
+        this.seedFundsTarget = null;
         this.seedFundsTargetDate = DateUtils.today;
 
-        this.crisisModifiers = "";
+        this.crisisModifiers = null;
 
         //Deliverables
         //this.assessmentBool = false;
-        this.assessment = "";
+        this.assessment = null;
         //this.outlineBool = false;
-        this.outline = "";
+        this.outline = null;
         //this.strategyBool = false;
-        this.strategy = "";
+        this.strategy = null;
         //this.planBool = false;
-        this.plan = "";
+        this.plan = null;
         //this.operationsControlReviewBool = false;
-        this.operationsControlReview = "";
+        this.operationsControlReview = null;
         //this.realTimeReviewBool = false;
-        this.realTimeReview = "";
+        this.realTimeReview = null;
         this.representationOnHCTBool = false;
         this.educationClusterBool = false;
         this.staffingEducationClusterBool = false;
 
         // //Sectors
         //this.childProtectionBool = false;
-        this.childProtectionBackstop = "";
-        this.childProtectionSummary = "";
+        this.childProtectionBackstop = null;
+        this.childProtectionSummary = null;
         //this.educationBool = false;
-        this.educationBackstop = "";
-        this.educationSummary = "";
+        this.educationBackstop = null;
+        this.educationSummary = null;
         //this.FSLBool = false;
-        this.FSLBackstop = "";
-        this.FSLSummary = "";
+        this.FSLBackstop = null;
+        this.FSLSummary = null;
         //this.WASHBool = false;
-        this.WASHBackstop = "";
-        this.WASHSummary = "";
+        this.WASHBackstop = null;
+        this.WASHSummary = null;
         //this.shelterBool = false;
-        this.shelterBackstop = "";
-        this.shelterSummary = "";
+        this.shelterBackstop = null;
+        this.shelterSummary = null;
         //this.healthBool = false;
-        this.healthBackstop = "";
-        this.healthSummary = "";
+        this.healthBackstop = null;
+        this.healthSummary = null;
         //this.EHUUpdatesBool = false;
-        //this.EHUUpdates = "";
+        //this.EHUUpdates = null;
         this.EHUDeployed = false;
         this.EHUDeployedDate = DateUtils.today;
-        this.outputTracker = "";
-        this.nutritionSummary = "";
+        this.outputTracker = null;
+        this.nutritionSummary = null;
 
         //HR
-        this.nationalStaffNumber = "";
-        this.internationalStaffNumber = "";
+        this.nationalStaffNumber = null;
+        this.internationalStaffNumber = null;
 
-        this.deploymentTrackerLink = "";
+        this.deploymentTrackerLink = null;
 
         //Saftey and security
-        //this.securityLevel = "";
-        //this.incidentSummary = "";
-        //this.securityEvents = "";
-        this.securityContext = "";
-        this.securityChallenges = "";
-        this.securityManagement = "";
+        //this.securityLevel = null;
+        //this.incidentSummary = null;
+        //this.securityEvents = null;
+        this.securityContext = null;
+        this.securityChallenges = null;
+        this.securityManagement = null;
 
         //Child safegaurding
-        this.staffChildSafegaurding = "";
-        this.safegaurdingFocalPoint = "";
-        this.safegaurdingRisks = "";
+        this.staffChildSafegaurding = null;
+        this.safegaurdingFocalPoint = null;
+        this.safegaurdingRisks = null;
 
         //Advanced Media and Comms
-        this.commsPack = "";
-        this.mediaCoverage = "";
-        this.spokespeople = "";
+        this.commsPack = null;
+        this.mediaCoverage = null;
+        this.spokespeople = null;
 
-        this.advocacyActions = "";        
+        this.advocacyActions = null;        
 
-        // //Emergency supply chain    
+        //Emergency supply chain    
         this.prepositionedStock = false;
         this.forThisResponse = false;
-        this.plannedProcurement = "";
-        this.procurementSpend = "";
+        this.plannedProcurement = null;
+        this.procurementSpend = null;
+
+
     }
 }
