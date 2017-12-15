@@ -4,10 +4,8 @@
     {{ctrl.convertToDraft}} convertToDraft    
     {{ctrl.saveDraft}} save Draft
     {{ctrl.submit}} submit 
-    {{ctrl.approve}} approve
-    {{ctrl.saveDraft}} save Draft
-    {{ctrl.submit}} submit
     {{ctrl.approve}} approve -->
+
 </div>
 <md-content ng-cloak class="md-inline-form" ng-if="ctrl.readOnly === false">
     <ng-form name="form" novalidate>
@@ -21,10 +19,6 @@
                     <!-- has-permissions="[ctrl.appPermissions.admin]"> -->
                     <!-- ng-disabled="!ctrl.main.isReadyToSubmit()"> -->
                     Submit
-                </md-button>
-                <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.approve === true" ng-hide="ctrl.main.isRequestProcessing " ng-click="ctrl.approveReport(form)">
-                    <!-- ng-disabled="!ctrl.main.isReadyToSubmit()"> -->
-                    Approve
                 </md-button>
                 <md-progress-circular md-mode="indeterminate" class="md-primary md-hue-3" ng-show="ctrl.main.isRequestProcessing" md-diameter="70"></md-progress-circular>
             </div>
