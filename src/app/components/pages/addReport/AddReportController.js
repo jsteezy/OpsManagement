@@ -264,13 +264,26 @@ export default class AddReportController extends BaseController {
             let storeResponsePromise = this.reportsService.store(model);
             storeResponsePromise.then(
                 () => {
-                    this.toastService.showToast('Report draft created', 'app');
-
+                    if(model.nonSciResponses){
+                        var nonSciModel = this.reportsService.buildNonSCIModel(super.model);
+                        let storeResponsePromiseNonSci = this.reportsService.updateNonSci(nonSciModel);
+                        storeResponsePromiseNonSci.then(
+                            () => {
+                                this.toastService.showToast('Report draft updated', 'app');
+                                super.redirectToHome();
+                            },
+                            (errorData) => {
+                                super.serverRequestErrors = errorData;
+                            })                     
+                    }
+                    
+                    this.toastService.showToast('Report draft updated', 'app');
                     super.redirectToHome();
                 },
                 (errorData) => {
                     super.serverRequestErrors = errorData;
                 });
+
         }
     }
 
