@@ -1,41 +1,29 @@
 <div ng-if="ctrl.readOnly === true">
-    <view-report main="ctrl"></view-report>   
-    <!-- {{ctrl.reject}} reject
-    {{ctrl.convertToDraft}} convertToDraft    
-    {{ctrl.saveDraft}} save Draft
-    {{ctrl.submit}} submit 
-    {{ctrl.approve}} approve -->
-
+    <view-report main="ctrl"></view-report>
 </div>
 <md-content ng-cloak class="md-inline-form" ng-if="ctrl.readOnly === false">
     <ng-form name="form" novalidate>
         <div layout-gt-sm="row" layout-align="space-between center">
             <h2>{{ctrl.model.code}}</h2>
             <div layout="row">
-                <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.saveDraft" ng-hide="ctrl.main.isRequestProcessing" ng-click="ctrl.storeAsDraft(form)">
+                <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.saveDraft" ng-hide="ctrl.main.isRequestProcessing"
+                    ng-click="ctrl.storeAsDraft(form)">
                     Save Draft
                 </md-button>
-                <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.submit === true" ng-hide="ctrl.main.isRequestProcessing" ng-click="ctrl.submitReport(form)">
-                    <!-- has-permissions="[ctrl.appPermissions.admin]"> -->
+                <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.submit === true" ng-hide="ctrl.main.isRequestProcessing"
+                    ng-click="ctrl.submitReport(form)">
                     <!-- ng-disabled="!ctrl.main.isReadyToSubmit()"> -->
                     Submit
                 </md-button>
                 <md-progress-circular md-mode="indeterminate" class="md-primary md-hue-3" ng-show="ctrl.main.isRequestProcessing" md-diameter="70"></md-progress-circular>
             </div>
-        </div>        
+        </div>
         <toggle-accordion-section></toggle-accordion-section>
-        <div layout-gt-md="row" layout-padding>
-            <div class="md-block" flex-gt-sm="50">
-                <label>Non SCI Implemented</label>
-                <md-checkbox ng-model="ctrl.model.SCIImplemented">
-                </md-checkbox>
-            </div>
-        </div>
-        <div ng-hide="!ctrl.model.SCIImplemented">
-            <accordion heading="Non SCI responses">
-                Need to define non-sci responses questions. This will only show when checkbox above is true and questions will go here
-        </div>
-        </accordion>
+
+        <div class="md-block" flex-gt-sm="50">
+            <label>Non SCI Implemented</label>
+            <md-checkbox ng-model="ctrl.model.nonSciResponses">
+            </md-checkbox>
         </div>
 
         <accordion heading="General Info">
@@ -59,13 +47,13 @@
 
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
-                        <label>Phase</label>
-                        <md-select ng-model="ctrl.model.phase" placeholder="Phase">
-                            <md-option ng-repeat="item in ctrl.phase" ng-value="item">
-                                {{item}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
+                    <label>Phase</label>
+                    <md-select ng-model="ctrl.model.phase" placeholder="Phase">
+                        <md-option ng-repeat="item in ctrl.phase" ng-value="item">
+                            {{item}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Category</label>
                     <textarea ng-model="ctrl.model.category" name="category" md-maxlength="2"></textarea>
@@ -177,13 +165,77 @@
             </div>
 
             <div layout-gt-md="row" layout-padding>
-                <div class="md-block" flex-gt-sm="25">
+                <div class="md-block" flex-gt-sm="30">
                     <label>Seed funds target date set</label>
                     <md-datepicker ng-model="ctrl.model.seedFundsTargetDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
                 </div>
-
+                <md-input-container class="md-block" flex-gt-sm="30" ng-hide="!ctrl.model.nonSciResponses">
+                    <label>Secured income (USD)</label>
+                    <textarea ng-model="ctrl.model.securedIncome" name="securedIncome" md-maxlength="8"></textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="30" ng-hide="!ctrl.model.nonSciResponses">
+                    <label>New awards in year (USD)</label>
+                    <textarea ng-model="ctrl.model.newAwards" name="newAwards" md-maxlength="8"></textarea>
+                </md-input-container>
             </div>
+
+            <div layout-gt-md="row" layout-padding ng-hide="!ctrl.model.nonSciResponses">
+                <md-input-container class="md-block" flex-gt-sm="30">
+                    <label>Response Pipeline (USD)</label>
+                    <md-tooltip md-direction="bottom">High and very hich likelihood</md-tooltip>
+                    <textarea ng-model="ctrl.model.responsePipeline" name="responsePipeline" md-maxlength="8"></textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="30">
+                    <label>Of which appeal (USD)</label>
+                    <textarea ng-model="ctrl.model.responsePipelineAppeal" name="responsePipelineAppeal" md-maxlength="8"></textarea>
+                </md-input-container>
+            </div>
+
+            <div layout-gt-md="row" layout-padding ng-hide="!ctrl.model.nonSciResponses">
+                    <h4>Of which seed funds</h4>
+                    <md-input-container class="md-block" flex-gt-sm="30">
+                        <label>Seed funds secured {USD)</label>
+                        <textarea ng-model="ctrl.model.seedFundsSecured" name="seedFundsSecured" md-maxlength="8"></textarea>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm="30">
+                        <label>Seed funds secured in year (USD)</label>
+                        <textarea ng-model="ctrl.model.seedFundsSecuredYearly" name="seedFundsSecuredYearly" md-maxlength="8"></textarea>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm="30">
+                        <label>CSF (USD)</label>
+                        <textarea ng-model="ctrl.model.CSF" name="CSF" md-maxlength="8"></textarea>
+                    </md-input-container>
+                </div>
         </accordion>
+
+        <accordion heading="Spend" ng-hide="!ctrl.model.nonSciResponses">
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="30">
+                    <label>Response total spend {USD)</label>
+                    <textarea ng-model="ctrl.model.responseTotalSpend" name="responseTotalSpend" md-maxlength="8"></textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="30">
+                    <label>Total spend against CSF (USD)</label>
+                    <textarea ng-model="ctrl.model.totalSpendAgainstCSF" name="totalSpendAgainstCSF" md-maxlength="8"></textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="30">
+                    <label>Total spend through partners (USD)</label>
+                    <textarea ng-model="ctrl.model.totalSpendThroughPartners" name="totalSpendThroughPartners" md-maxlength="8"></textarea>
+                </md-input-container>
+            </div>
+
+            <div layout-gt-md="row" layout-padding>
+                    <md-input-container class="md-block" flex-gt-sm="30">
+                        <label>Total spend through CTP {USD)</label>
+                        <textarea ng-model="ctrl.model.totalSpendThroughCTP" name="totalSpendThroughCTP" md-maxlength="8"></textarea>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm="30">
+                        <label>Total spend on education (USD)</label>
+                        <textarea ng-model="ctrl.model.totalSpendEducation" name="totalSpendEducation" md-maxlength="7"></textarea>
+                    </md-input-container>
+                </div>
+        </accordion>
+
 
         <accordion heading="Deliverables">
             <div layout-gt-md="row" layout-padding>
@@ -409,9 +461,8 @@
         <accordion heading="Saftey and security">
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
-                    <label>Please provide an overview of the S&amp;S  context, 
-                                    including details of security incidents,
-                                    since the last SitRep</label>
+                    <label>Please provide an overview of the S&amp;S context, including details of security incidents, since the
+                        last SitRep</label>
                     <textarea ng-model="ctrl.model.securityContext" name="securityContext" md-maxlength="700"></textarea>
                 </md-input-container>
             </div>

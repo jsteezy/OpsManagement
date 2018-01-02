@@ -85,7 +85,7 @@ export default class ReportsDataAccessService extends BaseDataAccessService {
         let config = {
             headers: {
                 "X-HTTP-Method": "MERGE",
-                "If-Match": "*"
+                "If-Match":  data.etag
             }
         };
 
@@ -98,6 +98,74 @@ export default class ReportsDataAccessService extends BaseDataAccessService {
         data = JSON.stringify(data);
 
         return this.$http.post(requestUrl, data, config);
+    }
+
+    updateNonSci(data) {
+        let listName = "NonSCIManaged";
+
+        let replacements = {
+            "{ID}": data.repoortId,
+            "{LIST_NAME}": listName
+        };
+
+        let requestUrl = helper.replaceData(dataAccessConfig.updateNonSci, replacements);
+
+        let config = {
+            headers: {
+                "X-HTTP-Method": "MERGE",
+                "If-Match": data.etag
+            }
+        };
+
+        super.addDigestProperty(config);
+
+        data = mapper.toJson(data);
+
+        data = super.appendListItemTypeToRequestData(data, listName);
+
+        data = JSON.stringify(data);
+
+        return this.$http.post(requestUrl, data, config);
+    }
+
+    storeNonSci(data) {
+        let listName = "NonSCIManaged";
+
+        let replacements = {
+            "{LIST_NAME}": listName
+        };
+
+        let requestUrl = helper.replaceData(dataAccessConfig.addNonSCI, replacements);
+
+        data = mapper.toJson(data);
+
+        data = super.appendListItemTypeToRequestData(data, listName);
+
+        data = JSON.stringify(data);
+
+        let config = {};
+
+        super.addDigestProperty(config);
+
+        return this.$http.post(requestUrl, data, config);
+    }
+
+    getNonSci(reportId) {
+        let listName = "NonSCIManaged";
+
+        let replacements = {
+            "{ID}": reportId,
+            "{LIST_NAME}": listName
+        };
+
+        let requestUrl = helper.replaceData(dataAccessConfig.getNonSci, replacements);
+
+        let url = this.queryBuilder
+            .queryValue(requestUrl)
+            .selectAll()
+            .build();
+
+        return this.$http.get(url);
     }
 }
 

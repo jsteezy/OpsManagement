@@ -2,6 +2,7 @@ import StringHelpers from "../../helpers/StringHelpers";
 import ObjectMapper from "../../helpers/ObjectMapper";
 import ReportsModel from "../../models/ReportsModel";
 import DateUtils from "../../helpers/DateUtils";
+import NonSCIModel from "../../models/NonSCIModel";
 
 
 export default class ReportsService {
@@ -24,6 +25,15 @@ export default class ReportsService {
         return model;
     }
 
+    buildNonSCIModel(data) {
+        let model = new NonSCIModel();
+
+        if (data) {
+            ObjectMapper.toObject(data, model);        
+        }
+        return model;
+    }
+
     loadPageData() {
         return Promise.all([this.commonDataService.loadCountries(), this.commonDataService.loadRegions()]);
     }
@@ -33,8 +43,12 @@ export default class ReportsService {
         return this.reportsDataAccessService.save(model);
     }
 
-    update(model){
-        return this.reportsDataAccessService.update(model);
+    storeNonSci(model) {
+        return this.reportsDataAccessService.saveNonSci(model);
+    }
+
+    updateNonSci(model){
+        return this.reportsDataAccessService.updateNonSci(model);
     }
 
     getAllReports(responseId) {
@@ -43,6 +57,10 @@ export default class ReportsService {
 
     getReport(reportId) {
         return this.reportsDataAccessService.getReport(reportId);
+    }
+
+    getNonSci(reportId) {
+        return this.reportsDataAccessService.getNonSci(reportId);
     }
 
     getCurrentUserId(userId) {

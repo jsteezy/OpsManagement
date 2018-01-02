@@ -1,6 +1,8 @@
 import BaseController from "../../common/BaseController";
 import ApprovalStatuses from "../../../common/enums/approvalStatuses.json";
 import Phase from "../../../common/enums/phase.json";
+import NonSCIModel from "../../../common/models/NonSCIModel";
+import ResponseModel from "../../../common/models/ResponseModel";
 
 export default class AddReportController extends BaseController {
     constructor($window, $injector, responseService, reportsService, toastService) {
@@ -14,6 +16,8 @@ export default class AddReportController extends BaseController {
 
         this.toastService = toastService;
         this.$window = $window;
+        this.nonSciResponsesModel = new NonSCIModel();
+        this.responseModel = new ResponseModel();
 
         this.readOnly = true;
         this.approve = false;
@@ -46,7 +50,7 @@ export default class AddReportController extends BaseController {
         this.responseService.getResponse(responseId)
             .then(
                 (responseData) => {
-                    var responseModel = this.responseService.buildModel(responseData);
+                    this.responseModel = this.responseService.buildModel(responseData);
 
                     if (reportId != null) {
                         this.reportsService.getReport(reportId)
@@ -56,6 +60,15 @@ export default class AddReportController extends BaseController {
                                     super.model.responseId = responseId;
 
                                     super.model = this.updateBools(super.model);
+
+                                    if(super.model.nonSciResponses)
+                                    {
+                                        this.reportsService.getNonSci(reportId)
+                                        .then(
+                                            (nonSciData) => {
+                                        this.nonSciResponsesModel = this.reportsService.buildNonSCIModel(nonSciData);
+                                            });                                        
+                                    }
 
                                     switch (super.model.status) {
                                         case ApprovalStatuses.draft:
@@ -127,14 +140,38 @@ export default class AddReportController extends BaseController {
                                     }
                                 }, )
                     } else {
+                        //this is when a new report is created                        
                         super.model = this.reportsService.buildModel(responseData)
                         super.model.responseId = responseId;
+
+                        if (this.hasPermissions([super.appPermissions.admin])) {
+                            //admin has all actions, non-read only
+                            this.readOnly = false;
+                            this.approve = false;
+                            this.reject = false;
+                            this.submit = true;
+                            this.saveDraft = true;
+                            this.convertToDraft = false;                                                
+                        } else if (this.hasPermissions([super.appPermissions.approver])) {
+                            //cannot view
+                            this.router.forceNavigate(['AccessDenied']);
+
+                        } else {
+                            //normal user can edit a draft
+                            this.readOnly = false;
+                            this.approve = false;
+                            this.reject = false;
+                            this.submit = true;
+                            this.saveDraft = true;
+                            this.convertToDraft = false;
+                        }
                     }
-
-                    //console.log(super.appPermissions, "appPermissions");
-
+                    var currentUser = super.getcurrentUser();
+                    super.model.userId = currentUser.id;
+                    this.userEmail = currentUser.userEmail;
+                    console.log(currentUser, "currentUser")
                     super.isRequestProcessing = false;
-                    return [super.model, responseModel];
+                    return [super.model, this.responseModel, this.nonSciResponsesModel];
                 },
                 () => {
                     super.isRequestProcessing = false;
@@ -197,12 +234,25 @@ export default class AddReportController extends BaseController {
 
         var model = this.reportsService.buildModel(super.model);
         model.status = ApprovalStatuses.draft;
-        if (model.etag != null) {
+        console.log(model, "draft model");
+        if (model.etag != null || model.id) {
             let storeResponsePromise = this.reportsService.update(model);
             storeResponsePromise.then(
                 () => {
+                    if(model.nonSciResponses){
+                        var nonSciModel = this.reportsService.buildNonSCIModel(super.model);
+                        let storeResponsePromiseNonSci = this.reportsService.updateNonSci(nonSciModel);
+                        storeResponsePromiseNonSci.then(
+                            () => {
+                                this.toastService.showToast('Report draft updated', 'app');
+                                super.redirectToHome();
+                            },
+                            (errorData) => {
+                                super.serverRequestErrors = errorData;
+                            })                     
+                    }
+                    
                     this.toastService.showToast('Report draft updated', 'app');
-
                     super.redirectToHome();
                 },
                 (errorData) => {
@@ -221,8 +271,6 @@ export default class AddReportController extends BaseController {
                     super.serverRequestErrors = errorData;
                 });
         }
-
-
     }
 
     submitReport(form) {
@@ -231,6 +279,9 @@ export default class AddReportController extends BaseController {
 
         var model = this.reportsService.buildModel(super.model);
         model.status = ApprovalStatuses.submitted;
+
+        console.log(model, "submit model");
+        
         if (model.etag != null) {
             let storeResponsePromise = this.reportsService.update(model);
             storeResponsePromise.then(

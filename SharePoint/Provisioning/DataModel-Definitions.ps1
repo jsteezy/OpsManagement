@@ -164,11 +164,11 @@ Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
-$global:FieldDefReportsSCIImplemented = New-FieldDefinition -FieldXml @'
-<Field ID="{96a08aec-4e48-4a75-8df2-8a75e44782c5}" Type="Boolean" Name="SCIImplemented" StaticName="SCIImplemented" DisplayName="SCI Implemented" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
+# $global:FieldDefReportsSCIImplemented = New-FieldDefinition -FieldXml @'
+# <Field ID="{96a08aec-4e48-4a75-8df2-8a75e44782c5}" Type="Boolean" Name="SCIImplemented" StaticName="SCIImplemented" DisplayName="SCI Implemented" 
+# Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
+# ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+# '@;
 
 $global:FieldDefReportsSitrepNumber = New-FieldDefinition -FieldXml @'
 <Field ID="{5f829b01-25db-4da2-8f64-966c39f6610d}" Type="Number" Decimals="0" Name="SitrepNumber" StaticName="SitrepNumber" DisplayName="Sitrep Number" 

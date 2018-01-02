@@ -121,7 +121,7 @@ export default class BaseController extends BaseComponentController {
         return this.hasPermissions([super.appPermissions.everyone]);
     }
 
-    get currentUser() {
+    getcurrentUser() {
         const userService = this.$injector.get("userService");
 
         return userService.getCurrentUser();

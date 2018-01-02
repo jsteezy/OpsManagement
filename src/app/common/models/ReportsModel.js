@@ -20,7 +20,7 @@ export default class ReportsModel extends BaseModel {
 
         this.category = null;
         this.phase = null;
-        this.SCIImplemented = false;
+        //this.SCIImplemented = false;
         this.sitrepNumber = null;
         this.generalContextInternal = null;
         this.generalContextExternal = null;   
