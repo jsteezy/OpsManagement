@@ -143,6 +143,7 @@ export default class AddReportController extends BaseController {
                         //this is when a new report is created                        
                         super.model = this.reportsService.buildModel(responseData)
                         super.model.responseId = responseId;
+                        super.model.id = "";
 
                         if (this.hasPermissions([super.appPermissions.admin])) {
                             //admin has all actions, non-read only
@@ -235,7 +236,7 @@ export default class AddReportController extends BaseController {
         var model = this.reportsService.buildModel(super.model);
         model.status = ApprovalStatuses.draft;
         console.log(model, "draft model");
-        if (model.etag != null || model.id) {
+        if (model.id != "") {
             let storeResponsePromise = this.reportsService.update(model);
             storeResponsePromise.then(
                 () => {

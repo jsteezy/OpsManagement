@@ -47,6 +47,10 @@ export default class ReportsService {
         return this.reportsDataAccessService.saveNonSci(model);
     }
 
+    update(model){
+        return this.reportsDataAccessService.update(model);
+    }
+
     updateNonSci(model){
         return this.reportsDataAccessService.updateNonSci(model);
     }
