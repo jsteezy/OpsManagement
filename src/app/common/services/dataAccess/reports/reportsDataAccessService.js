@@ -135,7 +135,7 @@ export default class ReportsDataAccessService extends BaseDataAccessService {
             "{LIST_NAME}": listName
         };
 
-        let requestUrl = helper.replaceData(dataAccessConfig.addNonSCI, replacements);
+        let requestUrl = helper.replaceData(dataAccessConfig.addNonSci, replacements);
 
         data = mapper.toJson(data);
 

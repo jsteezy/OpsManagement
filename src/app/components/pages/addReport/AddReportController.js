@@ -61,13 +61,12 @@ export default class AddReportController extends BaseController {
 
                                     super.model = this.updateBools(super.model);
 
-                                    if(super.model.nonSciResponses)
-                                    {
+                                    if (super.model.nonSciResponses) {
                                         this.reportsService.getNonSci(reportId)
-                                        .then(
-                                            (nonSciData) => {
-                                        this.nonSciResponsesModel = this.reportsService.buildNonSCIModel(nonSciData);
-                                            });                                        
+                                            .then(
+                                                (nonSciData) => {
+                                                    this.nonSciResponsesModel = this.reportsService.buildNonSCIModel(nonSciData);
+                                                });
                                     }
 
                                     switch (super.model.status) {
@@ -79,7 +78,7 @@ export default class AddReportController extends BaseController {
                                                 this.reject = false;
                                                 this.submit = true;
                                                 this.saveDraft = true;
-                                                this.convertToDraft = false;                                                
+                                                this.convertToDraft = false;
                                             } else if (this.hasPermissions([super.appPermissions.approver])) {
                                                 //cannot view
                                                 this.router.forceNavigate(['AccessDenied']);
@@ -152,7 +151,7 @@ export default class AddReportController extends BaseController {
                             this.reject = false;
                             this.submit = true;
                             this.saveDraft = true;
-                            this.convertToDraft = false;                                                
+                            this.convertToDraft = false;
                         } else if (this.hasPermissions([super.appPermissions.approver])) {
                             //cannot view
                             this.router.forceNavigate(['AccessDenied']);
@@ -167,10 +166,10 @@ export default class AddReportController extends BaseController {
                             this.convertToDraft = false;
                         }
                     }
-                    var currentUser = super.getcurrentUser();
-                    super.model.userId = currentUser.id;
-                    this.userEmail = currentUser.userEmail;
-                    console.log(currentUser, "currentUser")
+                    //var currentUser = super.getcurrentUser();
+                    // super.model.userId = currentUser.id;
+                    // this.userEmail = currentUser.userEmail;
+                    // console.log(currentUser, "currentUser")
                     super.isRequestProcessing = false;
                     return [super.model, this.responseModel, this.nonSciResponsesModel];
                 },
@@ -240,19 +239,32 @@ export default class AddReportController extends BaseController {
             let storeResponsePromise = this.reportsService.update(model);
             storeResponsePromise.then(
                 () => {
-                    if(model.nonSciResponses){
+                    if (model.nonSciResponses) {
+                        //update existing item
                         var nonSciModel = this.reportsService.buildNonSCIModel(super.model);
-                        let storeResponsePromiseNonSci = this.reportsService.updateNonSci(nonSciModel);
-                        storeResponsePromiseNonSci.then(
-                            () => {
-                                this.toastService.showToast('Report draft updated', 'app');
-                                super.redirectToHome();
-                            },
-                            (errorData) => {
-                                super.serverRequestErrors = errorData;
-                            })                     
+                        if (nonSciModel.id != "") {
+                            let storeResponsePromiseNonSci = this.reportsService.updateNonSci(nonSciModel);
+                            storeResponsePromiseNonSci.then(
+                                () => {
+                                    this.toastService.showToast('Report draft updated', 'app');
+                                    super.redirectToHome();
+                                },
+                                (errorData) => {
+                                    super.serverRequestErrors = errorData;
+                                })
+                        } else {
+                            //save new non sci updates
+                            let storeResponsePromiseNonSci = this.reportsService.saveNonSci(nonSciModel);
+                            storeResponsePromiseNonSci.then(
+                                () => {
+                                    this.toastService.showToast('Report draft updated', 'app');
+                                    super.redirectToHome();
+                                },
+                                (errorData) => {
+                                    super.serverRequestErrors = errorData;
+                                })
+                        }
                     }
-                    
                     this.toastService.showToast('Report draft updated', 'app');
                     super.redirectToHome();
                 },
@@ -264,9 +276,9 @@ export default class AddReportController extends BaseController {
             let storeResponsePromise = this.reportsService.store(model);
             storeResponsePromise.then(
                 () => {
-                    if(model.nonSciResponses){
+                    if (model.nonSciResponses) {
                         var nonSciModel = this.reportsService.buildNonSCIModel(super.model);
-                        let storeResponsePromiseNonSci = this.reportsService.updateNonSci(nonSciModel);
+                        let storeResponsePromiseNonSci = this.reportsService.storeNonSci(nonSciModel);
                         storeResponsePromiseNonSci.then(
                             () => {
                                 this.toastService.showToast('Report draft updated', 'app');
@@ -274,16 +286,15 @@ export default class AddReportController extends BaseController {
                             },
                             (errorData) => {
                                 super.serverRequestErrors = errorData;
-                            })                     
+                            })
                     }
-                    
+
                     this.toastService.showToast('Report draft updated', 'app');
                     super.redirectToHome();
                 },
                 (errorData) => {
                     super.serverRequestErrors = errorData;
                 });
-
         }
     }
 
@@ -295,8 +306,8 @@ export default class AddReportController extends BaseController {
         model.status = ApprovalStatuses.submitted;
 
         console.log(model, "submit model");
-        
-        if (model.etag != null) {
+
+        if (model.id != "") {
             let storeResponsePromise = this.reportsService.update(model);
             storeResponsePromise.then(
                 () => {
@@ -311,15 +322,26 @@ export default class AddReportController extends BaseController {
             let storeResponsePromise = this.reportsService.store(model);
             storeResponsePromise.then(
                 () => {
-                    this.toastService.showToast('Report submitted for approval', 'app');
+                    if (model.nonSciResponses) {
+                        var nonSciModel = this.reportsService.buildNonSCIModel(super.model);
+                        let storeResponsePromiseNonSci = this.reportsService.storeNonSci(nonSciModel);
+                        storeResponsePromiseNonSci.then(
+                            () => {
+                                this.toastService.showToast('Report submitted for approval', 'app');
+                                super.redirectToHome();
+                            },
+                            (errorData) => {
+                                super.serverRequestErrors = errorData;
+                            })
+                    }
 
+                    this.toastService.showToast('Report submitted for approval', 'app');
                     super.redirectToHome();
                 },
                 (errorData) => {
                     super.serverRequestErrors = errorData;
                 });
         }
-
     }
 
     approveReport(form) {

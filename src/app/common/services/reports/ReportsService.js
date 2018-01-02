@@ -40,6 +40,9 @@ export default class ReportsService {
 
 
     store(model) {
+        model.userEmail = this.user.email;
+        model.userId = this.user.id;
+        model.title = this.user.title;        
         return this.reportsDataAccessService.save(model);
     }
 
@@ -48,6 +51,9 @@ export default class ReportsService {
     }
 
     update(model){
+        model.userEmail = this.user.email;
+        model.userId = this.user.id;
+        model.title = this.user.title;                
         return this.reportsDataAccessService.update(model);
     }
 
