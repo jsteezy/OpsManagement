@@ -20,7 +20,7 @@ function EnsureStorage()
 
     EnsureReports -web $web
 
-    EnsureNonSCIManaged -web $web
+    ##EnsureNonSCIManaged -web $web
 }
 
 function EnsureSolutionStorage()
@@ -244,49 +244,6 @@ function SetListPermissionsForGroups
 
 #region Non SCI managed responses
 
-function EnsureNonSCIManaged()
-{
-
-    [CmdletBinding()]
-    Param(
-    [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
-    [Microsoft.SharePoint.SPWeb]$web
-    )
-
-    Ensure-Field $web.Url -FieldDef $global:FieldDefResponseId -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefReportId -ListContext $global:ListResponseCodes.Title -webContext $web.ID    
-    Ensure-Field $web.Url -FieldDef $global:FieldDefNonSCISecuredIncome -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefNonSCINewAwards -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefNonSCIResponsePipeline -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefNonSCIResponsePipelineAppeal -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefNonSCISeedFundsSecured -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefNonSCISeedFundsSecuredYearly -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefNonSCICSF -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefNonSCIResponseTotalSpend -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefNonSCITotalSpendAgainstCSF -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefNonSCITotalSpendThroughPartners -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefNonSCITotalSpendThroughCTP -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefNonSCITotalSpendEducation -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-    
-    Ensure-ContentType -Url $web.Url -CTDef $global:CTDefNonSCI -FieldDefs $global:FieldDefResponseId, 
-    $global:FieldDefReportId,
-    $global:FieldDefNonSCISecuredIncome,
-    $global:FieldDefNonSCINewAwards,
-    $global:FieldDefNonSCIResponsePipeline,
-    $global:FieldDefNonSCIResponsePipelineAppeal,
-    $global:FieldDefNonSCISeedFundsSecured,
-    $global:FieldDefNonSCISeedFundsSecuredYearly,
-    $global:FieldDefNonSCICSF,
-    $global:FieldDefNonSCIResponseTotalSpend,
-    $global:FieldDefNonSCITotalSpendAgainstCSF,
-    $global:FieldDefNonSCITotalSpendThroughPartners,
-    $global:FieldDefNonSCITotalSpendThroughCTP,
-    $global:FieldDefNonSCITotalSpendEducation
-
-    Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListNonSCI
-    
-}
-
 #endregion
 
 function EnsureReports() 
@@ -297,6 +254,18 @@ function EnsureReports()
     [Microsoft.SharePoint.SPWeb]$web
     )
 
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSecuredIncome -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsNewAwards -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsResponsePipeline -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsResponsePipelineAppeal -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSeedFundsSecured -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSeedFundsSecuredYearly -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsCSF -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsResponseTotalSpend -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsTotalSpendAgainstCSF -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsTotalSpendThroughPartners -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsTotalSpendThroughCTP -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsTotalSpendEducation -ListContext $global:ListReports.Title -webContext $web.ID
     #region FIELDS
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsStatus -ListContext $global:ListReports.Title -webContext $web.ID    
     Ensure-Field $web.Url -FieldDef $global:FieldDefResponseId -ListContext $global:ListReports.Title -webContext $web.ID
@@ -307,7 +276,7 @@ function EnsureReports()
     # Ensure-Field $web.Url -FieldDef $global:FieldDefReportsRecentContextDevelopment -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsOpsBackstop -ListContext $global:ListReports.Title -webContext $web.ID
     
-    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsResponseStatus -ListContext $global:ListReports.Title -webContext $web.ID
+    #Ensure-Field $web.Url -FieldDef $global:FieldDefReportsResponseStatus -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsCategory -ListContext $global:ListReports.Title -webContext $web.ID    
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsPhase -ListContext $global:ListReports.Title -webContext $web.ID    
     #Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSCIImplemented -ListContext $global:ListReports.Title -webContext $web.ID
@@ -388,7 +357,7 @@ function EnsureReports()
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsPlannedProcurement -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsProcurementSpend -ListContext $global:ListReports.Title -webContext $web.ID
 
-    Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileId -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+    #Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileId -ListContext $global:ListResponseCodes.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileEmail -ListContext $global:ListResponseCodes.Title -webContext $web.ID    
     
     #endregion
@@ -402,7 +371,7 @@ function EnsureReports()
     # $global:FieldDefReportsRecentContextDevelopment,
     $global:FieldDefReportsOpsBackstop,
         
-    $global:FieldDefReportsResponseStatus,
+    #$global:FieldDefReportsResponseStatus,
     $global:FieldDefReportsCategory,    
     $global:FieldDefReportsPhase,    
     #$global:FieldDefReportsSCIImplemented,
@@ -481,8 +450,20 @@ function EnsureReports()
     $global:FieldDefReportsForThisResponse,
     $global:FieldDefReportsPlannedProcurement,
     $global:FieldDefReportsProcurementSpend,
-    $global:FieldDefUserProfileId, 
-    $global:FieldDefUserProfileEmail
+    $global:FieldDefUserProfileEmail,
+
+    $global:FieldDefReportsSecuredIncome,
+    $global:FieldDefReportsNewAwards,
+    $global:FieldDefReportsResponsePipeline,
+    $global:FieldDefReportsResponsePipelineAppeal,
+    $global:FieldDefReportsSeedFundsSecured,
+    $global:FieldDefReportsSeedFundsSecuredYearly,
+    $global:FieldDefReportsCSF,
+    $global:FieldDefReportsResponseTotalSpend,
+    $global:FieldDefReportsTotalSpendAgainstCSF,
+    $global:FieldDefReportsTotalSpendThroughPartners,
+    $global:FieldDefReportsTotalSpendThroughCTP,
+    $global:FieldDefReportsTotalSpendEducation
 
     Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListReports
 }

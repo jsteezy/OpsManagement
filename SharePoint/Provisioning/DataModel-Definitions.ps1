@@ -101,7 +101,7 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 
 $global:FieldDefResponseId = New-FieldDefinition -FieldXml @'
 <Field ID="{B51CF4B4-DBAA-4872-8FE0-9D3AD2986622}" Type="Number" Decimals="0" Name="ResponseId" StaticName="ResponseId" DisplayName="Response Id" 
-Group="_OMT" EnforceUniqueValues="TRUE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="TRUE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
@@ -146,15 +146,15 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 
 ##new
 
-$global:FieldDefReportsResponseStatus = New-FieldDefinition -FieldXml @'
-<Field ID="{1ee92ed9-380d-4d01-bcf7-b98dd57fe759}" Type="Text" MaxLength="255" Name="ResponseStatus" StaticName="ResponseStatus" DisplayName="Response Status" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
+# $global:FieldDefReportsResponseStatus = New-FieldDefinition -FieldXml @'
+# <Field ID="{1ee92ed9-380d-4d01-bcf7-b98dd57fe759}" Type="Text" MaxLength="255" Name="ResponseStatus" StaticName="ResponseStatus" DisplayName="Response Status" 
+# Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+# ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+# '@;
 
 $global:FieldDefReportsCategory = New-FieldDefinition -FieldXml @'
 <Field ID="{beb9f7e0-887a-41b4-a28c-f17c94da7334}" Type="Number" Decimals="0" Name="Category" StaticName="Category" DisplayName="Category" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
@@ -172,7 +172,7 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 
 $global:FieldDefReportsSitrepNumber = New-FieldDefinition -FieldXml @'
 <Field ID="{5f829b01-25db-4da2-8f64-966c39f6610d}" Type="Number" Decimals="0" Name="SitrepNumber" StaticName="SitrepNumber" DisplayName="Sitrep Number" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
@@ -219,43 +219,43 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 
 $global:FieldDefReportsAffectedPopulation = New-FieldDefinition -FieldXml @'
 <Field ID="{e9bbc06d-3fdf-4f9a-a252-577d18764da2}" Type="Number" Decimals="0" Name="AffectedPopulation" StaticName="AffectedPopulation" DisplayName="Affected Population" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsStrategyTarget = New-FieldDefinition -FieldXml @'
 <Field ID="{4c11753d-ec91-45a7-b10a-138e14340ced}" Type="Number" Decimals="0" Name="StrategyTarget" StaticName="StrategyTarget" DisplayName="Strategy Target" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsTotalReachSinceStart = New-FieldDefinition -FieldXml @'
 <Field ID="{4ef71399-3520-46b8-873e-1492a1d81543}" Type="Number" Decimals="0" Name="TotalReachSinceStart" StaticName="TotalReachSinceStart" DisplayName="Total Reach Since Start" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsTotalReachSinceLastSitrep = New-FieldDefinition -FieldXml @'
 <Field ID="{a87e840f-de9d-4e31-9f49-aec5ecab169b}" Type="Number" Decimals="0" Name="TotalReachSinceLastSitrep" StaticName="TotalReachSinceLastSitrep" DisplayName="Total Reach Since Last Sitrep" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsChildrenReachedSinceStart = New-FieldDefinition -FieldXml @'
 <Field ID="{9c144ade-0057-4b8d-a097-f91a172f0a17}" Type="Number" Decimals="0" Name="ChildrenReachedSinceStart" StaticName="ChildrenReachedSinceStart" DisplayName="Children Reached Since Start" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsChildrenReachedSinceLastSitrep = New-FieldDefinition -FieldXml @'
 <Field ID="{0341a32f-d256-4694-b6c1-2aa48051a2e5}" Type="Number" Decimals="0" Name="ChildrenReachedSinceLastSitrep" StaticName="ChildrenReachedSinceLastSitrep" DisplayName="Children Reached Since Last Sitrep" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsStrategyTargetChildren = New-FieldDefinition -FieldXml @'
 <Field ID="{a5bbd2bb-7186-4caa-9cb5-6071cd36e924}" Type="Number" Decimals="0" Name="StrategyTargetChildren" StaticName="StrategyTargetChildren" DisplayName="Strategy Target Children" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
@@ -263,13 +263,13 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 
 $global:FieldDefReportsResponseStrategyTarget = New-FieldDefinition -FieldXml @'
 <Field ID="{f11914b3-f3bf-41f9-8973-d1933ecf7e91}" Type="Number" Decimals="0" Name="ResponseStrategyTarget" StaticName="ResponseStrategyTarget" DisplayName="Response Strategy Target" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsSeedFundsTarget = New-FieldDefinition -FieldXml @'
 <Field ID="{df761917-c4fa-4b64-bef3-c0fb56492293}" Type="Number" Decimals="0" Name="SeedFundsTarget" StaticName="SeedFundsTarget" DisplayName="Seed Funds Target" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
@@ -281,7 +281,7 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 
 $global:FieldDefReportsCrisisModifiers = New-FieldDefinition -FieldXml @'
 <Field ID="{2a242300-fa66-4aff-941a-b60ba74c579d}" Type="Number" Decimals="0" Name="CrisisModifiers" StaticName="CrisisModifiers" DisplayName="Crisis Modifiers" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
@@ -444,13 +444,13 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 
 $global:FieldDefReportsNationalStaffNumber = New-FieldDefinition -FieldXml @'
 <Field ID="{31ab478f-4606-4ec8-b3c6-6da5c62a5489}" Type="Number" Decimals="0" Name="NationalStaffNumber" StaticName="NationalStaffNumber" DisplayName="National Staff Number" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsInternationalStaffNumber = New-FieldDefinition -FieldXml @'
 <Field ID="{e3508f0f-4f38-45d5-b676-e69831c9b9e6}" Type="Number" Decimals="0" Name="InternationalStaffNumber" StaticName="InternationalStaffNumber" DisplayName="International Staff Number" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
@@ -484,7 +484,7 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 
 $global:FieldDefReportsStaffChildSafegaurding = New-FieldDefinition -FieldXml @'
 <Field ID="{50560281-9e50-4820-9420-432e0bf535eb}" Type="Number" Decimals="0" Name="StaffChildSafegaurding" StaticName="StaffChildSafegaurding" DisplayName="Staff Child Safegaurding" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
@@ -542,15 +542,93 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 
 $global:FieldDefReportsPlannedProcurement = New-FieldDefinition -FieldXml @'
 <Field ID="{9ecf6c99-fa9a-4904-a514-dba6b488fbc9}" Type="Number" Decimals="0" Name="PlannedProcurement" StaticName="PlannedProcurement" DisplayName="Planned Procurement" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:FieldDefReportsProcurementSpend = New-FieldDefinition -FieldXml @'
 <Field ID="{313d5a0e-c2ed-44d4-8c82-622de0ae1993}" Type="Number" Decimals="0" Name="ProcurementSpend" StaticName="ProcurementSpend" DisplayName="Procurement Spend" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
+
+$global:FieldDefReportsSecuredIncome = New-FieldDefinition -FieldXml @'
+<Field ID="{8c966f1c-8c5e-42ed-86b8-6d668926b77e}" Type="Number" Decimals="0" Name="SecuredIncome" StaticName="SecuredIncome" DisplayName="Secured Income" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefReportsNewAwards = New-FieldDefinition -FieldXml @'
+<Field ID="{53069a36-4d85-4f64-94dc-c3900afd11db}" Type="Number" Decimals="0" Name="NewAwards" StaticName="NewAwards" DisplayName="New Awards" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefReportsResponsePipeline = New-FieldDefinition -FieldXml @'
+<Field ID="{024fd032-b524-4055-9127-d0694cc785e0}" Type="Number" Decimals="0" Name="ResponsePipeline" StaticName="ResponsePipeline" DisplayName="Response Pipeline" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefReportsResponsePipelineAppeal = New-FieldDefinition -FieldXml @'
+<Field ID="{b2e96b4c-1455-4aa9-8806-b5f4cb37d58f}" Type="Number" Decimals="0" Name="ResponsePipelineAppeal" StaticName="ResponsePipelineAppeal" DisplayName="Response Pipeline Appeal" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefReportsSeedFundsSecured = New-FieldDefinition -FieldXml @'
+<Field ID="{2a4a533a-7f85-4044-b232-b66288079b9b}" Type="Number" Decimals="0" Name="SeedFundsSecured" StaticName="SeedFundsSecured" DisplayName="Seed Funds Secured" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefReportsSeedFundsSecuredYearly = New-FieldDefinition -FieldXml @'
+<Field ID="{5e20371c-e940-4d44-b372-c91564f25935}" Type="Number" Decimals="0" Name="SeedFundsSecuredYearly" StaticName="SeedFundsSecuredYearly" DisplayName="Seed Funds Secured Yearly" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefReportsCSF = New-FieldDefinition -FieldXml @'
+<Field ID="{45bdc06f-a9c2-40bb-a2d3-279be60cf913}" Type="Number" Decimals="0" Name="CSF" StaticName="CSF" DisplayName="CSF" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefReportsResponseTotalSpend = New-FieldDefinition -FieldXml @'
+<Field ID="{8c13ae84-42c1-4f7e-9289-a4a4f1657908}" Type="Number" Decimals="0" Name="ResponseTotalSpend" StaticName="ResponseTotalSpend" DisplayName="Response Total Spend" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefReportsTotalSpendAgainstCSF = New-FieldDefinition -FieldXml @'
+<Field ID="{16c80487-d2c9-4cac-a91f-dc12e2b8bd33}" Type="Number" Decimals="0" Name="TotalSpendAgainstCSF" StaticName="TotalSpendAgainstCSF" DisplayName="Total Spend Against CSF" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefReportsTotalSpendThroughPartners = New-FieldDefinition -FieldXml @'
+<Field ID="{65e63a9c-3ba6-403a-bb06-6cbdc7ceb849}" Type="Number" Decimals="0" Name="TotalSpendThroughPartners" StaticName="TotalSpendThroughPartners" DisplayName="Total Spend Through Partners" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefReportsTotalSpendThroughCTP = New-FieldDefinition -FieldXml @'
+<Field ID="{d6e758bb-d38f-4c5f-8a08-f7e8e0d1d713}" Type="Number" Decimals="0" Name="TotalSpendThroughCTP" StaticName="TotalSpendThroughCTP" DisplayName="Total Spend Through CTP" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefReportsTotalSpendEducation = New-FieldDefinition -FieldXml @'
+<Field ID="{05cd5685-c679-4923-bf29-2b6b85bdec93}" Type="Number" Decimals="0" Name="TotalSpendEducation" StaticName="TotalSpendEducation" DisplayName="Total Spend Education" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+# $global:FieldDefReportId = New-FieldDefinition -FieldXml @'
+# <Field ID="{107bb03f-8443-4dd9-8018-2d4bb42026e3}" Type="Number" Decimals="0" Name="ReportId" StaticName="ReportId" DisplayName="Report Id" 
+# Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+# ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+# '@;
 
 
 $global:CTDefReports = New-ContentTypeDefinition -ID "0x0100C2DB3C6656AA48D89CB763E667C1FC48" -Name "Reports" -Group $CTGroup -Description "Reports";
@@ -602,12 +680,6 @@ Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
-$global:FieldDefUserProfileId = New-FieldDefinition -FieldXml @'
-<Field ID="{b64dc956-494e-4e90-8a6d-c2e28859d9f0}" Type="Number" Decimals="0" Name="UserId" StaticName="UserId" DisplayName="User ID" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
 $global:FieldDefUserProfileEmail = New-FieldDefinition -FieldXml @'
 <Field ID="{eba2c774-6436-4fbc-b025-3a9827c19dae}" Type="Text" MaxLength="255" Name="UserEmail" StaticName="UserEmail" DisplayName="User Email" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
@@ -621,92 +693,3 @@ $global:ListResponseCodes = New-ListDefinition -ListTitle $global:ResponseCodesL
 
 #endregion
 
-#region Non sci responses
-
-$global:NonSCIListTitle = "Non SCI managed";
-$global:NonSCIListName = "NonSCIManaged";
-
-$global:FieldDefNonSCISecuredIncome = New-FieldDefinition -FieldXml @'
-<Field ID="{8c966f1c-8c5e-42ed-86b8-6d668926b77e}" Type="Number" Decimals="0" Name="SecuredIncome" StaticName="SecuredIncome" DisplayName="Secured Income" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefNonSCINewAwards = New-FieldDefinition -FieldXml @'
-<Field ID="{53069a36-4d85-4f64-94dc-c3900afd11db}" Type="Number" Decimals="0" Name="NewAwards" StaticName="NewAwards" DisplayName="New Awards" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefNonSCIResponsePipeline = New-FieldDefinition -FieldXml @'
-<Field ID="{024fd032-b524-4055-9127-d0694cc785e0}" Type="Number" Decimals="0" Name="ResponsePipeline" StaticName="ResponsePipeline" DisplayName="Response Pipeline" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefNonSCIResponsePipelineAppeal = New-FieldDefinition -FieldXml @'
-<Field ID="{b2e96b4c-1455-4aa9-8806-b5f4cb37d58f}" Type="Number" Decimals="0" Name="ResponsePipelineAppeal" StaticName="ResponsePipelineAppeal" DisplayName="Response Pipeline Appeal" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefNonSCISeedFundsSecured = New-FieldDefinition -FieldXml @'
-<Field ID="{2a4a533a-7f85-4044-b232-b66288079b9b}" Type="Number" Decimals="0" Name="SeedFundsSecured" StaticName="SeedFundsSecured" DisplayName="Seed Funds Secured" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefNonSCISeedFundsSecuredYearly = New-FieldDefinition -FieldXml @'
-<Field ID="{5e20371c-e940-4d44-b372-c91564f25935}" Type="Number" Decimals="0" Name="SeedFundsSecuredYearly" StaticName="SeedFundsSecuredYearly" DisplayName="Seed Funds Secured Yearly" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefNonSCICSF = New-FieldDefinition -FieldXml @'
-<Field ID="{45bdc06f-a9c2-40bb-a2d3-279be60cf913}" Type="Number" Decimals="0" Name="CSF" StaticName="CSF" DisplayName="CSF" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefNonSCIResponseTotalSpend = New-FieldDefinition -FieldXml @'
-<Field ID="{8c13ae84-42c1-4f7e-9289-a4a4f1657908}" Type="Number" Decimals="0" Name="ResponseTotalSpend" StaticName="ResponseTotalSpend" DisplayName="Response Total Spend" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefNonSCITotalSpendAgainstCSF = New-FieldDefinition -FieldXml @'
-<Field ID="{16c80487-d2c9-4cac-a91f-dc12e2b8bd33}" Type="Number" Decimals="0" Name="TotalSpendAgainstCSF" StaticName="TotalSpendAgainstCSF" DisplayName="Total Spend Against CSF" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefNonSCITotalSpendThroughPartners = New-FieldDefinition -FieldXml @'
-<Field ID="{65e63a9c-3ba6-403a-bb06-6cbdc7ceb849}" Type="Number" Decimals="0" Name="TotalSpendThroughPartners" StaticName="TotalSpendThroughPartners" DisplayName="Total Spend Through Partners" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefNonSCITotalSpendThroughCTP = New-FieldDefinition -FieldXml @'
-<Field ID="{d6e758bb-d38f-4c5f-8a08-f7e8e0d1d713}" Type="Number" Decimals="0" Name="TotalSpendThroughCTP" StaticName="TotalSpendThroughCTP" DisplayName="Total Spend Through CTP" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefNonSCITotalSpendEducation = New-FieldDefinition -FieldXml @'
-<Field ID="{05cd5685-c679-4923-bf29-2b6b85bdec93}" Type="Number" Decimals="0" Name="TotalSpendEducation" StaticName="TotalSpendEducation" DisplayName="Total Spend Education" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefReportId = New-FieldDefinition -FieldXml @'
-<Field ID="{107bb03f-8443-4dd9-8018-2d4bb42026e3}" Type="Number" Decimals="0" Name="ReportId" StaticName="ReportId" DisplayName="Report Id" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:CTDefNonSCI = New-ContentTypeDefinition -ID "0x0100C2DB3C6656AA48D89CB763E667C1FC30" -Name "NonSCIManaged" -Group $CTGroup -Description "Additional fields for non SCI managed responses";
-
-$global:ListNonSCI = New-ListDefinition -ListTitle $global:NonSCIListTitle -ListUrl $global:NonSCIListName -Description "Additional fields for non SCI managed resposes" -Template $CustomListTemplate -ContentTypes @($global:CTDefNonSCI.Name);
-
-
-#endregion
