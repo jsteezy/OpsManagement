@@ -2,8 +2,5 @@
     "getAllReports": "/_api/Lists/getByTitle('{LIST_NAME}')/items?$filter=ResponseId eq {ID}",
     "getReport": "/_api/Lists/getByTitle('{LIST_NAME}')/items?$filter=ID eq {ID}",    
     "addReport": "/_api/Lists/getByTitle('Reports')/items",
-    "updateReport": "/_api/Lists/getByTitle('Reports')/items({ID})",
-    "getNonSci": "/_api/Lists/getByTitle('{LIST_NAME}')/items?$filter=ReportId eq {ID}",    
-    "addNonSci": "/_api/Lists/getByTitle('{LIST_NAME}')/items",
-    "updateNonSci": "/_api/Lists/getByTitle('{LIST_NAME}')/items({ID})"
+    "updateReport": "/_api/Lists/getByTitle('Reports')/items({ID})"
 }

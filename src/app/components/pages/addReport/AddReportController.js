@@ -1,7 +1,6 @@
 import BaseController from "../../common/BaseController";
 import ApprovalStatuses from "../../../common/enums/approvalStatuses.json";
 import Phase from "../../../common/enums/phase.json";
-import NonSCIModel from "../../../common/models/NonSCIModel";
 import ResponseModel from "../../../common/models/ResponseModel";
 
 export default class AddReportController extends BaseController {
@@ -16,7 +15,6 @@ export default class AddReportController extends BaseController {
 
         this.toastService = toastService;
         this.$window = $window;
-        this.nonSciResponsesModel = new NonSCIModel();
         this.responseModel = new ResponseModel();
 
         this.readOnly = true;
@@ -60,14 +58,6 @@ export default class AddReportController extends BaseController {
                                     super.model.responseId = responseId;
 
                                     super.model = this.updateBools(super.model);
-
-                                    if (super.model.nonSciResponses) {
-                                        this.reportsService.getNonSci(reportId)
-                                            .then(
-                                                (nonSciData) => {
-                                                    this.nonSciResponsesModel = this.reportsService.buildNonSCIModel(nonSciData);
-                                                });
-                                    }
 
                                     switch (super.model.status) {
                                         case ApprovalStatuses.draft:
@@ -166,12 +156,8 @@ export default class AddReportController extends BaseController {
                             this.convertToDraft = false;
                         }
                     }
-                    //var currentUser = super.getcurrentUser();
-                    // super.model.userId = currentUser.id;
-                    // this.userEmail = currentUser.userEmail;
-                    // console.log(currentUser, "currentUser")
                     super.isRequestProcessing = false;
-                    return [super.model, this.responseModel, this.nonSciResponsesModel];
+                    return [super.model, this.responseModel];
                 },
                 () => {
                     super.isRequestProcessing = false;
@@ -239,32 +225,6 @@ export default class AddReportController extends BaseController {
             let storeResponsePromise = this.reportsService.update(model);
             storeResponsePromise.then(
                 () => {
-                    if (model.nonSciResponses) {
-                        //update existing item
-                        var nonSciModel = this.reportsService.buildNonSCIModel(super.model);
-                        if (nonSciModel.id != "") {
-                            let storeResponsePromiseNonSci = this.reportsService.updateNonSci(nonSciModel);
-                            storeResponsePromiseNonSci.then(
-                                () => {
-                                    this.toastService.showToast('Report draft updated', 'app');
-                                    super.redirectToHome();
-                                },
-                                (errorData) => {
-                                    super.serverRequestErrors = errorData;
-                                })
-                        } else {
-                            //save new non sci updates
-                            let storeResponsePromiseNonSci = this.reportsService.saveNonSci(nonSciModel);
-                            storeResponsePromiseNonSci.then(
-                                () => {
-                                    this.toastService.showToast('Report draft updated', 'app');
-                                    super.redirectToHome();
-                                },
-                                (errorData) => {
-                                    super.serverRequestErrors = errorData;
-                                })
-                        }
-                    }
                     this.toastService.showToast('Report draft updated', 'app');
                     super.redirectToHome();
                 },
@@ -276,19 +236,6 @@ export default class AddReportController extends BaseController {
             let storeResponsePromise = this.reportsService.store(model);
             storeResponsePromise.then(
                 () => {
-                    if (model.nonSciResponses) {
-                        var nonSciModel = this.reportsService.buildNonSCIModel(super.model);
-                        let storeResponsePromiseNonSci = this.reportsService.storeNonSci(nonSciModel);
-                        storeResponsePromiseNonSci.then(
-                            () => {
-                                this.toastService.showToast('Report draft updated', 'app');
-                                super.redirectToHome();
-                            },
-                            (errorData) => {
-                                super.serverRequestErrors = errorData;
-                            })
-                    }
-
                     this.toastService.showToast('Report draft updated', 'app');
                     super.redirectToHome();
                 },
@@ -322,19 +269,6 @@ export default class AddReportController extends BaseController {
             let storeResponsePromise = this.reportsService.store(model);
             storeResponsePromise.then(
                 () => {
-                    if (model.nonSciResponses) {
-                        var nonSciModel = this.reportsService.buildNonSCIModel(super.model);
-                        let storeResponsePromiseNonSci = this.reportsService.storeNonSci(nonSciModel);
-                        storeResponsePromiseNonSci.then(
-                            () => {
-                                this.toastService.showToast('Report submitted for approval', 'app');
-                                super.redirectToHome();
-                            },
-                            (errorData) => {
-                                super.serverRequestErrors = errorData;
-                            })
-                    }
-
                     this.toastService.showToast('Report submitted for approval', 'app');
                     super.redirectToHome();
                 },

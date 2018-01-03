@@ -357,7 +357,7 @@ function EnsureReports()
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsPlannedProcurement -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsProcurementSpend -ListContext $global:ListReports.Title -webContext $web.ID
 
-    #Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileId -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileId -ListContext $global:ListResponseCodes.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileEmail -ListContext $global:ListResponseCodes.Title -webContext $web.ID    
     
     #endregion
@@ -371,7 +371,7 @@ function EnsureReports()
     # $global:FieldDefReportsRecentContextDevelopment,
     $global:FieldDefReportsOpsBackstop,
         
-    #$global:FieldDefReportsResponseStatus,
+    $global:FieldDefReportsResponseStatus,
     $global:FieldDefReportsCategory,    
     $global:FieldDefReportsPhase,    
     #$global:FieldDefReportsSCIImplemented,
@@ -451,6 +451,7 @@ function EnsureReports()
     $global:FieldDefReportsPlannedProcurement,
     $global:FieldDefReportsProcurementSpend,
     $global:FieldDefUserProfileEmail,
+    $global:FieldDefUserProfileId,
 
     $global:FieldDefReportsSecuredIncome,
     $global:FieldDefReportsNewAwards,

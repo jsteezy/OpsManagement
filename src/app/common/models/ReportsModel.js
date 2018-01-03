@@ -6,7 +6,7 @@ export default class ReportsModel extends BaseModel {
     constructor() {
         super();
 
-        this.userId = null;
+        this.userId = null;        
         this.userEmail = null;
         this.responseId = null;
         this.status = ApprovalStatuses.none;
@@ -23,11 +23,11 @@ export default class ReportsModel extends BaseModel {
         //this.SCIImplemented = false;
         this.sitrepNumber = null;
         this.generalContextInternal = null;
-        this.generalContextExternal = null;   
+        this.generalContextExternal = null;
         this.responseUpdateInternal = null;
         this.responseUpdateExternal = null;
         this.challengesInternal = null;
-                
+
         // //Non SCI responses
         this.nonSciResponses = false;
 
@@ -115,7 +115,7 @@ export default class ReportsModel extends BaseModel {
         this.mediaCoverage = null;
         this.spokespeople = null;
 
-        this.advocacyActions = null;        
+        this.advocacyActions = null;
 
         //Emergency supply chain    
         this.prepositionedStock = false;
@@ -123,6 +123,18 @@ export default class ReportsModel extends BaseModel {
         this.plannedProcurement = null;
         this.procurementSpend = null;
 
-
+        //Non SCI responses
+        this.securedIncome = null;
+        this.newAwards = null;
+        this.responsePipeline = null;
+        this.responsePipelineAppeal = null;
+        this.seedFundsSecured = null;
+        this.seedFundsSecuredYearly = null;
+        this.CSF = null;
+        this.responseTotalSpend = null;
+        this.totalSpendAgainstCSF = null;
+        this.totalSpendThroughPartners = null;
+        this.totalSpendThroughCTP = null;
+        this.totalSpendEducation = null;
     }
 }
