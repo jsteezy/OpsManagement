@@ -34,7 +34,7 @@ export default class GridOptions {
 
                     { displayName: 'Sitrep Date', field: 'SitrepDate', enableSorting: true, cellFilter: "dateFormat" },
                     { displayName: 'Next Sitrep Date', field: 'NextSitrepDate', cellFilter: "dateFormat" },
-                    { displayName: 'Last modified by', field: 'Editor', enableFiltering: true, enableSorting: true }
+                    { displayName: 'Last modified by', field: 'Title', enableFiltering: true, enableSorting: true }
                     
                     // { displayName: 'General Context', field: 'GeneralContext' },
                     // { displayName: 'Recent Context Development', field: 'RecentContextDevelopment' },

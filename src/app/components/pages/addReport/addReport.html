@@ -1,6 +1,280 @@
 <div ng-if="ctrl.readOnly === true">
-    <view-report main="ctrl"></view-report>
+    <md-content ng-cloak class="md-inline-form">
+        <div layout-gt-sm="row" layout-align="space-between center">
+            <h2>{{ctrl.model.code}}</h2>
+
+            <div layout="row">
+                <md-button class="md-raised md-primary" aria-label="Convert to Draft" ng-if="ctrl.convertToDraft" ng-hide="ctrl.main.isRequestProcessing"
+                    ng-click="ctrl.reject(ctrl.model)">
+                    Convert to Draft
+                </md-button>
+                <md-button class="md-raised md-primary" aria-label="Reject" ng-if="ctrl.reject === true" ng-hide="ctrl.main.isRequestProcessing"
+                    ng-click="ctrl.submitReport(ctrl.model)">
+                    <!-- ng-disabled="!ctrl.main.isReadyToSubmit()"> -->
+                    Reject
+                </md-button>
+                <md-button class="md-raised md-primary" aria-label="Approve" ng-if="ctrl.approve === true" ng-hide="ctrl.main.isRequestProcessing "
+                    ng-click="ctrl.approveReport(ctrl.model)">
+                    Approve
+                </md-button>
+                <md-progress-circular md-mode="indeterminate" class="md-primary md-hue-3" ng-show="ctrl.main.isRequestProcessing" md-diameter="70"></md-progress-circular>
+            </div>
+        </div>
+
+        <div class="well">
+            <div layout-gt-md="row" layout-padding>
+                <h4>General Info</h4>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Sitrep date: {{ctrl.model.sitrepDate}}</div>
+                <div>Next sitrep date: {{ctrl.model.nextSitrepDate}}</div>
+                <div>Sitrep number: {{ctrl.model.sitrepNumber}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Phase: {{ctrl.model.phase}}</div>
+                <div>Category: {{ctrl.model.category}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>General Context Internal: {{ctrl.model.generalContextInternal}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>General Context External: {{ctrl.model.generalContextExternal}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Response Update Internal: {{ctrl.model.responseUpdateInternal}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Response Update External: {{ctrl.model.responseUpdateExternal}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Challenges Internal: {{ctrl.model.challengesInternal}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Ops Backstop: {{ctrl.model.opsBackstop}}</div>
+            </div>
+        </div>
+
+        <div class="well">
+            <div layout-gt-md="row" layout-padding>
+                <h4>Reach figures</h4>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Affected population: {{ctrl.model.affectedPopulation}}</div>
+                <div>Strategy target (all): {{ctrl.model.strategyTarget}}</div>
+                <div>Strategy target (children): {{ctrl.model.strategyTargetChildren}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Total reach since start date: {{ctrl.model.totalReachSinceStart}}</div>
+                <div>Total reach since last sitrep: {{ctrl.model.totalReachSinceLastSitrep}}</div>
+                <div>Children reached since start date: {{ctrl.model.childrenReachedSinceStart}}</div>
+                <div>Children reached since last sitrep: {{ctrl.model.childrenReachedSinceLastSitrep}}</div>
+            </div>
+        </div>
+
+        <div class="well">
+            <div layout-gt-md="row" layout-padding>
+                <h4>Income</h4>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Response strategy target (USD): {{ctrl.model.responseStrategyTarget}}</div>
+                <div>Seed funds target (USD): {{ctrl.model.seedFundsTarget}}</div>
+                <div>Crisis Modifiers: {{ctrl.model.crisisModifiers}}</div>
+                <div>Seed funds target date set: {{ctrl.model.seedFundsTargetDate}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding ng-hide="!ctrl.model.nonSciResponses">
+                <div>Secured income (USD): {{ctrl.model.securedIncome}}</div>
+                <div>New awards in year (USD): {{ctrl.model.newAwards}}</div>
+                <div>Response Pipeline (USD): {{ctrl.model.responsePipeline}}</div>
+                <div>Of which appeal (USD): {{ctrl.model.responsePipelineAppeal}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding ng-hide="!ctrl.model.nonSciResponses">
+                <h5>Of which seed funds</h5>
+            </div>
+            <div layout-gt-md="row" layout-padding ng-hide="!ctrl.model.nonSciResponses">
+                <div>Seed funds secured {USD): {{ctrl.model.seedFundsSecured}}</div>
+                <div>Seed funds secured in year (USD): {{ctrl.model.seedFundsSecuredYearly}}</div>
+                <div>CSF (USD): {{ctrl.model.CSF}}</div>
+            </div>
+        </div>
+
+        <div class="well">
+            <div layout-gt-md="row" layout-padding>
+                <h4>Deliverables</h4>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Assessment:
+                    <a href="{{ctrl.model.assessment}}" target="_blank">{{ctrl.model.assessment}}</a>
+                </div>
+                <br>
+                <div>Outline:
+                    <a href="{{ctrl.model.outline}}" target="_blank">{{ctrl.model.outline}}</a>
+                </div>
+                <br>                
+                <div>Strategy:
+                    <a href="{{ctrl.model.strategy}}" target="_blank">{{ctrl.model.strategy}}</a>
+                </div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Plan:
+                    <a href="{{ctrl.model.plan}}" target="_blank">{{ctrl.model.plan}}</a>
+                </div>
+                <br>                
+                <div>Operations Control review:
+                    <a href="{{ctrl.model.operationsControlReview}}" target="_blank">{{ctrl.model.operationsControlReview}}</a>
+                </div>
+                <br>                
+                <div>Real-time review:
+                    <a href="{{ctrl.model.realTimeReview}}" target="_blank">{{ctrl.model.realTimeReview}}</a>
+                </div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Representation on Humanitarian Country Team (HCT): {{ctrl.model.representationOnHCT}}</div>
+                <br>                
+                <div>Education cluster or working group activated: {{ctrl.model.educationCluster}}</div>
+                <br>                
+                <div>Staffing education cluster or working group: {{ctrl.model.staffingEducationCluster}}</div>
+            </div>
+        </div>
+
+
+        <div class="well">
+            <div layout-gt-md="row" layout-padding>
+                <h4>Sectors</h4>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Child protection backstop: {{ctrl.model.childProtectionBackstop}}</div>
+                <br>
+                <div>Summary of response to date and achievements since last sitrep:
+                    <br>{{ctrl.model.childProtectionSummary}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Education backstop: {{ctrl.model.educationBackstop}}</div>
+                <br>
+                <div>Summary of response to date and achievements since last sitrep:
+                    <br>{{ctrl.model.educationSummary}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>FSL backstop: {{ctrl.model.FSLBackstop}}</div>
+                <br>
+                <div>Summary of response to date and achievements since last sitrep:
+                    <br>{{ctrl.model.FSLSummary}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>WASH backstop: {{ctrl.model.WASHBackstop}}</div>
+                <br>
+                <div>Summary of response to date and achievements since last sitrep:
+                    <br>{{ctrl.model.WASHSummary}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Shelter backstop: {{ctrl.model.shelterBackstop}}</div>
+                <br>
+                <div>Summary of response to date and achievements since last sitrep:
+                    <br>{{ctrl.model.shelterSummary}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Health backstop: {{ctrl.model.healthBackstop}}</div>
+                <br>
+                <div>Summary of response to date and achievements since last sitrep:
+                    <br>{{ctrl.model.healthSummary}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>EHU Deployed: {{ctrl.model.EHUDeployedDate}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Nutrition:
+                    <br>{{ctrl.model.nutritionSummary}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Link to output tracker:
+                    <a href="{{ctrl.model.outputTracker}}" target="_blank">{{ctrl.model.outputTracker}}</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="well">
+            <div layout-gt-md="row" layout-padding>
+                <h4>HR</h4>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div># of national response staff: {{ctrl.model.nationalStaffNumber}}</div>
+                <div># of international staff: {{ctrl.model.internationalStaffNumber}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Deployment tracker link:
+                    <a href="{{ctrl.model.deploymentTrackerLink}}" target="_blank">{{ctrl.model.deploymentTrackerLink}}</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="well">
+            <div layout-gt-md="row" layout-padding>
+                <h4>Saftey and security</h4>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div><span style="font-weight: bold"> Please provide an overview of the S&amp;S context, including details of security incidents, since the last
+                    SitRep:</span>
+                    <br>{{ctrl.model.securityContext}}</div>
+                <div><span style="font-weight: bold">What immediate S&amp;S challenges are predicted?:</span>
+                    <br>{{ctrl.model.securityChallenges}}</div>
+                <div><span style="font-weight: bold">How will those challenges be managed?:</span>
+                    <br>{{ctrl.model.securityManagement}}</div>
+            </div>
+        </div>
+
+        <div class="well">
+            <div layout-gt-md="row" layout-padding>
+                <h4>Child Safeguarding</h4>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>% of staff with child safeguarding training: {{ctrl.model.staffChildSafegaurding}}</div>
+                <div>Child safeguarding focal point: {{ctrl.model.safegaurdingFocalPoint}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Key safeguarding risks to children:
+                    <br>{{ctrl.model.safegaurdingRisks}}</div>
+            </div>
+        </div>
+
+        <div class="well">
+                <div layout-gt-md="row" layout-padding>
+                    <h4>Advocacy, Media and Comms</h4>
+                </div>
+                <div layout-gt-md="row" layout-padding>
+                        <div layout-gt-md="row" layout-padding>
+                                <div>Link to Communications Pack:
+                                    <a href="{{ctrl.model.commsPack}}" target="_blank">{{ctrl.model.commsPack}}</a>
+                                </div>
+                            </div>
+                    <div>Recent media coverage: {{ctrl.model.mediaCoverage}}</div>
+                </div>
+                <div layout-gt-md="row" layout-padding>
+                    <div>Advocacy actions and achievements: {{ctrl.model.advocacyActions}}</div>
+                </div>
+                <div layout-gt-md="row" layout-padding>
+                    <div>Spokespeople: {{ctrl.model.spokespeople}}</div>
+                </div>
+            </div>
+
+            <div class="well">
+                    <div layout-gt-md="row" layout-padding>
+                        <h4>Emergency supply chain</h4>
+                    </div>
+                    <div layout-gt-md="row" layout-padding>
+                        <div>Do you have prepositioned stock in country?: {{ctrl.model.prepositionedStock}}</div>
+                        <div>Are you planning to use it for this response?: {{ctrl.model.forThisResponse}}</div>
+                    </div>
+                    <div layout-gt-md="row" layout-padding>
+                        <div>Planned procurement on this response (in USD): {{ctrl.model.plannedProcurement}}</div>
+                        <div>Procurement spend to date (in USD): {{ctrl.model.procurementSpend}}</div>
+                    </div>
+                </div>
+                
+    </md-content>
 </div>
+
+
+
+
 <md-content ng-cloak class="md-inline-form" ng-if="ctrl.readOnly === false">
     <ng-form name="form" novalidate>
         <div layout-gt-sm="row" layout-align="space-between center">
@@ -25,7 +299,6 @@
             <md-checkbox ng-model="ctrl.model.nonSciResponses">
             </md-checkbox>
         </div>
-
         <accordion heading="General Info">
             <div layout-gt-md="row" layout-padding>
                 <div class="md-block" flex-gt-sm="30">
@@ -192,20 +465,20 @@
             </div>
 
             <div layout-gt-md="row" layout-padding ng-hide="!ctrl.model.nonSciResponses">
-                    <h4>Of which seed funds</h4>
-                    <md-input-container class="md-block" flex-gt-sm="30">
-                        <label>Seed funds secured {USD)</label>
-                        <textarea ng-model="ctrl.model.seedFundsSecured" name="seedFundsSecured" md-maxlength="8"></textarea>
-                    </md-input-container>
-                    <md-input-container class="md-block" flex-gt-sm="30">
-                        <label>Seed funds secured in year (USD)</label>
-                        <textarea ng-model="ctrl.model.seedFundsSecuredYearly" name="seedFundsSecuredYearly" md-maxlength="8"></textarea>
-                    </md-input-container>
-                    <md-input-container class="md-block" flex-gt-sm="30">
-                        <label>CSF (USD)</label>
-                        <textarea ng-model="ctrl.model.CSF" name="CSF" md-maxlength="8"></textarea>
-                    </md-input-container>
-                </div>
+                <h4>Of which seed funds</h4>
+                <md-input-container class="md-block" flex-gt-sm="30">
+                    <label>Seed funds secured {USD)</label>
+                    <textarea ng-model="ctrl.model.seedFundsSecured" name="seedFundsSecured" md-maxlength="8"></textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="30">
+                    <label>Seed funds secured in year (USD)</label>
+                    <textarea ng-model="ctrl.model.seedFundsSecuredYearly" name="seedFundsSecuredYearly" md-maxlength="8"></textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="30">
+                    <label>CSF (USD)</label>
+                    <textarea ng-model="ctrl.model.CSF" name="CSF" md-maxlength="8"></textarea>
+                </md-input-container>
+            </div>
         </accordion>
 
         <accordion heading="Spend" ng-hide="!ctrl.model.nonSciResponses">
@@ -225,15 +498,15 @@
             </div>
 
             <div layout-gt-md="row" layout-padding>
-                    <md-input-container class="md-block" flex-gt-sm="30">
-                        <label>Total spend through CTP {USD)</label>
-                        <textarea ng-model="ctrl.model.totalSpendThroughCTP" name="totalSpendThroughCTP" md-maxlength="8"></textarea>
-                    </md-input-container>
-                    <md-input-container class="md-block" flex-gt-sm="30">
-                        <label>Total spend on education (USD)</label>
-                        <textarea ng-model="ctrl.model.totalSpendEducation" name="totalSpendEducation" md-maxlength="7"></textarea>
-                    </md-input-container>
-                </div>
+                <md-input-container class="md-block" flex-gt-sm="30">
+                    <label>Total spend through CTP {USD)</label>
+                    <textarea ng-model="ctrl.model.totalSpendThroughCTP" name="totalSpendThroughCTP" md-maxlength="8"></textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="30">
+                    <label>Total spend on education (USD)</label>
+                    <textarea ng-model="ctrl.model.totalSpendEducation" name="totalSpendEducation" md-maxlength="7"></textarea>
+                </md-input-container>
+            </div>
         </accordion>
 
 

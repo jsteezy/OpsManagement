@@ -220,7 +220,7 @@ export default class AddReportController extends BaseController {
 
         var model = this.reportsService.buildModel(super.model);
         model.status = ApprovalStatuses.draft;
-        console.log(model, "draft model");
+        //console.log(model, "draft model");
         if (model.id != "") {
             let storeResponsePromise = this.reportsService.update(model);
             storeResponsePromise.then(
@@ -252,7 +252,7 @@ export default class AddReportController extends BaseController {
         var model = this.reportsService.buildModel(super.model);
         model.status = ApprovalStatuses.submitted;
 
-        console.log(model, "submit model");
+        //console.log(model, "submit model");
 
         if (model.id != "") {
             let storeResponsePromise = this.reportsService.update(model);
