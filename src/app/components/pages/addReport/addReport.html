@@ -5,15 +5,14 @@
 
             <div layout="row">
                 <md-button class="md-raised md-primary" aria-label="Convert to Draft" ng-if="ctrl.convertToDraft" ng-hide="ctrl.main.isRequestProcessing"
-                    ng-click="ctrl.reject(ctrl.model)">
+                    ng-click="ctrl.revertToDraft(ctrl.model)">
                     Convert to Draft
                 </md-button>
                 <md-button class="md-raised md-primary" aria-label="Reject" ng-if="ctrl.reject === true" ng-hide="ctrl.main.isRequestProcessing"
                     ng-click="ctrl.submitReport(ctrl.model)">
-                    <!-- ng-disabled="!ctrl.main.isReadyToSubmit()"> -->
                     Reject
                 </md-button>
-                <md-button class="md-raised md-primary" aria-label="Approve" ng-if="ctrl.approve === true" ng-hide="ctrl.main.isRequestProcessing "
+                <md-button class="md-raised md-primary" aria-label="Approve" ng-if="ctrl.approve === true" ng-hide="ctrl.main.isRequestProcessing"
                     ng-click="ctrl.approveReport(ctrl.model)">
                     Approve
                 </md-button>
@@ -109,7 +108,7 @@
                 <div>Outline:
                     <a href="{{ctrl.model.outline}}" target="_blank">{{ctrl.model.outline}}</a>
                 </div>
-                <br>                
+                <br>
                 <div>Strategy:
                     <a href="{{ctrl.model.strategy}}" target="_blank">{{ctrl.model.strategy}}</a>
                 </div>
@@ -118,20 +117,20 @@
                 <div>Plan:
                     <a href="{{ctrl.model.plan}}" target="_blank">{{ctrl.model.plan}}</a>
                 </div>
-                <br>                
+                <br>
                 <div>Operations Control review:
                     <a href="{{ctrl.model.operationsControlReview}}" target="_blank">{{ctrl.model.operationsControlReview}}</a>
                 </div>
-                <br>                
+                <br>
                 <div>Real-time review:
                     <a href="{{ctrl.model.realTimeReview}}" target="_blank">{{ctrl.model.realTimeReview}}</a>
                 </div>
             </div>
             <div layout-gt-md="row" layout-padding>
                 <div>Representation on Humanitarian Country Team (HCT): {{ctrl.model.representationOnHCT}}</div>
-                <br>                
+                <br>
                 <div>Education cluster or working group activated: {{ctrl.model.educationCluster}}</div>
-                <br>                
+                <br>
                 <div>Staffing education cluster or working group: {{ctrl.model.staffingEducationCluster}}</div>
             </div>
         </div>
@@ -142,8 +141,9 @@
                 <h4>Sectors</h4>
             </div>
             <div layout-gt-md="row" layout-padding>
-                <div>Child protection backstop: {{ctrl.model.childProtectionBackstop}}</div>
-                <br>
+                <div>Child protection backstop:
+                    <br>{{ctrl.model.childProtectionBackstop}}</div>
+
                 <div>Summary of response to date and achievements since last sitrep:
                     <br>{{ctrl.model.childProtectionSummary}}</div>
             </div>
@@ -211,12 +211,16 @@
                 <h4>Saftey and security</h4>
             </div>
             <div layout-gt-md="row" layout-padding>
-                <div><span style="font-weight: bold"> Please provide an overview of the S&amp;S context, including details of security incidents, since the last
-                    SitRep:</span>
+                <div>
+                    <span style="font-weight: bold"> Please provide an overview of the S&amp;S context, including details of security incidents, since the
+                        last SitRep:
+                    </span>
                     <br>{{ctrl.model.securityContext}}</div>
-                <div><span style="font-weight: bold">What immediate S&amp;S challenges are predicted?:</span>
+                <div>
+                    <span style="font-weight: bold">What immediate S&amp;S challenges are predicted?:</span>
                     <br>{{ctrl.model.securityChallenges}}</div>
-                <div><span style="font-weight: bold">How will those challenges be managed?:</span>
+                <div>
+                    <span style="font-weight: bold">How will those challenges be managed?:</span>
                     <br>{{ctrl.model.securityManagement}}</div>
             </div>
         </div>
@@ -236,39 +240,38 @@
         </div>
 
         <div class="well">
-                <div layout-gt-md="row" layout-padding>
-                    <h4>Advocacy, Media and Comms</h4>
-                </div>
-                <div layout-gt-md="row" layout-padding>
-                        <div layout-gt-md="row" layout-padding>
-                                <div>Link to Communications Pack:
-                                    <a href="{{ctrl.model.commsPack}}" target="_blank">{{ctrl.model.commsPack}}</a>
-                                </div>
-                            </div>
-                    <div>Recent media coverage: {{ctrl.model.mediaCoverage}}</div>
-                </div>
-                <div layout-gt-md="row" layout-padding>
-                    <div>Advocacy actions and achievements: {{ctrl.model.advocacyActions}}</div>
-                </div>
-                <div layout-gt-md="row" layout-padding>
-                    <div>Spokespeople: {{ctrl.model.spokespeople}}</div>
+            <div layout-gt-md="row" layout-padding>
+                <h4>Advocacy, Media and Comms</h4>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Link to Communications Pack: <a href="{{ctrl.model.commsPack}}" target="_blank">{{ctrl.model.commsPack}}</a>
                 </div>
             </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Recent media coverage: {{ctrl.model.mediaCoverage}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Advocacy actions and achievements: {{ctrl.model.advocacyActions}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Spokespeople: {{ctrl.model.spokespeople}}</div>
+            </div>
+        </div>
 
-            <div class="well">
-                    <div layout-gt-md="row" layout-padding>
-                        <h4>Emergency supply chain</h4>
-                    </div>
-                    <div layout-gt-md="row" layout-padding>
-                        <div>Do you have prepositioned stock in country?: {{ctrl.model.prepositionedStock}}</div>
-                        <div>Are you planning to use it for this response?: {{ctrl.model.forThisResponse}}</div>
-                    </div>
-                    <div layout-gt-md="row" layout-padding>
-                        <div>Planned procurement on this response (in USD): {{ctrl.model.plannedProcurement}}</div>
-                        <div>Procurement spend to date (in USD): {{ctrl.model.procurementSpend}}</div>
-                    </div>
-                </div>
-                
+        <div class="well">
+            <div layout-gt-md="row" layout-padding>
+                <h4>Emergency supply chain</h4>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Do you have prepositioned stock in country?: {{ctrl.model.prepositionedStock}}</div>
+                <div>Are you planning to use it for this response?: {{ctrl.model.forThisResponse}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>Planned procurement on this response (in USD): {{ctrl.model.plannedProcurement}}</div>
+                <div>Procurement spend to date (in USD): {{ctrl.model.procurementSpend}}</div>
+            </div>
+        </div>
+
     </md-content>
 </div>
 

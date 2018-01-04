@@ -220,7 +220,6 @@ export default class AddReportController extends BaseController {
 
         var model = this.reportsService.buildModel(super.model);
         model.status = ApprovalStatuses.draft;
-        //console.log(model, "draft model");
         if (model.id != "") {
             let storeResponsePromise = this.reportsService.update(model);
             storeResponsePromise.then(
@@ -251,8 +250,6 @@ export default class AddReportController extends BaseController {
 
         var model = this.reportsService.buildModel(super.model);
         model.status = ApprovalStatuses.submitted;
-
-        //console.log(model, "submit model");
 
         if (model.id != "") {
             let storeResponsePromise = this.reportsService.update(model);
@@ -287,6 +284,40 @@ export default class AddReportController extends BaseController {
         storeResponsePromise.then(
             () => {
                 this.toastService.showToast('Report submitted for approval', 'app');
+
+                super.redirectToHome();
+            },
+            (errorData) => {
+                super.serverRequestErrors = errorData;
+            });
+    }
+
+    reject(form) {
+        super.isRequestProcessing = true;
+        var model = this.reportsService.buildModel(super.model);
+        model.status = ApprovalStatuses.draft;
+
+        let storeResponsePromise = this.reportsService.update(model);
+        storeResponsePromise.then(
+            () => {
+                this.toastService.showToast('Report rejected, please notify... TBC', 'app');
+
+                super.redirectToHome();
+            },
+            (errorData) => {
+                super.serverRequestErrors = errorData;
+            });
+    }
+
+    revertToDraft(form) {
+        super.isRequestProcessing = true;
+        var model = this.reportsService.buildModel(super.model);
+        model.status = ApprovalStatuses.draft;
+
+        let storeResponsePromise = this.reportsService.update(model);
+        storeResponsePromise.then(
+            () => {
+                this.toastService.showToast('Report reverted to draft', 'app');
 
                 super.redirectToHome();
             },
