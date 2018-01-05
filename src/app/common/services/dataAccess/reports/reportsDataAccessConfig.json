@@ -1,5 +1,5 @@
 {
-    "getAllReports": "/_api/Lists/getByTitle('{LIST_NAME}')/items?$filter=ResponseId eq {ID}",
+    "getAllReports": "/_api/Lists/getByTitle('{LIST_NAME}')/items?$filter=ResponseId eq {ID}&$select=Id,SitrepNumber,SitrepDate,NextSitrepDate,LastModifiedUserName",
     "getReport": "/_api/Lists/getByTitle('{LIST_NAME}')/items?$filter=ID eq {ID}",    
     "addReport": "/_api/Lists/getByTitle('Reports')/items",
     "updateReport": "/_api/Lists/getByTitle('Reports')/items({ID})"
