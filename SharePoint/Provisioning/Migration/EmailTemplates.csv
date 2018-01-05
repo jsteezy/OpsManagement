@@ -1,6 +1,0 @@
-Title,EmailSubject,EmailContentPath
-TAR_Submitted,TAR: Budget approval requested for {TRAVELLER} to {DESTINATIONS} {TAR_ID},EmailTemplates\TAR_Submitted.html
-TAR_Rejected,TAR: Rejected {TRAVELLER} to {DESTINATIONS} {TAR_ID},EmailTemplates\TAR_Rejected.html
-TAR_GSSApproval,TAR: GSS approval requested for {TRAVELLER} to {DESTINATIONS} {TAR_ID},EmailTemplates\TAR_GSSApproval.html
-TAR_Approved,TAR: {TRAVELLER} to {DESTINATIONS} approved {TAR_ID},EmailTemplates\TAR_Approved.html
-EIF_Submitted,EIF Submitted for {GUEST_TRAVELLER} to {DESTINATIONS} {EIF_ID},EmailTemplates\EIF_Submitted.html
