@@ -306,17 +306,14 @@
             <div layout-gt-md="row" layout-padding>
                 <div class="md-block" flex-gt-sm="30">
                     <label>Sitrep date</label>
-                    <md-tooltip md-direction="bottom">This is a test tooltip for Sitrep date</md-tooltip>
                     <md-datepicker ng-model="ctrl.model.sitrepDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
                 </div>
                 <div class="md-block" flex-gt-sm="30">
                     <label>Next sitrep date</label>
-                    <md-tooltip md-direction="bottom">This is a test tooltip for next Sitrep date</md-tooltip>
                     <md-datepicker ng-model="ctrl.model.nextSitrepDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
                 </div>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Sitrep Number</label>
-                    <md-tooltip md-direction="bottom">This is a test tooltip for Sitrep Number</md-tooltip>
                     <textarea ng-model="ctrl.model.sitrepNumber" name="sitrepNumber" md-maxlength="3"></textarea>
                 </md-input-container>
             </div>
@@ -339,6 +336,7 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="100">
                     <label>General Context Internal</label>
+                    <md-tooltip md-direction="bottom">Include the same information as the external response update, with any additional response information that is strictly  for internal use.</md-tooltip>                                        
                     <textarea ng-model="ctrl.model.generalContextInternal" name="generalContextInternal" md-maxlength="1500"></textarea>
                 </md-input-container>
             </div>
@@ -346,12 +344,14 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="100">
                     <label>General Context External</label>
+                    <md-tooltip md-direction="bottom">Highlight the scale of the emergency, how much bigger is it likely to get, and recent context developments that can shared externally. Include numbers of people and children are who are affected, in need of food or malnoursished,  displaced, at risk of disease, out of school, in need or protection, or killed as a result of the crisis. Include the sources of these figures.</md-tooltip>                                        
                     <textarea ng-model="ctrl.model.generalContextExternal" name="generalContextExternal" md-maxlength="1200"></textarea>
                 </md-input-container>
             </div>
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="100">
                     <label>Response Update Internal</label>
+                    <md-tooltip md-direction="bottom">Include the same information as the external context update, with any additional contextual information that is strictly  for internal use.</md-tooltip>                                        
                     <textarea ng-model="ctrl.model.responseUpdateInternal" name="responseUpdateInternal" md-maxlength="1200"></textarea>
                 </md-input-container>
             </div>
@@ -359,6 +359,7 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="100">
                     <label>Response Update External</label>
+                    <md-tooltip md-direction="bottom">Provide an overview of where we are working, when the response started,  and what sectors we are working in. Outline any recent plans for scale up across sectors or operational areas.</md-tooltip>                                                            
                     <textarea ng-model="ctrl.model.responseUpdateExternal" name="responseUpdateExternal" md-maxlength="1200"></textarea>
                 </md-input-container>
             </div>
@@ -366,10 +367,10 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="100">
                     <label>Challenges Internal</label>
+                   <md-tooltip md-direction="bottom">Highlight the barriers/challenges affecting our ability to respond. This could include security incidents, funding gaps, access restrictions, staffing issues etc.</md-tooltip>
                     <textarea ng-model="ctrl.model.challengesInternal" name="challengesInternal" md-maxlength="1200"></textarea>
                 </md-input-container>
             </div>
-
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Ops Backstop</label>
@@ -600,7 +601,8 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50" ng-hide="!ctrl.model.childProtectionBool">
                     <label>Summary of response to date and achievements since last sitrep</label>
-                    <textarea ng-model="ctrl.model.childProtectionSummary" name="childProtectionSummary"></textarea>
+                    <md-tooltip md-direction="bottom">Provide a summary of the Child Protection response sharing the total reach of the sector against the target. Highlight the achievements and reach figures of the top 3 activities since the start of the response, and the percentage of that reach since the last reporting period.</md-tooltip>
+                    <textarea ng-model="ctrl.model.childProtectionSummary" name="childProtectionSummary" md-maxlength="500"></textarea>
                 </md-input-container>
             </div>
 
@@ -616,7 +618,8 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50" ng-hide="!ctrl.model.educationBool">
                     <label>Summary of response to date and achievements since last sitrep</label>
-                    <textarea ng-model="ctrl.model.educationSummary" name="educationSummary"></textarea>
+                    <md-tooltip md-direction="bottom">Provide a summary of the Education response sharing the total reach of the sector against the target. Highlight the achievements and reach figures of the top 3 activities since the start of the response, and the percentage of that reach since the last reporting period. </md-tooltip>                    
+                    <textarea ng-model="ctrl.model.educationSummary" name="educationSummary" md-maxlength="500"></textarea>
                 </md-input-container>
             </div>
 
@@ -632,7 +635,8 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50" ng-hide="!ctrl.model.FSLBool">
                     <label>Summary of response to date and achievements since last sitrep</label>
-                    <textarea ng-model="ctrl.model.FSLSummary" name="FSLSummary"></textarea>
+                    <md-tooltip md-direction="bottom">Provide a summary of the FSL response sharing the total reach of the sector against the target. Highlight the achievements and reach figures of the top 3 activities since the start of the response, and the percentage of that reach since the last reporting period.</md-tooltip>
+                    <textarea ng-model="ctrl.model.FSLSummary" name="FSLSummary" md-maxlength="500"></textarea>
                 </md-input-container>
             </div>
 
@@ -648,7 +652,8 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50" ng-hide="!ctrl.model.WASHBool">
                     <label>Summary of response to date and achievements since last sitrep</label>
-                    <textarea ng-model="ctrl.model.WASHSummary" name="WASHSummary"></textarea>
+                    <md-tooltip md-direction="bottom">Provide a summary of the WASH response sharing the total reach of the sector against the target. Highlight the achievements and reach figures of the top 3 activities since the start of the response, and the percentage of that reach since the last reporting period. </md-tooltip>
+                    <textarea ng-model="ctrl.model.WASHSummary" name="WASHSummary" md-maxlength="500"></textarea>
                 </md-input-container>
             </div>
 
@@ -664,7 +669,8 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50" ng-hide="!ctrl.model.shelterBool">
                     <label>Summary of response to date and achievements since last sitrep</label>
-                    <textarea ng-model="ctrl.model.shelterSummary" name="shelterSummary"></textarea>
+                    <md-tooltip md-direction="bottom">Provide a summary of the Shelter/NFI response sharing the total reach of the sector against the target. Highlight the achievements and reach figures of the top 3 activities since the start of the response, and the percentage of that reach since the last reporting period.</md-tooltip>
+                    <textarea ng-model="ctrl.model.shelterSummary" name="shelterSummary" md-maxlength="500"></textarea>
                 </md-input-container>
             </div>
 
@@ -680,7 +686,9 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50" ng-hide="!ctrl.model.healthBool">
                     <label>Summary of response to date and achievements since last sitrep</label>
-                    <textarea ng-model="ctrl.model.healthSummary" name="healthSummary"></textarea>
+                    <md-tooltip md-direction="right">Provide a summary of the Health response sharing the total reach of the sector against the target. 
+                        Highlight the achievements and reach figures of the top 3 activities since the start of the response, and the percentage of that reach since the last reporting period. </md-tooltip>                    
+                    <textarea ng-model="ctrl.model.healthSummary" name="healthSummary" md-maxlength="500"></textarea>
                 </md-input-container>
             </div>
 
@@ -698,9 +706,10 @@
                 <label style="width: 128px">Nutrition</label>
                 <md-checkbox ng-model="ctrl.model.nutritionBool">
                 </md-checkbox>
-
                 <md-input-container class="md-block" flex-gt-sm="50" ng-hide="!ctrl.model.nutritionBool">
-                    <textarea ng-model="ctrl.model.nutritionSummary" name="nutritionSummary" md-maxlength="300"></textarea>
+                        <md-tooltip md-direction="right">Provide a summary of the Nutrition response sharing the total reach of the sector against the target. <br>
+                             Highlight the achievements and reach figures of the top 3 activities since the start of the response, and the percentage of that reach since the last reporting period.</md-tooltip>
+                    <textarea ng-model="ctrl.model.nutritionSummary" name="nutritionSummary" md-maxlength="500"></textarea>
                 </md-input-container>
             </div>
 
@@ -786,10 +795,12 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Link to Communications Pack</label>
-                    <textarea ng-model="ctrl.model.commsPack" name="commsPack" md-maxlength="75"></textarea>
+                    <md-tooltip md-direction="bottom">Provide links to avaliable communications products and channels, including Workplace and OneNet, and flag forthcoming content. </md-tooltip>
+                    <textarea ng-model="ctrl.model.commsPack" name="commsPack"></textarea>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Recent media coverage</label>
+                    <md-tooltip md-direction="bottom">Provide links to recent press releases and media coverage and flag forthcoming content.</md-tooltip>                    
                     <textarea ng-model="ctrl.model.mediaCoverage" name="mediaCoverage"></textarea>
                 </md-input-container>
             </div>
@@ -797,7 +808,8 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Advocacy actions and achievements</label>
-                    <textarea ng-model="ctrl.model.advocacyActions" name="advocacyActions"></textarea>
+                    <md-tooltip md-direction="bottom">Share upcoming advocacy opportunities, previous actions/achievements, and links to key advocacy messages.</md-tooltip>
+                    <textarea ng-model="ctrl.model.advocacyActions" name="advocacyActions" md-maxlength="250"></textarea>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Spokespeople</label>

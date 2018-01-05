@@ -281,18 +281,28 @@ export default class AddReportController extends BaseController {
         model.status = ApprovalStatuses.approved;
 
         let storeResponsePromise = this.reportsService.update(model);
+        var newDraftModel = this.removeDataForNewDraft(model);
         storeResponsePromise.then(
-            () => {
-                this.toastService.showToast('Report submitted for approval', 'app');
+            () => {             
+                //create draft for next with copied fields and increment sitrep number
+                let storeResponsePromise = this.reportsService.store(newDraftModel);
+                storeResponsePromise.then(
+                    () => {
+                        this.toastService.showToast('Report submitted for approval', 'app');
+                        super.redirectToHome();
+                    },
+                    (errorData) => {
+                        super.serverRequestErrors = errorData;
+                    });
 
-                super.redirectToHome();
+                //super.redirectToHome();
             },
             (errorData) => {
                 super.serverRequestErrors = errorData;
             });
     }
 
-    reject(form) {
+    rejectReport(form) {
         super.isRequestProcessing = true;
         var model = this.reportsService.buildModel(super.model);
         model.status = ApprovalStatuses.draft;
@@ -300,7 +310,7 @@ export default class AddReportController extends BaseController {
         let storeResponsePromise = this.reportsService.update(model);
         storeResponsePromise.then(
             () => {
-                this.toastService.showToast('Report rejected, please notify... TBC', 'app');
+                this.toastService.showToast('Report rejected, please notify the report creater', 'app');
 
                 super.redirectToHome();
             },
@@ -324,6 +334,65 @@ export default class AddReportController extends BaseController {
             (errorData) => {
                 super.serverRequestErrors = errorData;
             });
+    }
+
+    removeDataForNewDraft(model) {
+        model.sitrepNumber ++;      
+
+        model.id = null;
+        model.userId = null;        
+        model.userEmail = null;
+        model.lastModifiedUserName = "Auto generated draft";
+        model.status = ApprovalStatuses.draft;
+
+        //General info
+        model.sitrepDate = model.nextSitrepDate;
+        model.nextSitrepDate = null;
+        model.responseUpdateInternal = null;
+        model.responseUpdateExternal = null;
+        model.challengesInternal = null;
+
+        //Reach figures
+        model.totalReachSinceStart = null;
+        model.totalReachSinceLastSitrep = null;
+        model.childrenReachedSinceStart = null;
+        model.childrenReachedSinceLastSitrep = null;
+       
+        // //Sectors
+        model.childProtectionSummary = null;
+        model.educationSummary = null;
+        model.FSLSummary = null;
+        model.WASHSummary = null;
+        model.shelterSummary = null;
+        model.healthSummary = null;
+        model.nutritionSummary = null;
+        
+        //Saftey and security
+        model.securityContext = null;
+
+        //Child safegaurding
+        model.safegaurdingRisks = null;
+
+        //Advanced Media and Comms
+        model.mediaCoverage = null;
+        model.advocacyActions = null;
+
+        // //Non SCI responses
+        // this.securedIncome = null;
+        // this.newAwards = null;
+        // this.responsePipeline = null;
+        // this.responsePipelineAppeal = null;
+        // this.seedFundsSecured = null;
+        // this.seedFundsSecuredYearly = null;
+        // this.CSF = null;
+        // this.responseTotalSpend = null;
+        // this.totalSpendAgainstCSF = null;
+        // this.totalSpendThroughPartners = null;
+        // this.totalSpendThroughCTP = null;
+        // this.totalSpendEducation = null;
+
+        return model;
+        
     }
 }
 

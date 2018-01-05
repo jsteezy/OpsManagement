@@ -33,7 +33,7 @@ export default class GridOptions {
                     { displayName: 'Sitrep number', field: 'SitrepNumber', enableSorting: true,  enableFiltering: true},                    
                     { displayName: 'Sitrep Date', field: 'SitrepDate', enableSorting: true, cellFilter: "dateFormat" },
                     { displayName: 'Next Sitrep Date', field: 'NextSitrepDate', cellFilter: "dateFormat" },
-                    { displayName: 'Last modified by', field: 'Title', enableFiltering: true, enableSorting: true }                                                             
+                    { displayName: 'Last modified by', field: 'LastModifiedUserName', enableFiltering: true, enableSorting: true }                                                             
                 ],                
                 showExpandButtonAlways: false,
                 hasCustomFilters: true

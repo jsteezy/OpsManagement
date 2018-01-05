@@ -10,12 +10,10 @@ export default class ReportsModel extends BaseModel {
         this.userEmail = null;
         this.responseId = null;
         this.status = ApprovalStatuses.none;
+        this.lastModifiedUserName = null;
         //General info
-        // this.regionalResponse = false;
-        // this.parentRegionalResponse = null;
-        this.sitrepDate = DateUtils.today;
+        this.sitrepDate;
         this.nextSitrepDate = DateUtils.today;
-        // this.recentContextDevelopment = null;
         this.opsBackstop = null;
 
         this.category = null;
@@ -49,43 +47,29 @@ export default class ReportsModel extends BaseModel {
         this.crisisModifiers = null;
 
         //Deliverables
-        //this.assessmentBool = false;
         this.assessment = null;
-        //this.outlineBool = false;
         this.outline = null;
-        //this.strategyBool = false;
         this.strategy = null;
-        //this.planBool = false;
         this.plan = null;
-        //this.operationsControlReviewBool = false;
         this.operationsControlReview = null;
-        //this.realTimeReviewBool = false;
         this.realTimeReview = null;
         this.representationOnHCTBool = false;
         this.educationClusterBool = false;
         this.staffingEducationClusterBool = false;
 
         // //Sectors
-        //this.childProtectionBool = false;
         this.childProtectionBackstop = null;
         this.childProtectionSummary = null;
-        //this.educationBool = false;
         this.educationBackstop = null;
         this.educationSummary = null;
-        //this.FSLBool = false;
         this.FSLBackstop = null;
         this.FSLSummary = null;
-        //this.WASHBool = false;
         this.WASHBackstop = null;
         this.WASHSummary = null;
-        //this.shelterBool = false;
         this.shelterBackstop = null;
         this.shelterSummary = null;
-        //this.healthBool = false;
         this.healthBackstop = null;
         this.healthSummary = null;
-        //this.EHUUpdatesBool = false;
-        //this.EHUUpdates = null;
         this.EHUDeployed = false;
         this.EHUDeployedDate = DateUtils.today;
         this.outputTracker = null;
@@ -98,9 +82,6 @@ export default class ReportsModel extends BaseModel {
         this.deploymentTrackerLink = null;
 
         //Saftey and security
-        //this.securityLevel = null;
-        //this.incidentSummary = null;
-        //this.securityEvents = null;
         this.securityContext = null;
         this.securityChallenges = null;
         this.securityManagement = null;
