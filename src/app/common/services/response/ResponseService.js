@@ -24,8 +24,8 @@ export default class ResponseService {
     }
 
     store(pageMode, model) {
-        model.userEmail = this.user.email;
-        model.userId = this.user.id;
+        //model.userEmail = this.user.email;
+        //model.userId = this.user.id;
         return this.responseCodeDataAccessService.save(model);
     }
 
