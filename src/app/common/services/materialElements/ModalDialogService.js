@@ -1,10 +1,9 @@
 import angular from "angular";
 
 export default class ModalDialogService {
-    constructor($mdDialog, $mdMedia, $translate) {
+    constructor($mdDialog, $mdMedia) {
         this.$mdDialog = $mdDialog;
         this.$mdMedia = $mdMedia;
-        this.$translate = $translate;
     }
 
     showWizardModal(component, targetEvent, model) {
@@ -24,13 +23,7 @@ export default class ModalDialogService {
     }
 
     showConfirmDialog(title, text = "EMPTY_TEXT", ev) {
-        return Promise.all([
-                this.$translate(title),
-                this.$translate(text),
-                this.$translate('YES'),
-                this.$translate('NO')
-            
-            ]
+        return Promise.all([]
         ).then(
             (data) => {
                 let options = {
@@ -69,4 +62,4 @@ export default class ModalDialogService {
     }
 }
 
-ModalDialogService.$inject = ['$mdDialog', '$mdMedia', "$translate"];
+ModalDialogService.$inject = ['$mdDialog', '$mdMedia'];

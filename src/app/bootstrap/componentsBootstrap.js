@@ -31,7 +31,6 @@ import gridDateFilter from "../components/common/gridFilters/date/dateFilter";
 import accordion from "../components/common/accordion/accordion";
 import toggleAccordionSection from "../components/common/accordion/toggleSection/toggleSection";
 import languagePicker from "../components/common/languagePicker/languagePicker";
-import question from "../components/common/question/question";
 import list from "../components/common/list/list";
 
 import angular from "angular";
@@ -73,7 +72,6 @@ export default class Bootstrap {
         app.component("accordion", accordion);
         app.component("toggleAccordionSection", toggleAccordionSection);
         app.component("languagePicker", languagePicker);
-        app.component("question", question);
         app.component("list", list);
     }
 }

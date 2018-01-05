@@ -9,7 +9,7 @@
                ng-if="!ctrl.options.readOnly && ctrl.options.addIconText"
                ng-click="ctrl.onItemClick(null, $event)">
         <i class="material-icons md-icon-30">{{ctrl.options.addIconClass}}</i>
-        <span>{{ctrl.options.addIconText | translate}}</span>
+        <span>{{ctrl.options.addIconText }}</span>
     </md-button>
 
     <md-button class="md-icon-button md-raised md-primary" aria-label="ShowAll"
@@ -24,7 +24,7 @@
         <p ng-repeat="displayField in ctrl.options.displayFields"
            ng-show="ctrl.isVisible(displayField)"
            ng-class="ctrl.listItemOverflow">
-            {{displayField.header | translate}}
+            {{displayField.header }}
         </p>
         <div class="header-button-placeholder" ng-if="ctrl.options.isDeleteEnabled"></div>
     </md-list-item>

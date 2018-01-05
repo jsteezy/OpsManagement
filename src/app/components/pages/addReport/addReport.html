@@ -289,7 +289,7 @@
                 </md-button>
                 <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.submit === true" ng-hide="ctrl.main.isRequestProcessing"
                     ng-click="ctrl.submitReport(form)">
-                    <!-- ng-disabled="!ctrl.main.isReadyToSubmit()"> -->
+                    <ng-disabled="!ctrl.main.isReadyToSubmit()">
                     Submit
                 </md-button>
                 <md-progress-circular md-mode="indeterminate" class="md-primary md-hue-3" ng-show="ctrl.main.isRequestProcessing" md-diameter="70"></md-progress-circular>

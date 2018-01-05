@@ -245,7 +245,7 @@ export default class AddReportController extends BaseController {
     }
 
     submitReport(form) {
-
+        super.IsSubmittedFormValid(form).then(() => {            
         super.isRequestProcessing = true;
 
         var model = this.reportsService.buildModel(super.model);
@@ -273,6 +273,8 @@ export default class AddReportController extends BaseController {
                     super.serverRequestErrors = errorData;
                 });
         }
+    });
+    
     }
 
     approveReport(form) {
