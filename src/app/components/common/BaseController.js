@@ -184,7 +184,7 @@ export default class BaseController extends BaseComponentController {
         if (!this.$injector) return;
 
         const toastService = this.$injector.get("toastService");
-        toastService.showToast("FILL_FORM_WARNING");
+        toastService.showToast("Please complete all required fields");
 
         return Promise.reject();
     }

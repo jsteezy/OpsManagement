@@ -4,7 +4,19 @@
 
 @font-face {
   font-family: sciFontFamily;
-  src:  url("../fonts/sciFonts/GillSansInfantStd.otf"),
+
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS */
+    src:
+    url("../fonts/sciFonts/GillSansInfantStd.otf?#iefix") format("embedded-opentype"),
+    url("../fonts/sciFonts/GillSansInfantStd-Bold.otf?#iefix") format("embedded-opentype"),
+    url("../fonts/sciFonts/GillSansInfantStd-BoldIt.otf?#iefix") format("embedded-opentype"),
+    url("../fonts/sciFonts/GillSansInfantStd-Italic.otf?#iefix") format("embedded-opentype"),
+    url("../fonts/sciFonts/TradeGothicLTCom-BdCn20.ttf?#iefix") format("embedded-opentype")
+ }
+
+  src:
+    url("../fonts/sciFonts/GillSansInfantStd.otf"),
         url("../fonts/sciFonts/GillSansInfantStd-Bold.otf"),
         url("../fonts/sciFonts/GillSansInfantStd-BoldIt.otf"),
         url("../fonts/sciFonts/GillSansInfantStd-Italic.otf"),
@@ -35,7 +47,7 @@ md-input-container {
 }
 
 div.md-toast-content {
-  background-color: rgb(244, 67, 54);
+  background-color: rgb(50, 141, 184);
   color: white;
   font-weight: 700;
 }
@@ -133,6 +145,21 @@ div.md-toast-content {
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.well-error{
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  border: 1px solid #030101;
+  border-radius: 4px;
+  // -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+  // box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
   margin-right: 15px;
   margin-left: 15px;
 }

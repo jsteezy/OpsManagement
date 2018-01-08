@@ -296,31 +296,133 @@
             </div>
         </div>
 
-        <div class="errorRibbon">
-            <div ng-messages="form.sitrepNumber.$error">
-                <div ng-message="required">Sitrep Number is required</div>
-                <div ng-message="md-maxlength">Sitrep Number is too long</div>
-            </div>
-            <div ng-messages="form.category.$error" ng-show="form.category.$dirty">
+        <div class="well-error">
+            <div>
+                <h4>General Info errors</h4>
+                <div ng-messages="form.sitrepNumber.$error" ng-show="form.sitrepNumber.$dirty">
+                    <div ng-message="required">Sitrep Number is required</div>
+                    <div ng-message="md-maxlength">Sitrep Number is too long</div>
+                </div>
+                <div ng-messages="form.category.$error" ng-show="form.category.$dirty">
                     <div ng-message="required">Category is required</div>
                     <div ng-message="md-maxlength">Category is too long</div>
                 </div>
                 <div ng-messages="form.generalContextInternal.$error" ng-show="form.generalContextInternal.$dirty">
-                        <div ng-message="required">General Context (Internal) is required</div>
-                        <div ng-message="md-maxlength">General Context (Internal) is too long</div>
-                    </div>
-                    <div ng-messages="form.generalContextExternal.$error" ng-show="form.generalContextExternal.$dirty">
-                            <div ng-message="required">General Context (External) is required</div>
-                            <div ng-message="md-maxlength">General Context (External) is too long</div>
-                        </div>
-                        <div ng-messages="form.responseUpdateInternal.$error" ng-show="form.responseUpdateInternal.$dirty">
-                                <div ng-message="required">Response Update (Internal) is required</div>
-                                <div ng-message="md-maxlength">Response Update (Internal) is too long</div>
-                            </div>
-                            <div ng-messages="form.responseUpdateExternal.$error" ng-show="form.responseUpdateExternal.$dirty">
-                                    <div ng-message="required">Response Update (External) is required</div>
-                                    <div ng-message="md-maxlength">Response Update (External) is too long</div>
-                                </div>
+                    <div ng-message="required">General Context (Internal) is required</div>
+                    <div ng-message="md-maxlength">General Context (Internal) is too long</div>
+                </div>
+                <div ng-messages="form.generalContextExternal.$error" ng-show="form.generalContextExternal.$dirty">
+                    <div ng-message="required">General Context (External) is required</div>
+                    <div ng-message="md-maxlength">General Context (External) is too long</div>
+                </div>
+                <div ng-messages="form.responseUpdateInternal.$error" ng-show="form.responseUpdateInternal.$dirty">
+                    <div ng-message="required">Response Update (Internal) is required</div>
+                    <div ng-message="md-maxlength">Response Update (Internal) is too long</div>
+                </div>
+                <div ng-messages="form.responseUpdateExternal.$error" ng-show="form.responseUpdateExternal.$dirty">
+                    <div ng-message="required">Response Update (External) is required</div>
+                    <div ng-message="md-maxlength">Response Update (External) is too long</div>
+                </div>
+                <div ng-messages="form.challengesInternal.$error" ng-show="form.challengesInternal.$dirty">
+                    <div ng-message="required">Challenges Internal is required</div>
+                    <div ng-message="md-maxlength">Challenges Internal is too long</div>
+                </div>
+                <div ng-messages="form.opsBackstop.$error" ng-show="form.opsBackstop.$dirty">
+                    <div ng-message="required">Ops Backstop is required</div>
+                    <div ng-message="md-maxlength">Ops Backstop is too long</div>
+                </div>
+            </div>
+
+            <div>
+                <h4>Reach figures errors</h4>
+                <div ng-messages="form.affectedPopulation.$error" ng-show="form.affectedPopulation.$dirty">
+                    <div ng-message="required">Affected Population is required</div>
+                    <div ng-message="max">Affected Population is too high</div>
+                </div>
+                <div ng-messages="form.strategyTarget.$error" ng-show="form.strategyTarget.$dirty">
+                    <div ng-message="required">Strategy Target is required</div>
+                    <div ng-message="max">Strategy Target is too high</div>
+                </div>
+                <div ng-messages="form.strategyTargetChildren.$error" ng-show="form.strategyTargetChildren.$dirty">
+                    <div ng-message="required">Strategy Target Children is required</div>
+                    <div ng-message="max">Strategy Target Children is too high</div>
+                </div>
+                <div ng-messages="form.totalReachSinceStart.$error" ng-show="form.totalReachSinceStart.$dirty">
+                    <div ng-message="required">Total Reach Since Start is required</div>
+                    <div ng-message="max">Total Reach Since Start is too high</div>
+                </div>
+                <div ng-messages="form.totalReachSinceLastSitrep.$error" ng-show="form.totalReachSinceLastSitrep.$dirty">
+                    <div ng-message="required">Total Reach Since Last Sitrep is required</div>
+                    <div ng-message="max">Total Reach Since Last Sitrep is too high</div>
+                </div>
+                <div ng-messages="form.childrenReachedSinceStart.$error" ng-show="form.childrenReachedSinceStart.$dirty">
+                    <div ng-message="required">Children Reached Since Start is required</div>
+                    <div ng-message="max">Children Reached Since Start too high</div>
+                </div>
+                <div ng-messages="form.childrenReachedSinceLastSitrep.$error" ng-show="form.childrenReachedSinceLastSitrep.$dirty">
+                    <div ng-message="required">Children Reached Since last Sitrep is required</div>
+                    <div ng-message="max">Children Reached Since last Sitrep is too high</div>
+                </div>
+                <div ng-messages="form.responseStrategyTarget.$error" ng-show="form.responseStrategyTarget.$dirty">
+                    <div ng-message="required">Response Strategy Target is required</div>
+                    <div ng-message="max">Response Strategy Target is too high</div>
+                </div>
+                <div ng-messages="form.crisisModifiers.$error" ng-show="form.crisisModifiers.$dirty">
+                    <!-- <div ng-message="required">This is required</div> -->
+                    <div ng-message="max">Crisis Modifiers is too high</div>
+                </div>
+                <div ng-messages="form.securedIncome.$error" ng-show="form.securedIncome.$dirty">
+                    <div ng-message="required">Secured Income is required</div>
+                    <div ng-message="max">Secured Income is too high</div>
+                </div>
+                <div ng-messages="form.newAwards.$error" ng-show="form.newAwards.$dirty">
+                    <div ng-message="required">New Awards is required</div>
+                    <div ng-message="max">New Awards is too high</div>
+                </div>
+                <div ng-messages="form.responsePipeline.$error" ng-show="form.responsePipeline.$dirty">
+                    <div ng-message="required">Response Pipeline is required</div>
+                    <div ng-message="max">Response Pipeline is too high</div>
+                </div>
+                <div ng-messages="form.responsePipelineAppeal.$error" ng-show="form.responsePipelineAppeal.$dirty">
+                    <div ng-message="required">Response Pipeline Appeal is required</div>
+                    <div ng-message="max">Response Pipeline Appeal is too high</div>
+                </div>
+                <div ng-messages="form.seedFundsSecured.$error" ng-show="form.seedFundsSecured.$dirty">
+                    <div ng-message="required">Seed Funds Secured is required</div>
+                    <div ng-message="max">Seed Funds Secured is too high</div>
+                </div>
+                <div ng-messages="form.seedFundsSecuredYearly.$error" ng-show="form.seedFundsSecuredYearly.$dirty">
+                    <div ng-message="required">Seed Funds Secured Yearly is required</div>
+                    <div ng-message="max">Seed Funds Secured Yearly is too high</div>
+                </div>
+                <div ng-messages="form.CSF.$error" ng-show="form.CSF.$dirty">
+                    <div ng-message="required">CSF is required</div>
+                    <div ng-message="max">CSF is too high</div>
+                </div>
+            </div>
+            <div>
+                <h4>Spend errors</h4>
+                <div ng-messages="form.responseTotalSpend.$error" ng-show="form.responseTotalSpend.$dirty">
+                    <div ng-message="required">Response Total Spend is required</div>
+                    <div ng-message="max">Response Total Spend is too high</div>
+                </div>
+                <div ng-messages="form.totalSpendAgainstCSF.$error" ng-show="form.totalSpendAgainstCSF.$dirty">
+                    <div ng-message="required">Total Spend Against CSF is required</div>
+                    <div ng-message="max">Total Spend Against CSF is too high</div>
+                </div>
+                <div ng-messages="form.totalSpendThroughPartners.$error" ng-show="form.totalSpendThroughPartners.$dirty">
+                    <div ng-message="required">Total Spend Through Partners is required</div>
+                    <div ng-message="max">Total Spend Through Partners is too high</div>
+                </div>
+                <div ng-messages="form.totalSpendThroughCTP.$error" ng-show="form.totalSpendThroughCTP.$dirty">
+                    <div ng-message="required">Total Spend Through CTP is required</div>
+                    <div ng-message="max">Total Spend Through CTP is too high</div>
+                </div>
+                <div ng-messages="form.totalSpendEducation.$error" ng-show="form.totalSpendEducation.$dirty">
+                    <div ng-message="required">Total Spend Education is required</div>
+                    <div ng-message="max">Total Spend Education is too high</div>
+                </div>
+            </div>
         </div>
 
         <toggle-accordion-section></toggle-accordion-section>
@@ -343,7 +445,7 @@
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Sitrep Number</label>
                     <textarea ng-model="ctrl.model.sitrepNumber" name="sitrepNumber" md-maxlength="3" required></textarea>
-                    <div ng-messages="form.sitrepNumber.$error" ng-show="form.sitrepNumber.$dirty">
+                    <div ng-messages="form.sitrepNumber.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="md-maxlength">That's too long</div>
                     </div>
@@ -362,7 +464,7 @@
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Category</label>
                     <textarea ng-model="ctrl.model.category" name="category" md-maxlength="2" required></textarea>
-                    <div ng-messages="form.category.$error" ng-show="form.category.$dirty">
+                    <div ng-messages="form.category.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="md-maxlength">That's too long</div>
                     </div>
@@ -375,7 +477,7 @@
                     <md-tooltip md-direction="bottom">Include the same information as the external response update, with any additional response information
                         that is strictly for internal use.</md-tooltip>
                     <textarea ng-model="ctrl.model.generalContextInternal" name="generalContextInternal" md-maxlength="1500" required></textarea>
-                    <div ng-messages="form.generalContextInternal.$error" ng-show="form.generalContextInternal.$dirty">
+                    <div ng-messages="form.generalContextInternal.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="md-maxlength">That's too long</div>
                     </div>
@@ -390,7 +492,7 @@
                         of food or malnoursished, displaced, at risk of disease, out of school, in need or protection, or
                         killed as a result of the crisis. Include the sources of these figures.</md-tooltip>
                     <textarea ng-model="ctrl.model.generalContextExternal" name="generalContextExternal" md-maxlength="1200" required></textarea>
-                    <div ng-messages="form.generalContextExternal.$error" ng-show="form.generalContextExternal.$dirty">
+                    <div ng-messages="form.generalContextExternal.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="md-maxlength">That's too long</div>
                     </div>
@@ -402,7 +504,7 @@
                     <md-tooltip md-direction="bottom">Include the same information as the external context update, with any additional contextual information
                         that is strictly for internal use.</md-tooltip>
                     <textarea ng-model="ctrl.model.responseUpdateInternal" name="responseUpdateInternal" md-maxlength="1200" required></textarea>
-                    <div ng-messages="form.responseUpdateInternal.$error" ng-show="form.responseUpdateInternal.$dirty">
+                    <div ng-messages="form.responseUpdateInternal.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="md-maxlength">That's too long</div>
                     </div>
@@ -415,7 +517,7 @@
                     <md-tooltip md-direction="bottom">Provide an overview of where we are working, when the response started, and what sectors we are working
                         in. Outline any recent plans for scale up across sectors or operational areas.</md-tooltip>
                     <textarea ng-model="ctrl.model.responseUpdateExternal" name="responseUpdateExternal" md-maxlength="1200" required></textarea>
-                    <div ng-messages="form.responseUpdateExternal.$error" ng-show="form.responseUpdateExternal.$dirty">
+                    <div ng-messages="form.responseUpdateExternal.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="md-maxlength">That's too long</div>
                     </div>
@@ -427,13 +529,21 @@
                     <label>Challenges Internal</label>
                     <md-tooltip md-direction="bottom">Highlight the barriers/challenges affecting our ability to respond. This could include security incidents,
                         funding gaps, access restrictions, staffing issues etc.</md-tooltip>
-                    <textarea ng-model="ctrl.model.challengesInternal" name="challengesInternal" md-maxlength="1200"></textarea>
+                    <textarea ng-model="ctrl.model.challengesInternal" name="challengesInternal" md-maxlength="1200" required></textarea>
+                    <div ng-messages="form.challengesInternal.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
                 </md-input-container>
             </div>
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Ops Backstop</label>
-                    <textarea ng-model="ctrl.model.opsBackstop" name="opsBackstop" md-maxlength="50"></textarea>
+                    <textarea ng-model="ctrl.model.opsBackstop" name="opsBackstop" md-maxlength="50" required></textarea>
+                    <div ng-messages="form.opsBackstop.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
                 </md-input-container>
             </div>
         </accordion>
@@ -442,7 +552,11 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Affected population</label>
-                    <textarea ng-model="ctrl.model.affectedPopulation" name="affectedPopulation" md-maxlength="7"></textarea>
+                    <input type="number" ng-model="ctrl.model.affectedPopulation" name="affectedPopulation" max="9999999" required></input>
+                    <div ng-messages="form.affectedPopulation.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -451,11 +565,20 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Strategy target (all)</label>
-                    <textarea ng-model="ctrl.model.strategyTarget" name="strategyTarget" md-maxlength="7"></textarea>
+                    <input type="number" ng-model="ctrl.model.strategyTarget" name="strategyTarget" max="9999999" required></input>
+                    <div ng-messages="form.strategyTarget.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
+
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Strategy target (children)</label>
-                    <textarea ng-model="ctrl.model.strategyTargetChildren" name="strategyTargetChildren" md-maxlength="7"></textarea>
+                    <input type="number" max="9999999" required ng-model="ctrl.model.strategyTargetChildren" name="strategyTargetChildren"></input>
+                    <div ng-messages="form.strategyTargetChildren.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -464,22 +587,38 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Total reach since start date</label>
-                    <textarea ng-model="ctrl.model.totalReachSinceStart" name="totalReachSinceStart" md-maxlength="7"></textarea>
+                    <input type="number" max="9999999" required ng-model="ctrl.model.totalReachSinceStart" name="totalReachSinceStart"></input>
+                    <div ng-messages="form.totalReachSinceStart.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Total reach since last sitrep</label>
-                    <textarea ng-model="ctrl.model.totalReachSinceLastSitrep" name="totalReachSinceLastSitrep" md-maxlength="7"></textarea>
+                    <input type="number" max="9999999" required ng-model="ctrl.model.totalReachSinceLastSitrep" name="totalReachSinceLastSitrep"></input>
+                    <div ng-messages="form.totalReachSinceLastSitrep.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
             </div>
 
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Children reached since start date</label>
-                    <textarea ng-model="ctrl.model.childrenReachedSinceStart" name="childrenReachedSinceStart" md-maxlength="7"></textarea>
+                    <input type="number" max="9999999" required ng-model="ctrl.model.childrenReachedSinceStart" name="childrenReachedSinceStart"></input>
+                    <div ng-messages="form.childrenReachedSinceStart.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Children reached since last sitrep</label>
-                    <textarea ng-model="ctrl.model.childrenReachedSinceLastSitrep" name="childrenReachedSinceLastSitrep" md-maxlength="7"></textarea>
+                    <input type="number" max="9999999" required ng-model="ctrl.model.childrenReachedSinceLastSitrep" name="childrenReachedSinceLastSitrep"></input>
+                    <div ng-messages="form.childrenReachedSinceLastSitrep.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
             </div>
         </accordion>
@@ -488,15 +627,27 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Response strategy target (USD)</label>
-                    <textarea ng-model="ctrl.model.responseStrategyTarget" name="responseStrategyTarget" md-maxlength="8"></textarea>
+                    <input type="number" max="99999999" required ng-model="ctrl.model.responseStrategyTarget" name="responseStrategyTarget"></input>
+                    <div ng-messages="form.responseStrategyTarget.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Seed funds target (USD)</label>
-                    <textarea ng-model="ctrl.model.seedFundsTarget" name="seedFundsTarget" md-maxlength="7"></textarea>
+                    <input type="number" max="9999999" required ng-model="ctrl.model.seedFundsTarget" name="seedFundsTarget"></input>
+                    <div ng-messages="form.strategyTargetChildren.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Crisis Modifiers</label>
-                    <textarea ng-model="ctrl.model.crisisModifiers" name="crisisModifiers" md-maxlength="8"></textarea>
+                    <input type="number" max="99999999" ng-model="ctrl.model.crisisModifiers" name="crisisModifiers"></input>
+                    <div ng-messages="form.crisisModifiers.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -507,11 +658,19 @@
                 </div>
                 <md-input-container class="md-block" flex-gt-sm="30" ng-hide="!ctrl.model.nonSciResponses">
                     <label>Secured income (USD)</label>
-                    <textarea ng-model="ctrl.model.securedIncome" name="securedIncome" md-maxlength="8"></textarea>
+                    <input type="number" max="99999999" required ng-model="ctrl.model.securedIncome" name="securedIncome"></input>
+                    <div ng-messages="form.securedIncome.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="30" ng-hide="!ctrl.model.nonSciResponses">
                     <label>New awards in year (USD)</label>
-                    <textarea ng-model="ctrl.model.newAwards" name="newAwards" md-maxlength="8"></textarea>
+                    <input type="number" max="99999999" required ng-model="ctrl.model.newAwards" name="newAwards"></input>
+                    <div ng-messages="form.newAwards.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -519,11 +678,19 @@
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Response Pipeline (USD)</label>
                     <md-tooltip md-direction="bottom">High and very hich likelihood</md-tooltip>
-                    <textarea ng-model="ctrl.model.responsePipeline" name="responsePipeline" md-maxlength="8"></textarea>
+                    <input type="number" max="99999999" required ng-model="ctrl.model.responsePipeline" name="responsePipeline"></input>
+                    <div ng-messages="form.responsePipeline.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Of which appeal (USD)</label>
-                    <textarea ng-model="ctrl.model.responsePipelineAppeal" name="responsePipelineAppeal" md-maxlength="8"></textarea>
+                    <input type="number" max="99999999" required ng-model="ctrl.model.responsePipelineAppeal" name="responsePipelineAppeal"></input>
+                    <div ng-messages="form.responsePipelineAppeal.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -531,15 +698,27 @@
                 <h4>Of which seed funds</h4>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Seed funds secured {USD)</label>
-                    <textarea ng-model="ctrl.model.seedFundsSecured" name="seedFundsSecured" md-maxlength="8"></textarea>
+                    <input type="number" max="99999999" required ng-model="ctrl.model.seedFundsSecured" name="seedFundsSecured"></input>
+                    <div ng-messages="form.seedFundsSecured.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Seed funds secured in year (USD)</label>
-                    <textarea ng-model="ctrl.model.seedFundsSecuredYearly" name="seedFundsSecuredYearly" md-maxlength="8"></textarea>
+                    <input type="number" max="99999999" required ng-model="ctrl.model.seedFundsSecuredYearly" name="seedFundsSecuredYearly"></input>
+                    <div ng-messages="form.seedFundsSecuredYearly.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>CSF (USD)</label>
-                    <textarea ng-model="ctrl.model.CSF" name="CSF" md-maxlength="8"></textarea>
+                    <input type="number" max="99999999" required ng-model="ctrl.model.CSF" name="CSF"></input>
+                    <div ng-messages="form.CSF.$error">
+                        <div ng-message="required">CSF is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
             </div>
         </accordion>
@@ -548,26 +727,46 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Response total spend {USD)</label>
-                    <textarea ng-model="ctrl.model.responseTotalSpend" name="responseTotalSpend" md-maxlength="8"></textarea>
+                    <input type="number" max="99999999" required ng-model="ctrl.model.responseTotalSpend" name="responseTotalSpend"></input>
+                    <div ng-messages="form.responseTotalSpend.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Total spend against CSF (USD)</label>
-                    <textarea ng-model="ctrl.model.totalSpendAgainstCSF" name="totalSpendAgainstCSF" md-maxlength="8"></textarea>
+                    <input type="number" max="99999999" required ng-model="ctrl.model.totalSpendAgainstCSF" name="totalSpendAgainstCSF"></input>
+                    <div ng-messages="form.totalSpendAgainstCSF.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Total spend through partners (USD)</label>
-                    <textarea ng-model="ctrl.model.totalSpendThroughPartners" name="totalSpendThroughPartners" md-maxlength="8"></textarea>
+                    <input type="number" max="99999999" required ng-model="ctrl.model.totalSpendThroughPartners" name="totalSpendThroughPartners"></input>
+                    <div ng-messages="form.totalSpendThroughPartners.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
             </div>
 
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Total spend through CTP {USD)</label>
-                    <textarea ng-model="ctrl.model.totalSpendThroughCTP" name="totalSpendThroughCTP" md-maxlength="8"></textarea>
+                    <input type="number" max="99999999" required ng-model="ctrl.model.totalSpendThroughCTP" name="totalSpendThroughCTP"></input>
+                    <div ng-messages="form.totalSpendThroughCTP.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Total spend on education (USD)</label>
-                    <textarea ng-model="ctrl.model.totalSpendEducation" name="totalSpendEducation" md-maxlength="7"></textarea>
+                    <input type="number" max="9999999" required ng-model="ctrl.model.totalSpendEducation" name="totalSpendEducation"></input>
+                    <div ng-messages="form.totalSpendEducation.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
             </div>
         </accordion>
