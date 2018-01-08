@@ -123,9 +123,7 @@ export default class AddReportController extends BaseController {
                                             break;
                                         default:
                                             this.toastService.showToast('The status of this report is unrecognised, please contact a system administrator', 'app');
-                                            super.redirectTo(["Reports", {
-                                                id: responseId
-                                            }])
+                                            super.redirectTo(["Reports", {id: responseId }])
                                     }
                                 }, )
                     } else {
@@ -225,7 +223,9 @@ export default class AddReportController extends BaseController {
             storeResponsePromise.then(
                 () => {
                     this.toastService.showToast('Report draft updated', 'app');
-                    super.redirectToHome();
+                    super.redirectTo(["Reports", { id: model.responseId}])
+                    
+                   // super.redirectToHome();
                 },
                 (errorData) => {
                     super.serverRequestErrors = errorData;
@@ -236,7 +236,7 @@ export default class AddReportController extends BaseController {
             storeResponsePromise.then(
                 () => {
                     this.toastService.showToast('Report draft updated', 'app');
-                    super.redirectToHome();
+                    super.redirectTo(["Reports", { id: model.responseId}])
                 },
                 (errorData) => {
                     super.serverRequestErrors = errorData;
@@ -257,7 +257,7 @@ export default class AddReportController extends BaseController {
                 () => {
                     this.toastService.showToast('Report submitted for approval', 'app');
 
-                    super.redirectToHome();
+                    super.redirectTo(["Reports", { id: model.responseId}])
                 },
                 (errorData) => {
                     super.serverRequestErrors = errorData;
@@ -267,7 +267,7 @@ export default class AddReportController extends BaseController {
             storeResponsePromise.then(
                 () => {
                     this.toastService.showToast('Report submitted for approval', 'app');
-                    super.redirectToHome();
+                    super.redirectTo(["Reports", { id: model.responseId}])
                 },
                 (errorData) => {
                     super.serverRequestErrors = errorData;
@@ -291,13 +291,11 @@ export default class AddReportController extends BaseController {
                 storeResponsePromise.then(
                     () => {
                         this.toastService.showToast('Report submitted for approval', 'app');
-                        super.redirectToHome();
+                        super.redirectTo(["Reports", { id: model.responseId}])
                     },
                     (errorData) => {
                         super.serverRequestErrors = errorData;
                     });
-
-                //super.redirectToHome();
             },
             (errorData) => {
                 super.serverRequestErrors = errorData;
@@ -314,7 +312,7 @@ export default class AddReportController extends BaseController {
             () => {
                 this.toastService.showToast('Report rejected, please notify the report creater', 'app');
 
-                super.redirectToHome();
+                super.redirectTo(["Reports", { id: model.responseId}])
             },
             (errorData) => {
                 super.serverRequestErrors = errorData;
@@ -331,7 +329,7 @@ export default class AddReportController extends BaseController {
             () => {
                 this.toastService.showToast('Report reverted to draft', 'app');
 
-                super.redirectToHome();
+                super.redirectTo(["Reports", { id: model.responseId}])
             },
             (errorData) => {
                 super.serverRequestErrors = errorData;

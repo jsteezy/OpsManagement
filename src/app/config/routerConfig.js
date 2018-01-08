@@ -44,6 +44,11 @@ export default class StateConfig {
                 component: 'reports'
             },
             {
+                path: "/reports/:id",
+                name: "Reports",
+                component: 'reports'
+            },
+            {
                 path: '/admin-regions',
                 name: 'Regions',
                 component: 'regions'
