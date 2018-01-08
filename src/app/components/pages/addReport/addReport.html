@@ -289,45 +289,45 @@
                     Save Draft
                 </md-button>
                 <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.submit === true" ng-hide="ctrl.main.isRequestProcessing"
-                    ng-click="ctrl.submitReport(form)">
+                    ng-click="ctrl.submitReport(form)" ng-disabled="form.$invalid">
                     Submit
                 </md-button>
                 <md-progress-circular md-mode="indeterminate" class="md-primary md-hue-3" ng-show="ctrl.main.isRequestProcessing" md-diameter="70"></md-progress-circular>
             </div>
         </div>
 
-        <div class="well-error">
+        <div ng-show="form.$invalid && !form.$pristine" class="well-error">
             <div>
                 <h4>General Info errors</h4>
-                <div ng-messages="form.sitrepNumber.$error" ng-show="form.sitrepNumber.$dirty">
+                <div ng-messages="form.sitrepNumber.$error" ng-show="form.sitrepNumber.$invalid">
                     <div ng-message="required">Sitrep Number is required</div>
                     <div ng-message="md-maxlength">Sitrep Number is too long</div>
                 </div>
-                <div ng-messages="form.category.$error" ng-show="form.category.$dirty">
+                <div ng-messages="form.category.$error" ng-show="form.category.$invalid">
                     <div ng-message="required">Category is required</div>
                     <div ng-message="md-maxlength">Category is too long</div>
                 </div>
-                <div ng-messages="form.generalContextInternal.$error" ng-show="form.generalContextInternal.$dirty">
+                <div ng-messages="form.generalContextInternal.$error" ng-show="form.generalContextInternal.$invalid">
                     <div ng-message="required">General Context (Internal) is required</div>
                     <div ng-message="md-maxlength">General Context (Internal) is too long</div>
                 </div>
-                <div ng-messages="form.generalContextExternal.$error" ng-show="form.generalContextExternal.$dirty">
+                <div ng-messages="form.generalContextExternal.$error" ng-show="form.generalContextExternal.$invalid">
                     <div ng-message="required">General Context (External) is required</div>
                     <div ng-message="md-maxlength">General Context (External) is too long</div>
                 </div>
-                <div ng-messages="form.responseUpdateInternal.$error" ng-show="form.responseUpdateInternal.$dirty">
+                <div ng-messages="form.responseUpdateInternal.$error" ng-show="form.responseUpdateInternal.$invalid">
                     <div ng-message="required">Response Update (Internal) is required</div>
                     <div ng-message="md-maxlength">Response Update (Internal) is too long</div>
                 </div>
-                <div ng-messages="form.responseUpdateExternal.$error" ng-show="form.responseUpdateExternal.$dirty">
+                <div ng-messages="form.responseUpdateExternal.$error" ng-show="form.responseUpdateExternal.$invalid">
                     <div ng-message="required">Response Update (External) is required</div>
                     <div ng-message="md-maxlength">Response Update (External) is too long</div>
                 </div>
-                <div ng-messages="form.challengesInternal.$error" ng-show="form.challengesInternal.$dirty">
+                <div ng-messages="form.challengesInternal.$error" ng-show="form.challengesInternal.$invalid">
                     <div ng-message="required">Challenges Internal is required</div>
                     <div ng-message="md-maxlength">Challenges Internal is too long</div>
                 </div>
-                <div ng-messages="form.opsBackstop.$error" ng-show="form.opsBackstop.$dirty">
+                <div ng-messages="form.opsBackstop.$error" ng-show="form.opsBackstop.$invalid">
                     <div ng-message="required">Ops Backstop is required</div>
                     <div ng-message="md-maxlength">Ops Backstop is too long</div>
                 </div>
@@ -335,191 +335,191 @@
 
             <div>
                 <h4>Reach figures errors</h4>
-                <div ng-messages="form.affectedPopulation.$error" ng-show="form.affectedPopulation.$dirty">
+                <div ng-messages="form.affectedPopulation.$error" ng-show="form.affectedPopulation.$invalid">
                     <div ng-message="required">Affected Population is required</div>
                     <div ng-message="max">Affected Population is too high</div>
                 </div>
-                <div ng-messages="form.strategyTarget.$error" ng-show="form.strategyTarget.$dirty">
+                <div ng-messages="form.strategyTarget.$error" ng-show="form.strategyTarget.$invalid">
                     <div ng-message="required">Strategy Target is required</div>
                     <div ng-message="max">Strategy Target is too high</div>
                 </div>
-                <div ng-messages="form.strategyTargetChildren.$error" ng-show="form.strategyTargetChildren.$dirty">
+                <div ng-messages="form.strategyTargetChildren.$error" ng-show="form.strategyTargetChildren.$invalid">
                     <div ng-message="required">Strategy Target Children is required</div>
                     <div ng-message="max">Strategy Target Children is too high</div>
                 </div>
-                <div ng-messages="form.totalReachSinceStart.$error" ng-show="form.totalReachSinceStart.$dirty">
+                <div ng-messages="form.totalReachSinceStart.$error" ng-show="form.totalReachSinceStart.$invalid">
                     <div ng-message="required">Total Reach Since Start is required</div>
                     <div ng-message="max">Total Reach Since Start is too high</div>
                 </div>
-                <div ng-messages="form.totalReachSinceLastSitrep.$error" ng-show="form.totalReachSinceLastSitrep.$dirty">
+                <div ng-messages="form.totalReachSinceLastSitrep.$error" ng-show="form.totalReachSinceLastSitrep.$invalid">
                     <div ng-message="required">Total Reach Since Last Sitrep is required</div>
                     <div ng-message="max">Total Reach Since Last Sitrep is too high</div>
                 </div>
-                <div ng-messages="form.childrenReachedSinceStart.$error" ng-show="form.childrenReachedSinceStart.$dirty">
+                <div ng-messages="form.childrenReachedSinceStart.$error" ng-show="form.childrenReachedSinceStart.$invalid">
                     <div ng-message="required">Children Reached Since Start is required</div>
                     <div ng-message="max">Children Reached Since Start too high</div>
                 </div>
-                <div ng-messages="form.childrenReachedSinceLastSitrep.$error" ng-show="form.childrenReachedSinceLastSitrep.$dirty">
+                <div ng-messages="form.childrenReachedSinceLastSitrep.$error" ng-show="form.childrenReachedSinceLastSitrep.$invalid">
                     <div ng-message="required">Children Reached Since last Sitrep is required</div>
                     <div ng-message="max">Children Reached Since last Sitrep is too high</div>
                 </div>
             </div>
             <div>
                 <h4>Income errors</h4>
-                <div ng-messages="form.responseStrategyTarget.$error" ng-show="form.responseStrategyTarget.$dirty">
+                <div ng-messages="form.responseStrategyTarget.$error" ng-show="form.responseStrategyTarget.$invalid">
                     <div ng-message="required">Response Strategy Target is required</div>
                     <div ng-message="max">Response Strategy Target is too high</div>
                 </div>
-                <div ng-messages="form.seedFundsTarget.$error" ng-show="form.responseStrategyTarget.$dirty">
+                <div ng-messages="form.seedFundsTarget.$error" ng-show="form.responseStrategyTarget.$invalid">
                     <div ng-message="required">Seed Funds Target is required</div>
                     <div ng-message="max">Seed Funds Target is too high</div>
                 </div>
-                <div ng-messages="form.crisisModifiers.$error" ng-show="form.crisisModifiers.$dirty">
+                <div ng-messages="form.crisisModifiers.$error" ng-show="form.crisisModifiers.$invalid">
                     <!-- <div ng-message="required">This is required</div> -->
                     <div ng-message="max">Crisis Modifiers is too high</div>
                 </div>
-                <div ng-messages="form.securedIncome.$error" ng-show="form.securedIncome.$dirty">
+                <div ng-messages="form.securedIncome.$error" ng-show="form.securedIncome.$invalid">
                     <div ng-message="required">Secured Income is required</div>
                     <div ng-message="max">Secured Income is too high</div>
                 </div>
-                <div ng-messages="form.newAwards.$error" ng-show="form.newAwards.$dirty">
+                <div ng-messages="form.newAwards.$error" ng-show="form.newAwards.$invalid">
                     <div ng-message="required">New Awards is required</div>
                     <div ng-message="max">New Awards is too high</div>
                 </div>
-                <div ng-messages="form.responsePipeline.$error" ng-show="form.responsePipeline.$dirty">
+                <div ng-messages="form.responsePipeline.$error" ng-show="form.responsePipeline.$invalid">
                     <div ng-message="required">Response Pipeline is required</div>
                     <div ng-message="max">Response Pipeline is too high</div>
                 </div>
-                <div ng-messages="form.responsePipelineAppeal.$error" ng-show="form.responsePipelineAppeal.$dirty">
+                <div ng-messages="form.responsePipelineAppeal.$error" ng-show="form.responsePipelineAppeal.$invalid">
                     <div ng-message="required">Response Pipeline Appeal is required</div>
                     <div ng-message="max">Response Pipeline Appeal is too high</div>
                 </div>
-                <div ng-messages="form.seedFundsSecured.$error" ng-show="form.seedFundsSecured.$dirty">
+                <div ng-messages="form.seedFundsSecured.$error" ng-show="form.seedFundsSecured.$invalid">
                     <div ng-message="required">Seed Funds Secured is required</div>
                     <div ng-message="max">Seed Funds Secured is too high</div>
                 </div>
-                <div ng-messages="form.seedFundsSecuredYearly.$error" ng-show="form.seedFundsSecuredYearly.$dirty">
+                <div ng-messages="form.seedFundsSecuredYearly.$error" ng-show="form.seedFundsSecuredYearly.$invalid">
                     <div ng-message="required">Seed Funds Secured Yearly is required</div>
                     <div ng-message="max">Seed Funds Secured Yearly is too high</div>
                 </div>
-                <div ng-messages="form.CSF.$error" ng-show="form.CSF.$dirty">
+                <div ng-messages="form.CSF.$error" ng-show="form.CSF.$invalid">
                     <div ng-message="required">CSF is required</div>
                     <div ng-message="max">CSF is too high</div>
                 </div>
             </div>
             <div ng-if="ctrl.model.nonSciResponses">
                 <h4>Spend errors</h4>
-                <div ng-messages="form.responseTotalSpend.$error" ng-show="form.responseTotalSpend.$dirty">
+                <div ng-messages="form.responseTotalSpend.$error" ng-show="form.responseTotalSpend.$invalid">
                     <div ng-message="required">Response Total Spend is required</div>
                     <div ng-message="max">Response Total Spend is too high</div>
                 </div>
-                <div ng-messages="form.totalSpendAgainstCSF.$error" ng-show="form.totalSpendAgainstCSF.$dirty">
+                <div ng-messages="form.totalSpendAgainstCSF.$error" ng-show="form.totalSpendAgainstCSF.$invalid">
                     <div ng-message="required">Total Spend Against CSF is required</div>
                     <div ng-message="max">Total Spend Against CSF is too high</div>
                 </div>
-                <div ng-messages="form.totalSpendThroughPartners.$error" ng-show="form.totalSpendThroughPartners.$dirty">
+                <div ng-messages="form.totalSpendThroughPartners.$error" ng-show="form.totalSpendThroughPartners.$invalid">
                     <div ng-message="required">Total Spend Through Partners is required</div>
                     <div ng-message="max">Total Spend Through Partners is too high</div>
                 </div>
-                <div ng-messages="form.totalSpendThroughCTP.$error" ng-show="form.totalSpendThroughCTP.$dirty">
+                <div ng-messages="form.totalSpendThroughCTP.$error" ng-show="form.totalSpendThroughCTP.$invalid">
                     <div ng-message="required">Total Spend Through CTP is required</div>
                     <div ng-message="max">Total Spend Through CTP is too high</div>
                 </div>
-                <div ng-messages="form.totalSpendEducation.$error" ng-show="form.totalSpendEducation.$dirty">
+                <div ng-messages="form.totalSpendEducation.$error" ng-show="form.totalSpendEducation.$invalid">
                     <div ng-message="required">Total Spend Education is required</div>
                     <div ng-message="max">Total Spend Education is too high</div>
                 </div>
             </div>
             <div>
                 <h4>Deliverables errors</h4>
-                <div ng-messages="form.assessment.$error" ng-show="form.assessment.$dirty">
+                <div ng-messages="form.assessment.$error" ng-show="form.assessment.$invalid">
                     <div ng-message="required">Assessment is required</div>
                 </div>
-                <div ng-messages="form.outline.$error" ng-show="form.outline.$dirty">
+                <div ng-messages="form.outline.$error" ng-show="form.outline.$invalid">
                     <div ng-message="required">Outline is required</div>
                 </div>
-                <div ng-messages="form.strategy.$error" ng-show="form.strategy.$dirty">
+                <div ng-messages="form.strategy.$error" ng-show="form.strategy.$invalid">
                     <div ng-message="required">Strategy is required</div>
                 </div>
-                <div ng-messages="form.plan.$error" ng-show="form.plan.$dirty">
+                <div ng-messages="form.plan.$error" ng-show="form.plan.$invalid">
                     <div ng-message="required">Plan is required</div>
                 </div>
-                <div ng-messages="form.operationsControlReview.$error" ng-show="form.operationsControlReview.$dirty">
+                <div ng-messages="form.operationsControlReview.$error" ng-show="form.operationsControlReview.$invalid">
                     <div ng-message="required">Operations Control Review is required</div>
                 </div>
-                <div ng-messages="form.realTimeReview.$error" ng-show="form.realTimeReview.$dirty">
+                <div ng-messages="form.realTimeReview.$error" ng-show="form.realTimeReview.$invalid">
                     <div ng-message="required">Real Time Review is required</div>
                 </div>
             </div>
             <div>
                 <h4>Sectors errors</h4>
-                <div ng-messages="form.childProtectionBackstop.$error" ng-show="form.childProtectionBackstop.$dirty">
+                <div ng-messages="form.childProtectionBackstop.$error" ng-show="form.childProtectionBackstop.$invalid">
                     <div ng-message="required">childProtectionBackstop is required</div>
                 </div>
-                <div ng-messages="form.childProtectionSummary.$error" ng-show="form.childProtectionSummary.$dirty">
+                <div ng-messages="form.childProtectionSummary.$error" ng-show="form.childProtectionSummary.$invalid">
                     <div ng-message="required">Child Protection Summary is required</div>
                     <div ng-message="md-maxlength">Child Protection Summary's too long</div>
                 </div>
-                <div ng-messages="form.educationBackstop.$error" ng-show="form.educationBackstop.$dirty">
+                <div ng-messages="form.educationBackstop.$error" ng-show="form.educationBackstop.$invalid">
                     <div ng-message="required">Education Backstop is required</div>
                 </div>
-                <div ng-messages="form.educationSummary.$error" ng-show="form.educationSummary.$dirty">
+                <div ng-messages="form.educationSummary.$error" ng-show="form.educationSummary.$invalid">
                     <div ng-message="required">Education Summary is required</div>
                     <div ng-message="md-maxlength">Education Summary's too long</div>
                 </div>
-                <div ng-messages="form.FSLBackstop.$error" ng-show="form.FSLBackstop.$dirty">
+                <div ng-messages="form.FSLBackstop.$error" ng-show="form.FSLBackstop.$invalid">
                     <div ng-message="required">FSL Backstop is required</div>
                 </div>
-                <div ng-messages="form.FSLSummary.$error" ng-show="form.FSLSummary.$dirty">
+                <div ng-messages="form.FSLSummary.$error" ng-show="form.FSLSummary.$invalid">
                     <div ng-message="required">FSL Summary is required</div>
                     <div ng-message="md-maxlength">FSL Summary is too long</div>
                 </div>
-                <div ng-messages="form.WASHBackstop.$error" ng-show="form.WASHBackstop.$dirty">
+                <div ng-messages="form.WASHBackstop.$error" ng-show="form.WASHBackstop.$invalid">
                     <div ng-message="required">WASH Backstop is required</div>
                 </div>
-                <div ng-messages="form.WASHSummary.$error" ng-show="form.WASHSummary.$dirty">
+                <div ng-messages="form.WASHSummary.$error" ng-show="form.WASHSummary.$invalid">
                     <div ng-message="required">WASH Summary is required</div>
                     <div ng-message="md-maxlength">WASH Summary is too long</div>
                 </div>
-                <div ng-messages="form.shelterBackstop.$error" ng-show="form.shelterBackstop.$dirty">
+                <div ng-messages="form.shelterBackstop.$error" ng-show="form.shelterBackstop.$invalid">
                     <div ng-message="required">Shelter Backstop is required</div>
                 </div>
-                <div ng-messages="form.shelterSummary.$error" ng-show="form.shelterSummary.$dirty">
+                <div ng-messages="form.shelterSummary.$error" ng-show="form.shelterSummary.$invalid">
                     <div ng-message="required">Shelter Summary is required</div>
                     <div ng-message="md-maxlength">Shelter Summary's too long</div>
                 </div>
-                <div ng-messages="form.healthBackstop.$error" ng-show="form.healthBackstop.$dirty">
+                <div ng-messages="form.healthBackstop.$error" ng-show="form.healthBackstop.$invalid">
                     <div ng-message="required">Health Backstop is required</div>
                 </div>
-                <div ng-messages="form.healthSummary.$error" ng-show="form.healthSummary.$dirty">
+                <div ng-messages="form.healthSummary.$error" ng-show="form.healthSummary.$invalid">
                     <div ng-message="required">Health Summary is required</div>
                     <div ng-message="md-maxlength">Health Summary is too long</div>
                 </div>
-                <div ng-messages="form.nutritionSummary.$error" ng-show="form.nutritionSummary.$dirty">
+                <div ng-messages="form.nutritionSummary.$error" ng-show="form.nutritionSummary.$invalid">
                     <div ng-message="required">Nutrition Summary is required</div>
                     <div ng-message="md-maxlength">Nutrition Summary is too long</div>
                 </div>
             </div>
             <div>
                 <h4>HR errors</h4>
-                <div ng-messages="form.nationalStaffNumber.$error" ng-show="form.nationalStaffNumber.$dirty">
+                <div ng-messages="form.nationalStaffNumber.$error" ng-show="form.nationalStaffNumber.$invalid">
                     <div ng-message="max">National Staff Number is too high</div>
                 </div>
-                <div ng-messages="form.internationalStaffNumber.$error" ng-show="form.internationalStaffNumber.$dirty">
+                <div ng-messages="form.internationalStaffNumber.$error" ng-show="form.internationalStaffNumber.$invalid">
                     <div ng-message="max">International Staff Number is too high</div>
                 </div>
             </div>
             <div>
                 <h4>Saftey and Security errors</h4>
-                <div ng-messages="form.securityContext.$error" ng-show="form.securityContext.$dirty">
+                <div ng-messages="form.securityContext.$error" ng-show="form.securityContext.$invalid">
                     <div ng-message="required">Security Context is required</div>
                     <div ng-message="md-maxlength">Security Context is too long</div>
                 </div>
-                <div ng-messages="form.securityChallenges.$error" ng-show="form.securityChallenges.$dirty">
+                <div ng-messages="form.securityChallenges.$error" ng-show="form.securityChallenges.$invalid">
                     <div ng-message="required">Security Challenges is required</div>
                     <div ng-message="md-maxlength">Security Challenges is too long</div>
                 </div>
-                <div ng-messages="form.securityManagement.$error" ng-show="form.securityManagement.$dirty">
+                <div ng-messages="form.securityManagement.$error" ng-show="form.securityManagement.$invalid">
                     <div ng-message="required">Security Management is required</div>
                     <div ng-message="md-maxlength">Security Management is too long</div>
                 </div>
@@ -1226,7 +1226,10 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>% of staff with child safeguarding training</label>
-                    <textarea ng-model="ctrl.model.staffChildSafegaurding" name="staffChildSafegaurding" md-maxlength="3"></textarea>
+                    <textarea ng-model="ctrl.model.staffChildSafegaurding" name="staffChildSafegaurding" max="100"></textarea>
+                    <div ng-messages="form.staffChildSafegaurding.$error">
+                            <div ng-message="max">That's over 100%</div>
+                        </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Child safeguarding focal point</label>
