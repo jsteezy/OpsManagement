@@ -363,9 +363,16 @@
                     <div ng-message="required">Children Reached Since last Sitrep is required</div>
                     <div ng-message="max">Children Reached Since last Sitrep is too high</div>
                 </div>
+            </div>
+            <div>
+                <h4>Income errors</h4>
                 <div ng-messages="form.responseStrategyTarget.$error" ng-show="form.responseStrategyTarget.$dirty">
                     <div ng-message="required">Response Strategy Target is required</div>
                     <div ng-message="max">Response Strategy Target is too high</div>
+                </div>
+                <div ng-messages="form.seedFundsTarget.$error">
+                    <div ng-message="required">Seed Funds Target is required</div>
+                    <div ng-message="max">Seed Funds Target is too high</div>
                 </div>
                 <div ng-messages="form.crisisModifiers.$error" ng-show="form.crisisModifiers.$dirty">
                     <!-- <div ng-message="required">This is required</div> -->
@@ -400,7 +407,7 @@
                     <div ng-message="max">CSF is too high</div>
                 </div>
             </div>
-            <div>
+            <div ng-if="ctrl.model.nonSciResponses">
                 <h4>Spend errors</h4>
                 <div ng-messages="form.responseTotalSpend.$error" ng-show="form.responseTotalSpend.$dirty">
                     <div ng-message="required">Response Total Spend is required</div>
@@ -422,6 +429,30 @@
                     <div ng-message="required">Total Spend Education is required</div>
                     <div ng-message="max">Total Spend Education is too high</div>
                 </div>
+            </div>
+            <div>
+                <h4>Deliverables errors</h4>
+                <div ng-messages="form.assessment.$error">
+                    <div ng-message="required">Assessment is required</div>
+                </div>
+                <div ng-messages="form.outline.$error">
+                    <div ng-message="required">Outline is required</div>
+                </div>
+                <div ng-messages="form.strategy.$error">
+                    <div ng-message="required">Strategy is required</div>
+                </div>
+                <div ng-messages="form.plan.$error">
+                    <div ng-message="required">Plan is required</div>
+                </div>
+                <div ng-messages="form.operationsControlReview.$error">
+                    <div ng-message="required">Operations Control Review is required</div>
+                </div>
+                <div ng-messages="form.realTimeReview.$error">
+                    <div ng-message="required">Real Time Review is required</div>
+                </div>
+            </div>
+            <div>
+                <h4>Sectors errors</h4>
             </div>
         </div>
 
@@ -636,7 +667,7 @@
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Seed funds target (USD)</label>
                     <input type="number" max="9999999" required ng-model="ctrl.model.seedFundsTarget" name="seedFundsTarget"></input>
-                    <div ng-messages="form.strategyTargetChildren.$error">
+                    <div ng-messages="form.seedFundsTarget.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="max">That's too high</div>
                     </div>
@@ -656,7 +687,7 @@
                     <label>Seed funds target date set</label>
                     <md-datepicker ng-model="ctrl.model.seedFundsTargetDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
                 </div>
-                <md-input-container class="md-block" flex-gt-sm="30" ng-hide="!ctrl.model.nonSciResponses">
+                <md-input-container class="md-block" flex-gt-sm="30" ng-if="ctrl.model.nonSciResponses">
                     <label>Secured income (USD)</label>
                     <input type="number" max="99999999" required ng-model="ctrl.model.securedIncome" name="securedIncome"></input>
                     <div ng-messages="form.securedIncome.$error">
@@ -664,7 +695,7 @@
                         <div ng-message="max">That's too high</div>
                     </div>
                 </md-input-container>
-                <md-input-container class="md-block" flex-gt-sm="30" ng-hide="!ctrl.model.nonSciResponses">
+                <md-input-container class="md-block" flex-gt-sm="30" ng-if="ctrl.model.nonSciResponses">
                     <label>New awards in year (USD)</label>
                     <input type="number" max="99999999" required ng-model="ctrl.model.newAwards" name="newAwards"></input>
                     <div ng-messages="form.newAwards.$error">
@@ -674,7 +705,7 @@
                 </md-input-container>
             </div>
 
-            <div layout-gt-md="row" layout-padding ng-hide="!ctrl.model.nonSciResponses">
+            <div layout-gt-md="row" layout-padding ng-if="ctrl.model.nonSciResponses">
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Response Pipeline (USD)</label>
                     <md-tooltip md-direction="bottom">High and very hich likelihood</md-tooltip>
@@ -694,7 +725,7 @@
                 </md-input-container>
             </div>
 
-            <div layout-gt-md="row" layout-padding ng-hide="!ctrl.model.nonSciResponses">
+            <div layout-gt-md="row" layout-padding ng-if="ctrl.model.nonSciResponses">
                 <h4>Of which seed funds</h4>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Seed funds secured {USD)</label>
@@ -723,7 +754,7 @@
             </div>
         </accordion>
 
-        <accordion heading="Spend" ng-hide="!ctrl.model.nonSciResponses">
+        <accordion heading="Spend" ng-if="ctrl.model.nonSciResponses">
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Response total spend {USD)</label>
@@ -777,9 +808,12 @@
                 <label style="width: 128px">Assessment</label>
                 <md-checkbox ng-model="ctrl.model.assessmentBool">
                 </md-checkbox>
-                <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.assessmentBool">
+                <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.assessmentBool">
                     <label>Address of OneNet document</label>
-                    <textarea ng-model="ctrl.model.assessment" name="assessment"></textarea>
+                    <textarea ng-model="ctrl.model.assessment" name="assessment" required></textarea>
+                    <div ng-messages="form.assessment.$error">
+                        <div ng-message="required">This is required</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -787,9 +821,12 @@
                 <label style="width: 128px">Outline</label>
                 <md-checkbox ng-model="ctrl.model.outlineBool">
                 </md-checkbox>
-                <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.outlineBool">
+                <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.outlineBool">
                     <label>Address of OneNet document</label>
-                    <textarea ng-model="ctrl.model.outline" name="outline"></textarea>
+                    <textarea ng-model="ctrl.model.outline" name="outline" required></textarea>
+                    <div ng-messages="form.outline.$error">
+                        <div ng-message="required">This is required</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -797,9 +834,12 @@
                 <label style="width: 128px">Strategy</label>
                 <md-checkbox ng-model="ctrl.model.strategyBool">
                 </md-checkbox>
-                <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.strategyBool">
+                <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.strategyBool">
                     <label>Address of OneNet document</label>
-                    <textarea ng-model="ctrl.model.strategy" name="strategy"></textarea>
+                    <textarea ng-model="ctrl.model.strategy" name="strategy" required></textarea>
+                    <div ng-messages="form.strategy.$error">
+                        <div ng-message="required">This is required</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -807,9 +847,12 @@
                 <label style="width: 128px">Plan</label>
                 <md-checkbox ng-model="ctrl.model.planBool">
                 </md-checkbox>
-                <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.planBool">
+                <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.planBool">
                     <label>Address of OneNet document</label>
-                    <textarea ng-model="ctrl.model.plan" name="plan"></textarea>
+                    <textarea ng-model="ctrl.model.plan" name="plan" required></textarea>
+                    <div ng-messages="form.plan.$error">
+                        <div ng-message="required">This is required</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -817,9 +860,12 @@
                 <label style="width: 128px">Operations Control review</label>
                 <md-checkbox ng-model="ctrl.model.operationsControlReviewBool">
                 </md-checkbox>
-                <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.operationsControlReviewBool">
+                <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.operationsControlReviewBool">
                     <label>Address of OneNet document</label>
-                    <textarea ng-model="ctrl.model.operationsControlReview" name="operationsControlReview"></textarea>
+                    <textarea ng-model="ctrl.model.operationsControlReview" name="operationsControlReview" required></textarea>
+                    <div ng-messages="form.operationsControlReview.$error">
+                        <div ng-message="required">This is required</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -827,9 +873,12 @@
                 <label style="width: 128px">Real-time review</label>
                 <md-checkbox ng-model="ctrl.model.realTimeReviewBool">
                 </md-checkbox>
-                <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.realTimeReviewBool">
+                <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.realTimeReviewBool">
                     <label>Address of OneNet document</label>
-                    <textarea ng-model="ctrl.model.realTimeReview" name="realTimeReview"></textarea>
+                    <textarea ng-model="ctrl.model.realTimeReview" name="realTimeReview" required></textarea>
+                    <div ng-messages="form.realTimeReview.$error">
+                        <div ng-message="required">This is required</div>
+                    </div>
                 </md-input-container>
             </div>
 
