@@ -370,7 +370,7 @@
                     <div ng-message="required">Response Strategy Target is required</div>
                     <div ng-message="max">Response Strategy Target is too high</div>
                 </div>
-                <div ng-messages="form.seedFundsTarget.$error">
+                <div ng-messages="form.seedFundsTarget.$error" ng-show="form.responseStrategyTarget.$dirty">
                     <div ng-message="required">Seed Funds Target is required</div>
                     <div ng-message="max">Seed Funds Target is too high</div>
                 </div>
@@ -432,27 +432,97 @@
             </div>
             <div>
                 <h4>Deliverables errors</h4>
-                <div ng-messages="form.assessment.$error">
+                <div ng-messages="form.assessment.$error" ng-show="form.assessment.$dirty">
                     <div ng-message="required">Assessment is required</div>
                 </div>
-                <div ng-messages="form.outline.$error">
+                <div ng-messages="form.outline.$error" ng-show="form.outline.$dirty">
                     <div ng-message="required">Outline is required</div>
                 </div>
-                <div ng-messages="form.strategy.$error">
+                <div ng-messages="form.strategy.$error" ng-show="form.strategy.$dirty">
                     <div ng-message="required">Strategy is required</div>
                 </div>
-                <div ng-messages="form.plan.$error">
+                <div ng-messages="form.plan.$error" ng-show="form.plan.$dirty">
                     <div ng-message="required">Plan is required</div>
                 </div>
-                <div ng-messages="form.operationsControlReview.$error">
+                <div ng-messages="form.operationsControlReview.$error" ng-show="form.operationsControlReview.$dirty">
                     <div ng-message="required">Operations Control Review is required</div>
                 </div>
-                <div ng-messages="form.realTimeReview.$error">
+                <div ng-messages="form.realTimeReview.$error" ng-show="form.realTimeReview.$dirty">
                     <div ng-message="required">Real Time Review is required</div>
                 </div>
             </div>
             <div>
                 <h4>Sectors errors</h4>
+                <div ng-messages="form.childProtectionBackstop.$error" ng-show="form.childProtectionBackstop.$dirty">
+                    <div ng-message="required">childProtectionBackstop is required</div>
+                </div>
+                <div ng-messages="form.childProtectionSummary.$error" ng-show="form.childProtectionSummary.$dirty">
+                    <div ng-message="required">Child Protection Summary is required</div>
+                    <div ng-message="md-maxlength">Child Protection Summary's too long</div>
+                </div>
+                <div ng-messages="form.educationBackstop.$error" ng-show="form.educationBackstop.$dirty">
+                    <div ng-message="required">Education Backstop is required</div>
+                </div>
+                <div ng-messages="form.educationSummary.$error" ng-show="form.educationSummary.$dirty">
+                    <div ng-message="required">Education Summary is required</div>
+                    <div ng-message="md-maxlength">Education Summary's too long</div>
+                </div>
+                <div ng-messages="form.FSLBackstop.$error" ng-show="form.FSLBackstop.$dirty">
+                    <div ng-message="required">FSL Backstop is required</div>
+                </div>
+                <div ng-messages="form.FSLSummary.$error" ng-show="form.FSLSummary.$dirty">
+                    <div ng-message="required">FSL Summary is required</div>
+                    <div ng-message="md-maxlength">FSL Summary is too long</div>
+                </div>
+                <div ng-messages="form.WASHBackstop.$error" ng-show="form.WASHBackstop.$dirty">
+                    <div ng-message="required">WASH Backstop is required</div>
+                </div>
+                <div ng-messages="form.WASHSummary.$error" ng-show="form.WASHSummary.$dirty">
+                    <div ng-message="required">WASH Summary is required</div>
+                    <div ng-message="md-maxlength">WASH Summary is too long</div>
+                </div>
+                <div ng-messages="form.shelterBackstop.$error" ng-show="form.shelterBackstop.$dirty">
+                    <div ng-message="required">Shelter Backstop is required</div>
+                </div>
+                <div ng-messages="form.shelterSummary.$error" ng-show="form.shelterSummary.$dirty">
+                    <div ng-message="required">Shelter Summary is required</div>
+                    <div ng-message="md-maxlength">Shelter Summary's too long</div>
+                </div>
+                <div ng-messages="form.healthBackstop.$error" ng-show="form.healthBackstop.$dirty">
+                    <div ng-message="required">Health Backstop is required</div>
+                </div>
+                <div ng-messages="form.healthSummary.$error" ng-show="form.healthSummary.$dirty">
+                    <div ng-message="required">Health Summary is required</div>
+                    <div ng-message="md-maxlength">Health Summary is too long</div>
+                </div>
+                <div ng-messages="form.nutritionSummary.$error" ng-show="form.nutritionSummary.$dirty">
+                    <div ng-message="required">Nutrition Summary is required</div>
+                    <div ng-message="md-maxlength">Nutrition Summary is too long</div>
+                </div>
+            </div>
+            <div>
+                <h4>HR errors</h4>
+                <div ng-messages="form.nationalStaffNumber.$error" ng-show="form.nationalStaffNumber.$dirty">
+                    <div ng-message="max">National Staff Number is too high</div>
+                </div>
+                <div ng-messages="form.internationalStaffNumber.$error" ng-show="form.internationalStaffNumber.$dirty">
+                    <div ng-message="max">International Staff Number is too high</div>
+                </div>
+            </div>
+            <div>
+                <h4>Saftey and Security errors</h4>
+                <div ng-messages="form.securityContext.$error" ng-show="form.securityContext.$dirty">
+                    <div ng-message="required">Security Context is required</div>
+                    <div ng-message="md-maxlength">Security Context is too long</div>
+                </div>
+                <div ng-messages="form.securityChallenges.$error" ng-show="form.securityChallenges.$dirty">
+                    <div ng-message="required">Security Challenges is required</div>
+                    <div ng-message="md-maxlength">Security Challenges is too long</div>
+                </div>
+                <div ng-messages="form.securityManagement.$error" ng-show="form.securityManagement.$dirty">
+                    <div ng-message="required">Security Management is required</div>
+                    <div ng-message="md-maxlength">Security Management is too long</div>
+                </div>
             </div>
         </div>
 
@@ -674,7 +744,7 @@
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Crisis Modifiers</label>
-                    <input type="number" max="99999999" ng-model="ctrl.model.crisisModifiers" name="crisisModifiers"></input>
+                    <input type="number" required max="99999999" ng-model="ctrl.model.crisisModifiers" name="crisisModifiers"></input>
                     <div ng-messages="form.crisisModifiers.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="max">That's too high</div>
@@ -900,18 +970,25 @@
                 <label style="width: 128px">Child protection</label>
                 <md-checkbox ng-model="ctrl.model.childProtectionBool">
                 </md-checkbox>
-                <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.childProtectionBool">
+                <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.childProtectionBool">
                     <label>Backstop</label>
-                    <textarea ng-model="ctrl.model.childProtectionBackstop" name="childProtectionBackstop"></textarea>
+                    <textarea required ng-model="ctrl.model.childProtectionBackstop" name="childProtectionBackstop"></textarea>
+                    <div ng-messages="form.childProtectionBackstop.$error">
+                        <div ng-message="required">This is required</div>
+                    </div>
                 </md-input-container>
             </div>
             <div layout-gt-md="row" layout-padding>
-                <md-input-container class="md-block" flex-gt-sm="50" ng-hide="!ctrl.model.childProtectionBool">
+                <md-input-container class="md-block" flex-gt-sm="50" ng-if="ctrl.model.childProtectionBool">
                     <label>Summary of response to date and achievements since last sitrep</label>
                     <md-tooltip md-direction="bottom">Provide a summary of the Child Protection response sharing the total reach of the sector against the
                         target. Highlight the achievements and reach figures of the top 3 activities since the start of the
                         response, and the percentage of that reach since the last reporting period.</md-tooltip>
-                    <textarea ng-model="ctrl.model.childProtectionSummary" name="childProtectionSummary" md-maxlength="500"></textarea>
+                    <textarea ng-model="ctrl.model.childProtectionSummary" name="childProtectionSummary" md-maxlength="500" required></textarea>
+                    <div ng-messages="form.childProtectionSummary.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -919,18 +996,25 @@
                 <label style="width: 128px">Education</label>
                 <md-checkbox ng-model="ctrl.model.educationBool">
                 </md-checkbox>
-                <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.educationBool">
+                <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.educationBool">
                     <label>Backstop</label>
-                    <textarea ng-model="ctrl.model.educationBackstop" name="educationBackstop"></textarea>
+                    <textarea required ng-model="ctrl.model.educationBackstop" name="educationBackstop"></textarea>
+                    <div ng-messages="form.educationBackstop.$error">
+                        <div ng-message="required">This is required</div>
+                    </div>
                 </md-input-container>
             </div>
             <div layout-gt-md="row" layout-padding>
-                <md-input-container class="md-block" flex-gt-sm="50" ng-hide="!ctrl.model.educationBool">
+                <md-input-container class="md-block" flex-gt-sm="50" ng-if="ctrl.model.educationBool">
                     <label>Summary of response to date and achievements since last sitrep</label>
                     <md-tooltip md-direction="bottom">Provide a summary of the Education response sharing the total reach of the sector against the target.
                         Highlight the achievements and reach figures of the top 3 activities since the start of the response,
                         and the percentage of that reach since the last reporting period. </md-tooltip>
-                    <textarea ng-model="ctrl.model.educationSummary" name="educationSummary" md-maxlength="500"></textarea>
+                    <textarea ng-model="ctrl.model.educationSummary" name="educationSummary" md-maxlength="500" required></textarea>
+                    <div ng-messages="form.educationSummary.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -938,18 +1022,25 @@
                 <label style="width: 128px">FSL</label>
                 <md-checkbox ng-model="ctrl.model.FSLBool">
                 </md-checkbox>
-                <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.FSLBool">
+                <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.FSLBool">
                     <label>Backstop</label>
-                    <textarea ng-model="ctrl.model.FSLBackstop" name="FSLBackstop"></textarea>
+                    <textarea ng-model="ctrl.model.FSLBackstop" name="FSLBackstop" required></textarea>
+                    <div ng-messages="form.FSLBackstop.$error">
+                        <div ng-message="required">This is required</div>
+                    </div>
                 </md-input-container>
             </div>
             <div layout-gt-md="row" layout-padding>
-                <md-input-container class="md-block" flex-gt-sm="50" ng-hide="!ctrl.model.FSLBool">
+                <md-input-container class="md-block" flex-gt-sm="50" ng-if="ctrl.model.FSLBool">
                     <label>Summary of response to date and achievements since last sitrep</label>
                     <md-tooltip md-direction="bottom">Provide a summary of the FSL response sharing the total reach of the sector against the target. Highlight
                         the achievements and reach figures of the top 3 activities since the start of the response, and the
                         percentage of that reach since the last reporting period.</md-tooltip>
-                    <textarea ng-model="ctrl.model.FSLSummary" name="FSLSummary" md-maxlength="500"></textarea>
+                    <textarea ng-model="ctrl.model.FSLSummary" name="FSLSummary" md-maxlength="500" required></textarea>
+                    <div ng-messages="form.FSLSummary.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -957,18 +1048,25 @@
                 <label style="width: 128px">WASH</label>
                 <md-checkbox ng-model="ctrl.model.WASHBool">
                 </md-checkbox>
-                <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.WASHBool">
+                <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.WASHBool">
                     <label>Backstop</label>
-                    <textarea ng-model="ctrl.model.WASHBackstop" name="WASHBackstop"></textarea>
+                    <textarea ng-model="ctrl.model.WASHBackstop" name="WASHBackstop" required></textarea>
+                    <div ng-messages="form.WASHBackstop.$error">
+                        <div ng-message="required">This is required</div>
+                    </div>
                 </md-input-container>
             </div>
             <div layout-gt-md="row" layout-padding>
-                <md-input-container class="md-block" flex-gt-sm="50" ng-hide="!ctrl.model.WASHBool">
+                <md-input-container class="md-block" flex-gt-sm="50" ng-if="ctrl.model.WASHBool">
                     <label>Summary of response to date and achievements since last sitrep</label>
                     <md-tooltip md-direction="bottom">Provide a summary of the WASH response sharing the total reach of the sector against the target. Highlight
                         the achievements and reach figures of the top 3 activities since the start of the response, and the
                         percentage of that reach since the last reporting period. </md-tooltip>
-                    <textarea ng-model="ctrl.model.WASHSummary" name="WASHSummary" md-maxlength="500"></textarea>
+                    <textarea ng-model="ctrl.model.WASHSummary" name="WASHSummary" md-maxlength="500" required></textarea>
+                    <div ng-messages="form.WASHSummary.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -976,18 +1074,25 @@
                 <label style="width: 128px">Shelter</label>
                 <md-checkbox ng-model="ctrl.model.shelterBool">
                 </md-checkbox>
-                <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.shelterBool">
+                <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.shelterBool">
                     <label>Backstop</label>
-                    <textarea ng-model="ctrl.model.shelterBackstop" name="shelterBackstop"></textarea>
+                    <textarea ng-model="ctrl.model.shelterBackstop" name="shelterBackstop" required></textarea>
+                    <div ng-messages="form.shelterBackstop.$error">
+                        <div ng-message="required">This is required</div>
+                    </div>
                 </md-input-container>
             </div>
             <div layout-gt-md="row" layout-padding>
-                <md-input-container class="md-block" flex-gt-sm="50" ng-hide="!ctrl.model.shelterBool">
+                <md-input-container class="md-block" flex-gt-sm="50" ng-if="ctrl.model.shelterBool">
                     <label>Summary of response to date and achievements since last sitrep</label>
                     <md-tooltip md-direction="bottom">Provide a summary of the Shelter/NFI response sharing the total reach of the sector against the target.
                         Highlight the achievements and reach figures of the top 3 activities since the start of the response,
                         and the percentage of that reach since the last reporting period.</md-tooltip>
-                    <textarea ng-model="ctrl.model.shelterSummary" name="shelterSummary" md-maxlength="500"></textarea>
+                    <textarea ng-model="ctrl.model.shelterSummary" name="shelterSummary" md-maxlength="500" required></textarea>
+                    <div ng-messages="form.shelterSummary.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -995,18 +1100,25 @@
                 <label style="width: 128px">Health</label>
                 <md-checkbox ng-model="ctrl.model.healthBool">
                 </md-checkbox>
-                <md-input-container class="md-block" flex-gt-sm="40" ng-hide="!ctrl.model.healthBool">
+                <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.healthBool">
                     <label>Backstop</label>
-                    <textarea ng-model="ctrl.model.healthBackstop" name="healthBackstop"></textarea>
+                    <textarea ng-model="ctrl.model.healthBackstop" name="healthBackstop" required></textarea>
+                    <div ng-messages="form.healthBackstop.$error">
+                        <div ng-message="required">This is required</div>
+                    </div>
                 </md-input-container>
             </div>
             <div layout-gt-md="row" layout-padding>
-                <md-input-container class="md-block" flex-gt-sm="50" ng-hide="!ctrl.model.healthBool">
+                <md-input-container class="md-block" flex-gt-sm="50" ng-if="ctrl.model.healthBool">
                     <label>Summary of response to date and achievements since last sitrep</label>
                     <md-tooltip md-direction="right">Provide a summary of the Health response sharing the total reach of the sector against the target. Highlight
                         the achievements and reach figures of the top 3 activities since the start of the response, and the
                         percentage of that reach since the last reporting period. </md-tooltip>
-                    <textarea ng-model="ctrl.model.healthSummary" name="healthSummary" md-maxlength="500"></textarea>
+                    <textarea ng-model="ctrl.model.healthSummary" name="healthSummary" md-maxlength="500" required></textarea>
+                    <div ng-messages="form.healthSummary.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -1024,11 +1136,15 @@
                 <label style="width: 128px">Nutrition</label>
                 <md-checkbox ng-model="ctrl.model.nutritionBool">
                 </md-checkbox>
-                <md-input-container class="md-block" flex-gt-sm="50" ng-hide="!ctrl.model.nutritionBool">
+                <md-input-container class="md-block" flex-gt-sm="50" ng-if="ctrl.model.nutritionBool">
                     <md-tooltip md-direction="right">Provide a summary of the Nutrition response sharing the total reach of the sector against the target.
                         <br> Highlight the achievements and reach figures of the top 3 activities since the start of the response,
                         and the percentage of that reach since the last reporting period.</md-tooltip>
-                    <textarea ng-model="ctrl.model.nutritionSummary" name="nutritionSummary" md-maxlength="500"></textarea>
+                    <textarea ng-model="ctrl.model.nutritionSummary" name="nutritionSummary" md-maxlength="500" required></textarea>
+                    <div ng-messages="form.nutritionSummary.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
                 </md-input-container>
             </div>
 
@@ -1036,7 +1152,7 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Link to output tracker</label>
-                    <textarea ng-model="ctrl.model.outputTracker" name="outputTracker" md-maxlength="300"></textarea>
+                    <textarea ng-model="ctrl.model.outputTracker" name="outputTracker"></textarea>
                 </md-input-container>
             </div>
 
@@ -1047,17 +1163,23 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label># of national response staff</label>
-                    <textarea ng-model="ctrl.model.nationalStaffNumber" name="nationalStaffNumber" md-maxlength="7"></textarea>
+                    <input type="number" max="9999999" ng-model="ctrl.model.nationalStaffNumber" name="nationalStaffNumber"></input>
+                    <div ng-messages="form.nationalStaffNumber.$error">
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label># of international staff</label>
-                    <textarea ng-model="ctrl.model.internationalStaffNumber" name="internationalStaffNumber" md-maxlength="7"></textarea>
+                    <input type="number" max="9999999" ng-model="ctrl.model.internationalStaffNumber" name="internationalStaffNumber"></input>
+                    <div ng-messages="form.internationalStaffNumber.$error">
+                        <div ng-message="max">That's too high</div>
+                    </div>
                 </md-input-container>
             </div>
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Deployment tracker link</label>
-                    <textarea ng-model="ctrl.model.deploymentTrackerLink" name="deploymentTrackerLink" md-maxlength="100"></textarea>
+                    <textarea ng-model="ctrl.model.deploymentTrackerLink" name="deploymentTrackerLink"></textarea>
                 </md-input-container>
             </div>
         </accordion>
@@ -1067,21 +1189,33 @@
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Please provide an overview of the S&amp;S context, including details of security incidents, since the
                         last SitRep</label>
-                    <textarea ng-model="ctrl.model.securityContext" name="securityContext" md-maxlength="700"></textarea>
+                    <textarea ng-model="ctrl.model.securityContext" name="securityContext" md-maxlength="700" required></textarea>
+                    <div ng-messages="form.securityContext.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
                 </md-input-container>
             </div>
 
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>What immediate S&amp;S challenges are predicted?</label>
-                    <textarea ng-model="ctrl.model.securityChallenges" name="securityChallenges" md-maxlength="700"></textarea>
+                    <textarea ng-model="ctrl.model.securityChallenges" name="securityChallenges" md-maxlength="700" required></textarea>
+                    <div ng-messages="form.securityChallenges.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
                 </md-input-container>
             </div>
 
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>How will those challenges be managed?</label>
-                    <textarea ng-model="ctrl.model.securityManagement" name="securityManagement" md-maxlength="700"></textarea>
+                    <textarea ng-model="ctrl.model.securityManagement" name="securityManagement" md-maxlength="700" required></textarea>
+                    <div ng-messages="form.securityManagement.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
                 </md-input-container>
             </div>
 
