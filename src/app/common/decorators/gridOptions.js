@@ -19,7 +19,7 @@ function gridDecorator($delegate, uiGridConstants) {
             initOptions.enableFullRowSelection = initOptions.enableFullRowSelection || true;
 
             initOptions.columnDefs.forEach((column) => {
-                column.headerCellFilter = 'translate';
+                //column.headerCellFilter = 'translate';
                 column.enableSorting = column.enableSorting || false;
                 column.enableFiltering = column.enableFiltering || true;
             });
