@@ -23,6 +23,12 @@ export default class AddReportController extends BaseController {
         this.submit = false;
         this.saveDraft = false;
         this.convertToDraft = false;
+
+        this.code = "";
+        this.responseStatus = "";
+        this.country = "";
+        this.region = "";
+        this.description = "";
     }
 
     $routerOnActivate(next, current) {
@@ -154,11 +160,11 @@ export default class AddReportController extends BaseController {
                             this.convertToDraft = false;
                         }
                     }
-                    super.model.code = this.responseModel.code;
-                    super.model.responseStatus = this.responseModel.responseStatus;
-                    super.model.country = this.responseModel.country;
-                    super.model.region = this.responseModel.region;
-                    super.model.description = this.responseModel.description;        
+                    this.code = this.responseModel.code;
+                    this.responseStatus = this.responseModel.responseStatus;
+                    this.country = this.responseModel.country;
+                    this.region = this.responseModel.region;
+                    this.description = this.responseModel.description;        
                     super.isRequestProcessing = false;
                     return super.model;
                 },
