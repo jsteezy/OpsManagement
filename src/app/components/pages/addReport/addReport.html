@@ -123,7 +123,7 @@
                 <div>
                     <span class="bold">Seed funds secured in year (USD):</span> {{ctrl.model.seedFundsSecuredYearly}}</div>
                 <div>
-                    <span class="bold">CSF (USD): </span>{{ctrl.model.CSF}}</div>
+                    <span class="bold">CSF (USD): </span>{{ctrl.model.cSF}}</div>
             </div>
         </div>
 
@@ -199,19 +199,19 @@
             </div>
             <div layout-gt-md="row" layout-padding>
                 <div>
-                    <span class="bold">FSL backstop: </span>{{ctrl.model.FSLBackstop}}</div>
+                    <span class="bold">FSL backstop: </span>{{ctrl.model.fSLBackstop}}</div>
                 <br>
                 <div>
                     <span class="bold">Summary of response to date and achievements since last sitrep:</span>
-                    <br>{{ctrl.model.FSLSummary}}</div>
+                    <br>{{ctrl.model.fSLSummary}}</div>
             </div>
             <div layout-gt-md="row" layout-padding>
                 <div>
-                    <span class="bold">WASH backstop:</span> {{ctrl.model.WASHBackstop}}</div>
+                    <span class="bold">WASH backstop:</span> {{ctrl.model.wASHBackstop}}</div>
                 <br>
                 <div>
                     <span class="bold">Summary of response to date and achievements since last sitrep:</span>
-                    <br>{{ctrl.model.WASHSummary}}</div>
+                    <br>{{ctrl.model.wASHSummary}}</div>
             </div>
             <div layout-gt-md="row" layout-padding>
                 <div>
@@ -231,7 +231,7 @@
             </div>
             <div layout-gt-md="row" layout-padding>
                 <div>
-                    <span class="bold">EHU Deployed: </span>{{ctrl.model.EHUDeployedDate}}</div>
+                    <span class="bold">EHU Deployed: </span>{{ctrl.model.eHUDeployedDate}}</div>
             </div>
             <div layout-gt-md="row" layout-padding>
                 <div>
@@ -473,7 +473,7 @@
                     <div ng-message="required">Seed Funds Secured Yearly is required</div>
                     <div ng-message="max">Seed Funds Secured Yearly is too high</div>
                 </div>
-                <div ng-messages="form.CSF.$error" ng-show="form.CSF.$invalid">
+                <div ng-messages="form.cSF.$error" ng-show="form.cSF.$invalid">
                     <div ng-message="required">CSF is required</div>
                     <div ng-message="max">CSF is too high</div>
                 </div>
@@ -538,17 +538,17 @@
                     <div ng-message="required">Education Summary is required</div>
                     <div ng-message="md-maxlength">Education Summary's too long</div>
                 </div>
-                <div ng-messages="form.FSLBackstop.$error" ng-show="form.FSLBackstop.$invalid">
+                <div ng-messages="form.fSLBackstop.$error" ng-show="form.fSLBackstop.$invalid">
                     <div ng-message="required">FSL Backstop is required</div>
                 </div>
-                <div ng-messages="form.FSLSummary.$error" ng-show="form.FSLSummary.$invalid">
+                <div ng-messages="form.fSLSummary.$error" ng-show="form.fSLSummary.$invalid">
                     <div ng-message="required">FSL Summary is required</div>
                     <div ng-message="md-maxlength">FSL Summary is too long</div>
                 </div>
-                <div ng-messages="form.WASHBackstop.$error" ng-show="form.WASHBackstop.$invalid">
+                <div ng-messages="form.wASHBackstop.$error" ng-show="form.wASHBackstop.$invalid">
                     <div ng-message="required">WASH Backstop is required</div>
                 </div>
-                <div ng-messages="form.WASHSummary.$error" ng-show="form.WASHSummary.$invalid">
+                <div ng-messages="form.wASHSummary.$error" ng-show="form.wASHSummary.$invalid">
                     <div ng-message="required">WASH Summary is required</div>
                     <div ng-message="md-maxlength">WASH Summary is too long</div>
                 </div>
@@ -895,8 +895,8 @@
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>CSF (USD)</label>
-                    <input type="number" max="99999999" required ng-model="ctrl.model.CSF" name="CSF"></input>
-                    <div ng-messages="form.CSF.$error">
+                    <input type="number" max="99999999" required ng-model="ctrl.model.cSF" name="cSF"></input>
+                    <div ng-messages="form.cSF.$error">
                         <div ng-message="required">CSF is required</div>
                         <div ng-message="max">That's too high</div>
                     </div>
@@ -1104,8 +1104,8 @@
                 </md-checkbox>
                 <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.FSLBool">
                     <label>Backstop</label>
-                    <textarea ng-model="ctrl.model.FSLBackstop" name="FSLBackstop" required></textarea>
-                    <div ng-messages="form.FSLBackstop.$error">
+                    <textarea ng-model="ctrl.model.fSLBackstop" name="fSLBackstop" required></textarea>
+                    <div ng-messages="form.fSLBackstop.$error">
                         <div ng-message="required">This is required</div>
                     </div>
                 </md-input-container>
@@ -1116,8 +1116,8 @@
                     <md-tooltip md-direction="bottom">Provide a summary of the FSL response sharing the total reach of the sector against the target. Highlight
                         the achievements and reach figures of the top 3 activities since the start of the response, and the
                         percentage of that reach since the last reporting period.</md-tooltip>
-                    <textarea ng-model="ctrl.model.FSLSummary" name="FSLSummary" md-maxlength="500" required></textarea>
-                    <div ng-messages="form.FSLSummary.$error">
+                    <textarea ng-model="ctrl.model.fSLSummary" name="fSLSummary" md-maxlength="500" required></textarea>
+                    <div ng-messages="form.fSLSummary.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="md-maxlength">That's too long</div>
                     </div>
@@ -1126,24 +1126,24 @@
 
             <div layout-gt-md="row" layout-padding>
                 <label style="width: 128px">WASH</label>
-                <md-checkbox ng-model="ctrl.model.WASHBool">
+                <md-checkbox ng-model="ctrl.model.wASHBool">
                 </md-checkbox>
-                <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.WASHBool">
+                <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.wASHBool">
                     <label>Backstop</label>
-                    <textarea ng-model="ctrl.model.WASHBackstop" name="WASHBackstop" required></textarea>
-                    <div ng-messages="form.WASHBackstop.$error">
+                    <textarea ng-model="ctrl.model.wASHBackstop" name="wASHBackstop" required></textarea>
+                    <div ng-messages="form.wASHBackstop.$error">
                         <div ng-message="required">This is required</div>
                     </div>
                 </md-input-container>
             </div>
             <div layout-gt-md="row" layout-padding>
-                <md-input-container class="md-block" flex-gt-sm="50" ng-if="ctrl.model.WASHBool">
+                <md-input-container class="md-block" flex-gt-sm="50" ng-if="ctrl.model.wASHBool">
                     <label>Summary of response to date and achievements since last sitrep</label>
                     <md-tooltip md-direction="bottom">Provide a summary of the WASH response sharing the total reach of the sector against the target. Highlight
                         the achievements and reach figures of the top 3 activities since the start of the response, and the
                         percentage of that reach since the last reporting period. </md-tooltip>
-                    <textarea ng-model="ctrl.model.WASHSummary" name="WASHSummary" md-maxlength="500" required></textarea>
-                    <div ng-messages="form.WASHSummary.$error">
+                    <textarea ng-model="ctrl.model.wASHSummary" name="wASHSummary" md-maxlength="500" required></textarea>
+                    <div ng-messages="form.wASHSummary.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="md-maxlength">That's too long</div>
                     </div>
@@ -1204,11 +1204,11 @@
 
             <div layout-gt-md="row" layout-padding>
                 <label style="width: 128px">EHU Deployed</label>
-                <md-checkbox ng-model="ctrl.model.EHUDeployed">
+                <md-checkbox ng-model="ctrl.model.eHUDeployed">
                 </md-checkbox>
-                <div class="md-block" flex-gt-sm="25" ng-hide="!ctrl.model.EHUDeployed">
+                <div class="md-block" flex-gt-sm="25" ng-hide="!ctrl.model.eHUDeployed">
                     <label>EHU Deployed Date</label>
-                    <md-datepicker ng-model="ctrl.model.EHUDeployedDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                    <md-datepicker ng-model="ctrl.model.eHUDeployedDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
                 </div>
             </div>
 
