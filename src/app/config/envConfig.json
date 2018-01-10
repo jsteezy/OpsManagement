@@ -1,4 +1,4 @@
 {
-    "baseUrl": "/sites/OMT/ProjectLibrary/OMT/",
-    "site_url": "https://onenet-staging.savethechildren.net/sites/OMT"
+    "baseUrl": "/sites/OMT-uat/ProjectLibrary/OMT/",
+    "site_url": "https://onenet-staging.savethechildren.net/sites/OMT-uat"
 }

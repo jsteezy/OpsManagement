@@ -154,8 +154,13 @@ export default class AddReportController extends BaseController {
                             this.convertToDraft = false;
                         }
                     }
+                    super.model.code = this.responseModel.code;
+                    super.model.responseStatus = this.responseModel.responseStatus;
+                    super.model.country = this.responseModel.country;
+                    super.model.region = this.responseModel.region;
+                    super.model.description = this.responseModel.description;        
                     super.isRequestProcessing = false;
-                    return [super.model, this.responseModel];
+                    return super.model;
                 },
                 () => {
                     super.isRequestProcessing = false;
