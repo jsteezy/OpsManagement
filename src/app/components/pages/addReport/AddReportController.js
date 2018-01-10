@@ -189,13 +189,13 @@ export default class AddReportController extends BaseController {
         if (model.educationBackstop != null || model.educationSummary != null) {
             model.educationBool = true;
         }
-        if (model.FSLBackstop != null || model.FSLSummary != null) {
-            if (model.FSLBackstop != "" || model.FSLSummary != "") {
+        if (model.fSLBackstop != null || model.fSLSummary != null) {
+            if (model.fSLBackstop != "" || model.fSLSummary != "") {
                 model.FSLBool = true;
             }
         }
-        if (model.WASHBackstop != null || model.WASHSummary != null) {
-            if (model.WASHBackstop != "" || model.WASHSummary != "") {
+        if (model.wASHBackstop != null || model.wASHSummary != null) {
+            if (model.wASHBackstop != "" || model.wASHSummary != "") {
                 model.WASHBool = true;
             }
         }
@@ -361,8 +361,8 @@ export default class AddReportController extends BaseController {
         // //Sectors
         model.childProtectionSummary = null;
         model.educationSummary = null;
-        model.FSLSummary = null;
-        model.WASHSummary = null;
+        model.fSLSummary = null;
+        model.wASHSummary = null;
         model.shelterSummary = null;
         model.healthSummary = null;
         model.nutritionSummary = null;
@@ -384,7 +384,7 @@ export default class AddReportController extends BaseController {
         // this.responsePipelineAppeal = null;
         // this.seedFundsSecured = null;
         // this.seedFundsSecuredYearly = null;
-        // this.CSF = null;
+        // this.cSF = null;
         // this.responseTotalSpend = null;
         // this.totalSpendAgainstCSF = null;
         // this.totalSpendThroughPartners = null;

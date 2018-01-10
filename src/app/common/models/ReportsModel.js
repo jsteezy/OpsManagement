@@ -62,16 +62,16 @@ export default class ReportsModel extends BaseModel {
         this.childProtectionSummary = null;
         this.educationBackstop = null;
         this.educationSummary = null;
-        this.FSLBackstop = null;
-        this.FSLSummary = null;
-        this.WASHBackstop = null;
-        this.WASHSummary = null;
+        this.fSLBackstop = null;
+        this.fSLSummary = null;
+        this.wASHBackstop = null;
+        this.wASHSummary = null;
         this.shelterBackstop = null;
         this.shelterSummary = null;
         this.healthBackstop = null;
         this.healthSummary = null;
-        this.EHUDeployed = false;
-        this.EHUDeployedDate = DateUtils.today;
+        this.eHUDeployed = false;
+        this.eHUDeployedDate = null;
         this.outputTracker = null;
         this.nutritionSummary = null;
 
@@ -111,7 +111,7 @@ export default class ReportsModel extends BaseModel {
         this.responsePipelineAppeal = null;
         this.seedFundsSecured = null;
         this.seedFundsSecuredYearly = null;
-        this.CSF = null;
+        this.cSF = null;
         this.responseTotalSpend = null;
         this.totalSpendAgainstCSF = null;
         this.totalSpendThroughPartners = null;
