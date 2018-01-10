@@ -201,7 +201,7 @@ export default class AddReportController extends BaseController {
         }
         if (model.wASHBackstop != null || model.wASHSummary != null) {
             if (model.wASHBackstop != "" || model.wASHSummary != "") {
-                model.WASHBool = true;
+                model.wASHBool = true;
             }
         }
         if (model.shelterBackstop != null || model.shelterSummary != null) {

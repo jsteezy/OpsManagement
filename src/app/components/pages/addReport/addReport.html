@@ -3,6 +3,7 @@
     $(this).height(0).height(this.scrollHeight);
 }).find( 'textarea' ).change();
 </script>
+
 <div ng-if="ctrl.readOnly === true">
     <md-content ng-cloak class="md-inline-form">
         <div layout-gt-sm="row" layout-align="space-between center">
@@ -170,13 +171,13 @@
             </div>
             <div layout-gt-md="row" layout-padding>
                 <div>
-                    <span class="bold">Representation on Humanitarian Country Team (HCT): </span>{{ctrl.model.representationOnHCT}}</div>
+                    <span class="bold">Representation on Humanitarian Country Team (HCT): </span>{{ctrl.model.representationOnHCTBool}}</div>
                 <br>
                 <div>
-                    <span class="bold">Education cluster or working group activated:</span> {{ctrl.model.educationCluster}}</div>
+                    <span class="bold">Education cluster or working group activated:</span> {{ctrl.model.educationClusterBool}}</div>
                 <br>
                 <div>
-                    <span class="bold">Staffing education cluster or working group:</span> {{ctrl.model.staffingEducationCluster}}</div>
+                    <span class="bold">Staffing education cluster or working group:</span> {{ctrl.model.staffingEducationClusterBool}}</div>
             </div>
         </div>
 
