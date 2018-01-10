@@ -7,9 +7,9 @@
 <div ng-if="ctrl.readOnly === true">
     <md-content ng-cloak class="md-inline-form">
         <div layout-gt-sm="row" layout-align="space-between center">
-            <h1>{{ctrl.model.code}} - {{ctrl.model.responseStatus}} - {{ctrl.model.country}} - {{ctrl.model.region}}</h1>
+            <h1>{{ctrl.code}} - {{ctrl.responseStatus}} - {{ctrl.country}} - {{ctrl.region}}</h1>
             <br>
-            <h3>{{ctrl.model.description}}</h3>
+            <h3>{{ctrl.description}}</h3>
 
             <div layout="row">
                 <md-button class="md-raised md-primary" aria-label="Convert to Draft" ng-if="ctrl.convertToDraft" ng-hide="ctrl.main.isRequestProcessing"
@@ -357,9 +357,9 @@
 <md-content ng-cloak class="md-inline-form" ng-if="ctrl.readOnly === false">
     <ng-form name="form" novalidate>
         <div layout-gt-sm="row" layout-align="space-between center">
-            <h1>{{ctrl.model.code}} - {{ctrl.model.responseStatus}} - {{ctrl.model.country}} - {{ctrl.model.region}}</h1>
+            <h1>{{ctrl.code}} - {{ctrl.responseStatus}} - {{ctrl.country}} - {{ctrl.region}}</h1>
             <br>
-            <h3>{{ctrl.model.description}}</h3>
+            <h3>{{ctrl.description}}</h3>
             <div layout="row">
                 <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.saveDraft" ng-hide="ctrl.main.isRequestProcessing"
                     ng-click="ctrl.storeAsDraft(form)">
@@ -1040,13 +1040,13 @@
 
             <div layout-gt-md="row" layout-padding>
                 <label>Representation on Humanitarian Country Team (HCT)</label>
-                <md-checkbox ng-model="ctrl.model.representationOnHCT">
+                <md-checkbox ng-model="ctrl.model.representationOnHCTBool">
                 </md-checkbox>
                 <label>Education cluster or working group activated</label>
-                <md-checkbox ng-model="ctrl.model.educationCluster">
+                <md-checkbox ng-model="ctrl.model.educationClusterBool">
                 </md-checkbox>
                 <label>Staffing education cluster or working group</label>
-                <md-checkbox ng-model="ctrl.model.staffingEducationCluster">
+                <md-checkbox ng-model="ctrl.model.staffingEducationClusterBool">
                 </md-checkbox>
             </div>
         </accordion>
