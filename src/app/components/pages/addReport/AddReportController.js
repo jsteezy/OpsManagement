@@ -2,6 +2,7 @@ import BaseController from "../../common/BaseController";
 import ApprovalStatuses from "../../../common/enums/approvalStatuses.json";
 import Phase from "../../../common/enums/phase.json";
 import ResponseModel from "../../../common/models/ResponseModel";
+import DateUtils from "../../../common/helpers/DateUtils";
 
 export default class AddReportController extends BaseController {
     constructor($window, $injector, responseService, reportsService, toastService) {
@@ -44,6 +45,7 @@ export default class AddReportController extends BaseController {
     }
 
     activate(responseId, reportId) {
+
 
         return super.initializePageData(this.loadResponseDetails(responseId, reportId));
     }
@@ -91,7 +93,8 @@ export default class AddReportController extends BaseController {
                                             break;
                                         case ApprovalStatuses.submitted:
                                             if (this.hasPermissions([super.appPermissions.admin])) {
-                                                //admin has all actions, non-read only and can change back to draft
+                                                //admin has read only and can change back to draft
+                                                super.model = this.formatDatesForDisplay(super.model);                                                                                    
                                                 this.readOnly = true;
                                                 this.approve = false;
                                                 this.reject = false;
@@ -101,6 +104,7 @@ export default class AddReportController extends BaseController {
                                             } else if (this.hasPermissions([super.appPermissions.approver])) {
                                                 //approver can review read only and reject or approve
                                                 this.readOnly = true;
+                                                super.model = this.formatDatesForDisplay(super.model);                                                                                    
                                                 this.approve = true;
                                                 this.reject = true;
                                                 this.submit = false;
@@ -108,6 +112,7 @@ export default class AddReportController extends BaseController {
                                                 this.convertToDraft = false;
                                             } else {
                                                 //normal user view read only
+                                                super.model = this.formatDatesForDisplay(super.model);                                                                                    
                                                 this.readOnly = true;
                                                 this.approve = false;
                                                 this.reject = false;
@@ -119,6 +124,7 @@ export default class AddReportController extends BaseController {
                                         case ApprovalStatuses.approved:
                                             if (super.model.status === ApprovalStatuses.approved) {
                                                 //read only for all
+                                                super.model = this.formatDatesForDisplay(super.model);                                                                                    
                                                 this.readOnly = true;
                                                 this.approve = false;
                                                 this.reject = false;
@@ -165,7 +171,7 @@ export default class AddReportController extends BaseController {
                     this.country = this.responseModel.country;
                     this.region = this.responseModel.region;
                     this.description = this.responseModel.description;        
-                    super.isRequestProcessing = false;
+                    super.isRequestProcessing = false;                    
                     return super.model;
                 },
                 () => {
@@ -229,6 +235,7 @@ export default class AddReportController extends BaseController {
 
         var model = this.reportsService.buildModel(super.model);
         model.status = ApprovalStatuses.draft;
+
         if (model.id != "") {
             let storeResponsePromise = this.reportsService.update(model);
             storeResponsePromise.then(
@@ -261,7 +268,7 @@ export default class AddReportController extends BaseController {
 
         var model = this.reportsService.buildModel(super.model);
         model.status = ApprovalStatuses.submitted;
-
+        
         if (model.id != "") {
             let storeResponsePromise = this.reportsService.update(model);
             storeResponsePromise.then(
@@ -347,6 +354,19 @@ export default class AddReportController extends BaseController {
             });
     }
 
+    formatDatesForDisplay(model)
+    {
+    model.sitrepDate = DateUtils.format(model.sitrepDate);
+    model.nextSitrepDate = DateUtils.format(model.nextSitrepDate);
+    model.seedFundsTargetDate = DateUtils.format(model.seedFundsTargetDate);
+    if(model.eHUDeployed != true){
+        model.eHUDeployedDate = null;
+    } else {
+        model.eHUDeployedDate = DateUtils.format(model.eHUDeployedDate);                
+    }
+    return model;
+}
+
     removeDataForNewDraft(model) {
         model.sitrepNumber ++;      
 
@@ -402,8 +422,7 @@ export default class AddReportController extends BaseController {
         // this.totalSpendThroughCTP = null;
         // this.totalSpendEducation = null;
 
-        return model;
-        
+        return model;        
     }
 }
 
