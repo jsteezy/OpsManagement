@@ -17,9 +17,10 @@ export default class ReportsService {
 
         if (data) {
             ObjectMapper.toObject(data, model);
-            model.sitrepDate = DateUtils.getFromString(model.sitrepDate);
-            model.nextSitrepDate = DateUtils.getFromString(model.nextSitrepDate);
-            model.seedFundsTargetDate = DateUtils.getFromString(model.seedFundsTargetDate);          
+            model.sitrepDate = DateUtils.format(model.sitrepDate);
+            model.nextSitrepDate = DateUtils.format(model.nextSitrepDate);
+            model.seedFundsTargetDate = DateUtils.format(model.seedFundsTargetDate);
+            model.eHUDeployedDate = DateUtils.format(model.eHUDeployedDate);
         }
         return model;
     }

@@ -12,7 +12,7 @@ export default class ReportsModel extends BaseModel {
         this.status = ApprovalStatuses.none;
         this.lastModifiedUserName = null;
         //General info
-        this.sitrepDate;
+        this.sitrepDate = DateUtils.today;
         this.nextSitrepDate = DateUtils.today;
         this.opsBackstop = null;
 
