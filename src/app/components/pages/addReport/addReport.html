@@ -7,9 +7,7 @@
 <div ng-if="ctrl.readOnly === true">
     <md-content ng-cloak class="md-inline-form">
         <div layout-gt-sm="row" layout-align="space-between center">
-            <h1>{{ctrl.code}} - {{ctrl.responseStatus}} - {{ctrl.country}} - {{ctrl.region}}</h1>
-            <br>
-            <h3>{{ctrl.description}}</h3>
+            <h1>&nbsp;{{ctrl.code}} - {{ctrl.responseStatus}} - {{ctrl.country}} - {{ctrl.region}}&nbsp;</h1><h3>&nbsp;{{ctrl.description}}</h3>
 
             <div layout="row">
                 <md-button class="md-raised md-primary" aria-label="Convert to Draft" ng-if="ctrl.convertToDraft" ng-hide="ctrl.main.isRequestProcessing"
@@ -357,9 +355,7 @@
 <md-content ng-cloak class="md-inline-form" ng-if="ctrl.readOnly === false">
     <ng-form name="form" novalidate>
         <div layout-gt-sm="row" layout-align="space-between center">
-            <h1>{{ctrl.code}} - {{ctrl.responseStatus}} - {{ctrl.country}} - {{ctrl.region}}</h1>
-            <br>
-            <h3>{{ctrl.description}}</h3>
+            <h1>&nbsp;{{ctrl.code}} - {{ctrl.responseStatus}} - {{ctrl.country}} - {{ctrl.region}}&nbsp;</h1><h3>&nbsp;{{ctrl.description}}</h3>
             <div layout="row">
                 <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.saveDraft" ng-hide="ctrl.main.isRequestProcessing"
                     ng-click="ctrl.storeAsDraft(form)">
