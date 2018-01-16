@@ -1,13 +1,14 @@
 <script>
-    $('#form').on( 'change keyup keydown paste cut', 'textarea', function (){
-    $(this).height(0).height(this.scrollHeight);
-}).find( 'textarea' ).change();
+    $('#form').on('change keyup keydown paste cut', 'textarea', function () {
+        $(this).height(0).height(this.scrollHeight);
+    }).find('textarea').change();
 </script>
 
 <div ng-if="ctrl.readOnly === true">
     <md-content ng-cloak class="md-inline-form">
         <div layout-gt-sm="row" layout-align="space-between center">
-            <h1>&nbsp;{{ctrl.code}} - {{ctrl.responseStatus}} - {{ctrl.country}} - {{ctrl.region}}&nbsp;</h1><h3>&nbsp;{{ctrl.description}}</h3>
+            <h1>&nbsp;{{ctrl.code}} - {{ctrl.country}} - {{ctrl.region}}&nbsp;</h1>
+            <h3>&nbsp;{{ctrl.description}}</h3>
 
             <div layout="row">
                 <md-button class="md-raised md-primary" aria-label="Convert to Draft" ng-if="ctrl.convertToDraft" ng-hide="ctrl.main.isRequestProcessing"
@@ -355,7 +356,8 @@
 <md-content ng-cloak class="md-inline-form" ng-if="ctrl.readOnly === false">
     <ng-form name="form" novalidate>
         <div layout-gt-sm="row" layout-align="space-between center">
-            <h1>&nbsp;{{ctrl.code}} - {{ctrl.responseStatus}} - {{ctrl.country}} - {{ctrl.region}}&nbsp;</h1><h3>&nbsp;{{ctrl.description}}</h3>
+            <h1>&nbsp;{{ctrl.code}} - {{ctrl.country}} - {{ctrl.region}}&nbsp;</h1>
+            <h3>&nbsp;{{ctrl.description}}</h3>
             <div layout="row">
                 <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.saveDraft" ng-hide="ctrl.main.isRequestProcessing"
                     ng-click="ctrl.storeAsDraft(form)">
@@ -617,15 +619,11 @@
         </div>
         <accordion heading="General Info">
             <div layout-gt-md="row" layout-padding>
-                <div class="md-block" flex-gt-sm="30">
-                    <label>Sitrep date</label>
-                    <md-datepicker ng-model="ctrl.model.sitrepDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                <div class="md-block" style="margin-top: -47px;" flex-gt-sm="25">
+                    <h5 style="font-weight: normal !important">Sitrep date</h5>
+                    <md-datepicker ng-model="ctrl.model.sitrepDate" md-placeholder="Enter date"></md-datepicker>
                 </div>
-                <div class="md-block" flex-gt-sm="30">
-                    <label>Next sitrep date</label>
-                    <md-datepicker ng-model="ctrl.model.nextSitrepDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
-                </div>
-                <md-input-container class="md-block" flex-gt-sm="30">
+                <md-input-container class="md-block" flex-gt-sm="25">
                     <label>Sitrep Number</label>
                     <textarea ng-model="ctrl.model.sitrepNumber" name="sitrepNumber" md-maxlength="3" required></textarea>
                     <div ng-messages="form.sitrepNumber.$error">
@@ -634,6 +632,22 @@
                     </div>
                 </md-input-container>
             </div>
+
+            <div layout-gt-md="row" layout-padding>
+                <div class="md-block" style="margin-top: -47px;" flex-gt-sm="25">
+                    <h5 style="font-weight: normal !important">Next sitrep</h5>
+                    <md-datepicker ng-model="ctrl.model.nextSitrepDate" md-placeholder="Enter date"></md-datepicker>
+                </div>
+                <md-input-container class="md-block" flex-gt-sm="25">
+                    <label>Category</label>
+                    <textarea ng-model="ctrl.model.category" name="category" md-maxlength="2" required></textarea>
+                    <div ng-messages="form.category.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
+                </md-input-container>
+            </div>
+
 
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
@@ -645,9 +659,9 @@
                     </md-select>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
-                    <label>Category</label>
-                    <textarea ng-model="ctrl.model.category" name="category" md-maxlength="2" required></textarea>
-                    <div ng-messages="form.category.$error">
+                    <label>Ops Backstop</label>
+                    <textarea ng-model="ctrl.model.opsBackstop" name="opsBackstop" md-maxlength="50" required></textarea>
+                    <div ng-messages="form.opsBackstop.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="md-maxlength">That's too long</div>
                     </div>
@@ -714,16 +728,6 @@
                         funding gaps, access restrictions, staffing issues etc.</md-tooltip>
                     <textarea ng-model="ctrl.model.challengesInternal" name="challengesInternal" md-maxlength="1200" required></textarea>
                     <div ng-messages="form.challengesInternal.$error">
-                        <div ng-message="required">This is required</div>
-                        <div ng-message="md-maxlength">That's too long</div>
-                    </div>
-                </md-input-container>
-            </div>
-            <div layout-gt-md="row" layout-padding>
-                <md-input-container class="md-block" flex-gt-sm="50">
-                    <label>Ops Backstop</label>
-                    <textarea ng-model="ctrl.model.opsBackstop" name="opsBackstop" md-maxlength="50" required></textarea>
-                    <div ng-messages="form.opsBackstop.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="md-maxlength">That's too long</div>
                     </div>

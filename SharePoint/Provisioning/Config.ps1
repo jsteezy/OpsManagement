@@ -14,7 +14,5 @@ $global:pageLayoutContentType = "Page Layout";
 $global:masterPageContentType = "ASP NET Master Page";
 $global:designContentType = "Design";
 
-$global:featuresToEnable = @("TeamCollab", "WorkflowAppOnlyPolicyManager", "PublishingSite", "PublishingWeb");
-
 $location = $PSScriptRoot
 $parentLocation = (Get-Item $location).parent.FullName
