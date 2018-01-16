@@ -376,7 +376,7 @@
                 <h4>General Info errors</h4>
                 <div ng-messages="form.sitrepNumber.$error" ng-show="form.sitrepNumber.$invalid">
                     <div ng-message="required">Sitrep Number is required</div>
-                    <div ng-message="md-maxlength">Sitrep Number is too long</div>
+                    <div ng-message="max">Sitrep Number is too high</div>
                 </div>
                 <div ng-messages="form.category.$error" ng-show="form.category.$invalid">
                     <div ng-message="required">Category is required</div>
@@ -625,10 +625,10 @@
                 </div>
                 <md-input-container class="md-block" flex-gt-sm="25">
                     <label>Sitrep Number</label>
-                    <textarea ng-model="ctrl.model.sitrepNumber" name="sitrepNumber" md-maxlength="3" required></textarea>
+                    <input type="number" ng-model="ctrl.model.sitrepNumber" name="sitrepNumber" max="999" required></input>
                     <div ng-messages="form.sitrepNumber.$error">
                         <div ng-message="required">This is required</div>
-                        <div ng-message="md-maxlength">That's too long</div>
+                        <div ng-message="max">That's too long</div>
                     </div>
                 </md-input-container>
             </div>
