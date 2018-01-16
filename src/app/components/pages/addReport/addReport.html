@@ -79,6 +79,8 @@
                 <div>
                     <span class="bold">Affected population: </span>{{ctrl.model.affectedPopulation}}</div>
                 <div>
+                    <span class="bold">Number of children affected: </span>{{ctrl.model.affectedChildren}}</div>
+                <div>
                     <span class="bold">Strategy target (all): </span>{{ctrl.model.strategyTarget}}</div>
                 <div>
                     <span class="bold">Strategy target (children): </span>{{ctrl.model.strategyTargetChildren}}</div>
@@ -146,18 +148,19 @@
                     <span class="bold">Outline:</span>
                     <a href="{{ctrl.model.outline}}" target="_blank">{{ctrl.model.outline}}</a>
                 </div>
-                <br>
+            </div>
+            <div layout-gt-md="row" layout-padding>
                 <div>
                     <span class="bold">Strategy:</span>
                     <a href="{{ctrl.model.strategy}}" target="_blank">{{ctrl.model.strategy}}</a>
                 </div>
-            </div>
-            <div layout-gt-md="row" layout-padding>
+                <br>
                 <div>
                     <span class="bold">Plan:</span>
                     <a href="{{ctrl.model.plan}}" target="_blank">{{ctrl.model.plan}}</a>
                 </div>
-                <br>
+            </div>
+            <div layout-gt-md="row" layout-padding>
                 <div>
                     <span class="bold">Operations Control review:</span>
                     <a href="{{ctrl.model.operationsControlReview}}" target="_blank">{{ctrl.model.operationsControlReview}}</a>
@@ -176,7 +179,14 @@
                     <span class="bold">Education cluster or working group activated:</span> {{ctrl.model.educationClusterBool}}</div>
                 <br>
                 <div>
-                    <span class="bold">Staffing education cluster or working group:</span> {{ctrl.model.staffingEducationClusterBool}}</div>
+                    <span class="bold">SC Education Cluster staff in place:</span> {{ctrl.model.staffingEducationClusterBool}}</div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>
+                    <span class="bold">SC co-leading Education Cluster or working group: </span>{{ctrl.model.sciLeadingEducationClusterBool}}</div>
+                <br>
+                <div ng-if="sciLeadingEducationClusterBool">
+                    <span class="bold">Percentage time dedicated to the education cluster</span> {{ctrl.model.percentTimeToEducationCluster}}%</div>
             </div>
         </div>
 
@@ -294,7 +304,7 @@
             </div>
             <div layout-gt-md="row" layout-padding>
                 <div>
-                    <span class="bold">% of staff with child safeguarding training: </span>{{ctrl.model.staffChildSafegaurding}}</div>
+                    <span class="bold">% of staff with child safeguarding training: </span>{{ctrl.model.staffChildSafegaurding}}%</div>
                 <div>
                     <span class="bold">Child safeguarding focal point:</span> {{ctrl.model.safegaurdingFocalPoint}}</div>
             </div>
@@ -414,6 +424,10 @@
                     <div ng-message="required">Affected Population is required</div>
                     <div ng-message="max">Affected Population is too high</div>
                 </div>
+                <div ng-messages="form.affectedChildren.$error" ng-show="form.affectedChildren.$invalid">
+                    <div ng-message="required">Number of children affected is required</div>
+                    <div ng-message="max">Number of children affected is too high</div>
+                </div>
                 <div ng-messages="form.strategyTarget.$error" ng-show="form.strategyTarget.$invalid">
                     <div ng-message="required">Strategy Target is required</div>
                     <div ng-message="max">Strategy Target is too high</div>
@@ -525,6 +539,9 @@
                 <div ng-messages="form.realTimeReview.$error" ng-show="form.realTimeReview.$invalid">
                     <div ng-message="required">Real Time Review is required</div>
                 </div>
+                <div ng-messages="form.percentTimeToEducationCluster.$error" ng-show="form.percentTimeToEducationCluster.$invalid">
+                        <div ng-message="max">% time to Education Cluster is over 100</div>
+                    </div>
             </div>
             <div>
                 <h4>Sectors errors</h4>
@@ -741,6 +758,14 @@
                     <label>Affected population</label>
                     <input type="number" ng-model="ctrl.model.affectedPopulation" name="affectedPopulation" max="9999999" required></input>
                     <div ng-messages="form.affectedPopulation.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Number of children affected</label>
+                    <input type="number" ng-model="ctrl.model.affectedChildren" name="affectedChildren" max="9999999" required></input>
+                    <div ng-messages="form.affectedChildren.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="max">That's too high</div>
                     </div>
@@ -1040,14 +1065,27 @@
 
             <div layout-gt-md="row" layout-padding>
                 <label>Representation on Humanitarian Country Team (HCT)</label>
+                <md-tooltip md-direction="bottom">Because of Cluster Lead Agency status</md-tooltip>
                 <md-checkbox ng-model="ctrl.model.representationOnHCTBool">
                 </md-checkbox>
                 <label>Education cluster or working group activated</label>
                 <md-checkbox ng-model="ctrl.model.educationClusterBool">
                 </md-checkbox>
-                <label>Staffing education cluster or working group</label>
+                <label>SC Education Cluster staff in place</label>
                 <md-checkbox ng-model="ctrl.model.staffingEducationClusterBool">
                 </md-checkbox>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <label>SC co-leading Education Cluster or working group</label>
+                <md-checkbox ng-model="ctrl.model.sciLeadingEducationClusterBool">
+                </md-checkbox>
+                <md-input-container class="md-block" flex-gt-sm="50" ng-if="ctrl.model.sciLeadingEducationClusterBool">
+                    <label>% time dedicated to the cluster</label>
+                    <input type="number" ng-model="ctrl.model.percentTimeToEducationCluster" name="percentTimeToEducationCluster" max="100"></input>
+                    <div ng-messages="form.percentTimeToEducationCluster.$error">
+                        <div ng-message="max">That's over 100%</div>
+                    </div>
+                </md-input-container>
             </div>
         </accordion>
 

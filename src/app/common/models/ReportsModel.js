@@ -31,6 +31,7 @@ export default class ReportsModel extends BaseModel {
 
         //Reach figures
         this.affectedPopulation = null;
+        this.affectedChildren = null;
         this.strategyTarget = null;
         this.totalReachSinceStart = null;
         this.totalReachSinceLastSitrep = null;
@@ -56,6 +57,8 @@ export default class ReportsModel extends BaseModel {
         this.representationOnHCTBool = false;
         this.educationClusterBool = false;
         this.staffingEducationClusterBool = false;
+        this.sciLeadingEducationClusterBool = false;
+        this.percentTimeToEducationCluster = null;
 
         // //Sectors
         this.childProtectionBackstop = null;

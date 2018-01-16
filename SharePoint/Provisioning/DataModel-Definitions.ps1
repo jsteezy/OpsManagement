@@ -223,6 +223,12 @@ Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
+$global:FieldDefReportsAffectedChildren = New-FieldDefinition -FieldXml @'
+<Field ID="{2f0cf320-d557-430e-8675-367293b461fa}" Type="Number" Decimals="0" Name="AffectedChildren" StaticName="AffectedChildren" DisplayName="Affected Children" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@; 
+
 $global:FieldDefReportsStrategyTarget = New-FieldDefinition -FieldXml @'
 <Field ID="{4c11753d-ec91-45a7-b10a-138e14340ced}" Type="Number" Decimals="0" Name="StrategyTarget" StaticName="StrategyTarget" DisplayName="Strategy Target" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
@@ -340,6 +346,17 @@ Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
+$global:FieldDefReportsSciLeadingEducationClusterBool = New-FieldDefinition -FieldXml @'
+<Field ID="{5bfa9d19-bff1-43a5-b3f2-bdd5e9f36164}" Type="Boolean" Name="SciLeadingEducationClusterBool" StaticName="SciLeadingEducationClusterBool" DisplayName="SC co-leading Education Cluster or working group" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@; 
+
+$global:FieldDefReportsPercentTimeToEducationCluster = New-FieldDefinition -FieldXml @'
+<Field ID="{807f65a3-1e53-4945-888d-3d673b3b0d93}" Type="Number" Decimals="0" Name="PercentTimeToEducationCluster" StaticName="PercentTimeToEducationCluster" DisplayName="Percent Time To Education Cluster" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
 
 ######## Sectors
 

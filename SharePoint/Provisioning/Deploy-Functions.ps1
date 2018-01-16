@@ -290,6 +290,7 @@ function EnsureReports()
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsNonSciResponses -ListContext $global:ListReports.Title -webContext $web.ID
 
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsAffectedPopulation -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsAffectedChildren -ListContext $global:ListReports.Title -webContext $web.ID  
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsStrategyTarget -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsTotalReachSinceStart -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsTotalReachSinceLastSitrep -ListContext $global:ListReports.Title -webContext $web.ID
@@ -314,6 +315,8 @@ function EnsureReports()
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsRepresentationOnHCTBool -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsEducationClusterBool -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsStaffingEducationClusterBool -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSciLeadingEducationClusterBool -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsPercentTimeToEducationCluster -ListContext $global:ListReports.Title -webContext $web.ID
 
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsChildProtectionBackstop -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsChildProtectionSummary -ListContext $global:ListReports.Title -webContext $web.ID
@@ -385,6 +388,7 @@ function EnsureReports()
     $global:FieldDefReportsNonSciResponses,
     
     $global:FieldDefReportsAffectedPopulation,
+    $global:FieldDefReportsAffectedChildren,
     $global:FieldDefReportsStrategyTarget,
     $global:FieldDefReportsTotalReachSinceStart,
     $global:FieldDefReportsTotalReachSinceLastSitrep,
@@ -408,6 +412,8 @@ function EnsureReports()
     $global:FieldDefReportsRepresentationOnHCTBool,
     $global:FieldDefReportsEducationClusterBool,
     $global:FieldDefReportsStaffingEducationClusterBool,
+    $global:FieldDefReportsSciLeadingEducationClusterBool,
+    $global:FieldDefReportsPercentTimeToEducationCluster,
     
     $global:FieldDefReportsChildProtectionBackstop,
     $global:FieldDefReportsChildProtectionSummary,
