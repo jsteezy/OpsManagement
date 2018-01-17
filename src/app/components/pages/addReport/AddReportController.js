@@ -242,8 +242,6 @@ export default class AddReportController extends BaseController {
                 () => {
                     this.toastService.showToast('Report draft updated', 'app');
                     super.redirectTo(["Reports", { id: model.responseId}])
-                    
-                   // super.redirectToHome();
                 },
                 (errorData) => {
                     super.serverRequestErrors = errorData;
@@ -308,7 +306,7 @@ export default class AddReportController extends BaseController {
                 let storeResponsePromise = this.reportsService.store(newDraftModel);
                 storeResponsePromise.then(
                     () => {
-                        this.toastService.showToast('Report submitted for approval', 'app');
+                        this.toastService.showToast('Report approved', 'app');
                         super.redirectTo(["Reports", { id: model.responseId}])
                     },
                     (errorData) => {

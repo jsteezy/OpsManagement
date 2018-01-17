@@ -65,19 +65,31 @@ export default class ResponseController extends BaseController {
         super.IsSubmittedFormValid(form).then(() => {
 
             super.isRequestProcessing = true;
-            //console.log(super.model);
+            if(super.model.id != ""){
+                //update existing
+                let storeResponsePromise = this.responseService.update(super.model);
 
-            let storeResponsePromise = this.responseService.store(super.pageMode, super.model);
+                storeResponsePromise.then(
+                    () => {
+                        this.toastService.showToast('Response code updated', 'app');    
+                        super.redirectToHome();
+                    },
+                    (errorData) => {
+                        super.serverRequestErrors = errorData;
+                    });
+            } else {
+                //create new
+                let storeResponsePromise = this.responseService.store(super.model);
 
-            storeResponsePromise.then(
-                () => {
-                    this.toastService.showToast('Response code created', 'app');
-
-                    super.redirectToHome();
-                },
-                (errorData) => {
-                    super.serverRequestErrors = errorData;
-                });
+                storeResponsePromise.then(
+                    () => {
+                        this.toastService.showToast('Response code created', 'app');    
+                        super.redirectToHome();
+                    },
+                    (errorData) => {
+                        super.serverRequestErrors = errorData;
+                    });
+            }
         });
     }
 }

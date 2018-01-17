@@ -23,10 +23,12 @@ export default class ResponseService {
         return Promise.all([this.commonDataService.loadCountries(), this.commonDataService.loadRegions()]);
     }
 
-    store(pageMode, model) {
-        //model.userEmail = this.user.email;
-        //model.userId = this.user.id;
+    store(model) {
         return this.responseCodeDataAccessService.save(model);
+    }
+
+    update(model) {
+        return this.responseCodeDataAccessService.update(model);
     }
 
     getAllResponses() {
