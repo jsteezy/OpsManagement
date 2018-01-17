@@ -107,7 +107,7 @@
                 <div>
                     <span class="bold">Seed funds target (USD):</span> {{ctrl.model.seedFundsTarget}}</div>
                 <div>
-                    <span class="bold">Crisis Modifiers:</span> {{ctrl.model.crisisModifiers}}</div>
+                    <span class="bold">Crisis Modifiers (USD):</span> {{ctrl.model.crisisModifiers}}</div>
                 <div>
                     <span class="bold">Seed funds target date set:</span> {{ctrl.model.seedFundsTargetDate}}</div>
             </div>
@@ -853,7 +853,7 @@
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="30">
-                    <label>Crisis Modifiers</label>
+                    <label>Crisis Modifiers (USD)</label>
                     <input type="number" max="99999999" ng-model="ctrl.model.crisisModifiers" name="crisisModifiers"></input>
                     <div ng-messages="form.crisisModifiers.$error">
                         <div ng-message="max">That's too high</div>
