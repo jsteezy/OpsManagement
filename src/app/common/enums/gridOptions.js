@@ -20,6 +20,26 @@ export default class GridOptions {
                 showExpandButtonAlways: false,
                 hasCustomFilters: true
             },
+            responseCodeAdminOptions: {
+                enableSorting: true,
+                enableFiltering: true,
+                enableHorizontalScrollbar: 0,
+                enableVerticalScrollbar: 0,
+                columnDefs: [
+                    { field: 'id', visible: false },
+                    { displayName: 'Response Code', field: 'Code',
+                    cellTemplate: '<md-button class="md-primary" ng-click="grid.appScope.openResponse(row.entity.Id)">{{COL_FIELD}}</md-button>'
+                },
+                { displayName: 'Response Status', field: 'ResponseStatus', enableFiltering: true, enableSorting: true },                                 
+                    { displayName: 'Description', field: 'Description', enableSorting: false, enableFiltering: false },
+                    { displayName: 'Start Date', field: 'StartDate', enableSorting: true, enableFiltering: false,  cellFilter: "dateFormat" },
+                    { displayName: 'Country', field: 'Country', enableSorting: true },
+                    { displayName: 'Region', field: 'Region', enableFiltering: true, enableSorting: true },
+                    { displayName: 'Edit', field: 'Edit', cellTemplate: '<md-button class="md-primary" ng-click="grid.appScope.editResponseCode(row.entity.Id)">Edit</md-button>'}                 
+                ],                
+                showExpandButtonAlways: false,
+                hasCustomFilters: true
+            },
 
             reportOptions: {
                 enableSorting: true,

@@ -19,6 +19,11 @@ export default class StateConfig {
                 component: 'addReport'
             },
             {
+                path: '/response/:id',
+                name: 'EditResponseCode',
+                component: 'response'
+            },
+            {
                 path: '/addReport/:id',
                 name: 'CreateReport',
                 component: 'addReport'

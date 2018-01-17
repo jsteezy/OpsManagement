@@ -1,7 +1,6 @@
 import BaseController from "../../common/BaseController";
 import ResponseStatus from "../../../common/enums/responseStatus.json";
 
-
 export default class ResponseController extends BaseController {
     constructor($injector,
         responseService,
@@ -11,7 +10,6 @@ export default class ResponseController extends BaseController {
         super.router = this.$router;
 
         this.title = "Create";
-
         this.responseService = responseService;
         this.responseStatus = ResponseStatus
         this.toastService = toastService;
@@ -22,21 +20,44 @@ export default class ResponseController extends BaseController {
 
         let init = () => {
             super.$routerOnActivate(next, current);
-            return this.activate();
+            return this.activate(next.params.id);
         };
 
         return super.initializePage(init);
     }
 
-    activate() {
-        super.model = this.responseService.buildModel(undefined);
-        
+    activate(responseCodeId) {
+        if(responseCodeId != null)
+        {
+            this.getResponse(responseCodeId);
+        }
+        else
+        {
+            super.model = this.responseService.buildModel(undefined);
+        }
         let pageData = this.responseService.loadPageData().then((data) => {
             this.countries = data[0];
             this.regions = data[1];
         });
 
-        return super.initializePageData(pageData);
+        return super.initializePageData(super.model, pageData);
+    }
+
+    getResponse(responseCodeId) {
+        super.isRequestProcessing = true;
+
+        this.responseService.getResponse(responseCodeId)
+        .then(
+            (data) => {
+                super.isRequestProcessing = false;
+                super.model = this.responseService.buildModel(data);
+
+                return this.responseService.buildModel(data);
+            },
+                () => {
+                    super.isRequestProcessing = false;
+                    return Promise.resolve(false);
+                });
     }
 
 

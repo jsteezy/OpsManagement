@@ -8,10 +8,13 @@ export default class HomeController extends BaseController {
         super.router = this.$router;
         this.responseService = responseService;
         this.$window = $window;
-        //this.NgTableParams = NgTableParams;
 
-        this.setResponseGridOptions();
-        //this.initFilters();        
+        if (super.hasPermissions([super.appPermissions.admin])) {
+            this.setResponseGridAdminOptions();
+        } else {
+            this.setResponseGridOptions();
+        }
+
     }
 
     $routerOnActivate(next, current) {
@@ -31,9 +34,14 @@ export default class HomeController extends BaseController {
     }
 
     openResponse(responseId) {
-        super.redirectTo(["Reports", { id: responseId }])
+        super.redirectTo(["Reports", {
+            id: responseId
+        }])
     }
 
+    editResponseCode(responseId) {
+        super.redirectTo(["EditResponseCode", { id: responseId}])
+    }
 
     getAllResponses() {
         super.isRequestProcessing = true;
@@ -41,8 +49,12 @@ export default class HomeController extends BaseController {
         return this.responseService.getAllResponses()
             .then(
                 (data) => {
-                    this.responseCodeOptions.data = data;
-                                        
+                    if (super.hasPermissions([super.appPermissions.admin])) {
+                        this.responseCodeAdminOptions.data = data;
+                    } else {
+                        this.responseCodeOptions.data = data;
+                    }
+
                     super.isRequestProcessing = false;
 
                     return Promise.resolve(true);
@@ -60,6 +72,13 @@ export default class HomeController extends BaseController {
         this.responseCodeOptions.appScopeProvider = this;
         this.responseCodeOptions.isGridReady = true;
         this.responseCodeOptions.data = [];
+    }
+
+    setResponseGridAdminOptions() {
+        this.responseCodeAdminOptions = GridOptions.options.responseCodeAdminOptions;
+        this.responseCodeAdminOptions.appScopeProvider = this;
+        this.responseCodeAdminOptions.isGridReady = true;
+        this.responseCodeAdminOptions.data = [];
     }
 }
 
