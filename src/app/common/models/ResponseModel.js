@@ -7,7 +7,7 @@ export default class ResponseModel extends BaseModel {
         super();
         this.code = "";
         this.description = "";
-        this.startDate = DateUtils.getDateWithoutTime(DateUtils.today);
+        this.startDate = DateUtils.today;
         this.region = "";
         this.country = "";
         this.responseStatus = "";

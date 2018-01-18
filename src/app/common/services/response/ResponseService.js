@@ -1,6 +1,7 @@
 import StringHelpers from "../../helpers/StringHelpers";
 import ObjectMapper from "../../helpers/ObjectMapper";
 import ResponseModel from "../../models/ResponseModel";
+import DateUtils from "../../helpers/DateUtils";
 
 export default class ResponseService {
     constructor(user, responseCodeDataAccessService, commonDataService) {
@@ -14,6 +15,8 @@ export default class ResponseService {
 
         if (data) {
             ObjectMapper.toObject(data, model);
+            model.startDate = DateUtils.getFromString(model.startDate);
+
         }
 
         return model;
