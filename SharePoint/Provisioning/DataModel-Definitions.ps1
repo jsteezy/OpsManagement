@@ -152,18 +152,6 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 # ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 # '@;
 
-$global:FieldDefReportsCategory = New-FieldDefinition -FieldXml @'
-<Field ID="{beb9f7e0-887a-41b4-a28c-f17c94da7334}" Type="Number" Decimals="0" Name="Category" StaticName="Category" DisplayName="Category" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
-$global:FieldDefReportsPhase = New-FieldDefinition -FieldXml @'
-<Field ID="{09b3fe3e-609e-4e2b-8f11-04f214123347}" Type="Text" MaxLength="255" Name="Phase" StaticName="Phase" DisplayName="Phase" 
-Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
-ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
-'@;
-
 # $global:FieldDefReportsSCIImplemented = New-FieldDefinition -FieldXml @'
 # <Field ID="{96a08aec-4e48-4a75-8df2-8a75e44782c5}" Type="Boolean" Name="SCIImplemented" StaticName="SCIImplemented" DisplayName="SCI Implemented" 
 # Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
@@ -706,6 +694,18 @@ ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInN
 $global:FieldDefUserProfileId = New-FieldDefinition -FieldXml @'
 <Field ID="{b64dc956-494e-4e90-8a6d-c2e28859d9f0}" Type="Number" Decimals="0" Name="UserId" StaticName="UserId" DisplayName="User ID" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefResponseCodesCategory = New-FieldDefinition -FieldXml @'
+<Field ID="{3cda4a23-9fb8-43cc-94f6-a0ce5fc4764c}" Type="Number" Decimals="0" Name="Category" StaticName="Category" DisplayName="Category" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefResponseCodesPhase = New-FieldDefinition -FieldXml @'
+<Field ID="{429bec30-8a67-4394-9196-95ce04927551}" Type="Text" MaxLength="255" Name="Phase" StaticName="Phase" DisplayName="Phase" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 

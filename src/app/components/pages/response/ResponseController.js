@@ -1,5 +1,6 @@
 import BaseController from "../../common/BaseController";
 import ResponseStatus from "../../../common/enums/responseStatus.json";
+import Phase from "../../../common/enums/phase.json";
 
 export default class ResponseController extends BaseController {
     constructor($injector,
@@ -9,7 +10,7 @@ export default class ResponseController extends BaseController {
 
         super.router = this.$router;
 
-        this.title = "Create";
+        this.phase = Phase;
         this.responseService = responseService;
         this.responseStatus = ResponseStatus
         this.toastService = toastService;
@@ -30,10 +31,12 @@ export default class ResponseController extends BaseController {
         if(responseCodeId != null)
         {
             this.getResponse(responseCodeId);
+            this.title = "Edit Response Code";
         }
         else
         {
             super.model = this.responseService.buildModel(undefined);
+            this.title = "Create Response Code";
         }
         let pageData = this.responseService.loadPageData().then((data) => {
             this.countries = data[0];

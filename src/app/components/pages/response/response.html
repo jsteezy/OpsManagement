@@ -1,11 +1,9 @@
-<md-content>
-        <div class="col-md-12">
-<md-content ng-cloak>
-    <div class="col-md-10" layout-align="center center">
-        <ng-form name="form" novalidate>
-            <div layout="row" layout-align="space-between center">
-                <h2>Create</h2>
-            </div>
+<md-content ng-cloak class="md-inline-form">
+    <ng-form name="form" novalidate>
+        <div layout-gt-sm="row" layout-align="space-between center">
+            <h2>Create</h2>
+        </div>
+        <div layout-gt-md="row" layout-padding>
             <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Country</label>
                 <md-select ng-model="ctrl.model.country" placeholder="Country">
@@ -22,6 +20,8 @@
                     </md-option>
                 </md-select>
             </md-input-container>
+        </div>
+        <div layout-gt-md="row" layout-padding>
             <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Code</label>
                 <input required name="code" ng-model="ctrl.model.code">
@@ -36,29 +36,51 @@
                     <div ng-message="required">Please enter a description</div>
                 </div>
             </md-input-container>
+        </div>
+        <div layout-gt-md="row" layout-padding>
             <md-input-container class="md-block" flex-gt-sm="50">
-                    <label>Response status</label>
-                    <md-select ng-model="ctrl.model.responseStatus" placeholder="Response status">
-                        <md-option ng-repeat="item in ctrl.responseStatus" ng-value="item">
-                            {{item}}
-                        </md-option>
-                    </md-select>
-                </md-input-container>
-            <div class="md-block" flex-gt-sm="50">
-                <label>Start date</label>
+                <label>Response status</label>
+                <md-select ng-model="ctrl.model.responseStatus" placeholder="Response status">
+                    <md-option ng-repeat="item in ctrl.responseStatus" ng-value="item">
+                        {{item}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm="25">
+                <label>Category</label>
+                <input type="number" ng-model="ctrl.model.category" name="category" max="4" required></input>
+                <!-- <div ng-messages="form.category.$error">
+                            <div ng-message="required">This is required</div>
+                            <div ng-message="md-maxlength">That's too long</div>
+                        </div> -->
+            </md-input-container>
+        </div>
+        <div layout-gt-md="row" layout-padding>
+            <md-input-container class="md-block" flex-gt-sm="50">
+                <label>Phase</label>
+                <md-select ng-model="ctrl.model.phase" placeholder="Phase">
+                    <md-option ng-repeat="item in ctrl.phase" ng-value="item">
+                        {{item}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+
+        </div>
+
+            <div class="md-block" style="margin-top: -47px" flex-gt-sm="50">
+                <h5 style="font-weight: normal !important">Start date</h5>
                 <md-datepicker ng-model="ctrl.model.startDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
             </div>
-            <div class="md-block" flex-gt-sm="50">
-                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                    <md-button class="md-raised md-primary" ng-click="ctrl.redirectToHome()">Cancel</md-button>
-                    <md-button class="md-raised md-primary" aria-label="save" ng-show="!ctrl.isRequestProcessing" ng-disabled="!form.$dirty" ng-click="ctrl.storeResponse(form)">
-                        Save
-                    </md-button>
-                    <md-progress-circular class="md-primary md-hue-3" md-mode="indeterminate" ng-show="ctrl.isRequestProcessing" md-diameter="70"></md-progress-circular>
-                </section>
-            </div>
-        </ng-form>
-    </div>
-</md-content>
-</div>
+        <div class="md-block" flex-gt-sm="50">
+            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                <md-button class="md-raised md-primary" ng-click="ctrl.redirectToHome()">Cancel</md-button>
+                <md-button class="md-raised md-primary" aria-label="save" ng-show="!ctrl.isRequestProcessing" ng-disabled="!form.$dirty"
+                    ng-click="ctrl.storeResponse(form)">
+                    Save
+                </md-button>
+                <md-progress-circular class="md-primary md-hue-3" md-mode="indeterminate" ng-show="ctrl.isRequestProcessing" md-diameter="70"></md-progress-circular>
+            </section>
+        </div>
+    </ng-form>
 </md-content>

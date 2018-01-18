@@ -16,8 +16,6 @@ export default class ReportsModel extends BaseModel {
         this.nextSitrepDate = DateUtils.today;
         this.opsBackstop = null;
 
-        this.category = null;
-        this.phase = null;
         //this.SCIImplemented = false;
         this.sitrepNumber = null;
         this.generalContextInternal = null;

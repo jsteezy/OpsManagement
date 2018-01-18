@@ -33,12 +33,12 @@
                 <div>
                     <span class="bold">Sitrep number:</span> {{ctrl.model.sitrepNumber}}</div>
             </div>
-            <div layout-gt-md="row" layout-padding>
+            <!-- <div layout-gt-md="row" layout-padding>
                 <div>
                     <span class="bold">Phase:</span> {{ctrl.model.phase}}</div>
                 <div>
                     <span class="bold">Category:</span> {{ctrl.model.category}}</div>
-            </div>
+            </div> -->
             <div layout-gt-md="row" layout-padding>
                 <div>
                     <span class="bold">General Context Internal:</span> {{ctrl.model.generalContextInternal}}</div>
@@ -382,10 +382,10 @@
                     <div ng-message="required">Sitrep Number is required</div>
                     <div ng-message="max">Sitrep Number is too high</div>
                 </div>
-                <div ng-messages="form.category.$error" ng-show="form.category.$invalid">
+                <!-- <div ng-messages="form.category.$error" ng-show="form.category.$invalid">
                     <div ng-message="required">Category is required</div>
                     <div ng-message="md-maxlength">Category is too long</div>
-                </div>
+                </div> -->
                 <div ng-messages="form.generalContextInternal.$error" ng-show="form.generalContextInternal.$invalid">
                     <div ng-message="required">General Context (Internal) is required</div>
                     <div ng-message="md-maxlength">General Context (Internal) is too long</div>
@@ -648,26 +648,10 @@
                     <h5 style="font-weight: normal !important">Next sitrep</h5>
                     <md-datepicker ng-model="ctrl.model.nextSitrepDate" md-placeholder="Enter date"></md-datepicker>
                 </div>
-                <md-input-container class="md-block" flex-gt-sm="25">
-                    <label>Category</label>
-                    <textarea ng-model="ctrl.model.category" name="category" md-maxlength="2" required></textarea>
-                    <div ng-messages="form.category.$error">
-                        <div ng-message="required">This is required</div>
-                        <div ng-message="md-maxlength">That's too long</div>
-                    </div>
-                </md-input-container>
             </div>
 
 
             <div layout-gt-md="row" layout-padding>
-                <md-input-container class="md-block" flex-gt-sm="50">
-                    <label>Phase</label>
-                    <md-select ng-model="ctrl.model.phase" placeholder="Phase">
-                        <md-option ng-repeat="item in ctrl.phase" ng-value="item">
-                            {{item}}
-                        </md-option>
-                    </md-select>
-                </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Ops Backstop</label>
                     <textarea ng-model="ctrl.model.opsBackstop" name="opsBackstop" md-maxlength="50" required></textarea>

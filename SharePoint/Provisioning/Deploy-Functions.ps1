@@ -139,13 +139,15 @@ Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesCountry -ListContex
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesResponseStatus -ListContext $global:ListResponseCodes.Title -webContext $web.ID
 Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileId -ListContext $global:ListResponseCodes.Title -webContext $web.ID
 Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileEmail -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesCategory -ListContext $global:ListResponseCodes.Title -webContext $web.ID    
+Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesPhase -ListContext $global:ListResponseCodes.Title -webContext $web.ID   
 
 #endregion
 
 #endregion
 Ensure-ContentType -Url $web.Url -CTDef $global:CTDefResponseCodes -FieldDefs $global:FieldDefResponseCodesCode, $global:FieldDefResponseCodesDescription, 
 $global:FieldDefResponseCodesStartDate, $global:FieldDefResponseCodesRegion, $global:FieldDefResponseCodesCountry, $global:FieldDefResponseCodesResponseStatus
- , $global:FieldDefUserProfileId,  $global:FieldDefUserProfileEmail
+ , $global:FieldDefUserProfileId,  $global:FieldDefUserProfileEmail, $global:FieldDefResponseCodesCategory, $global:FieldDefResponseCodesPhase
 
 Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListResponseCodes
 
@@ -276,9 +278,7 @@ function EnsureReports()
     # Ensure-Field $web.Url -FieldDef $global:FieldDefReportsRecentContextDevelopment -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsOpsBackstop -ListContext $global:ListReports.Title -webContext $web.ID
     
-    #Ensure-Field $web.Url -FieldDef $global:FieldDefReportsResponseStatus -ListContext $global:ListReports.Title -webContext $web.ID
-    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsCategory -ListContext $global:ListReports.Title -webContext $web.ID    
-    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsPhase -ListContext $global:ListReports.Title -webContext $web.ID    
+    #Ensure-Field $web.Url -FieldDef $global:FieldDefReportsResponseStatus -ListContext $global:ListReports.Title -webContext $web.ID 
     #Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSCIImplemented -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSitrepNumber -ListContext $global:ListReports.Title -webContext $web.ID      
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsGeneralContextInternal -ListContext $global:ListReports.Title -webContext $web.ID    
@@ -375,8 +375,6 @@ function EnsureReports()
     $global:FieldDefReportsOpsBackstop,
         
     $global:FieldDefReportsResponseStatus,
-    $global:FieldDefReportsCategory,    
-    $global:FieldDefReportsPhase,    
     #$global:FieldDefReportsSCIImplemented,
     $global:FieldDefReportsSitrepNumber,      
     $global:FieldDefReportsGeneralContextInternal,    

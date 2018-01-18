@@ -11,5 +11,7 @@ export default class ResponseModel extends BaseModel {
         this.region = "";
         this.country = "";
         this.responseStatus = "";
+        this.category = null;
+        this.phase = null;
     }
 }

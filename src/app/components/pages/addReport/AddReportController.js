@@ -1,6 +1,5 @@
 import BaseController from "../../common/BaseController";
 import ApprovalStatuses from "../../../common/enums/approvalStatuses.json";
-import Phase from "../../../common/enums/phase.json";
 import ResponseModel from "../../../common/models/ResponseModel";
 import DateUtils from "../../../common/helpers/DateUtils";
 
@@ -12,7 +11,6 @@ export default class AddReportController extends BaseController {
         this.responseService = responseService;
         this.reportsService = reportsService;
         this.ApprovalStatuses = ApprovalStatuses;
-        this.phase = Phase;
 
         this.toastService = toastService;
         this.$window = $window;
