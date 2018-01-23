@@ -1,12 +1,12 @@
 Build Intructions
 
-0. Pull TARv2 Branch and create a local repository.
+0. Pull Master Branch and create a local repository.
 
 1. Download and install node.js from https://nodejs.org/en/
 
-2. Pull the latest version of the TAR application from bittbucket (TARv2 branch)
+2. Pull the latest version of the HART application from bittbucket (master branch)
 
-3. Open node.js command prompt and switch to the drive and folder where your TAR application is mapped
+3. Open node.js command prompt and switch to the drive and folder where your HART application is mapped
 
 4. In the root folder run the following commands
 	npm install
@@ -18,9 +18,9 @@ Build Intructions
 
 6. Set the configurations for environment:
    Check the env config gile -> src/app/config/envConfig.json
-   Set the "site_url" property which will be the base url for you api calls. For example "http://sci-tar.evozon.com".
+   Set the "site_url" property which will be the base url for you api calls. For example "http://sci-HART.evozon.com".
    Set the "baseUrl" property which will be the path on the server, starting from site base url. So, for example if the site base url is
-   "http://sci-tar.evozon.com" and the application is placed into "ProjectLibrary/TAR", then the "baseUrl" should be "/ProjectLibrary/TAR/"
+   "http://sci-HART.evozon.com" and the application is placed into "ProjectLibrary/HART", then the "baseUrl" should be "/ProjectLibrary/HART/"
 
 7. Run "gulp" command
 
@@ -42,7 +42,7 @@ DEPLOYMENT
 
 2. Open a command prompt and navigate to the folder where the solution is stored and execute a "gulp" command.
 
-3. Navigate to <SITE_URL>/_catalogs/masterpage/ , create a folder named "OMT" and inside the this folder create a folder named "css". 
+3. Navigate to <SITE_URL>/_catalogs/masterpage/ , create a folder named "HART" and inside the this folder create a folder named "css". 
 
 4. Open the folder "SharePoint\Provisioning\" and open the file "Config.ps1".
 
