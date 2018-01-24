@@ -99,6 +99,28 @@ export default class ReportsDataAccessService extends BaseDataAccessService {
 
         return this.$http.post(requestUrl, data, config);
     }
+
+    deleteReport(id) {
+        let listName = "Reports";
+
+        let replacements = {
+            "{ITEM_ID}": id,
+            "{LIST_NAME}": listName
+        };
+
+        let requestUrl = helper.replaceData(dataAccessConfig.delete, replacements);
+
+        let config = {
+            headers: {
+                "X-HTTP-Method": "DELETE",
+                "If-Match": "*"
+            }
+        };
+
+        super.addDigestProperty(config);
+
+        return this.$http.post(requestUrl, {}, config);
+    }
 }
 
 ReportsDataAccessService.$inject = ["$http"];

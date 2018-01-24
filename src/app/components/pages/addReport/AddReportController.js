@@ -92,7 +92,7 @@ export default class AddReportController extends BaseController {
                                         case ApprovalStatuses.submitted:
                                             if (this.hasPermissions([super.appPermissions.admin])) {
                                                 //admin has read only and can change back to draft
-                                                super.model = this.formatDatesForDisplay(super.model);                                                                                    
+                                                super.model = this.formatDatesForDisplay(super.model);
                                                 this.readOnly = true;
                                                 this.approve = false;
                                                 this.reject = false;
@@ -102,7 +102,7 @@ export default class AddReportController extends BaseController {
                                             } else if (this.hasPermissions([super.appPermissions.approver])) {
                                                 //approver can review read only and reject or approve
                                                 this.readOnly = true;
-                                                super.model = this.formatDatesForDisplay(super.model);                                                                                    
+                                                super.model = this.formatDatesForDisplay(super.model);
                                                 this.approve = true;
                                                 this.reject = true;
                                                 this.submit = false;
@@ -110,7 +110,7 @@ export default class AddReportController extends BaseController {
                                                 this.convertToDraft = false;
                                             } else {
                                                 //normal user view read only
-                                                super.model = this.formatDatesForDisplay(super.model);                                                                                    
+                                                super.model = this.formatDatesForDisplay(super.model);
                                                 this.readOnly = true;
                                                 this.approve = false;
                                                 this.reject = false;
@@ -122,7 +122,7 @@ export default class AddReportController extends BaseController {
                                         case ApprovalStatuses.approved:
                                             if (super.model.status === ApprovalStatuses.approved) {
                                                 //read only for all
-                                                super.model = this.formatDatesForDisplay(super.model);                                                                                    
+                                                super.model = this.formatDatesForDisplay(super.model);
                                                 this.readOnly = true;
                                                 this.approve = false;
                                                 this.reject = false;
@@ -133,7 +133,9 @@ export default class AddReportController extends BaseController {
                                             break;
                                         default:
                                             this.toastService.showToast('The status of this report is unrecognised, please contact a system administrator', 'app');
-                                            super.redirectTo(["Reports", {id: responseId }])
+                                            super.redirectTo(["Reports", {
+                                                id: responseId
+                                            }])
                                     }
                                 }, )
                     } else {
@@ -168,8 +170,8 @@ export default class AddReportController extends BaseController {
                     this.responseStatus = this.responseModel.responseStatus;
                     this.country = this.responseModel.country;
                     this.region = this.responseModel.region;
-                    this.description = this.responseModel.description;        
-                    super.isRequestProcessing = false;                    
+                    this.description = this.responseModel.description;
+                    super.isRequestProcessing = false;
                     return super.model;
                 },
                 () => {
@@ -239,7 +241,9 @@ export default class AddReportController extends BaseController {
             storeResponsePromise.then(
                 () => {
                     this.toastService.showToast('Report draft updated', 'app');
-                    super.redirectTo(["Reports", { id: model.responseId}])
+                    super.redirectTo(["Reports", {
+                        id: model.responseId
+                    }])
                 },
                 (errorData) => {
                     super.serverRequestErrors = errorData;
@@ -250,7 +254,9 @@ export default class AddReportController extends BaseController {
             storeResponsePromise.then(
                 () => {
                     this.toastService.showToast('Report draft updated', 'app');
-                    super.redirectTo(["Reports", { id: model.responseId}])
+                    super.redirectTo(["Reports", {
+                        id: model.responseId
+                    }])
                 },
                 (errorData) => {
                     super.serverRequestErrors = errorData;
@@ -259,36 +265,40 @@ export default class AddReportController extends BaseController {
     }
 
     submitReport(form) {
-        super.IsSubmittedFormValid(form).then(() => {            
-        super.isRequestProcessing = true;
+        super.IsSubmittedFormValid(form).then(() => {
+            super.isRequestProcessing = true;
 
-        var model = this.reportsService.buildModel(super.model);
-        model.status = ApprovalStatuses.submitted;
-        
-        if (model.id != "") {
-            let storeResponsePromise = this.reportsService.update(model);
-            storeResponsePromise.then(
-                () => {
-                    this.toastService.showToast('Report submitted for approval', 'app');
+            var model = this.reportsService.buildModel(super.model);
+            model.status = ApprovalStatuses.submitted;
 
-                    super.redirectTo(["Reports", { id: model.responseId}])
-                },
-                (errorData) => {
-                    super.serverRequestErrors = errorData;
-                });
-        } else {
-            let storeResponsePromise = this.reportsService.store(model);
-            storeResponsePromise.then(
-                () => {
-                    this.toastService.showToast('Report submitted for approval', 'app');
-                    super.redirectTo(["Reports", { id: model.responseId}])
-                },
-                (errorData) => {
-                    super.serverRequestErrors = errorData;
-                });
-        }
-    });
-    
+            if (model.id != "") {
+                let storeResponsePromise = this.reportsService.update(model);
+                storeResponsePromise.then(
+                    () => {
+                        this.toastService.showToast('Report submitted for approval', 'app');
+
+                        super.redirectTo(["Reports", {
+                            id: model.responseId
+                        }])
+                    },
+                    (errorData) => {
+                        super.serverRequestErrors = errorData;
+                    });
+            } else {
+                let storeResponsePromise = this.reportsService.store(model);
+                storeResponsePromise.then(
+                    () => {
+                        this.toastService.showToast('Report submitted for approval', 'app');
+                        super.redirectTo(["Reports", {
+                            id: model.responseId
+                        }])
+                    },
+                    (errorData) => {
+                        super.serverRequestErrors = errorData;
+                    });
+            }
+        });
+
     }
 
     approveReport(form) {
@@ -299,13 +309,15 @@ export default class AddReportController extends BaseController {
         let storeResponsePromise = this.reportsService.update(model);
         var newDraftModel = this.removeDataForNewDraft(model);
         storeResponsePromise.then(
-            () => {             
+            () => {
                 //create draft for next with copied fields and increment sitrep number
                 let storeResponsePromise = this.reportsService.store(newDraftModel);
                 storeResponsePromise.then(
                     () => {
                         this.toastService.showToast('Report approved', 'app');
-                        super.redirectTo(["Reports", { id: model.responseId}])
+                        super.redirectTo(["Reports", {
+                            id: model.responseId
+                        }])
                     },
                     (errorData) => {
                         super.serverRequestErrors = errorData;
@@ -326,7 +338,9 @@ export default class AddReportController extends BaseController {
             () => {
                 this.toastService.showToast('Report rejected, please notify the report creater', 'app');
 
-                super.redirectTo(["Reports", { id: model.responseId}])
+                super.redirectTo(["Reports", {
+                    id: model.responseId
+                }])
             },
             (errorData) => {
                 super.serverRequestErrors = errorData;
@@ -343,31 +357,59 @@ export default class AddReportController extends BaseController {
             () => {
                 this.toastService.showToast('Report reverted to draft', 'app');
 
-                super.redirectTo(["Reports", { id: model.responseId}])
+                super.redirectTo(["Reports", {
+                    id: model.responseId
+                }])
             },
             (errorData) => {
                 super.serverRequestErrors = errorData;
             });
     }
 
-    formatDatesForDisplay(model)
-    {
-    model.sitrepDate = DateUtils.format(model.sitrepDate);
-    model.nextSitrepDate = DateUtils.format(model.nextSitrepDate);
-    model.seedFundsTargetDate = DateUtils.format(model.seedFundsTargetDate);
-    if(model.eHUDeployed != true){
-        model.eHUDeployedDate = null;
-    } else {
-        model.eHUDeployedDate = DateUtils.format(model.eHUDeployedDate);                
+    refreshAugmentedData(form) {
+        super.isRequestProcessing = true;
+        var model = this.reportsService.buildModel(super.model);
+        model.status = ApprovalStatuses.submitted;
+
+        //create new report with existing data
+        let storeResponsePromise = this.reportsService.store(model);
+        storeResponsePromise.then(
+            () => {
+                let deletePreviousApproved = this.reportsService.deleteReport(model.id);
+                deletePreviousApproved
+                    .then(
+                        () => {
+                            this.toastService.showToast('New augmented data will be available to review through the portal', 'app');
+                            super.isRequestProcessing = false;
+                            super.redirectTo(["Reports", { id: model.responseId }])
+                        },
+                        (errorData) => {
+                            super.serverRequestErrors = errorData;
+                        });
+            },
+            (errorData) => {
+                super.serverRequestErrors = errorData;
+            });
     }
-    return model;
-}
+
+
+    formatDatesForDisplay(model) {
+        model.sitrepDate = DateUtils.format(model.sitrepDate);
+        model.nextSitrepDate = DateUtils.format(model.nextSitrepDate);
+        model.seedFundsTargetDate = DateUtils.format(model.seedFundsTargetDate);
+        if (model.eHUDeployed != true) {
+            model.eHUDeployedDate = null;
+        } else {
+            model.eHUDeployedDate = DateUtils.format(model.eHUDeployedDate);
+        }
+        return model;
+    }
 
     removeDataForNewDraft(model) {
-        model.sitrepNumber ++;      
+        model.sitrepNumber++;
 
         model.id = null;
-        model.userId = null;        
+        model.userId = null;
         model.userEmail = null;
         model.lastModifiedUserName = "Auto generated draft";
         model.status = ApprovalStatuses.draft;
@@ -384,7 +426,7 @@ export default class AddReportController extends BaseController {
         model.totalReachSinceLastSitrep = null;
         model.childrenReachedSinceStart = null;
         model.childrenReachedSinceLastSitrep = null;
-       
+
         // //Sectors
         model.childProtectionSummary = null;
         model.educationSummary = null;
@@ -393,7 +435,7 @@ export default class AddReportController extends BaseController {
         model.shelterSummary = null;
         model.healthSummary = null;
         model.nutritionSummary = null;
-        
+
         //Saftey and security
         model.securityContext = null;
 
@@ -418,7 +460,7 @@ export default class AddReportController extends BaseController {
         // this.totalSpendThroughCTP = null;
         // this.totalSpendEducation = null;
 
-        return model;        
+        return model;
     }
 }
 

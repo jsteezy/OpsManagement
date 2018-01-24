@@ -52,8 +52,8 @@ export default class ReportsService {
         return this.reportsDataAccessService.update(model);
     }
 
-    updateNonSci(model){
-        return this.reportsDataAccessService.updateNonSci(model);
+    deleteReport(id) {
+        return this.reportsDataAccessService.deleteReport(id); 
     }
 
     getAllReports(responseId) {

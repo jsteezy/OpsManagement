@@ -1,10 +1,10 @@
-﻿$global:spWebAppUrl = "https://savethechildren1.sharepoint.com";
-$global:spSiteUrl = "$($global:spWebAppUrl)/sites/HART";
+﻿$global:spWebAppUrl = "https://onenet-staging.savethechildren.net";
+$global:spSiteUrl = "$($global:spWebAppUrl)/sites/OMT-uat";
 
 $global:solutionPath = "D:\dist";
 $global:solutionStorageDocLibraryName = "ProjectLibrary";
-$global:documentLibraryFolder = "HART";
-$global:solutionExportDocLibraryName = "HART Exports";
+$global:documentLibraryFolder = "OMT";
+$global:solutionExportDocLibraryName = "OMT Exports";
 
 $global:masterPageFileName = "Application.master";
 $global:spaPageLayoutFileName = "ApplicationSPALayout.aspx";
