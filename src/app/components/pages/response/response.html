@@ -56,6 +56,10 @@
             </md-input-container>
         </div>
         <div layout-gt-md="row" layout-padding>
+            <div class="md-block" style="margin-top: -47px" flex-gt-sm="50">
+                <h5 style="font-weight: normal !important">Start date</h5>
+                <md-datepicker ng-model="ctrl.model.startDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+            </div>
             <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Phase</label>
                 <md-select ng-model="ctrl.model.phase" placeholder="Phase">
@@ -64,14 +68,20 @@
                     </md-option>
                 </md-select>
             </md-input-container>
-
-
         </div>
 
+        <div layout-gt-md="row" layout-padding>
             <div class="md-block" style="margin-top: -47px" flex-gt-sm="50">
-                <h5 style="font-weight: normal !important">Start date</h5>
-                <md-datepicker ng-model="ctrl.model.startDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                <h5 style="font-weight: normal !important">Strategy date</h5>
+                <md-datepicker ng-model="ctrl.model.strategyDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
             </div>
+            <md-input-container class="md-block" flex-gt-sm="50">
+                <label>Strategy</label>
+                <input type="number" ng-model="ctrl.model.strategyNumber" name="strategyNumber" max="10" required></input>
+            </md-input-container>
+        </div>
+
+
         <div class="md-block" flex-gt-sm="50">
             <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
                 <md-button class="md-raised md-primary" ng-click="ctrl.redirectToHome()">Cancel</md-button>

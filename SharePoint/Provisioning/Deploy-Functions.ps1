@@ -137,17 +137,21 @@ Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesStartDate -ListCont
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesRegion -ListContext $global:ListResponseCodes.Title -webContext $web.ID
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesCountry -ListContext $global:ListResponseCodes.Title -webContext $web.ID
 Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesResponseStatus -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesCategory -ListContext $global:ListResponseCodes.Title -webContext $web.ID    
+Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesPhase -ListContext $global:ListResponseCodes.Title -webContext $web.ID
+Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesStrategyDate -ListContext $global:ListResponseCodes.Title -webContext $web.ID    
+Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesStrategyNumber -ListContext $global:ListResponseCodes.Title -webContext $web.ID    
 Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileId -ListContext $global:ListResponseCodes.Title -webContext $web.ID
 Ensure-Field $web.Url -FieldDef $global:FieldDefUserProfileEmail -ListContext $global:ListResponseCodes.Title -webContext $web.ID
-Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesCategory -ListContext $global:ListResponseCodes.Title -webContext $web.ID    
-Ensure-Field $web.Url -FieldDef $global:FieldDefResponseCodesPhase -ListContext $global:ListResponseCodes.Title -webContext $web.ID   
+
 
 #endregion
 
 #endregion
 Ensure-ContentType -Url $web.Url -CTDef $global:CTDefResponseCodes -FieldDefs $global:FieldDefResponseCodesCode, $global:FieldDefResponseCodesDescription, 
-$global:FieldDefResponseCodesStartDate, $global:FieldDefResponseCodesRegion, $global:FieldDefResponseCodesCountry, $global:FieldDefResponseCodesResponseStatus
- , $global:FieldDefUserProfileId,  $global:FieldDefUserProfileEmail, $global:FieldDefResponseCodesCategory, $global:FieldDefResponseCodesPhase
+$global:FieldDefResponseCodesStartDate, $global:FieldDefResponseCodesRegion, $global:FieldDefResponseCodesCountry, $global:FieldDefResponseCodesResponseStatus,
+$global:FieldDefResponseCodesCategory, $global:FieldDefResponseCodesPhase, $global:FieldDefResponseCodesStrategyDate, $global:FieldDefResponseCodesStrategyNumber,
+$global:FieldDefUserProfileId,  $global:FieldDefUserProfileEmail
 
 Ensure-ListFromDefinition -Web $web.Url -ListDef $global:ListResponseCodes
 
@@ -271,15 +275,9 @@ function EnsureReports()
     #region FIELDS
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsStatus -ListContext $global:ListReports.Title -webContext $web.ID    
     Ensure-Field $web.Url -FieldDef $global:FieldDefResponseId -ListContext $global:ListReports.Title -webContext $web.ID
-    # Ensure-Field $web.Url -FieldDef $global:FieldDefReportsRegionalResponse -ListContext $global:ListReports.Title -webContext $web.ID
-    # Ensure-Field $web.Url -FieldDef $global:FieldDefReportsParentRegionalResponse -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSitrepDate -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsNextSitrepDate -ListContext $global:ListReports.Title -webContext $web.ID
-    # Ensure-Field $web.Url -FieldDef $global:FieldDefReportsRecentContextDevelopment -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsOpsBackstop -ListContext $global:ListReports.Title -webContext $web.ID
-    
-    #Ensure-Field $web.Url -FieldDef $global:FieldDefReportsResponseStatus -ListContext $global:ListReports.Title -webContext $web.ID 
-    #Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSCIImplemented -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSitrepNumber -ListContext $global:ListReports.Title -webContext $web.ID      
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsGeneralContextInternal -ListContext $global:ListReports.Title -webContext $web.ID    
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsGeneralContextExternal -ListContext $global:ListReports.Title -webContext $web.ID    
@@ -367,15 +365,10 @@ function EnsureReports()
 
     Ensure-ContentType -Url $web.Url -CTDef $global:CTDefReports -FieldDefs $global:FieldDefReportsStatus,
     $global:FieldDefResponseId,
-    # $global:FieldDefReportsRegionalResponse,
-    # $global:FieldDefReportsParentRegionalResponse,
+
     $global:FieldDefReportsSitrepDate,
     $global:FieldDefReportsNextSitrepDate,
-    # $global:FieldDefReportsRecentContextDevelopment,
     $global:FieldDefReportsOpsBackstop,
-        
-    $global:FieldDefReportsResponseStatus,
-    #$global:FieldDefReportsSCIImplemented,
     $global:FieldDefReportsSitrepNumber,      
     $global:FieldDefReportsGeneralContextInternal,    
     $global:FieldDefReportsGeneralContextExternal,    

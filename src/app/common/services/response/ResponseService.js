@@ -16,6 +16,7 @@ export default class ResponseService {
         if (data) {
             ObjectMapper.toObject(data, model);
             model.startDate = DateUtils.getFromString(model.startDate);
+            model.strategyDate = DateUtils.getFromString(model.strategyDate);
 
         }
 

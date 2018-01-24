@@ -13,5 +13,7 @@ export default class ResponseModel extends BaseModel {
         this.responseStatus = "";
         this.category = null;
         this.phase = null;
+        this.strategyNumber = null;
+        this.strategyDate = DateUtils.today;
     }
 }

@@ -1,8 +1,8 @@
 #region Authorization
 
 $global:OMTSystemAdminGroupName = "_System Admin_";
-$global:OMTApproverGroupName = "Approvers";
-$global:OMTEditorsGroupName = "Editors";
+$global:OMTApproverGroupName = "_Approvers_";
+# $global:OMTEditorsGroupName = "Editors";
 $global:OMTAllUsersGroupName = "_All OMT Users_";
 
 $global:OMTSecurityGroups = @{
@@ -14,17 +14,17 @@ $global:OMTSecurityGroups = @{
                 "description" = "OMT Approvers"
                 "role" = "Approve" 
                 }
-                $global:OMTEditorsGroupName = @{
-                    "description" = "OMT Editors"
-                    "role" = "Contribute"
-                    }
+                # $global:OMTEditorsGroupName = @{
+                #     "description" = "OMT Editors"
+                #     "role" = "Contribute"
+                #     }
         $global:OMTAllUsersGroupName = @{ 
             "description" = "OMT Application All Users"
             "role" = "Read"`
             }
     }; 
 
-#Groups must be returned in the order of their creation (ex: GSS SiteAdmin must be before GSS Approvers because they are the owners)
+
 function Get-SecurityGroupNames
 {
     Write-Output @($global:OMTSystemAdminGroupName, $global:OMTApproverGroupName, $global:OMTEditorsGroupName, $global:OMTAllUsersGroupName);
@@ -707,6 +707,18 @@ $global:FieldDefResponseCodesPhase = New-FieldDefinition -FieldXml @'
 <Field ID="{429bec30-8a67-4394-9196-95ce04927551}" Type="Text" MaxLength="255" Name="Phase" StaticName="Phase" DisplayName="Phase" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefResponseCodesStrategyDate = New-FieldDefinition -FieldXml @'
+    <Field ID="{61ef0141-e1b9-418b-943c-f9f560e8a24b}" Type="DateTime" Name="StrategyDate" StaticName="StrategyDate" DisplayName="Strategy Date" 
+    Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
+    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefResponseCodesStrategyNumber = New-FieldDefinition -FieldXml @'
+    <Field ID="{0545da46-6d14-48e0-993f-356683692dc8}" Type="Number" Decimals="0" Name="StrategyNumber" StaticName="StrategyNumber" DisplayName="Strategy Number" 
+    Group="_OMT" EnforceUniqueValues="FALSE" Indexed="TRUE" Required="FALSE"
+    ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
 $global:CTDefResponseCodes = New-ContentTypeDefinition -ID "0x0100C2DB3C6656AA48D89CA763E657C1FC48" -Name "Response Codes" -Group $CTGroup -Description "Response Codes";
