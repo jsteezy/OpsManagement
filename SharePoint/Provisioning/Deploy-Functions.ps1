@@ -12,15 +12,13 @@ function EnsureStorage()
 
     EnsureSolutionStorage -web $web -docLibraryName $global:solutionStorageDocLibraryName    
 
-    EnsureRegions -web $web
+    #EnsureRegions -web $web
 
-    EnsureCountries -web $web
+    #EnsureCountries -web $web
 
     EnsureResponseCodes -web $web
 
     EnsureReports -web $web
-
-    ##EnsureNonSCIManaged -web $web
 }
 
 function EnsureSolutionStorage()
