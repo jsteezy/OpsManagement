@@ -820,7 +820,7 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="30">
                     <label>Response strategy target (USD)</label>
-                    <input type="number" max="99999999" required ng-model="ctrl.model.responseStrategyTarget" name="responseStrategyTarget"></input>
+                    <input type="number" max="9999999999" required ng-model="ctrl.model.responseStrategyTarget" name="responseStrategyTarget"></input>
                     <div ng-messages="form.responseStrategyTarget.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="max">That's too high</div>
