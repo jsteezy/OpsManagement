@@ -96,7 +96,8 @@ export default class ReportsModel extends BaseModel {
         this.commsPack = null;
         this.mediaCoverage = null;
         this.spokespeople = null;
-
+        this.contentHubLink = null;
+        this.latestMediaLink = null;
         this.advocacyActions = null;
 
         //Emergency supply chain    

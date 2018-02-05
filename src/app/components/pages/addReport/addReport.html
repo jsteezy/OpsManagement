@@ -18,9 +18,10 @@
                     Approve
                 </md-button>
                 <md-button class="md-raised md-primary" aria-label="refreshAugmentedData" ng-if="ctrl.approve === true" ng-hide="ctrl.main.isRequestProcessing"
-                ng-click="ctrl.refreshAugmentedData(ctrl.model)"><md-tooltip md-direction="bottom">Only use if you have checked the financial data on the portal and you need to refresh it</md-tooltip>
-                Refresh external data
-            </md-button>
+                    ng-click="ctrl.refreshAugmentedData(ctrl.model)">
+                    <md-tooltip md-direction="bottom">Only use if you have checked the financial data on the portal and you need to refresh it</md-tooltip>
+                    Refresh external data
+                </md-button>
                 <md-progress-circular md-mode="indeterminate" class="md-primary md-hue-3" ng-show="ctrl.main.isRequestProcessing" md-diameter="70"></md-progress-circular>
             </div>
         </div>
@@ -325,6 +326,18 @@
             </div>
             <div layout-gt-md="row" layout-padding>
                 <div>
+                    <span class="bold">Link to Content Hub Collection:</span>
+                    <a href="{{ctrl.model.contentHubLink}}" target="_blank">{{ctrl.model.contentHubLink}}</a>
+                </div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>
+                    <span class="bold">Link to latest Media:</span>
+                    <a href="{{ctrl.model.latestMediaLink}}" target="_blank">{{ctrl.model.latestMediaLink}}</a>
+                </div>
+            </div>
+            <div layout-gt-md="row" layout-padding>
+                <div>
                     <span class="bold">Recent media coverage:</span> {{ctrl.model.mediaCoverage}}</div>
             </div>
             <div layout-gt-md="row" layout-padding>
@@ -537,8 +550,8 @@
                     <div ng-message="required">Real Time Review is required</div>
                 </div>
                 <div ng-messages="form.percentTimeToEducationCluster.$error" ng-show="form.percentTimeToEducationCluster.$invalid">
-                        <div ng-message="max">% time to Education Cluster is over 100</div>
-                    </div>
+                    <div ng-message="max">% time to Education Cluster is over 100</div>
+                </div>
             </div>
             <div>
                 <h4>Sectors errors</h4>
@@ -682,10 +695,7 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="100">
                     <label>General Context External</label>
-                    <md-tooltip md-direction="bottom">Highlight the scale of the emergency, how much bigger is it likely to get, and recent context developments
-                        that can shared externally. Include numbers of people and children are who are affected, in need
-                        of food or malnoursished, displaced, at risk of disease, out of school, in need or protection, or
-                        killed as a result of the crisis. Include the sources of these figures.</md-tooltip>
+                    <md-tooltip md-direction="bottom">Recent context developments since last sitrep that can be shared externally.</md-tooltip>
                     <textarea ng-model="ctrl.model.generalContextExternal" name="generalContextExternal" md-maxlength="1200" required></textarea>
                     <div ng-messages="form.generalContextExternal.$error">
                         <div ng-message="required">This is required</div>
@@ -1354,14 +1364,13 @@
 
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
-                    <label>Link to Communications materials</label>
-                    <md-tooltip md-direction="bottom">Provide links to avaliable communications products and channels, including Workplace and OneNet, and
-                        flag forthcoming content. </md-tooltip>
+                    <label>Link to Communication Pack</label>
+                    <md-tooltip md-direction="bottom">Link to latest Communications Pack or to latest information materials</md-tooltip>
                     <textarea ng-model="ctrl.model.commsPack" name="commsPack"></textarea>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Recent press releases and media coverage</label>
-                    <md-tooltip md-direction="bottom">Provide links to recent press releases and media coverage and flag forthcoming content.</md-tooltip>
+                    <md-tooltip md-direction="bottom">Update on latest press releases, media coverage and flag forthcoming content</md-tooltip>
                     <textarea ng-model="ctrl.model.mediaCoverage" name="mediaCoverage"></textarea>
                 </md-input-container>
             </div>
@@ -1375,6 +1384,19 @@
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Spokespeople</label>
                     <textarea ng-model="ctrl.model.spokespeople" name="spokespeople"></textarea>
+                </md-input-container>
+            </div>
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Link to Content Hub Collection</label>
+                    <md-tooltip md-direction="bottom">Link to latest multimedia assets</md-tooltip>
+                    <textarea ng-model="ctrl.model.contentHubLink" name="contentHubLink"></textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Link to latest Media</label>
+                    <md-tooltip md-direction="bottom">Link to latest press release or media coverage</md-tooltip>
+                    <textarea ng-model="ctrl.model.latestMediaLink" name="latestMediaLink"></textarea>
                 </md-input-container>
             </div>
 

@@ -513,6 +513,18 @@ Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
+$global:FieldDefReportsContentHubLink = New-FieldDefinition -FieldXml @'
+<Field ID="{1b5e156c-a756-4dce-b3f9-172ed357296c}" Type="Text" MaxLength="300" Name="ContentHubLink" StaticName="ContentHubLink" DisplayName="Content Hub Link" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefReportsLatestMediaLink = New-FieldDefinition -FieldXml @'
+<Field ID="{da5840d7-4f34-49d6-98fa-7b41c9f5dbea}" Type="Text" MaxLength="300" Name="LatestMediaLink" StaticName="LatestMediaLink" DisplayName="Latest Media Link" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
 $global:FieldDefReportsMediaCoverage = New-FieldDefinition -FieldXml @'
 <Field ID="{04d1b173-dc44-4d44-aa51-d86a1cb2ea79}" Type="Text" MaxLength="300" Name="MediaCoverage" StaticName="MediaCoverage" DisplayName="Media Coverage" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"

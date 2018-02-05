@@ -348,7 +348,8 @@ function EnsureReports()
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsCommsPack -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsMediaCoverage -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSpokespeople -ListContext $global:ListReports.Title -webContext $web.ID
-
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsContentHubLink -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsLatestMediaLink -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsAdvocacyActions -ListContext $global:ListReports.Title -webContext $web.ID    
 
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsPrepositionedStock -ListContext $global:ListReports.Title -webContext $web.ID
@@ -438,6 +439,8 @@ function EnsureReports()
     $global:FieldDefReportsCommsPack,
     $global:FieldDefReportsMediaCoverage,
     $global:FieldDefReportsSpokespeople,
+    $global:FieldDefReportsContentHubLink,
+    $global:FieldDefReportsLatestMediaLink,
     
     $global:FieldDefReportsAdvocacyActions,    
     
