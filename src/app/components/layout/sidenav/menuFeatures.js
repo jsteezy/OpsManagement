@@ -3,7 +3,7 @@ import Permissions from "../../../common/enums/permissions.json";
 export default class MenuFeatures {
     static get menuItems() {
         return [{
-                "name": "OMT Responses",
+                "name": "HART Responses",
                 "type": "link",
                 "icon": "home",
                 "state": "Home",
