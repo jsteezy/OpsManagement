@@ -682,6 +682,18 @@
 
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="100">
+                    <label>General Context External</label>
+                    <md-tooltip md-direction="bottom">Recent context developments since last sitrep that can be shared externally.</md-tooltip>
+                    <textarea ng-model="ctrl.model.generalContextExternal" name="generalContextExternal" md-maxlength="1200" required></textarea>
+                    <div ng-messages="form.generalContextExternal.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="100">
                     <label>General Context Internal</label>
                     <md-tooltip md-direction="bottom">Include the same information as the external response update, with any additional response information
                         that is strictly for internal use.</md-tooltip>
@@ -693,17 +705,6 @@
                 </md-input-container>
             </div>
 
-            <div layout-gt-md="row" layout-padding>
-                <md-input-container class="md-block" flex-gt-sm="100">
-                    <label>General Context External</label>
-                    <md-tooltip md-direction="bottom">Recent context developments since last sitrep that can be shared externally.</md-tooltip>
-                    <textarea ng-model="ctrl.model.generalContextExternal" name="generalContextExternal" md-maxlength="1200" required></textarea>
-                    <div ng-messages="form.generalContextExternal.$error">
-                        <div ng-message="required">This is required</div>
-                        <div ng-message="md-maxlength">That's too long</div>
-                    </div>
-                </md-input-container>
-            </div>
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="100">
                     <label>Response Update Internal</label>
