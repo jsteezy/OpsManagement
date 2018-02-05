@@ -82,7 +82,7 @@ export default class ReportsModel extends BaseModel {
 
         this.deploymentTrackerLink = null;
 
-        //Saftey and security
+        //Safety and security
         this.securityContext = null;
         this.securityChallenges = null;
         this.securityManagement = null;

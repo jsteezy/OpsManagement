@@ -436,7 +436,7 @@ export default class AddReportController extends BaseController {
         model.healthSummary = null;
         model.nutritionSummary = null;
 
-        //Saftey and security
+        //Safety and security
         model.securityContext = null;
 
         //Child safegaurding
