@@ -27,7 +27,7 @@ $global:OMTSecurityGroups = @{
 
 function Get-SecurityGroupNames
 {
-    Write-Output @($global:OMTSystemAdminGroupName, $global:OMTApproverGroupName, $global:OMTEditorsGroupName, $global:OMTAllUsersGroupName);
+    Write-Output @($global:OMTSystemAdminGroupName, $global:OMTApproverGroupName, $global:OMTAllUsersGroupName);
 }
 
 #endregion 
@@ -36,7 +36,7 @@ function Get-SecurityGroupNames
 #region Lists Collection
 function Get-ListNames
 {
-    Write-Output @($global:RegionsListTitle, $global:CountriesListTitle, $global:ResponseCodesListTitle, $global:OMTReportsListTitle, $global:OMTResponsesListTitle);
+    Write-Output @($global:RegionsListTitle, $global:CountriesListTitle, $global:ResponseCodesListTitle, $global:ReportsListTitle);
 }
 
 #endregion

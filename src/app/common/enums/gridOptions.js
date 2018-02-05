@@ -15,7 +15,8 @@ export default class GridOptions {
                     { displayName: 'Description', field: 'Description', enableSorting: false, enableFiltering: false },
                     { displayName: 'Start Date', field: 'StartDate', enableSorting: true, enableFiltering: false,  cellFilter: "dateFormat" },
                     { displayName: 'Country', field: 'Country', enableSorting: true },
-                    { displayName: 'Region', field: 'Region', enableFiltering: true, enableSorting: true }                 
+                    { displayName: 'Region', field: 'Region', enableFiltering: true, enableSorting: true },
+                    { displayName: 'Category', field: 'Category', enableFiltering: true, enableSorting: true }                 
                 ],                
                 showExpandButtonAlways: false,
                 hasCustomFilters: true
@@ -35,6 +36,7 @@ export default class GridOptions {
                     { displayName: 'Start Date', field: 'StartDate', enableSorting: true, enableFiltering: false,  cellFilter: "dateFormat" },
                     { displayName: 'Country', field: 'Country', enableSorting: true },
                     { displayName: 'Region', field: 'Region', enableFiltering: true, enableSorting: true },
+                    { displayName: 'Category', field: 'Category', enableFiltering: true, enableSorting: true },
                     { displayName: 'Edit', field: 'Edit', cellTemplate: '<md-button class="md-primary" ng-click="grid.appScope.editResponseCode(row.entity.Id)">Edit</md-button>'}                 
                 ],                
                 showExpandButtonAlways: false,
