@@ -1,7 +1,7 @@
 {
     "everyone": "everyone",
     "omtMembers": "_All OMT Users_",
-    "approver": "Approver",
+    "approver": "_Approvers_",
     "editors": "Editors",
     "admin": "_System Admin_"
 }
