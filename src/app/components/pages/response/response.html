@@ -49,10 +49,10 @@
             <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Category</label>
                 <input type="number" ng-model="ctrl.model.category" name="category" max="4" required></input>
-                <!-- <div ng-messages="form.category.$error">
+                <div ng-messages="form.category.$error">
                             <div ng-message="required">This is required</div>
                             <div ng-message="md-maxlength">That's too long</div>
-                        </div> -->
+                        </div>
             </md-input-container>
         </div>
         <div layout-gt-md="row" layout-padding>
@@ -78,6 +78,10 @@
             <md-input-container class="md-block" flex-gt-sm="50">
                 <label>Strategy</label>
                 <input type="number" ng-model="ctrl.model.strategyNumber" name="strategyNumber" max="10" required></input>
+                <div ng-messages="form.strategyNumber.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
             </md-input-container>
         </div>
 
