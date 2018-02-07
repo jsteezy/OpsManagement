@@ -269,6 +269,20 @@
                     <div ng-message="required">This is required</div>
                 </div>
             </div>
+            <div ng-show="form.spokespeople.$invalid || form.mediaCoverage.$invalid || form.advocacyActions.$invalid">
+                <h4>Advocacy, Media and Comms</h4>
+                <div ng-messages="form.spokespeople.$error" ng-show="form.spokespeople.$invalid">
+                    <div ng-message="required">Spokespeople is required</div>
+                </div>
+                <div ng-messages="form.mediaCoverage.$error" ng-show="form.mediaCoverage.$invalid">
+                    <div ng-message="required">Media and Content Update is required</div>
+                    <div ng-message="md-maxlength">Media and Content Update too long</div>
+                </div>
+                <div ng-messages="form.advocacyActions.$error" ng-show="form.advocacyActions.$invalid">
+                    <div ng-message="required">Advocacy Update is required</div>
+                    <div ng-message="md-maxlength">Advocacy Update is too long</div>
+                </div>
+            </div>
             <div ng-show="form.plannedProcurement.$invalid || form.procurementSpend.$invalid">
                 <h4>Emergency supply chain</h4>
                 <div ng-messages="form.plannedProcurement.$error" ng-show="form.plannedProcurement.$invalid">
@@ -896,15 +910,15 @@
                 <md-checkbox ng-model="ctrl.model.eHUDeployed">
                 </md-checkbox>
             </div>
-            <div style="margin-top: -75px; margin-left: 175px">
-                <div layout-gt-md="row" ng-hide="!ctrl.model.eHUDeployed">
+            <div style="margin-top: -75px; margin-left: 175px" ng-hide="!ctrl.model.eHUDeployed">
+                <div layout-gt-md="row">
                     <div class="md-block" style="margin-top: -47px;" flex-gt-sm="25">
                         <h5 style="font-weight: normal !important">EHU Deployed from</h5>
                         <md-datepicker ng-model="ctrl.model.eHUDeployedDate" md-placeholder="Enter date"></md-datepicker>
                     </div>
                 </div>
 
-                <div layout-gt-md="row" ng-hide="!ctrl.model.eHUDeployed">
+                <div layout-gt-md="row">
                     <div class="md-block" flex-gt-sm="25">
                         <h5 style="font-weight: normal !important">EHU Deployed until</h5>
                         <md-datepicker ng-model="ctrl.model.eHUDeployedUntilDate" md-placeholder="Enter date"></md-datepicker>
@@ -1051,7 +1065,10 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Spokespeople</label>
-                    <textarea ng-model="ctrl.model.spokespeople" name="spokespeople"></textarea>
+                    <textarea ng-model="ctrl.model.spokespeople" name="spokespeople" required></textarea>
+                    <div ng-messages="form.spokespeople.$error">
+                        <div ng-message="required">This is required</div>
+                    </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Link to latest Media</label>
@@ -1064,16 +1081,22 @@
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Advocacy Update</label>
                     <md-tooltip md-direction="bottom">Share upcoming advocacy opportunities, previous actions/achievements.</md-tooltip>
-                    <textarea ng-model="ctrl.model.advocacyActions" name="advocacyActions" md-maxlength="250"></textarea>
+                    <textarea ng-model="ctrl.model.advocacyActions" name="advocacyActions" md-maxlength="250" required></textarea>
+                    <div ng-messages="form.advocacyActions.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Media and Content Update</label>
                     <md-tooltip md-direction="bottom">Update on latest press releases, media coverage and flag forthcoming content</md-tooltip>
-                    <textarea ng-model="ctrl.model.mediaCoverage" name="mediaCoverage"></textarea>
+                    <textarea ng-model="ctrl.model.mediaCoverage" name="mediaCoverage" md-maxlength="250" required></textarea>
+                    <div ng-messages="form.mediaCoverage.$error">
+                        <div ng-message="required">This is required</div>
+                        <div ng-message="md-maxlength">That's too long</div>
+                    </div>
                 </md-input-container>
             </div>
-
-
 
         </accordion>
 
