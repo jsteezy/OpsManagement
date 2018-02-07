@@ -895,12 +895,22 @@
                 <label style="width: 128px">EHU Deployed</label>
                 <md-checkbox ng-model="ctrl.model.eHUDeployed">
                 </md-checkbox>
-                <div class="md-block" flex-gt-sm="25" ng-hide="!ctrl.model.eHUDeployed">
-                    <label>EHU Deployed Date</label>
-                    <md-datepicker ng-model="ctrl.model.eHUDeployedDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+            </div>
+            <div style="margin-top: -75px; margin-left: 175px">
+                <div layout-gt-md="row" ng-hide="!ctrl.model.eHUDeployed">
+                    <div class="md-block" style="margin-top: -47px;" flex-gt-sm="25">
+                        <h5 style="font-weight: normal !important">EHU Deployed from</h5>
+                        <md-datepicker ng-model="ctrl.model.eHUDeployedDate" md-placeholder="Enter date"></md-datepicker>
+                    </div>
+                </div>
+
+                <div layout-gt-md="row" ng-hide="!ctrl.model.eHUDeployed">
+                    <div class="md-block" flex-gt-sm="25">
+                        <h5 style="font-weight: normal !important">EHU Deployed until</h5>
+                        <md-datepicker ng-model="ctrl.model.eHUDeployedUntilDate" md-placeholder="Enter date"></md-datepicker>
+                    </div>
                 </div>
             </div>
-
             <div layout-gt-md="row" layout-padding>
                 <label style="width: 128px">Nutrition</label>
                 <md-checkbox ng-model="ctrl.model.nutritionBool">
@@ -1027,34 +1037,21 @@
 
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
-                    <label>Link to Communication Pack</label>
+                    <label>Link to Communications Pack</label>
                     <md-tooltip md-direction="bottom">Link to latest Communications Pack or to latest information materials</md-tooltip>
                     <textarea ng-model="ctrl.model.commsPack" name="commsPack"></textarea>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
-                    <label>Recent press releases and media coverage</label>
-                    <md-tooltip md-direction="bottom">Update on latest press releases, media coverage and flag forthcoming content</md-tooltip>
-                    <textarea ng-model="ctrl.model.mediaCoverage" name="mediaCoverage"></textarea>
-                </md-input-container>
-            </div>
-
-            <div layout-gt-md="row" layout-padding>
-                <md-input-container class="md-block" flex-gt-sm="50">
-                    <label>Internal advocacy actions and achievements</label>
-                    <md-tooltip md-direction="bottom">Share upcoming advocacy opportunities, previous actions/achievements, and links to key advocacy messages.</md-tooltip>
-                    <textarea ng-model="ctrl.model.advocacyActions" name="advocacyActions" md-maxlength="250"></textarea>
-                </md-input-container>
-                <md-input-container class="md-block" flex-gt-sm="50">
-                    <label>Spokespeople</label>
-                    <textarea ng-model="ctrl.model.spokespeople" name="spokespeople"></textarea>
-                </md-input-container>
-            </div>
-
-            <div layout-gt-md="row" layout-padding>
-                <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Link to Content Hub Collection</label>
                     <md-tooltip md-direction="bottom">Link to latest multimedia assets</md-tooltip>
                     <textarea ng-model="ctrl.model.contentHubLink" name="contentHubLink"></textarea>
+                </md-input-container>
+            </div>
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Spokespeople</label>
+                    <textarea ng-model="ctrl.model.spokespeople" name="spokespeople"></textarea>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Link to latest Media</label>
@@ -1062,6 +1059,21 @@
                     <textarea ng-model="ctrl.model.latestMediaLink" name="latestMediaLink"></textarea>
                 </md-input-container>
             </div>
+
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Advocacy Update</label>
+                    <md-tooltip md-direction="bottom">Share upcoming advocacy opportunities, previous actions/achievements.</md-tooltip>
+                    <textarea ng-model="ctrl.model.advocacyActions" name="advocacyActions" md-maxlength="250"></textarea>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Media and Content Update</label>
+                    <md-tooltip md-direction="bottom">Update on latest press releases, media coverage and flag forthcoming content</md-tooltip>
+                    <textarea ng-model="ctrl.model.mediaCoverage" name="mediaCoverage"></textarea>
+                </md-input-container>
+            </div>
+
+
 
         </accordion>
 

@@ -20,7 +20,8 @@ export default class ReportsService {
             model.sitrepDate = DateUtils.getFromString(model.sitrepDate);
             model.nextSitrepDate = DateUtils.getFromString(model.nextSitrepDate);
             model.seedFundsTargetDate = DateUtils.getFromString(model.seedFundsTargetDate); 
-            model.eHUDeployedDate = DateUtils.getFromString(model.eHUDeployedDate);             
+            model.eHUDeployedDate = DateUtils.getFromString(model.eHUDeployedDate); 
+            model.eHUDeployedUntilDate = DateUtils.getFromString(model.eHUDeployedUntilDate);                         
         }
         return model;
     }

@@ -73,6 +73,7 @@ export default class ReportsModel extends BaseModel {
         this.healthSummary = null;
         this.eHUDeployed = false;
         this.eHUDeployedDate = null;
+        this.eHUDeployedUntilDate = null;
         this.outputTracker = null;
         this.nutritionSummary = null;
 

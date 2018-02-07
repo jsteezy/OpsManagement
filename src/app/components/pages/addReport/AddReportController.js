@@ -399,8 +399,10 @@ export default class AddReportController extends BaseController {
         model.seedFundsTargetDate = DateUtils.format(model.seedFundsTargetDate);
         if (model.eHUDeployed != true) {
             model.eHUDeployedDate = null;
+            model.eHUDeployedUntilDate = null;
         } else {
             model.eHUDeployedDate = DateUtils.format(model.eHUDeployedDate);
+            model.eHUDeployedUntilDate = DateUtils.format(model.eHUDeployedUntilDate);
         }
         return model;
     }

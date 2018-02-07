@@ -433,6 +433,12 @@ Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
+$global:FieldDefReportsEHUDeployedUntilDate = New-FieldDefinition -FieldXml @'
+<Field ID="{3ba4aa7d-16df-493a-b882-85bf5d2df027}" Type="DateTime" Name="EHUDeployedUntilDate" StaticName="EHUDeployedUntilDate" DisplayName="EHU Deployed Until Date" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="TRUE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
 $global:FieldDefReportsOutputTracker = New-FieldDefinition -FieldXml @'
 <Field ID="{4ad1461f-cdfd-45a8-b60e-33c8ce0201fa}" Type="Text" MaxLength="300" Name="OutputTracker" StaticName="OutputTracker" DisplayName="OutputTracker" 
 Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"

@@ -329,6 +329,7 @@ function EnsureReports()
 
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsEHUDeployed -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsEHUDeployedDate -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsEHUDeployedUntilDate -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsOutputTracker -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsNutritionSummary -ListContext $global:ListReports.Title -webContext $web.ID    
     
@@ -420,6 +421,7 @@ function EnsureReports()
     
     $global:FieldDefReportsEHUDeployed,
     $global:FieldDefReportsEHUDeployedDate,
+    $global:FieldDefReportsEHUDeployedUntilDate,
     $global:FieldDefReportsOutputTracker,
     $global:FieldDefReportsNutritionSummary,    
         
