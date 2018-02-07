@@ -1,5 +1,5 @@
 <div ng-if="ctrl.readOnly === true">
-        <view-report main="ctrl"></view-report>  
+    <view-report main="ctrl"></view-report>
 </div>
 
 <md-content ng-cloak class="md-inline-form" ng-if="ctrl.readOnly === false">
@@ -8,8 +8,7 @@
             <h1>&nbsp;{{ctrl.code}} - {{ctrl.country}} - {{ctrl.region}}&nbsp;</h1>
             <h3>&nbsp;{{ctrl.description}}</h3>
             <div layout="row">
-                <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.saveDraft" ng-hide="ctrl.isRequestProcessing"
-                    ng-click="ctrl.storeAsDraft(form)">
+                <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.saveDraft" ng-hide="ctrl.isRequestProcessing" ng-click="ctrl.storeAsDraft(form)">
                     Save Draft
                 </md-button>
                 <md-button class="md-raised md-primary" aria-label="save" ng-if="ctrl.submit === true" ng-hide="ctrl.isRequestProcessing"
@@ -239,9 +238,11 @@
                 <h4>HR errors</h4>
                 <div ng-messages="form.nationalStaffNumber.$error" ng-show="form.nationalStaffNumber.$invalid">
                     <div ng-message="max">National Staff Number is too high</div>
+                    <div ng-message="required">National Staff Number is required</div>
                 </div>
                 <div ng-messages="form.internationalStaffNumber.$error" ng-show="form.internationalStaffNumber.$invalid">
                     <div ng-message="max">International Staff Number is too high</div>
+                    <div ng-message="required">International Staff Number is required</div>
                 </div>
             </div>
             <div ng-show="form.securityContext.$invalid || form.securityChallenges.$invalid || form.securityManagement.$invalid">
@@ -257,6 +258,15 @@
                 <div ng-messages="form.securityManagement.$error" ng-show="form.securityManagement.$invalid">
                     <div ng-message="required">Security Management is required</div>
                     <div ng-message="md-maxlength">Security Management is too long</div>
+                </div>
+            </div>
+            <div ng-show="form.safegaurdingFocalPoint.$invalid || form.safegaurdingRisks.$invalid">
+                <h4>Child Safeguarding errors</h4>
+                <div ng-messages="form.safegaurdingFocalPoint.$error" ng-show="form.safegaurdingFocalPoint.$invalid">
+                    <div ng-message="required">This is required</div>
+                </div>
+                <div ng-messages="form.safegaurdingRisks.$error" ng-show="form.safegaurdingRisks.$invalid">
+                    <div ng-message="required">This is required</div>
                 </div>
             </div>
             <div ng-show="form.plannedProcurement.$invalid || form.procurementSpend.$invalid">
@@ -397,8 +407,6 @@
                     </div>
                 </md-input-container>
             </div>
-
-
 
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
@@ -721,6 +729,8 @@
                 </md-checkbox>
                 <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.childProtectionBool">
                     <label>Backstop</label>
+                    <md-tooltip md-direction="bottom">Your Child protection response backstop's email address. If you do not have a backstop but require one
+                        please put vacant. If you do not have and need a backstop please put n/a.</md-tooltip>
                     <textarea required ng-model="ctrl.model.childProtectionBackstop" name="childProtectionBackstop"></textarea>
                     <div ng-messages="form.childProtectionBackstop.$error">
                         <div ng-message="required">This is required</div>
@@ -747,6 +757,8 @@
                 </md-checkbox>
                 <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.educationBool">
                     <label>Backstop</label>
+                    <md-tooltip md-direction="bottom">Your Education response backstop's email address. If you do not have a backstop but require one please
+                        put vacant. If you do not have and need a backstop please put n/a.</md-tooltip>
                     <textarea required ng-model="ctrl.model.educationBackstop" name="educationBackstop"></textarea>
                     <div ng-messages="form.educationBackstop.$error">
                         <div ng-message="required">This is required</div>
@@ -773,6 +785,8 @@
                 </md-checkbox>
                 <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.FSLBool">
                     <label>Backstop</label>
+                    <md-tooltip md-direction="bottom">Your FSL response backstop's email address. If you do not have a backstop but require one please put
+                        vacant. If you do not have and need a backstop please put n/a.</md-tooltip>
                     <textarea ng-model="ctrl.model.fSLBackstop" name="fSLBackstop" required></textarea>
                     <div ng-messages="form.fSLBackstop.$error">
                         <div ng-message="required">This is required</div>
@@ -799,6 +813,8 @@
                 </md-checkbox>
                 <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.wASHBool">
                     <label>Backstop</label>
+                    <md-tooltip md-direction="bottom">Your WASH response backstop's email address. If you do not have a backstop but require one please put
+                        vacant. If you do not have and need a backstop please put n/a.</md-tooltip>
                     <textarea ng-model="ctrl.model.wASHBackstop" name="wASHBackstop" required></textarea>
                     <div ng-messages="form.wASHBackstop.$error">
                         <div ng-message="required">This is required</div>
@@ -825,6 +841,8 @@
                 </md-checkbox>
                 <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.shelterBool">
                     <label>Backstop</label>
+                    <md-tooltip md-direction="bottom">Your Shelter response backstop's email address. If you do not have a backstop but require one please
+                        put vacant. If you do not have and need a backstop please put n/a.</md-tooltip>
                     <textarea ng-model="ctrl.model.shelterBackstop" name="shelterBackstop" required></textarea>
                     <div ng-messages="form.shelterBackstop.$error">
                         <div ng-message="required">This is required</div>
@@ -851,6 +869,8 @@
                 </md-checkbox>
                 <md-input-container class="md-block" flex-gt-sm="40" ng-if="ctrl.model.healthBool">
                     <label>Backstop</label>
+                    <md-tooltip md-direction="bottom">Your Health response backstop's email address. If you do not have a backstop but require one please put
+                        vacant. If you do not have and need a backstop please put n/a.</md-tooltip>
                     <textarea ng-model="ctrl.model.healthBackstop" name="healthBackstop" required></textarea>
                     <div ng-messages="form.healthBackstop.$error">
                         <div ng-message="required">This is required</div>
@@ -912,22 +932,24 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label># of national response staff</label>
-                    <input type="number" max="9999999" ng-model="ctrl.model.nationalStaffNumber" name="nationalStaffNumber"></input>
+                    <input type="number" max="9999999" ng-model="ctrl.model.nationalStaffNumber" name="nationalStaffNumber" required></input>
                     <div ng-messages="form.nationalStaffNumber.$error">
                         <div ng-message="max">That's too high</div>
+                        <div ng-message="required">This is required</div>
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label># of international staff</label>
-                    <input type="number" max="9999999" ng-model="ctrl.model.internationalStaffNumber" name="internationalStaffNumber"></input>
+                    <input type="number" max="9999999" ng-model="ctrl.model.internationalStaffNumber" name="internationalStaffNumber" required></input>
                     <div ng-messages="form.internationalStaffNumber.$error">
                         <div ng-message="max">That's too high</div>
+                        <div ng-message="required">This is required</div>
                     </div>
                 </md-input-container>
             </div>
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
-                    <label>Deployment tracker link</label>
+                    <label>Link to deployment tracker</label>
                     <textarea ng-model="ctrl.model.deploymentTrackerLink" name="deploymentTrackerLink"></textarea>
                 </md-input-container>
             </div>
@@ -938,7 +960,7 @@
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Please provide an overview of the S&amp;S context, including details of security incidents, since the
                         last SitRep</label>
-                    <textarea ng-model="ctrl.model.securityContext" name="securityContext" md-maxlength="700" required></textarea>
+                    <textarea ng-model="ctrl.model.securityContext" name="securityContext" md-maxlength="500" required></textarea>
                     <div ng-messages="form.securityContext.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="md-maxlength">That's too long</div>
@@ -949,7 +971,7 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>What immediate S&amp;S challenges are predicted?</label>
-                    <textarea ng-model="ctrl.model.securityChallenges" name="securityChallenges" md-maxlength="700" required></textarea>
+                    <textarea ng-model="ctrl.model.securityChallenges" name="securityChallenges" md-maxlength="500" required></textarea>
                     <div ng-messages="form.securityChallenges.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="md-maxlength">That's too long</div>
@@ -960,7 +982,7 @@
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>How will those challenges be managed?</label>
-                    <textarea ng-model="ctrl.model.securityManagement" name="securityManagement" md-maxlength="700" required></textarea>
+                    <textarea ng-model="ctrl.model.securityManagement" name="securityManagement" md-maxlength="500" required></textarea>
                     <div ng-messages="form.securityManagement.$error">
                         <div ng-message="required">This is required</div>
                         <div ng-message="md-maxlength">That's too long</div>
@@ -982,14 +1004,20 @@
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Child safeguarding focal point</label>
-                    <textarea ng-model="ctrl.model.safegaurdingFocalPoint" name="safegaurdingFocalPoint" md-maxlength="50"></textarea>
+                    <textarea ng-model="ctrl.model.safegaurdingFocalPoint" name="safegaurdingFocalPoint" md-maxlength="50" required></textarea>
+                    <div ng-messages="form.safegaurdingFocalPoint.$error">
+                        <div ng-message="required">This is required</div>
+                    </div>
                 </md-input-container>
             </div>
 
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Key safeguarding risks to children</label>
-                    <textarea ng-model="ctrl.model.safegaurdingRisks" name="safegaurdingRisks" md-maxlength="300"></textarea>
+                    <textarea ng-model="ctrl.model.safegaurdingRisks" name="safegaurdingRisks" md-maxlength="500" required></textarea>
+                    <div ng-messages="form.safegaurdingRisks.$error">
+                        <div ng-message="max">That's over 100%</div>
+                    </div>
                 </md-input-container>
             </div>
 
