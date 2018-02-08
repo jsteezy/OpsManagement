@@ -141,7 +141,7 @@
                 </div>
             </div>
             <div ng-if="ctrl.model.nonSciResponses" ng-show="form.responseTotalSpend.$invalid || form.totalSpendAgainstCSF.$invalid
-            || form.totalSpendThroughPartners.$invalid || form.totalSpendThroughCTP.$invalid ||">
+            || form.totalSpendThroughPartners.$invalid || form.totalSpendThroughCTP.$invalid || form.totalSpendEducation.$invalid">
                 <h4>Spend errors</h4>
                 <div ng-messages="form.responseTotalSpend.$error" ng-show="form.responseTotalSpend.$invalid">
                     <div ng-message="required">Response Total Spend is required</div>
@@ -488,7 +488,7 @@
                     </div>
                 </md-input-container>
             </div>
-            
+
             <div layout-gt-md="row" layout-padding>
                 <md-input-container class="md-block" flex-gt-sm="50">
                     <label>Total reach in current year</label>
