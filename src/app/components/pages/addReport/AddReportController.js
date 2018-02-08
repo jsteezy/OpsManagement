@@ -298,7 +298,6 @@ export default class AddReportController extends BaseController {
                     });
             }
         });
-
     }
 
     approveReport(form) {
@@ -381,7 +380,9 @@ export default class AddReportController extends BaseController {
                         () => {
                             this.toastService.showToast('New augmented data will be available to review through the portal', 'app');
                             super.isRequestProcessing = false;
-                            super.redirectTo(["Reports", { id: model.responseId }])
+                            super.redirectTo(["Reports", {
+                                id: model.responseId
+                            }])
                         },
                         (errorData) => {
                             super.serverRequestErrors = errorData;
@@ -408,6 +409,7 @@ export default class AddReportController extends BaseController {
     }
 
     removeDataForNewDraft(model) {
+        //this nulls any field that is not to be copied to the next report
         model.sitrepNumber++;
 
         model.id = null;
@@ -428,6 +430,8 @@ export default class AddReportController extends BaseController {
         model.totalReachSinceLastSitrep = null;
         model.childrenReachedSinceStart = null;
         model.childrenReachedSinceLastSitrep = null;
+        model.totalReachInCurrentYear = null;
+        model.childrenReachInCurrentYear = null;
 
         // //Sectors
         model.childProtectionSummary = null;

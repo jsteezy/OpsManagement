@@ -54,7 +54,8 @@
             </div>
 
             <div ng-show="form.affectedPopulation.$invalid || form.affectedChildren.$invalid || form.strategyTarget.$invalid || form.strategyTargetChildren.$invalid
-            || form.totalReachSinceStart.$invalid || form.totalReachSinceLastSitrep.$invalid || form.childrenReachedSinceStart.$invalid || form.childrenReachedSinceLastSitrep.$invalid">
+            || form.totalReachSinceStart.$invalid || form.totalReachSinceLastSitrep.$invalid || form.childrenReachedSinceStart.$invalid || form.childrenReachedSinceLastSitrep.$invalid
+            || form.totalReachInCurrentYear.$invalid || form.childrenReachInCurrentYear.$invalid">
                 <h4>Reach figures errors</h4>
                 <div ng-messages="form.affectedPopulation.$error" ng-show="form.affectedPopulation.$invalid">
                     <div ng-message="required">Affected Population is required</div>
@@ -87,6 +88,12 @@
                 <div ng-messages="form.childrenReachedSinceLastSitrep.$error" ng-show="form.childrenReachedSinceLastSitrep.$invalid">
                     <div ng-message="required">Children Reached Since last Sitrep is required</div>
                     <div ng-message="max">Children Reached Since last Sitrep is too high</div>
+                </div>
+                <div ng-messages="form.totalReachInCurrentYear.$error" ng-show="form.totalReachInCurrentYear.$invalid">
+                    <div ng-message="max">Total reach in current year too high</div>
+                </div>
+                <div ng-messages="form.childrenReachInCurrentYear.$error" ng-show="form.childrenReachInCurrentYear.$invalid">
+                    <div ng-message="max">Children reach figures for current year, for current strategy is too high</div>
                 </div>
             </div>
             <div ng-show="form.responseStrategyTarget.$invalid || form.seedFundsTarget.$invalid || form.crisisModifiers.$invalid
@@ -477,6 +484,23 @@
                     <input type="number" max="9999999" required ng-model="ctrl.model.childrenReachedSinceLastSitrep" name="childrenReachedSinceLastSitrep"></input>
                     <div ng-messages="form.childrenReachedSinceLastSitrep.$error">
                         <div ng-message="required">This is required</div>
+                        <div ng-message="max">That's too high</div>
+                    </div>
+                </md-input-container>
+            </div>
+            
+            <div layout-gt-md="row" layout-padding>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Total reach in current year</label>
+                    <input type="number" max="9999999" ng-model="ctrl.model.totalReachInCurrentYear" name="totalReachInCurrentYear"></input>
+                    <div ng-messages="form.totalReachInCurrentYear.$error">
+                        <div ng-message="max">That's too high</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm="50">
+                    <label>Children reach figures for current year, for current strategy</label>
+                    <input type="number" max="9999999" ng-model="ctrl.model.childrenReachInCurrentYear" name="childrenReachInCurrentYear"></input>
+                    <div ng-messages="form.childrenReachInCurrentYear.$error">
                         <div ng-message="max">That's too high</div>
                     </div>
                 </md-input-container>

@@ -35,8 +35,9 @@ export default class ReportsModel extends BaseModel {
         this.totalReachSinceLastSitrep = null;
         this.childrenReachedSinceStart = null;
         this.childrenReachedSinceLastSitrep = null;
-
         this.strategyTargetChildren = null;
+        this.totalReachInCurrentYear = null;
+        this.childrenReachInCurrentYear = null;
 
         // //Income
         this.responseStrategyTarget = null;

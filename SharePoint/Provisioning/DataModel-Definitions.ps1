@@ -253,6 +253,17 @@ Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
 ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
 '@;
 
+$global:FieldDefReportsTotalReachInCurrentYear = New-FieldDefinition -FieldXml @'
+<Field ID="{70f496e8-c3d1-4241-adeb-3e6c194fb299}" Type="Number" Decimals="0" Name="TotalReachInCurrentYear" StaticName="TotalReachInCurrentYear" DisplayName="Total Reach In Current Year" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
+
+$global:FieldDefReportsChildrenReachInCurrentYear = New-FieldDefinition -FieldXml @'
+<Field ID="{bb9ac6b3-2960-4cca-934e-f1212a5cd2cf}" Type="Number" Decimals="0" Name="ChildrenReachInCurrentYear" StaticName="ChildrenReachInCurrentYear" DisplayName="Children Reach In Current Year" 
+Group="_OMT" EnforceUniqueValues="FALSE" Indexed="FALSE" Required="FALSE"
+ShowInDisplayForm="TRUE" ShowInEditForm="TRUE" ShowInListSettings="TRUE" ShowInNewForm="TRUE" />
+'@;
 ########## Income
 
 $global:FieldDefReportsResponseStrategyTarget = New-FieldDefinition -FieldXml @'

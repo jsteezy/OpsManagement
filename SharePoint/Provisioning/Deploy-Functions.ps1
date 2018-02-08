@@ -292,9 +292,9 @@ function EnsureReports()
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsTotalReachSinceLastSitrep -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsChildrenReachedSinceStart -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsChildrenReachedSinceLastSitrep -ListContext $global:ListReports.Title -webContext $web.ID
-
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsStrategyTargetChildren -ListContext $global:ListReports.Title -webContext $web.ID
-    
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsChildrenReachInCurrentYear -ListContext $global:ListReports.Title -webContext $web.ID
+    Ensure-Field $web.Url -FieldDef $global:FieldDefReportsTotalReachInCurrentYear -ListContext $global:ListReports.Title -webContext $web.ID
 
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsResponseStrategyTarget -ListContext $global:ListReports.Title -webContext $web.ID
     Ensure-Field $web.Url -FieldDef $global:FieldDefReportsSeedFundsTarget -ListContext $global:ListReports.Title -webContext $web.ID
@@ -384,9 +384,10 @@ function EnsureReports()
     $global:FieldDefReportsTotalReachSinceStart,
     $global:FieldDefReportsTotalReachSinceLastSitrep,
     $global:FieldDefReportsChildrenReachedSinceStart,
-    $global:FieldDefReportsChildrenReachedSinceLastSitrep,
-    
+    $global:FieldDefReportsChildrenReachedSinceLastSitrep,    
     $global:FieldDefReportsStrategyTargetChildren,
+    $global:FieldDefReportsChildrenReachInCurrentYear,
+    $global:FieldDefReportsTotalReachInCurrentYear,
     
     $global:FieldDefReportsResponseStrategyTarget,
     $global:FieldDefReportsSeedFundsTarget,
